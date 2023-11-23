@@ -1,0 +1,34 @@
+Virtual enviorment name:  project
+Required list:  
+Django
+cryptography
+
+
+Django 清华镜像：
+pip install django -i https://pypi.tuna.tsinghua.edu.cn/simple 
+cryptography 清华镜像
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple cryptography
+
+How to create a django project:
+django-admin startproject projectname
+
+How to run this project:
+python manage.py runserver
+
+How to connect database with diango:
+1. Download pymysql -- pip3 install PyMySQL
+or use 清华镜像: pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pymysql
+2. import PyMySql in _init_.py file
+3. configure the databse in settings.py
+4. 迁移模型到数据库: python manage.py migrate
+5.python manage.py makemigrations stu（stu是应用名）
+
+
+How to into the Admin page 进入管理员界面:
+http://127.0.0.1:8000/admin
+
+python  manage.py createsuperuser 创建管理员账号
+
+
+设置css路径
+<link rel="stylesheet" type="text/css" href="../static/css/index.css">
