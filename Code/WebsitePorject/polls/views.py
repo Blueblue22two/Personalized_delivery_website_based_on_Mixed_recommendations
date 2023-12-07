@@ -16,3 +16,11 @@ def login_customer(request):
 # redirect to login page of merchant
 def login_merchant(request):
     return render(request,'login_merchant.html')
+
+# redirect to register page of customer
+def register_customer(request):
+    return render(request,'register_customer.html')
+
+# redirect to register page of merchant
+def register_merchant(request):
+    return render(request,'register_merchant.html')
