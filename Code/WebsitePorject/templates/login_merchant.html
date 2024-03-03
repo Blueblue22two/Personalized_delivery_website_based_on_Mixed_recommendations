@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
-    <title>User Selection</title>
+    <title>Login</title>
 </head>
 <body>
     <h1 class="title">Merchant</h1>
@@ -22,7 +22,7 @@
             <button type="submit">Log In</button>
         </form>
         <div class="register-link">
-            <a href="#">Don't have an account? Click here to register</a>
+            <a href="{% url 'merchant_register' %}">Don't have an account? Click here to register</a>
         </div>
     </div>
 

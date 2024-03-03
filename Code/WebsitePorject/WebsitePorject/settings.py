@@ -37,6 +37,22 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'polls',
+    'accounts',
+    'cart',
+    'customers',
+    'merchants',
+    'orders',
+    'payment',
+    'products',
+    'recommendation',
+    # 'accounts.apps.AccountsConfig',
+    # 'cart.apps.CartConfig',
+    # 'customers.apps.CustomersConfig',
+    # 'merchants.apps.MerchantsConfig',
+    # 'orders.apps.OrdersConfig',
+    # 'payment.apps.PaymentConfig',
+    # 'products.apps.ProductsConfig',
+    # 'recommendation.apps.RecommendationConfig',
 ]
 
 MIDDLEWARE = [
@@ -74,14 +90,22 @@ WSGI_APPLICATION = "WebsitePorject.wsgi.application"
 # Database - mysql
 
 DATABASES = {
-'default': {
-'ENGINE': 'django.db.backends.mysql',# type of database: mysql
-'NAME': 'onlinefooddelivery',# database server name
-'USER': 'root',# server username
-'PASSWORD': 'halo1234',# server password
-'HOST': 'localhost',
-'PORT': '3306',# default port
-}
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'onlinefooddelivery',
+        'USER': 'root',
+        'PASSWORD': 'halo1234',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+        },
+        'MYSQL': {
+            'driver': 'pymysql',
+            'charset': 'utf8mb4',
+        },
+    }
 }
 
 

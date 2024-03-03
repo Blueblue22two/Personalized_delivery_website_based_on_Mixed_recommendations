@@ -1,0 +1,110 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f8f9fa; /* Bootstrap light background */
+}
+
+input[type="search"] {
+    width: 20%; /* Search box width adjusted */
+}
+
+.sidebar {
+    background: #fff; /* Sidebar background changed to white */
+    color: #333; /* Sidebar font color changed to black */
+    padding: 10px;
+    width: 200px;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    height: calc(100% - 56px);
+    overflow-y: auto;
+}
+
+.sidebar .list-group-item {
+    background: #fff; /* Sidebar list item background changed to white */
+    color: #333; /* Sidebar list item font color changed to black */
+}
+
+.sidebar .list-group-item:hover {
+    background: #767676; /* Sidebar list item hover background changed to grey */
+    color: #fff; /* Sidebar list item hover font color changed to white */
+}
+
+.main-content {
+    margin-left: 220px; /* Adjusted for sidebar */
+    padding-top: 20px;
+}
+
+.card-deck .card {
+    margin-bottom: 20px;
+}
+
+.user-info, .shopping-cart, .store-icon {
+    background: #ffffff; /* Background changed to grey */
+    color: #000000; /* Font color changed to white */
+    padding: 5px 10px;
+    border-radius: 5px; /* Rounded corners for buttons */
+}
+
+.user-info:hover, .shopping-cart:hover, .store-icon:hover {
+    background: #007bff; /* Background color on hover changed to Bootstrap primary */
+    color: #fff;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #f8f9fa; /* Bootstrap light background */
+    border-top: 1px solid #e7e7e7; /* Top border added */
+}
+
+.footer .foot_link a {
+    color: #007bff; /* Bootstrap primary text color */
+    text-decoration: none;
+    padding: 0 5px;
+}
+
+.footer .foot_link span {
+    color: #6c757d; /* Bootstrap secondary text color */
+}
+
+.footer p {
+    color: #6c757d; /* Bootstrap secondary text color */
+    margin-top: 10px;
+}
+
+.no-mp {
+    margin: 0;
+    padding: 0;
+}
+
+/* Additional styles to improve the layout on small screens */
+@media (max-width: 768px) {
+    .navbar input[type="search"] {
+        width: 80%; /* Full width on small screens */
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+    }
+    .main-content {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+    .footer {
+        position: relative;
+    }
+}

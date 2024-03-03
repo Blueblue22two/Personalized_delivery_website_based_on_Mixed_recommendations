@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+
     <title>User Selection</title>
 </head>
 <body>
@@ -12,13 +13,13 @@
     <div class="container">
         <div class="left">
             <h2>Customer</h2>
-            <form method="get" action="{% url 'loginc' %}">
+            <form method="get" action="{% url 'login_customer' %}">
               <button class="btn-customer" type="submit">Log in as Customer</button>
             </form>
         </div>
         <div class="right">
             <h2>Merchant</h2>
-            <form method="get" action="{% url 'loginm' %}">
+            <form method="get" action="{% url 'login_merchant' %}">
               <button class="btn-merchant" type="submit">Log in as Merchant</button>
             </form>
         </div>

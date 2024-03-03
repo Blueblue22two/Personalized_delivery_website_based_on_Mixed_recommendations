@@ -32,3 +32,6 @@ python  manage.py createsuperuser 创建管理员账号
 
 设置css路径
 <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+
+jquery地址:
+<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>

@@ -20,5 +20,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',include('polls.urls')) ## add the polls\urls.py to this route
+    path('',include('polls.urls')), # add the polls\urls.py to this route
+    path('accounts/',include('accounts.urls')), # register an account
 ]
