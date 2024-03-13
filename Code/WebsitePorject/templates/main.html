@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Food delivery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food delivery</title>
 
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-<link rel="icon" type="image/x-icon" href="{% static 'image/LOGO.ico' %}">
-<!-- Bootstrap Icons -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'image/LOGO.ico' %}">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css" rel="stylesheet">
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    var buttons = document.querySelectorAll('.btn');
-    buttons.forEach(function(button) {
-        button.onmouseover = function() {
-            this.style.cursor = 'pointer';
-        };
-    });
-});
-</script>
 </head>
 
 <body>
@@ -50,21 +40,21 @@ document.addEventListener("DOMContentLoaded", function() {
     <div class="user-info dropdown" >
         <i class="bi bi-person-fill dropdown-toggle" id="userInfoDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
         <div class="dropdown-content">
-            <a class="dropdown-item" href="customers/info">Information</a>
+            <a class="dropdown-item" href="/customers/info">Information</a>
             <a class="dropdown-item" href="#">Favorite</a>
             <a class="dropdown-item" href="#">Log out</a>
         </div>
     </div>
 
     <!-- my cart -->
-    <a href="carts/main">
+    <a href="/carts/main">
         <div class="shopping-cart" data-toggle="tooltip" title="My Cart">
             <i class="bi bi-cart-fill"></i>
         </div>
     </a>
 
     <!-- my store -->
-    <a href="merchants/myStore">
+    <a href="/merchants/my_store">
         <div class="store-icon" data-toggle="tooltip" title="My Store">
             <i class="bi bi-shop"></i>
         </div>

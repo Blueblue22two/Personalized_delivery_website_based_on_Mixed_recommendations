@@ -1,10 +1,39 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from accounts.models import Customer, Merchant
 
 
 # Create your views here.
+
+
+# --# logout(clear session) & redirect to main page--
+def logout_view(request):
+    print("log out...")
+    logout(request)
+    print("log out successfully")
+    return HttpResponseRedirect('/')
+
+
+# -- Checks whether the user is logged in from the session--
+def get_user_info(request):
+    # 检查会话中的用户名和用户类型
+    username = request.session.get('username')
+    user_type = request.session.get('user_type')
+
+    if username and user_type:
+        # 如果会话中有用户名和用户类型，表示用户已登录
+        data = {
+            'is_logged_in': True,
+            'username': username,
+            'user_type': user_type
+        }
+        return JsonResponse(data)
+    else:
+        # 如果会话中缺少用户名或用户类型，表示用户未登录或会话已过期，需要注销
+        return logout_view(request)  # 直接调用注销视图函数处理
 
 
 # -- Log In --
@@ -71,10 +100,9 @@ def submit_log(request):
         redirect_url = '/accounts/main/'
         response = JsonResponse({'message': username + ' login successfully.', 'redirect_url': redirect_url},
                                 status=200)
-        # TODO:cookie更换为session
-        # create a cookie
-        response.set_cookie('user_type', user_type, max_age=3600)  # Cookie will last for 1 hour
-        response.set_cookie('username', username, max_age=3600)
+        # create session
+        request.session['username'] = username
+        request.session['user_type'] = user_type
         return response
 
     # if request != post, return error
@@ -151,11 +179,10 @@ def submit_register(request):
         redirect_url = '/accounts/main/'
         response = JsonResponse({'message': username + ' saved successfully.', 'redirect_url': redirect_url},
                                 status=200)
-        # TODO:cookie更换为session
-        # create a cookie
-        response.set_cookie('user_type', user_type, max_age=3600)  # Cookie will last for 1 hour
-        response.set_cookie('username', username, max_age=3600)
 
+        # create session
+        request.session['username'] = username
+        request.session['user_type'] = user_type
         return response
 
     # if request != post, return error

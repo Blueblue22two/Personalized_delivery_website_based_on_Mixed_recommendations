@@ -177,35 +177,28 @@ body, html {
     display: block; /* Display dropdown when hovering over user-info */
 }
 
+/*footer*/
 .footer {
-    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9); /* 半透明背景颜色 */
     padding: 20px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background: #f8f9fa; /* Bootstrap light background */
-    border-top: 1px solid #e7e7e7; /* Top border added */
-}
-
-.footer .foot_link a {
-    color: #007bff; /* Bootstrap primary text color */
-    text-decoration: none;
-    padding: 0 5px;
-}
-
-.footer .foot_link span {
-    color: #6c757d; /* Bootstrap secondary text color */
-}
-
-.footer p {
-    color: #6c757d; /* Bootstrap secondary text color */
-    margin-top: 10px;
+    text-align: center;
+    color: black;
+    font-size: 14px;
+    backdrop-filter: blur(4px); /* 毛玻璃效果 */
 }
 
 .no-mp {
     margin: 0;
     padding: 0;
+}
+
+.foot_link a {
+    color: black;
+    text-decoration: none;
+}
+
+.foot_link span {
+    margin: 0 5px;
 }
 
 /* Additional styles to improve the layout on small screens */

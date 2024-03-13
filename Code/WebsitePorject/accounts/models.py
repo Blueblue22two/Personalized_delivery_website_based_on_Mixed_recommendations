@@ -8,10 +8,18 @@ Function list:
 2. register
 '''
 
+
 class Customer(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=11)
+
+
+class Merchant(models.Model):
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=11)
+    shop = models.ForeignKey('Shop', on_delete=models.SET_NULL, null=True, related_name='merchants')
 
 
 class Address(models.Model):
@@ -22,13 +30,6 @@ class Address(models.Model):
 class ShoppingCart(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='shopping_carts')
     quantity = models.IntegerField(validators=[MaxValueValidator(100)])
-
-
-class Merchant(models.Model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
-    phone_number = models.CharField(max_length=11)
-    shop = models.ForeignKey('Shop', on_delete=models.SET_NULL, null=True, related_name='merchants')
 
 
 class Shop(models.Model):

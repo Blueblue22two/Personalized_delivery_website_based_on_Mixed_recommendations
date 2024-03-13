@@ -1,29 +1,27 @@
 "use strict"
 // get select type
-var selectType  = document.querySelector('select[name="select_type"]');
+var selectType = $('select[name="select_type"]');
 // get input
-var searchInput = document.getElementById("search");
-var searchBtn = document.querySelector("#search_btn");
+var searchInput = $("#search");
+var searchBtn = $("#search_btn");
+
 
 function search(){
     var type = selectType.value;
     var input = searchInput.value;
     // Validate input validity
     if  (input == "") {
-       notification();
        window.alert("Please fill in all items");
-       closeLoading();
        return;
     }
    if(input.length > 50) {
-       notification();
-       window.alert("The username must &lt = 50 characters");
-       closeLoading();
+       window.alert("The name must &lt = 50 characters");
        return;
     }
     console.log("keyword:" + input);
     console.log("type:" + type);
 
+    // TODO: 改写下面的方法
     // send request
     var xhr = new XMLHttpRequest();
     xhr.open("POST",  "/Search",true);
@@ -37,7 +35,6 @@ function search(){
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             console.log("Request done");
-            closeLoading();
             try {
               console.log("http status:" + xhr.status);
               if (xhr.status === 200) {
@@ -129,43 +126,9 @@ function search(){
     xhr.send(jsonData);
 }
 
-// function of notification sound
-function notification(){ 
-    var audioCtx = new AudioContext(); 
-    var oscillator = audioCtx.createOscillator(); 
-    var gainNode = audioCtx.createGain();
-    oscillator.connect(gainNode); 
-    gainNode.connect(audioCtx.destination); 
-    oscillator.type = 'sine';
-    oscillator.frequency.value = 220.00; 
-    gainNode.gain.setValueAtTime(0, audioCtx.currentTime); 
-    gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.01);
-    oscillator.start(audioCtx.currentTime); 
-    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1);
-    oscillator.stop(audioCtx.currentTime + 1);
-}
-
-// display loading animation
-function Loading(){
-    let loader = document.querySelector('.spinner');
-    loader.style.display = "block";
-    // Blur the background
-    let container = document.getElementsByClassName("container");
-    container[0].style.filter = "blur(5px)";
-}
-
-// Turn off loading animation
-function closeLoading(){
-    let loader = document.querySelector('.spinner');
-    loader.style.display = "none";
-    let container = document.getElementsByClassName("container");
-    container[0].style.filter = "";
-}
-
 // search button
 searchBtn.addEventListener("click", function(event) {
     event.preventDefault();
-    Loading();
     console.log("start searching");
     setTimeout(search, 300);
 });

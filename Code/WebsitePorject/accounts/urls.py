@@ -12,4 +12,10 @@ urlpatterns = [
 
     # main page
     path('main/', views.main_page, name='main_page'),
+
+    # session: authenticate user is logged in
+    path('get_user_info/', views.get_user_info, name='get_user_info'),
+
+    # logout
+    path('logout/', views.logout_view, name='logout'),
 ]

@@ -5,6 +5,35 @@ var totalPriceInput = $('#totalPrice');
 var payButton = $('#payButton');
 
 
+async function getUsernameFromSession() {
+    try {
+        // 发起请求到 Django 后端以获取用户信息
+        const response = await fetch('/accounts/get_user_info');
+        // 解析响应的 JSON 数据
+        const data = await response.json();
+
+        // check is login or not
+        if (data.is_logged_in) {
+            console.log("Logged in as", data.username);
+            return data.username;
+        } else {
+            console.log("Not logged in");
+            return null;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        return null;
+    }
+}
+
+
+getUsernameFromSession().then(username => {
+    if (username) {
+        console.log("Session username:", username);
+    }
+});
+
+
 // Get the data from the shopping cart and display it
 function showCart(){
     var user = getCookie('username');
@@ -97,26 +126,16 @@ function calculateTotalPrice() {
 }
 
 
-// get Cookie
-function getCookie(name) {
-    var cookies = document.cookie.split(';'); // Split them into an array
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i].trim();
-        if (cookie.indexOf(name) === 0) {
-        return cookie.substring(name.length + 1, cookie.length);
-        }
-    }
-    return null;
-}
-
-
 // remove selected product from cart
-removeSelectedButton.addEventListener('click', () => {
+
+removeSelectedButton.addEventListener('click', async () => { // 注意使用了async ()关键词
   if (confirm('Are you sure you want to remove selected items?')) {
     const cartTableBody = document.getElementById('cartTable');
     const itemCheckboxes = document.getElementsByClassName('itemCheckBox');
     var selectedItems = [];
-    var user = getCookie('username');
+
+    // 从session中获取Username
+    var user = await getUsernameFromSession(); // 使用 await 等待异步操作完成
 
     // store all of selected product name
     for (let i = 0; i < itemCheckboxes.length; i++) {
