@@ -18,8 +18,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    # your URL patterns here
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',include('polls.urls')), # add the polls\urls.py to this route
-    path('accounts/',include('accounts.urls')), # register an account
+    path('', include('polls.urls')),  # add the polls\urls.py to this route
+    path('accounts/', include('accounts.urls')),  # accounts: log in&out ,register
+    path('carts/', include('cart.urls')),  # shopping cart: manage products
+    path('merchants/', include('merchant.urls')),  # merchant: manage store
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

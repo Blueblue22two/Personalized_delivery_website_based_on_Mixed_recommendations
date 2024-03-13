@@ -6,8 +6,9 @@
 <title>Food delivery</title>
 
 {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<link rel="icon" type="image/x-icon" href="{% static 'image/LOGO.ico' %}">
 <!-- Bootstrap Icons -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css" rel="stylesheet">
 
@@ -32,53 +33,76 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <!--search bar-->
     <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">
-                <i class="bi bi-search"></i>
-            </span>
+        <!-- search bar -->
+        <form class="search_form">
+            {% csrf_token %}
+            <label class="search_label">Search:</label>
+            <input id="search" type="search" class="form-control form-control-lg mx-2" placeholder="Search for food" aria-label="Search">
+            <button id="search_btn" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </button>
+        </form>
+    </div>
+
+    <!-- user info with vertical dropdown -->
+    <div class="user-info dropdown" >
+        <i class="bi bi-person-fill dropdown-toggle" id="userInfoDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+        <div class="dropdown-content">
+            <a class="dropdown-item" href="customers/info">Information</a>
+            <a class="dropdown-item" href="#">Favorite</a>
+            <a class="dropdown-item" href="#">Log out</a>
         </div>
-        <input class="form-control form-control-lg mx-2" type="search" placeholder="Search food, store" aria-label="Search" aria-describedby="basic-addon1">
     </div>
 
-    <!-- user info -->
-    <div class="user-info">
-        <i class="bi bi-person-fill"></i>
-    </div>
-
-    <!-- cart -->
-    <div class="shopping-cart">
-        <i class="bi bi-cart-fill"></i>
-    </div>
+    <!-- my cart -->
+    <a href="carts/main">
+        <div class="shopping-cart" data-toggle="tooltip" title="My Cart">
+            <i class="bi bi-cart-fill"></i>
+        </div>
+    </a>
 
     <!-- my store -->
-    <div class="store-icon">
-        <i class="bi bi-shop"></i>
-    </div>
+    <a href="merchants/myStore">
+        <div class="store-icon" data-toggle="tooltip" title="My Store">
+            <i class="bi bi-shop"></i>
+        </div>
+    </a>
+
+    <!-- orders -->
+    <a href="">
+        <div class="order-icon" data-toggle="tooltip" title="My Orders">
+            <i class="bi bi-file-earmark-text"></i>
+        </div>
+    </a>
 </div>
 
 <div class="sidebar">
     <span>Categories</span>
     <ul class="list-group">
-        <li class="list-group-item">热销</li>
-        <li class="list-group-item">折扣</li>
-        <li class="list-group-item">主食</li>
-        <li class="list-group-item">小吃</li>
+        <li class="list-group-item">Hot-sales</li>
+        <li class="list-group-item">Salad</li>
+        <li class="list-group-item">Chinese food</li>
+        <li class="list-group-item">Dessert</li>
+        <li class="list-group-item">Beef</li>
+        <li class="list-group-item">Sushi</li>
         <!-- More food categories -->
     </ul>
 </div>
 
 <div class="main-content container mt-3">
     <div class="filter-buttons btn-group d-flex mb-3" role="group">
-        <button type="button" class="btn btn-secondary flex-fill">推荐食物</button>
-        <button type="button" class="btn btn-secondary flex-fill">最热门食物</button>
-        <button type="button" class="btn btn-secondary flex-fill">推荐商家</button>
+        <button type="button" class="btn btn-secondary flex-fill">Recommended food</button>
+        <button type="button" class="btn btn-secondary flex-fill">Hot-sales food</button>
     </div>
 
     <div class="card-deck">
+{#        读取数据库中的product中的数据如下展示#}
         <!-- Cards for the food items -->
         <!-- Example of a single card -->
         <div class="card">
-            <img src="food1.jpg" class="card-img-top" alt="Food item">
+            <img src="{% static 'image/The rock.png' %}" class="card-img-top" alt="Food item">
             <div class="card-body">
                 <h5 class="card-title">辣子鸡丁</h5>
                 <p class="card-text">¥33</p>
@@ -86,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
 
         <div class="card">
-            <img src="food1.jpg" class="card-img-top" alt="Food item">
+            <img src="{% static 'image/The rock.png' %}" class="card-img-top" alt="Food item">
             <div class="card-body">
                 <h5 class="card-title">燃面</h5>
                 <p class="card-text">¥22</p>
@@ -94,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
 
         <div class="card">
-            <img src="food1.jpg" class="card-img-top" alt="Food item">
+            <img src="{% static 'image/The rock.png' %}" class="card-img-top" alt="Food item">
             <div class="card-body">
                 <h5 class="card-title">哇哈哈</h5>
                 <p class="card-text">¥50</p>
@@ -114,7 +138,9 @@ document.addEventListener("DOMContentLoaded", function() {
     <p>CopyRight © 2023 Calvin All Rights Reserved</p>
 </div>
 
-<script src="{% static 'js/bootstrap.js' %}"></script>
 <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/Log.js' %}"></script>
+
 </body>
 </html>

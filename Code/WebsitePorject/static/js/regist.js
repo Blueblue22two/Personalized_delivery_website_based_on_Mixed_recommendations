@@ -1,6 +1,7 @@
-<!-- MD5 -->
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"/>
 
+function getCsrfTokenFromForm() {
+    return document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+}
 
 /**
  * Validate that user input is valid
@@ -8,7 +9,7 @@
  */
 function validateForm(formData) {
     // Check if any field is empty
-    if (!formData.username || !formData.password || !formData.confirmPassword || !formData.phone || !formData.city) {
+    if (!formData.username || !formData.password || !formData.confirmPassword || !formData.phone) {
         alert('Please fill in all fields.');
         return false;
     }
@@ -30,7 +31,6 @@ function validateForm(formData) {
         alert('The phone number should be 11 digits.');
         return false;
     }
-
     // Form is valid
     console.log("Form validation passed")
     return true;
@@ -38,52 +38,61 @@ function validateForm(formData) {
 
 // Submit event
 $(document).ready(function () {
-    console.log("Submit...");
     $('#registrationForm').submit(function (event) {
-        event.preventDefault(); // 阻止表单提交，等待数据发送完成
+        event.preventDefault();
 
-        // 提取表单数据
         var formData = {
             username: $('#username').val().trim(),
             password: $('#password').val().trim(),
             confirmPassword: $('#confirm_password').val().trim(),
             phone: $('#phone').val().trim(),
+            gender: $('input[name="gender"]:checked').val(),
             userType: $("#userType").text().trim()
         };
 
-        // 验证表单数据
         if (!validateForm(formData)) {
-            return; // 如果表单验证失败，则不发送数据
-        }
-
-        // 加密密码(md5)
-        formData.password = md5(formData.password);
-        console.log("Hash: ", formData.password);
-
-        // set the url
-        let url_regis;
-        if (formData.userType === 1){
-            url_regis = "accounts/register/customer/";
+            console.log("Validation failed");
         }else{
-            url_regis="accounts/register/merchant/";
-        }
+            // (md5)
+            formData.password = md5(formData.password);
+            console.log("Hash: ", formData.password);
 
-        // 发送POST请求
-        $.ajax({
-            type: "POST",
-            url: url_regis, // 后台Django处理的URL
-            data: formData,
-            success: function (response) {
-                // 处理成功响应
-                console.log("Data sent successfully!", response.message);
-                // TODO:弹窗显示注册成功
-                // TODO:跳转到主页面并登录
-            },
-            error: function (error) {
-                // 处理错误响应
-                console.error("Error sending data:", error);
-                // TODO:显示错误信息
+            // set the url
+            let url_regis;
+            if (formData.userType === '1'){
+                console.log("User type: customer")
+                url_regis = "/accounts/register/customer/";
+            }else if(formData.userType === '2'){
+                console.log("User type: merchant")
+                url_regis="/accounts/register/merchant/";
+            }else{
+                console.log("Error usertype");
+                return;
             }
-        });
+
+            // send post request
+            $.ajax({
+                type: "POST",
+                url: url_regis,
+                data: formData,
+                headers: {
+                    'X-CSRFToken': getCsrfTokenFromForm()
+                },
+                success: function (response) {
+                    console.log("Data sent successfully!", response.message);
+                    alert("Register success");
+                    // redirect to main page
+                    setTimeout(function(){
+                        window.location.href = response.redirect_url;
+                    }, 500);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("Error sending data:", textStatus, errorThrown);
+                    alert("Error: " + jqXHR.responseText);
+                }
+
+            });
+        }
+        //
     });
 });

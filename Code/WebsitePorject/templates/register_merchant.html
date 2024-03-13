@@ -5,16 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'image/LOGO.ico' %}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <!--footer css-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+
+    <script>
+        function scriptLoaded() {
+            console.log('Script loaded successfully.');
+        }
+
+        function scriptError() {
+            console.error('Script failed to load.');
+        }
+    </script>
 </head>
 <body>
 <div id="userType" style="display: none;">2</div>
 <div class="container">
     <h2 class="mt-5 mb-4">Merchant register</h2>
-    <form id="registrationForm">
+    <form id="registrationForm"  method = "post" action ="">
+        {% csrf_token %}
         <div class="mb-3">
                 <label for="username" class="form-label">User name</label>
                 <input type="text" class="form-control" id="username" name="username" required placeholder="Name do not contain special chars">
@@ -61,10 +73,13 @@
 		<p>CopyRight © 2023 Calvin All Rights Reserved</p>
 	</div>
 
-    <!-- Bootstrap JS -->
-    <script src="{% static 'js/bootstrap.js' %}"></script>
     <!-- jQuery JS -->
     <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{% static 'js/regist.js' %}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <!--md5-->
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+{#    <script src="{% static 'js/md5.js' %}"></script>#}
+    <script src="{% static 'js/regist.js' %}" onload="scriptLoaded()" onerror="scriptError()"></script>
 </body>
 </html>

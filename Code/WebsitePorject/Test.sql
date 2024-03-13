@@ -16,4 +16,9 @@
 -- DROP TABLE IF EXISTS Admins;
 
 USE OnlineFoodDelivery; -- use this database
-show tables 
+-- show tables 
+-- show columns from OnlineFoodDelivery.customers
+
+SELECT * FROM accounts_customer;
+-- SELECT * FROM accounts_merchant;
+

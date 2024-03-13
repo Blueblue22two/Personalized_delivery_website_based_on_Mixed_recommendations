@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="97b3ea59-c133-4a52-ad1d-a157fc0ef932" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/.idea/WebsitePorject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebsitePorject/.idea/WebsitePorject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/Project.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/Test.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/WebsitePorject/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/WebsitePorject/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/WebsitePorject/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/WebsitePorject/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/WebsitePorject/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/accounts/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/accounts/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/accounts/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/accounts/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/accounts/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/accounts/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/accounts/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/accounts/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/cart/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/cart/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/cart/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/cart/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/cart/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/cart/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/cart/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/customers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/customers/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/customers/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/customers/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/customers/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/customers/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/customers/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/merchants/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/merchants/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/merchants/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/merchants/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/merchants/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/merchants/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/merchants/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/orders/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/orders/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/orders/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/orders/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/orders/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/orders/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/orders/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/payment/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/payment/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/payment/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/payment/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/payment/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/payment/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/payment/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/polls/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/polls/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/polls/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/polls/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/polls/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/polls/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/polls/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/polls/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/products/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/products/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/products/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/products/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/products/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/products/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/products/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/recommendation/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/recommendation/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/recommendation/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/recommendation/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/recommendation/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/recommendation/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/recommendation/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/autocomplete.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/changelists.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/dark_mode.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/dashboard.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/forms.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/nav_sidebar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/responsive.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/responsive_rtl.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/rtl.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/vendor/select2/LICENSE-SELECT2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/vendor/select2/select2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/vendor/select2/select2.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/css/widgets.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/calendar-icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/gis/move_vertex_off.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/gis/move_vertex_on.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/icon-addlink.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/icon-alert.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/icon-calendar.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/icon-changelink.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/icon-clock.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/icon-deletelink.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/icon-no.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/icon-unknown-alt.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/icon-unknown.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/icon-viewlink.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/icon-yes.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/inline-delete.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/search.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/selector-icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/sorting-icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/tooltag-add.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/img/tooltag-arrowright.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/SelectBox.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/SelectFilter2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/admin/DateTimeShortcuts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/admin/RelatedObjectLookups.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/autocomplete.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/calendar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/cancel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/change_form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/collapse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/core.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/filters.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/inlines.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/jquery.init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/nav_sidebar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/popup_response.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/prepopulate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/prepopulate_init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/theme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/urlify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/jquery/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/jquery/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/jquery/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/af.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/ar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/az.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/bg.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/bn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/bs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/ca.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/cs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/da.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/de.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/dsb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/el.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/en.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/es.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/et.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/eu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/fa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/fi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/fr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/gl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/he.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/hi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/hr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/hsb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/hu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/hy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/id.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/is.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/it.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/ja.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/ka.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/km.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/ko.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/lt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/lv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/mk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/ms.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/nb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/ne.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/nl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/pl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/ps.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/pt-BR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/pt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/ro.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/ru.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/sk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/sl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/sq.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/sr-Cyrl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/sr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/sv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/th.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/tk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/tr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/uk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/vi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/zh-CN.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/i18n/zh-TW.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/select2.full.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/select2/select2.full.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/xregexp/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/xregexp/xregexp.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/admin/js/vendor/xregexp/xregexp.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/css/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/css/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/css/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/static/js/regist.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/templates/login_customer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/templates/login_merchant.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/templates/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/templates/register_customer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsitePorject/templates/register_merchant.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2dXpaar2Du8rhcJiHABRzWdaLWU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="97b3ea59-c133-4a52-ad1d-a157fc0ef932" name="Changes" comment="" />
+      <created>1710164388038</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710164388038</updated>
+      <workItem from="1710164389133" duration="19000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
