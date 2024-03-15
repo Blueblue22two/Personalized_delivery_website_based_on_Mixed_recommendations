@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     # login
-    path("login/customer/", views.login_customer, name="login_customer"), # name用于模板中引用该特定的URL模式时，使用{% url 'customer_register' %}来引用
+    path("login/customer/", views.login_customer, name="login_customer"),
     path("login/merchant/", views.login_merchant, name="login_merchant"),
 
     # register
@@ -13,9 +13,13 @@ urlpatterns = [
     # main page
     path('main/', views.main_page, name='main_page'),
 
-    # session: authenticate user is logged in
+    # session: get the session username and user type
     path('get_user_info/', views.get_user_info, name='get_user_info'),
+    path('get_info/', views.get_info, name='get_info'),
 
     # logout
     path('logout/', views.logout_view, name='logout'),
+
+    # Search
+    path('search/', views.search, name='search'),
 ]

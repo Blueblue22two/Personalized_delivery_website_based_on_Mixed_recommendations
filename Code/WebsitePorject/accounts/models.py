@@ -35,9 +35,9 @@ class ShoppingCart(models.Model):
 class Shop(models.Model):
     merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE, related_name='shops')
     name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    total_rating = models.DecimalField(max_digits=3, decimal_places=1)
-    image_path = models.CharField(max_length=255)
+    address = models.CharField(max_length=255) # 默认为空
+    total_rating = models.DecimalField(max_digits=3, decimal_places=1) # 默认为0
+    image_path = models.CharField(max_length=255) # 存储在硬盘中的路径
 
 
 class Favorite(models.Model):

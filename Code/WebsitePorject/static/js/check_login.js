@@ -1,5 +1,4 @@
 "use strict"
-// This file is different with Log.js
 // The code in this file is generally applicable to most of the code in the project
 
 // check user is login or not

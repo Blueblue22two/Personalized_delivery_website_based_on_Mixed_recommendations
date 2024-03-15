@@ -86,11 +86,20 @@ $(document).ready(function () {
                         window.location.href = response.redirect_url;
                     }, 500);
                 },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.error("Error sending data:", textStatus, errorThrown);
-                    alert("Error: " + jqXHR.responseText);
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // 尝试解析来自后端的JSON响应体中的错误信息
+                    let errorMessage = "An unknown error occurred"; // 默认错误消息
+                    try {
+                        let responseJson = JSON.parse(jqXHR.responseText);
+                        if (responseJson.error) {
+                            errorMessage = responseJson.error;
+                        }
+                    } catch(e) {
+                        // 解析JSON失败，使用默认错误消息
+                    }
+                    console.error("Error sending data:", textStatus, errorThrown, errorMessage);
+                    alert("Error: " + errorMessage);
                 }
-
             });
         }
         //

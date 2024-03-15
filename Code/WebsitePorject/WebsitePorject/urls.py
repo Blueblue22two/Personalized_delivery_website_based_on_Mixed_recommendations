@@ -33,7 +33,10 @@ urlpatterns = [
     path('', include('polls.urls')),  # add the polls\urls.py to this route
     path('accounts/', include('accounts.urls')),  # accounts: log in&out ,register
     path('carts/', include('cart.urls')),  # shopping cart: manage products
+    path('customers/', include('customers.urls')),  # customers: cart, favorite
     path('merchants/', include('merchants.urls')),  # merchant: manage store
+    path('orders/', include('orders.urls')),  # merchant: manage store
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

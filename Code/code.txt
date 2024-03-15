@@ -21,6 +21,9 @@ or use 清华镜像: pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pym
 2. import PyMySql in _init_.py file
 3. configure the databse in settings.py
 4. 迁移模型到数据库: python manage.py migrate
+或者特定的app：
+python manage.py makemigrations your_app_name
+
 5.python manage.py makemigrations stu（stu是应用名）
 
 

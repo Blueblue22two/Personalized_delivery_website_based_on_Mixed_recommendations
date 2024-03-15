@@ -1,65 +1,53 @@
+"use strict"
+
+// function：get is_logged_in, username, user_type from django session
+function checkLogin() {
+    console.log('start checking...');
+    fetch('/accounts/get_info')
+        .then(response => response.json())
+        .then(data => {
+            if (data.is_logged_in) {
+                if (data.user_type === '2') {
+                    console.log("User:merchant")
+                } else {
+                    console.log("Error: user type error");
+                    logOut();
+                }
+            } else {
+                console.log("Not logged in");
+                logOut();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            logOut();
+        });
+}
+
+
+function logOut() {
+    window.location.href = '/accounts/logout/';
+}
+
+
 // function: get data of store and display data
 function displayData(){
-    let username = getCookie('username');
-    if (username === null){
-        console.log("Cookie not exist!");
-        return;
-    }
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST",  "/getStoreData", true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    var jsonData = JSON.stringify({
-        "username": username,
-    });
-    console.log("username:"+username);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            console.log("Request done");
-            try {
-                var response = JSON.parse(xhr.responseText);
-                console.log("http status:"+xhr.status);
-                if (xhr.status === 200) {
-                    // get data
-                    let store_name = response.data.name;
-                    let volume = response.data.volume;
-                    let sales = response.data.sales;
-                    let num =response.data.num;
-                    console.log("total_volume: "+volume);
-                    console.log("total_sales: "+sales);
-                    console.log("number of goods: "+num);
-                    console.log("store name: "+store_name);
-                    // Set data
-                    const header = document.querySelector('.header');
-                    header.textContent = store_name;
-                    document.getElementById("total_volume").value = volume;
-                    document.getElementById("total_sales").value = sales;
-                    document.getElementById("num_goods").value = num;
-                    return;
-                } else if (xhr.status === 400) { // code: 400 bad request
-                    console.log("Bad request: "+response.message); 
-                    return;
-                } else {
-                    console.log('HTTP Error: ' + xhr.status); 
-                    return;
-                }
-            } catch (e) {
-                console.log("Parsing response failed :" + e.message);
-            }
-        }
-    };
-    xhr.send(jsonData);
+    // TODO:向后端django发送请求获取以下数据：
+    // 1. 商店名字（Store name）
+    // 2. 商店地址 (address)
+    // 3.商店联系电话 (Phone)
+    // 4.商店评分(0到5.0的数字) (Rate)
+    // 5.商店总收入Total Income
+    // 6.商店总销售量 Total Sales
+    // 7.商店中已上架的商品数量
+    // 8.商店销售最多的商品名
+
+    // TODO:接收到这些数据后，将其展示在html中
 }
 
-// function: get Cookie
-function getCookie(name) {
-    var cookies = document.cookie.split(';'); // Split them into an array
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i].trim();
-        if (cookie.indexOf(name) === 0) {
-        return cookie.substring(name.length + 1, cookie.length);
-        }
-    }
-    return null;
-}
 
-window.onload= displayData;
+$(window).on("load", function() {
+    console.log("Loading the page");
+    checkLogin();
+    displayData();
+});

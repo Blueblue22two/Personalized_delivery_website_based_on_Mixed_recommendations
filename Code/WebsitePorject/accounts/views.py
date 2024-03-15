@@ -13,27 +13,47 @@ from accounts.models import Customer, Merchant
 def logout_view(request):
     print("log out...")
     logout(request)
-    print("log out successfully")
+    print("log out successfully,redirect to /")
     return HttpResponseRedirect('/')
 
 
-# -- Checks whether the user is logged in from the session--
+# -- Checks whether the user is logged in from the session, if not then logout--
 def get_user_info(request):
-    # 检查会话中的用户名和用户类型
-    username = request.session.get('username')
-    user_type = request.session.get('user_type')
+    print("get user info...")
+    username = request.session.get('username', None)
+    user_type = request.session.get('user_type', None)  # if not exist then return none
 
     if username and user_type:
-        # 如果会话中有用户名和用户类型，表示用户已登录
         data = {
             'is_logged_in': True,
             'username': username,
             'user_type': user_type
         }
-        return JsonResponse(data)
+        print("get user info successfully")
+        return JsonResponse(data,status=200)
     else:
-        # 如果会话中缺少用户名或用户类型，表示用户未登录或会话已过期，需要注销
-        return logout_view(request)  # 直接调用注销视图函数处理
+        print("get user info failed, not login")
+        return logout_view(request)
+
+
+# -- Checks whether the user is logged in from the session--
+def get_info(request):
+    print("get info...")
+    username = request.session.get('username', None)
+    user_type = request.session.get('user_type', None)  # if not exist then return none
+
+    if username and user_type:
+        data = {
+            'is_logged_in': True,
+            'username': username,
+            'user_type': user_type
+        }
+        print("get info successfully")
+        return JsonResponse(data,status=200)
+    else:
+        data = {'is_logged_in': False}
+        print("get info failed, not login")
+        return JsonResponse(data,status=400)
 
 
 # -- Log In --
@@ -72,8 +92,8 @@ def submit_log(request):
 
         # if user_type != '1' and user_type != '2':  # 注意：比较的是字符串
         if user_type != '1' and user_type != '2':  # customer
-            print("Error: Non-existent user type: " + user_type)
-            return JsonResponse({'message': 'Error: Non-existent user type.'}, status=400)
+            print("error: Non-existent user type: " + user_type)
+            return JsonResponse({'message': 'error: Non-existent user type.'}, status=400)
 
         # Connect the database
         try:
@@ -216,4 +236,11 @@ Function jump to main page
 """
 def main_page(request):
     print("redirect to main page")
-    return render(request, 'main.html')
+    return render(request, 'main_index.html')
+
+
+def search(request):
+    if request.method == 'POST':
+        # TODO: 接收前端的数据，数据库中搜索
+        return
+    return render(request,"search.html")

@@ -9,3 +9,6 @@
 
 **third-party library:**  
 > PyMySql (1.1.0)  
+> Bootstrap 3
+> Feather icon
+> Jquery

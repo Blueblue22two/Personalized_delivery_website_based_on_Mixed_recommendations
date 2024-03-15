@@ -76,11 +76,11 @@ CREATE TABLE Products (
     image_path VARCHAR(255)
 );
 
--- the total rate of shop
+
 CREATE TABLE ShopRatings (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     shop_id INT,
-    average_rating DECIMAL(3, 2)
+    rate DECIMAL(3, 1) DEFAULT 0
 );
 
 -- Favorites table (for customer)
@@ -95,7 +95,8 @@ CREATE TABLE Favorites (
 CREATE TABLE FavItems (
     id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT,
-    shop_id INT
+    product_id INT
+--     shop_id INT
 );
 
 -- Comment table
@@ -104,7 +105,7 @@ CREATE TABLE Comments (
     customer_id INT,
     product_id INT,
     text TEXT,
-    image_path VARCHAR(255), -- this is optional
+--     image_path VARCHAR(255), -- this is optional
     rating DECIMAL(3, 1)
 );
 
@@ -117,9 +118,9 @@ CREATE TABLE Orders (
     product_price DECIMAL(10, 2),
     quantity INT,
     total_price DECIMAL(10, 2),
-    sale_time DATETIME,
-    order_type ENUM('delivery', 'pick up'),
-    order_status ENUM('Order finished','Order closed', 'Order in delivery', 'Wait for picked up')
+    sale_time DATETIME
+--     order_type ENUM('delivery', 'pick up'),
+--     order_status ENUM('Order finished','Order closed', 'Order in delivery', 'Wait for picked up')
 );
 
 -- Adding Foreign Keys using ALTER TABLE
@@ -161,7 +162,7 @@ ALTER TABLE FavItems ADD CONSTRAINT fk_customer_id_favitems
 FOREIGN KEY (customer_id) REFERENCES Customers(id);
 
 ALTER TABLE FavItems ADD CONSTRAINT fk_shop_id_favitems
-FOREIGN KEY (shop_id) REFERENCES Shops(id);
+FOREIGN KEY (product_id) REFERENCES Products(id);
 
 ALTER TABLE Comments ADD CONSTRAINT fk_customer_id_comments
 FOREIGN KEY (customer_id) REFERENCES Customers(id);
@@ -177,4 +178,7 @@ FOREIGN KEY (merchant_id) REFERENCES Merchants(id);
 
 ALTER TABLE Orders ADD CONSTRAINT fk_product_id_orders
 FOREIGN KEY (product_id) REFERENCES Products(id);
+
+ALTER TABLE ShopRatings ADD CONSTRAINT fk_shop_id_ratings
+FOREIGN KEY (shop_id) REFERENCES Shops(id);
 
