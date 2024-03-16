@@ -131,10 +131,10 @@
             </div>
         </div>
 
-        <!-- 种类筛选器 Category Filters -->
+        <!-- Category Filters -->
         <div class="container">
             <div class="cat-slider">
-                 <!-- 分类项目：炸薯条 -->
+
                 <div class="cat-item px-1 py-3">
                     <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="trending.html">
                         <img alt="#" src="{% static 'image/icons/Fries.png' %}" class="img-fluid mb-2">
@@ -142,7 +142,7 @@
                     </a>
                 </div>
 
-                <!-- 分类项目：披萨,保留 -->
+
                 <div class="cat-item px-1 py-3">
                     <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="trending.html">
                         <img alt="#" src="{% static 'image/icons/Pizza.png' %}" class="img-fluid mb-2">
@@ -150,7 +150,7 @@
                     </a>
                 </div>
 
-                <!-- 分类项目：汉堡 -->
+
                 <div class="cat-item px-1 py-3">
                     <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="trending.html">
                         <img alt="#" src="{% static 'image/icons/Burger.png' %}" class="img-fluid mb-2">
@@ -158,7 +158,7 @@
                     </a>
                 </div>
 
-                <!-- 分类项目：牛排（保留） -->
+
                 <div class="cat-item px-1 py-3">
                     <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="trending.html">
                         <img alt="#" src="{% static 'image/icons/Steak.png' %}" class="img-fluid mb-2">
@@ -166,15 +166,15 @@
                     </a>
                 </div>
 
-                <!-- 分类项目：快餐 保留为中餐Chinese food -->
+                <!-- 为中餐Chinese food -->
                 <div class="cat-item px-1 py-3">
                     <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="trending.html">
                         <img alt="#" src="{% static 'image/icons/Breakfast.png' %}" class="img-fluid mb-2">
-                        <p class="m-0 small">Breakfast</p>
+                        <p class="m-0 small">Chinese food</p>
                     </a>
                 </div>
 
-                <!-- 分类项目：沙拉，保留 -->
+
                 <div class="cat-item px-1 py-3">
                     <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="trending.html">
                         <img alt="#" src="{% static 'image/icons/Salad.png' %}" class="img-fluid mb-2">
@@ -184,7 +184,6 @@
             </div>
         </div>
 
-        <!-- Discount slider -->
         <!-- 优惠部分滑动栏 -->
         <!-- TODO:此部分变为物品展示或者删除 -->
         <div class="bg-white">
@@ -225,39 +224,41 @@
         </div>
 
         <div class="container">
-            <!-- TODO:可删除此部分 -->
-            <!-- 本周热门 -->
-            <!-- Trending this week -->
+            <!-- TODO:推荐商店，根据用户推荐系统所推荐的商店部分 -->
+            <!-- Recommend -->
             <div class="pt-4 pb-2 title d-flex align-items-center">
-                <h5 class="m-0">Trending this week</h5>
-                <a class="font-weight-bold ml-auto" href="trending.html">View all <i class="feather-chevrons-right"></i></a>
+                <h5 class="m-0">Recommend:</h5>
+
             </div>
             <!-- slider -->
             <div class="trending-slider">
+
+                <!-- Ex:Restaurant 1 一个描述餐厅项目卡片的HTML代码片段,下面都与这个一样-->
                 <div class="osahan-slider-item">
                     <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                         <div class="list-card-image">
+                            <!-- TODO:代表星级评分rate，括号里是参与rate的用户的数量 -->
                             <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                            <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                            <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                            <a href="restaurant.html">
-                                <img alt="#" src="#" class="img-fluid item-img w-100">
-                            </a>
+                            <!-- TODO:餐厅页面的链接 与 图片 -->
+                            <a href="#"><img alt="#" src="#" class="img-fluid item-img w-100"></a>
                         </div>
                         <div class="p-3 position-relative">
+                            <!-- 这个div类代表卡片主体部分 -->
                             <div class="list-card-body">
-                                <h6 class="mb-1"><a href="restaurant.html" class="text-black">Famous Dave's Bar-B-Que
-                              </a>
+                                <h6 class="mb-1">
+                                    <!-- TODO:链接点击跳转到餐厅页面，以及餐厅的名字-->
+                                    <a href="restaurant.html" class="text-black">Famous Dave's Bar-B-Que</a>
                                 </h6>
+                                <!-- TODO:餐厅地址address -->
                                 <p class="text-gray mb-3">Vegetarian • Indian • Pure veg</p>
-                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–30 min</span> <span class="float-right text-black-50"> $350 FOR TWO</span></p>
                             </div>
                             <div class="list-card-badge">
-                                <span class="badge badge-danger">OFFER</span> <small> Use Coupon OSAHAN50</small>
-                            </div>
+                                <span class="badge badge-danger">OFFER</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- Restaurant 2 -->
                 <div class="osahan-slider-item">
                     <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                         <div class="list-card-image">
@@ -280,82 +281,42 @@
                         </div>
                     </div>
                 </div>
-                <div class="osahan-slider-item">
-                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                        <div class="list-card-image">
-                            <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                            <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                            <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                            <a href="restaurant.html">
-                                <img alt="#" src="#" class="img-fluid item-img w-100">
-                            </a>
-                        </div>
-                        <div class="p-3 position-relative">
-                            <div class="list-card-body">
-                                <h6 class="mb-1"><a href="restaurant.html" class="text-black">The osahan Restaurant
-                              </a>
-                                </h6>
-                                <p class="text-gray mb-3">North • Hamburgers • Pure veg</p>
-                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–25 min</span> <span class="float-right text-black-50"> $500 FOR TWO</span></p>
-                            </div>
-                            <div class="list-card-badge">
-                                <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="osahan-slider-item">
-                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                        <div class="list-card-image">
-                            <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                            <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                            <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                            <a href="restaurant.html">
-                                <img alt="#" src="#" class="img-fluid item-img w-100">
-                            </a>
-                        </div>
-                        <div class="p-3 position-relative">
-                            <div class="list-card-body">
-                                <h6 class="mb-1"><a href="restaurant.html" class="text-black">Thai Famous Cuisine</a></h6>
-                                <p class="text-gray mb-3">North Indian • Indian • Pure veg</p>
-                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30–35 min</span> <span class="float-right text-black-50"> $250 FOR TWO</span></p>
-                            </div>
-                            <div class="list-card-badge">
-                                <span class="badge badge-success">OFFER</span> <small>65% off</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
             <!-- Most popular section -->
             <!-- headline -->
             <div class="py-3 title d-flex align-items-center">
                 <h5 class="m-0">Most popular</h5>
-                <!-- 右侧”更多“链接 -->
+                <!-- 右侧”更多“链接，跳转到界面完全体的推荐界面,可删除-->
                 <a class="font-weight-bold ml-auto" href="most_popular.html">26 places <i class="feather-chevrons-right"></i></a>
             </div>
-            <!-- Most popular food card -->
+
+            <!-- Most popular food card,评分最高 -->
             <div class="most_popular">
                 <div class="row">
+                    <!-- 商店1 -->
                     <div class="col-md-3 pb-3">
                         <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                             <div class="list-card-image">
+                                <!-- rate评分（评价人数） -->
                                 <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
+
+                                <!-- 收藏该店，先删除该功能 -->
                                 <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
+
                                 <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="restaurant.html">
+                                <a href="#">
+                                    <!-- 商店封面 -->
                                     <img alt="#" src="#" class="img-fluid item-img w-100">
                                 </a>
                             </div>
                             <div class="p-3 position-relative">
                                 <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="restaurant.html" class="text-black">The osahan Restaurant
-                                 </a>
+                                    <h6 class="mb-1"><a href="#" class="text-black">The osahan Restaurant</a> <!-- 商店名 -->
                                     </h6>
-                                    <p class="text-gray mb-1 small">• North • Hamburgers</p>
-                                    <p class="text-gray mb-1 rating">
-                                    </p>
+                                    <p class="text-gray mb-1 small">• North • Hamburgers</p> <!-- 商店地址 -->
+                                    <p class="text-gray mb-1 rating"></p>
                                     <ul class="rating-stars list-unstyled">
                                         <li>
                                             <i class="feather-star star_active"></i>
@@ -373,6 +334,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- 商店2 -->
                     <div class="col-md-3 pb-3">
                         <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                             <div class="list-card-image">
@@ -406,6 +369,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- 商店3 -->
                     <div class="col-md-3 pb-3">
                         <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                             <div class="list-card-image">
@@ -615,7 +580,7 @@
                 </div>
             </div>
 
-            <!-- Most sales section -->
+            <!-- Most sales section 销量最高-->
             <!-- headline -->
             <div class="pt-2 pb-3 title d-flex align-items-center">
                 <h5 class="m-0">Most sales</h5>
@@ -920,6 +885,8 @@
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/osahan.js' %}"></script>
     <script src="{% static 'js/menu.js' %}"></script>
+
+{#    <script src="{% static 'js/main_index.js' %}"></script>#}
 </body>
 
 </html>

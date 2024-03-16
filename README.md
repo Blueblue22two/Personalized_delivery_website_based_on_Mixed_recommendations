@@ -9,6 +9,7 @@
 
 **third-party library:**  
 > PyMySql (1.1.0)  
-> Bootstrap 3
-> Feather icon
-> Jquery
+> Bootstrap 3  
+> Feather icon  
+> Jquery  
+> Nginx-1.24.0 windows

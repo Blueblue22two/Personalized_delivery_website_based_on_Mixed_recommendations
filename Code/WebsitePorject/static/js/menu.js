@@ -1,4 +1,5 @@
 "use strict"
+// File: use for the top menu
 
 // function：get is_logged_in, username, user_type from django session
 function checkLogin() {

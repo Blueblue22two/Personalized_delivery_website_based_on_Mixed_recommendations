@@ -15,16 +15,28 @@ django-admin startproject projectname
 How to run this project:
 python manage.py runserver
 
+
+How to create an application in project:
+python manage.py startapp app_name
+
+运行结束后在setting.py中配置
+
 How to connect database with diango:
 1. Download pymysql -- pip3 install PyMySQL
 or use 清华镜像: pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pymysql
 2. import PyMySql in _init_.py file
 3. configure the databse in settings.py
-4. 迁移模型到数据库: python manage.py migrate
-或者特定的app：
-python manage.py makemigrations your_app_name
 
-5.python manage.py makemigrations stu（stu是应用名）
+3.1：
+生成迁移文件 python manage.py makemigrations stu（stu是应用名（optional）
+3.2：
+迁移模型到数据库: python manage.py migrate
+或者python manage.py migrate your_app_name
+
+
+Base_dir根目录：
+'Project root directory is: E:\Github\Recommendation system\202018010410_project_recommendation-system\Code\WebsitePorject'
+——————
 
 
 How to into the Admin page 进入管理员界面:

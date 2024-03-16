@@ -2,14 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from accounts.models import Customer, Merchant
 
 
 # Create your views here.
 
 
-# --# logout(clear session) & redirect to main page--
+# -- logout(clear session) & redirect to main page--
 def logout_view(request):
     print("log out...")
     logout(request)
@@ -244,3 +243,4 @@ def search(request):
         # TODO: 接收前端的数据，数据库中搜索
         return
     return render(request,"search.html")
+

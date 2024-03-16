@@ -11,8 +11,9 @@ import os
 # return the template of index page
 def index(request):
     # get the root directory
-    # root_directory = settings.BASE_DIR
-    # print(f"Project root directory is: {root_directory}")
+    root_directory = settings.BASE_DIR
+    print(f"Project root directory is: {root_directory}")
+
     return render(request, 'main_index.html')
 
 

@@ -17,7 +17,6 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -36,7 +35,9 @@ urlpatterns = [
     path('customers/', include('customers.urls')),  # customers: cart, favorite
     path('merchants/', include('merchants.urls')),  # merchant: manage store
     path('orders/', include('orders.urls')),  # merchant: manage store
-]
+    path('stores/', include('store.urls')),
+    path('recommend/', include('recommendation.urls')),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

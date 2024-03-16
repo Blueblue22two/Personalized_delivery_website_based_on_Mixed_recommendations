@@ -1,11 +1,16 @@
+from decimal import Decimal, InvalidOperation
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import logout
 from django.http import JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
-from accounts.models import Merchant, Shop
+from accounts.models import Customer, Merchant, Shop
+from merchants.models import Product, ShopRating
+from orders.models import Order
+from django.db.models import Sum, Avg
 import os
 from django.conf import settings
+import shutil
 
 
 # Create your views here.
@@ -13,10 +18,13 @@ from django.conf import settings
 # -- My store --
 def my_store(request):
     username = request.session.get('username', None)
-    user_type = request.session.get('user_type', None) # if not exist then return none
+    user_type = request.session.get('user_type', None)  # if not exist then return none
     print("-- my store --")
     print("user_type: ", user_type)
-    print("username: ",username)
+    print("username: ", username)
+
+    if username is None:
+        return JsonResponse({'error': 'Unauthorized access'}, status=401)
 
     if user_type != '2':  # if user type != merchant
         print("Error user type!")
@@ -29,6 +37,11 @@ def my_store(request):
         return logout_view(request)
 
     shop = merchant.shop
+
+    # upload rate
+    if not upload_rate(request):
+        print("upload rate failed")
+
     if not shop:
         # If the merchant does not have an associated shop, direct them to create one
         print("The user has not registered a store")
@@ -51,7 +64,7 @@ def new_store(request):
     if request.method == 'POST':
         username = request.session.get('username', None)
         user_type = request.session.get('user_type', None)  # if not exist then return none
-        store_name= request.POST.get('name')
+        store_name = request.POST.get('name')
         store_image = request.FILES.get('storeImage', None)
         address = request.POST.get('address')
 
@@ -79,13 +92,15 @@ def new_store(request):
         if Shop.objects.filter(name=store_name).exists():
             return JsonResponse({'error': 'Store name already exists'}, status=400)
 
-        # Calculate the path to the 'Dataset' directory
-        dataset_base_dir = os.path.join(settings.BASE_DIR, '..', 'Dataset')
-        store_dir = os.path.join(dataset_base_dir, store_name)
+        # TODO: 请重新修改下面的路径
+        # 计算 'Dataset' 目录的路径，现在它直接位于项目根目录下
+        dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
+        store_dir = os.path.join(dataset_base_dir, store_name.replace(" ", "_"))  # 使用店铺名创建目录，空格替换为下划线以避免路径问题
 
         # Paths for 'LOGO' and 'Products' directories within the store directory
         logo_dir = os.path.join(store_dir, 'LOGO')
         products_dir = os.path.join(store_dir, 'Products')
+        image_dir = os.path.join(logo_dir, store_image.name)
 
         # Create the directories if they do not already exist
         for directory in [store_dir, logo_dir, products_dir]:
@@ -97,7 +112,7 @@ def new_store(request):
             name=store_name,
             address=address,
             total_rating=0,  # default value
-            image_path=os.path.join(logo_dir, store_image.name) # store the path of image
+            image_path=os.path.relpath(image_dir, start=dataset_base_dir)
         )
 
         with open(os.path.join(logo_dir, store_image.name), 'wb+') as destination:
@@ -108,41 +123,235 @@ def new_store(request):
         merchant.save()
         shop.save()
         print(f"Store {store_name} created successfully")
-        # redirect_url = '/merchants/my_store/'
-        # response = JsonResponse({'message': 'Store created successfully', 'redirect_url': redirect_url},
-        #                         status=200)
         return redirect(my_store)
 
     # if request != post, return error
     return render(request, 'create_store.html')
 
 
-# -- add product --
+# add product view
 def add_product(request):
     if request.method == 'POST':
-        # TODO: receive data and store it
-        return
-    return render(request, '.html')
+        username = request.session.get('username', None)
+        if username is None:
+            return JsonResponse({'error': 'Unauthorized access'}, status=401)
+
+        print("ready to add a product")
+        try:
+            merchant = Merchant.objects.get(username=username)
+            shop = merchant.shop
+            if shop is None:
+                return JsonResponse({'error': 'Shop does not exist for this merchant'}, status=404)
+        except Merchant.DoesNotExist:
+            return JsonResponse({'error': 'Merchant does not exist'}, status=404)
+
+        name = request.POST.get('name')
+        price = request.POST.get('price')
+        description = request.POST.get('description')
+        category = request.POST.get('category')
+        product_image = request.FILES.get('productImage')
+        # Validation
+        print("Validating...")
+        if not all([name, price, description, category, product_image]):
+            return JsonResponse({'error': 'Missing data'}, status=400)
+
+        # check same product name
+        if Product.objects.filter(shop=shop, name=name).exists():
+            print(f"Product with this name {name} already exists in your shop")
+            return JsonResponse({'error': 'Product with this name already exists in your shop'}, status=409)
+
+        try:
+            price = Decimal(price)
+        except:
+            return JsonResponse({'error': 'Invalid price format'}, status=400)
+
+        #  Dataset path
+        dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
+        shop_path = os.path.join(dataset_base_dir, shop.name.replace(" ", "_"))  # use shop name
+        products_path = os.path.join(shop_path, 'Products')
+        product_folder_path = os.path.join(products_path, name.replace(" ", "_"))
+
+        # make a product file
+        os.makedirs(product_folder_path, exist_ok=True)
+        image_file_path = os.path.join(product_folder_path, product_image.name)
+
+        # save image
+        with open(image_file_path, 'wb+') as destination:
+            for chunk in product_image.chunks():
+                destination.write(chunk)
+
+        product = Product(
+            shop=shop,
+            name=name,
+            price=price,
+            category=category,
+            description=description,
+            image_path=os.path.relpath(image_file_path, start=dataset_base_dir)
+        )
+        product.save()
+
+        print("product save successfully")
+        return JsonResponse({'message': 'Product added successfully', 'redirect_url': '/merchants/my_store/'},
+                            status=200)
+    else:
+        return render(request, 'add_product.html')
 
 
-# -- modify product --
-def modify_product(request):
-    if request.method == 'POST':
-        # TODO: receive data and store it
-        return
-    return render(request, '.html')
-
-
-# -- show product --
+# return all the product info in this store
 def show_product(request):
-    # TODO: return all the products info in this store
+    username = request.session.get('username', None)
+    if username is None:
+        return JsonResponse({'error': 'Unauthorized access'}, status=401)
+
+    try:
+        merchant = Merchant.objects.get(username=username)
+        shop = merchant.shop
+        products = Product.objects.filter(shop=shop).values('id', 'name', 'price', 'category', 'image_path')
+
+        return JsonResponse(list(products), safe=False)
+    except Merchant.DoesNotExist:
+        return JsonResponse({'error': 'Merchant not found or does not have a shop'}, status=404)
+
+
+# -- modify product page, receive modify data and store it --
+def modify_product(request):
+    username = request.session.get('username', None) # merchant name
+    if username is None:
+        logout_view()
+        return JsonResponse({'error': 'Unauthorized access'}, status=401)
+    print("modify function...")
+
+    if request.method == 'POST':
+        product_id = request.POST.get('id')
+        new_name = request.POST.get('name')
+        new_price = request.POST.get('price')
+        try:
+            product = Product.objects.get(id=product_id, shop__merchant__username=username)
+            old_path = os.path.join(settings.BASE_DIR, 'Dataset', product.shop.name.replace(" ", "_"), 'Products',
+                                    product.name.replace(" ", "_"))
+            new_path = os.path.join(settings.BASE_DIR, 'Dataset', product.shop.name.replace(" ", "_"), 'Products',
+                                    new_name)
+
+            # Rename the product folder if it exists
+            if os.path.exists(old_path):
+                os.rename(old_path, new_path)
+
+            # Update product image_path
+            if product.image_path:
+                file_name = os.path.basename(product.image_path)  # Extracts file name
+                print(f"file_name: {file_name}")
+                new_image_path = os.path.join('Products', new_name, file_name)  # Constructs new relative path
+                print(f"new_image_path: {new_image_path}")
+                product.image_path = new_image_path
+
+            # Update product information in the database
+            product.name = new_name
+            product.price = Decimal(new_price)
+            product.save()
+
+            print("Product updated successfully")
+            return JsonResponse({'message': 'Product updated successfully'})
+        except (ObjectDoesNotExist, InvalidOperation):
+            print("Product not found or invalid input")
+            return JsonResponse({'error': 'Product not found or invalid input'}, status=404)
+    else:
+
+        print("redirect to modification page")
+        return render(request, 'modification.html')
+
+
+# -- delete product --
+def delete_product(request):
+    username = request.session.get('username', None)
+    if username is None:
+        logout_view(request)
+        return JsonResponse({'error': 'Unauthorized access'}, status=401)
+
+    if request.method == 'POST':
+        product_id = request.POST.get('id')
+        try:
+            product = Product.objects.get(id=product_id, shop__merchant__username=username)
+            product_folder_path = os.path.join(settings.BASE_DIR, 'Dataset', product.shop.name.replace(" ", "_"),
+                                               'Products', product.name.replace(" ", "_"))
+            # shutil.rmtree() to delete all file
+            if os.path.exists(product_folder_path):
+                shutil.rmtree(product_folder_path)
+            product.delete()
+
+            return JsonResponse({'message': 'Product removed successfully'})
+        except ObjectDoesNotExist:
+            return JsonResponse({'error': 'Product not found'}, status=404)
+    else:
+        return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+# -- Promotion (optional) --
+def promote_product(request):
     return
+
+
+# -- get store info --
+def get_info(request):
+    username = request.session.get('username', None)
+    if username is None:
+        print("Not log in")
+        logout_view(request)
+
+    try:
+        merchant = Merchant.objects.get(username=username)
+        shop = merchant.shop
+        if not shop:
+            return JsonResponse({'error': 'Shop not found'}, status=404)
+
+        # get store information
+        total_income = Order.objects.filter(merchant=merchant).aggregate(Sum('total_price'))['total_price__sum'] or 0
+        total_sales = Order.objects.filter(merchant=merchant).aggregate(Sum('quantity'))['quantity__sum'] or 0
+        top_selling_product = Product.objects.filter(shop=shop).annotate(sold=Sum('orders__quantity')).order_by(
+            '-sold').first()
+        top_product_name = top_selling_product.name if top_selling_product else 'None'
+
+        data = {
+            'storeName': shop.name,
+            'address': shop.address,
+            'phone': merchant.phone_number,
+            'rate': float(shop.total_rating) if shop.total_rating else 0,
+            'totalIncome': total_income,
+            'totalSales': total_sales,
+            'totalProducts': shop.products.count(),
+            'topSellingProduct': top_product_name
+        }
+        # upload rate
+        if not upload_rate(request):
+            print("upload rate failed")
+        return JsonResponse(data, status=200)
+    except Merchant.DoesNotExist:
+        return JsonResponse({'error': 'Merchant not found'}, status=404)
 
 
 # -- upload shop rate --
 def upload_rate(request):
-    # 在其他函数中调用这个函数
-    # TODO:获取session username，查询mysql中对应的merchants，然后查询其shop_id
-    # TODO:通过shop_id查询表格 ShopRatings中所有对应shop_id的数据，然后求和再求平均数
-    # TODO:得到平均数后将数据更新到对应的Shops表格的数据中
-    return
+    print("upload rate function working...")
+    username = request.session.get('username', None)  # merchant username
+    if username is None:
+        print("Not login")
+        return False
+
+    try:
+        # 通过username查询对应的Merchant
+        merchant = Merchant.objects.get(username=username)
+        if merchant.shop is None:
+            return False
+
+        # 查询对应Shop的所有ShopRating，计算平均评分
+        average_rate = ShopRating.objects.filter(shop=merchant.shop).aggregate(Avg('rate'))['rate__avg']
+        print(f"average_rate: {average_rate}")
+        if average_rate is not None:
+            # 更新Shop的total_rating字段
+            merchant.shop.total_rating = Decimal(average_rate).quantize(Decimal('0.1'))  # 四舍五入到一位小数
+            merchant.shop.save()
+            print("Shop rating updated successfully")
+            return True
+        else:
+            return False
+    except Merchant.DoesNotExist:
+        return False
