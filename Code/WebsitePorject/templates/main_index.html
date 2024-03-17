@@ -5,6 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Calvin">
+    <style>
+        .max-img-size {
+            max-width: 150px; /* 设置最大宽度 */
+            max-height: 200px; /* 设置最大高度 */
+        }
+    </style>
 
     {% load static %}
     <link rel="icon" type="image/x-icon" href="{% static 'image/LOGO.ico' %}">
@@ -185,482 +191,173 @@
         </div>
 
         <!-- 优惠部分滑动栏 -->
-        <!-- TODO:此部分变为物品展示或者删除 -->
-        <div class="bg-white">
-            <div class="container">
-                <div class="offer-slider">
-                    <!-- 优惠项目：产品1 -->
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="trending.html">
-                            <img alt="#" src="#" class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <!-- 优惠项目：产品2 -->
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="trending.html">
-                            <img alt="#" src="#" class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <!-- 优惠项目：产品3 -->
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="trending.html">
-                            <img alt="#" src="#" class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <!-- 优惠项目：产品4 -->
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="trending.html">
-                            <img alt="#" src="#" class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <!-- 优惠项目：产品5 -->
-                    <div class="cat-item px-1 py-3">
-                        <a class="d-block text-center shadow-sm" href="trending.html">
-                            <img alt="#" src="#" class="img-fluid rounded">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+{#        <!-- TODO:此部分变为物品展示或者删除 -->#}
+{#        <div class="bg-white">#}
+{#            <div class="container">#}
+{#                <div class="offer-slider">#}
+{#                    <!-- 优惠项目：产品1 -->#}
+{#                    <div class="cat-item px-1 py-3">#}
+{#                        <a class="d-block text-center shadow-sm" href="trending.html">#}
+{#                            <img alt="#" src="#" class="img-fluid rounded">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <!-- 优惠项目：产品2 -->#}
+{#                    <div class="cat-item px-1 py-3">#}
+{#                        <a class="d-block text-center shadow-sm" href="trending.html">#}
+{#                            <img alt="#" src="#" class="img-fluid rounded">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <!-- 优惠项目：产品3 -->#}
+{#                    <div class="cat-item px-1 py-3">#}
+{#                        <a class="d-block text-center shadow-sm" href="trending.html">#}
+{#                            <img alt="#" src="#" class="img-fluid rounded">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <!-- 优惠项目：产品4 -->#}
+{#                    <div class="cat-item px-1 py-3">#}
+{#                        <a class="d-block text-center shadow-sm" href="trending.html">#}
+{#                            <img alt="#" src="#" class="img-fluid rounded">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <!-- 优惠项目：产品5 -->#}
+{#                    <div class="cat-item px-1 py-3">#}
+{#                        <a class="d-block text-center shadow-sm" href="trending.html">#}
+{#                            <img alt="#" src="#" class="img-fluid rounded">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
 
         <div class="container">
-            <!-- TODO:推荐商店，根据用户推荐系统所推荐的商店部分 -->
             <!-- Recommend -->
             <div class="pt-4 pb-2 title d-flex align-items-center">
                 <h5 class="m-0">Recommend:</h5>
-
             </div>
             <!-- slider -->
             <div class="trending-slider">
-
-                <!-- Ex:Restaurant 1 一个描述餐厅项目卡片的HTML代码片段,下面都与这个一样-->
-                <div class="osahan-slider-item">
-                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                        <div class="list-card-image">
-                            <!-- TODO:代表星级评分rate，括号里是参与rate的用户的数量 -->
-                            <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                            <!-- TODO:餐厅页面的链接 与 图片 -->
-                            <a href="#"><img alt="#" src="#" class="img-fluid item-img w-100"></a>
-                        </div>
-                        <div class="p-3 position-relative">
-                            <!-- 这个div类代表卡片主体部分 -->
-                            <div class="list-card-body">
-                                <h6 class="mb-1">
-                                    <!-- TODO:链接点击跳转到餐厅页面，以及餐厅的名字-->
-                                    <a href="restaurant.html" class="text-black">Famous Dave's Bar-B-Que</a>
-                                </h6>
-                                <!-- TODO:餐厅地址address -->
-                                <p class="text-gray mb-3">Vegetarian • Indian • Pure veg</p>
-                            </div>
-                            <div class="list-card-badge">
-                                <span class="badge badge-danger">OFFER</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Restaurant 2 -->
-                <div class="osahan-slider-item">
-                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                        <div class="list-card-image">
-                            <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                            <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                            <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                            <a href="restaurant.html">
-                                <img alt="#" src="#" class="img-fluid item-img w-100">
-                            </a>
-                        </div>
-                        <div class="p-3 position-relative">
-                            <div class="list-card-body">
-                                <h6 class="mb-1"><a href="restaurant.html" class="text-black">Thai Famous Cuisine</a></h6>
-                                <p class="text-gray mb-3">North Indian • Indian • Pure veg</p>
-                                <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30–35 min</span> <span class="float-right text-black-50"> $250 FOR TWO</span></p>
-                            </div>
-                            <div class="list-card-badge">
-                                <span class="badge badge-success">OFFER</span> <small>65% off</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Restaurant 1 一个描述shop card的HTML代码,下面都与这个一样-->
+{#                <div class="osahan-slider-item">#}
+{#                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">#}
+{#                        <div class="list-card-image">#}
+{#                            <!-- TODO:代表星级评分rate，括号里是参与rate的用户的数量 -->#}
+{#                            <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>#}
+{#                            <!-- TODO:餐厅页面的链接 与 图片,点击则跳转到对应的商店界面 -->#}
+{#                            <a href="#"><img alt="#" src="#" class="img-fluid item-img w-100"></a>#}
+{#                        </div>#}
+{#                        <div class="p-3 position-relative">#}
+{#                            <!-- 这个div类代表卡片主体部分 -->#}
+{#                            <div class="list-card-body">#}
+{#                                <h6 class="mb-1">#}
+{#                                    <!-- TODO:链接点击跳转到餐厅页面，以及餐厅的名字-->#}
+{#                                    <a href="restaurant.html" class="text-black">Famous Dave's Bar-B-Que</a>#}
+{#                                </h6>#}
+{#                                <!-- TODO:餐厅地址address -->#}
+{#                                <p class="text-gray mb-3">Vegetarian • Indian • Pure veg</p>#}
+{#                            </div>#}
+{#                            <div class="list-card-badge">#}
+{#                                <span class="badge badge-danger">OFFER</span>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
 
             </div>
 
             <!-- Most popular section -->
-            <!-- headline -->
             <div class="py-3 title d-flex align-items-center">
                 <h5 class="m-0">Most popular</h5>
-                <!-- 右侧”更多“链接，跳转到界面完全体的推荐界面,可删除-->
-                <a class="font-weight-bold ml-auto" href="most_popular.html">26 places <i class="feather-chevrons-right"></i></a>
+                <!-- 右侧”更多“链接，跳转到界面完全体的推荐界面-->
+                <a class="font-weight-bold ml-auto" href="most_popular.html">View all <i class="feather-chevrons-right"></i></a>
             </div>
 
-            <!-- Most popular food card,评分最高 -->
+            <!-- Most popular food cards -->
             <div class="most_popular">
-                <div class="row">
-                    <!-- 商店1 -->
-                    <div class="col-md-3 pb-3">
-                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <!-- rate评分（评价人数） -->
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-
-                                <!-- 收藏该店，先删除该功能 -->
-                                <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="#">
-                                    <!-- 商店封面 -->
-                                    <img alt="#" src="#" class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="#" class="text-black">The osahan Restaurant</a> <!-- 商店名 -->
-                                    </h6>
-                                    <p class="text-gray mb-1 small">• North • Hamburgers</p> <!-- 商店地址 -->
-                                    <p class="text-gray mb-1 rating"></p>
-                                    <ul class="rating-stars list-unstyled">
-                                        <li>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 商店2 -->
-                    <div class="col-md-3 pb-3">
-                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="restaurant.html">
-                                    <img alt="#" src="#" class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="restaurant.html" class="text-black">Thai Famous Indian Cuisine</a></h6>
-                                    <p class="text-gray mb-1 small">• Indian • Pure veg</p>
-                                    <p class="text-gray mb-1 rating">
-                                    </p>
-                                    <ul class="rating-stars list-unstyled">
-                                        <li>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-success">OFFER</span> <small>65% off</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 商店3 -->
-                    <div class="col-md-3 pb-3">
-                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="restaurant.html">
-                                    <img alt="#" src="#" class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="restaurant.html" class="text-black">The osahan Restaurant
-                                 </a>
-                                    </h6>
-                                    <p class="text-gray mb-1 small">• Hamburgers • Pure veg</p>
-                                    <p class="text-gray mb-1 rating">
-                                    </p>
-                                    <ul class="rating-stars list-unstyled">
-                                        <li>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 pb-3">
-                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="restaurant.html">
-                                    <img alt="#" src="#" class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="restaurant.html" class="text-black">Bite Me Now Sandwiches</a></h6>
-                                    <p class="text-gray mb-1 small">American • Pure veg</p>
-                                    <p class="text-gray mb-1 rating">
-                                    </p>
-                                    <ul class="rating-stars list-unstyled">
-                                        <li>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-success">OFFER</span> <small>65% off</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 pb-3">
-                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="restaurant.html">
-                                    <img alt="#" src="#" class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="restaurant.html" class="text-black">The osahan Restaurant
-                                 </a>
-                                    </h6>
-                                    <p class="text-gray mb-1 small">• North • Hamburgers</p>
-                                    <p class="text-gray mb-1 rating">
-                                    </p>
-                                    <ul class="rating-stars list-unstyled">
-                                        <li>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 pb-3">
-                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="restaurant.html">
-                                    <img alt="#" src="#" class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="restaurant.html" class="text-black">Thai Famous Indian Cuisine</a></h6>
-                                    <p class="text-gray mb-1 small">• Indian • Pure veg</p>
-                                    <p class="text-gray mb-1 rating">
-                                    </p>
-                                    <ul class="rating-stars list-unstyled">
-                                        <li>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-success">OFFER</span> <small>65% off</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 pb-3">
-                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="restaurant.html">
-                                    <img alt="#" src="#" class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="restaurant.html" class="text-black">The osahan Restaurant
-                                 </a>
-                                    </h6>
-                                    <p class="text-gray mb-1 small">• Hamburgers • Pure veg</p>
-                                    <p class="text-gray mb-1 rating">
-                                    </p>
-                                    <ul class="rating-stars list-unstyled">
-                                        <li>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 pb-3">
-                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="restaurant.html">
-                                    <img alt="#" src="#" class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="restaurant.html" class="text-black">Bite Me Now Sandwiches</a></h6>
-                                    <p class="text-gray mb-1 small">American • Pure veg</p>
-                                    <p class="text-gray mb-1 rating">
-                                    </p>
-                                    <ul class="rating-stars list-unstyled">
-                                        <li>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star star_active"></i>
-                                            <i class="feather-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-success">OFFER</span> <small>65% off</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  <!-- row 1,每一排row有4个商店 -->
+{#                <div class="row">#}
+{#                    <!-- 商店1 -->#}
+{#                    <div class="col-md-3 pb-3">#}
+{#                        <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">#}
+{#                            <div class="list-card-image">#}
+{#                                <!-- TODO:商店的rate评分与（评价人数） -->#}
+{#                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>#}
+{#                                <a href="#">#}
+{#                                    <!-- TODO:商店封面与链接，点击跳转到对应的商店界面 -->#}
+{#                                    <!-- TODO:img src =  -->#}
+{#                                    <img alt="#" src="#" class="img-fluid item-img w-100">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                            <div class="p-3 position-relative">#}
+{#                                <div class="list-card-body">#}
+{#                                    <h6 class="mb-1"><a href="#" class="text-black">The osahan Restaurant</a> <!-- TODO:商店名 与 商店链接，点击跳转到对应的商店链接 -->#}
+{#                                    </h6>#}
+{#                                    <p class="text-gray mb-1 small">• North • Hamburgers</p> <!-- TODO:替换为 商店地址address -->#}
+{#                                    <p class="text-gray mb-1 rating"></p>#}
+{#                                    <!-- TODO:rate分数（0-5），对rate值取整数，在下面显示对应的个数的feather star icon -->#}
+{#                                    <ul class="rating-stars list-unstyled">#}
+{#                                        <li>#}
+{#                                            <i class="feather-star star_active"></i>#}
+{#                                            <i class="feather-star star_active"></i>#}
+{#                                            <i class="feather-star star_active"></i>#}
+{#                                            <i class="feather-star star_active"></i>#}
+{#                                            <i class="feather-star"></i>#}
+{#                                        </li>#}
+{#                                    </ul>#}
+{#                                    <p></p>#}
+{#                                </div>#}
+{#                                <div class="list-card-badge">#}
+{#                                    <span class="badge badge-danger">OFFER</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <!-- 下面的商店card模板都一样 -->#}
+{#                </div><!-- end of row 1 -->#}
+{##}
+{#                <!-- 第二排，也是4个商店 -->#}
+{#                <div class="row">#}
+{#                    <!-- 4个商店card -->#}
+{#                </div><!-- end of row 2 -->#}
             </div>
 
             <!-- Most sales section 销量最高-->
-            <!-- headline -->
             <div class="pt-2 pb-3 title d-flex align-items-center">
                 <h5 class="m-0">Most sales</h5>
-                <a class="font-weight-bold ml-auto" href="#">26 places <i class="feather-chevrons-right"></i></a>
+                <!-- TODO: View all -->
+                <a class="font-weight-bold ml-auto" href="#">View all <i class="feather-chevrons-right"></i></a>
             </div>
             <!-- Most sales -->
             <div class="most_sale">
+                <!-- 一排3个商店Card -->
                 <div class="row mb-3">
-                    <div class="col-md-4 mb-3">
-                        <div class="d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="restaurant.html">
-                                    <img alt="#" src="#" class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="restaurant.html" class="text-black">The osahan Restaurant
-                                 </a>
-                                    </h6>
-                                    <p class="text-gray mb-3">North • Hamburgers • Pure veg</p>
-                                    <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–25 min</span> <span class="float-right text-black-50"> $500 FOR TWO</span></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="restaurant.html">
-                                    <img alt="#" src="#" class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="restaurant.html" class="text-black">Thai Famous Cuisine</a></h6>
-                                    <p class="text-gray mb-3">North Indian • Indian • Pure veg</p>
-                                    <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 30–35 min</span> <span class="float-right text-black-50"> $250 FOR TWO</span></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-success">OFFER</span> <small>65% off</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                            <div class="list-card-image">
-                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>
-                                <div class="favourite-heart text-danger position-absolute"><a href="#"><i class="feather-heart"></i></a></div>
-                                <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
-                                <a href="restaurant.html">
-                                    <img alt="#" src="#" class="img-fluid item-img w-100">
-                                </a>
-                            </div>
-                            <div class="p-3 position-relative">
-                                <div class="list-card-body">
-                                    <h6 class="mb-1"><a href="restaurant.html" class="text-black">The osahan Restaurant
-                                 </a>
-                                    </h6>
-                                    <p class="text-gray mb-3">North • Hamburgers • Pure veg</p>
-                                    <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i> 15–25 min</span> <span class="float-right text-black-50"> $500 FOR TWO</span></p>
-                                </div>
-                                <div class="list-card-badge">
-                                    <span class="badge badge-danger">OFFER</span> <small>65% OSAHAN50</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                       <!-- 下面是一个商店card的example -->
+{#                    <div class="col-md-4 mb-3">#}
+{#                        <div class="d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">#}
+{#                            <div class="list-card-image">#}
+{#                                <!-- TODO:商店的rate评分与（评价人数） -->#}
+{#                                <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>#}
+{#                                <!-- TODO:商店image与链接，点击跳转到对应的商店界面 -->#}
+{#                                <a href="#">#}
+{#                                    <img alt="#" src="#" class="img-fluid item-img w-100">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                            <div class="p-3 position-relative">#}
+{#                                <div class="list-card-body">#}
+{#                                    <!-- TODO:商店名 与 商店链接，点击跳转到对应的商店链接 -->#}
+{#                                    <h6 class="mb-1"><a href="restaurant.html" class="text-black">The osahan Restaurant#}
+{#                                 </a>#}
+{#                                    </h6>#}
+{#                                    <!-- TODO:商店address -->#}
+{#                                    <p class="text-gray mb-3">North • Hamburgers • Pure veg</p>#}
+{#                                </div>#}
+{#                                <div class="list-card-badge">#}
+{#                                    <span class="badge badge-danger">OFFER</span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -790,6 +487,7 @@
         </ul>
     </nav>
 
+    <!-- 模态框：该元素用于创建一个弹出式模态框，用于显示筛选器和其他内容 -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -873,6 +571,7 @@
             </div>
         </div>
     </div>
+        </div>
 
     <!-- Jquery JS -->
     <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
@@ -886,7 +585,7 @@
     <script src="{% static 'js/osahan.js' %}"></script>
     <script src="{% static 'js/menu.js' %}"></script>
 
-{#    <script src="{% static 'js/main_index.js' %}"></script>#}
+    <script src="{% static 'js/main_index.js' %}"></script>
 </body>
 
 </html>

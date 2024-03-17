@@ -21,6 +21,6 @@ USE OnlineFoodDelivery; -- use this database
 
 -- SELECT * FROM accounts_customer;
 -- SELECT * FROM accounts_merchant;
--- SELECT * FROM accounts_shop;
+SELECT * FROM accounts_shop;
 -- SELECT * FROM merchants_product;
 

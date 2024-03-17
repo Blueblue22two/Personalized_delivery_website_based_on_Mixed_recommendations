@@ -1,30 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
-from accounts.models import Customer, Merchant
+from accounts.models import Customer, Merchant, Shop
+
 
 # Create your views here.
 
 
-def store_page(request):
-# HTML展示
-# < !-- 假设你在上下文中有一个名为shops的商店列表 -->
-#     { %
-#         for shop in shops %}
-#         < div
-#
-#         class ="shop" >
-#
-#         < h2 > {{shop.name}} < / h2 >
-#         < !-- 创建指向商店详细页面的链接 -->
-#         < a
-#         href = "{% url 'shop_detail' shop_id=shop.id %}" > Visit
-#         {{shop.name}} < / a >
-#
-#         < / div >
-#     { % endfor %}
+# <!-- shops.html -->
+# {% for shop in shops %}
+#     <a href="{% url 'shop_view' name=shop.name %}">{{ shop.name }}</a><br>
+# {% endfor %}
 
-# TODO:使用get_object_or_404快捷函数确保商店存在
-    # shop = get_object_or_404(Shop, pk=shop_id)
-    # return render(request, 'store.html', {'shop': shop})
-    return
+# 用于生成点击跳转到商店页面的链接
+def shop_view(request):
+    shops = Shop.objects.all()
+    return render(request, 'shops.html', {'shops': shops})
