@@ -47,6 +47,9 @@ function displayData(){
             $('#storeSales').val(data.totalSales);
             $('#totalProducts').val(data.totalProducts);
             $('#topSellingProduct').val(data.topSellingProduct);
+            // add the store url to html
+            var storeLinkHtml = `<a class="dropdown-item" href="/store/shop/${data.storeName}/">Visit ${data.storeName}</a>`;
+            $('#storeLinkContainer').html(storeLinkHtml);
         },
         error: function(error) {
             console.log('Error:', error);

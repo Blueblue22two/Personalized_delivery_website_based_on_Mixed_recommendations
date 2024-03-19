@@ -6,5 +6,8 @@ urlpatterns = [
     path('main/', views.main_page, name='main_page'),
 
     # upload cart information & pay
-    path('get_cart_info/', views.get_cart_info, name='get_cart_info'),
+    path('cart_info/', views.cart_info, name='cart_info'),
+
+    # upload
+    path('upload_cart/', views.upload_cart, name='upload_cart'),
 ]

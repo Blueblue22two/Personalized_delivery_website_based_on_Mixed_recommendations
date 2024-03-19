@@ -28,7 +28,7 @@ function displayRecommend(){
                     <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                         <div class="list-card-image">
                             <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> ${shop.total_rating} (${shop.popularity_value}+)</span></div>
-                            <a href="/shop/${shop.name}/">
+                            <a href="/store/shop/${shop.name}/">
                                 <img alt="${shop.name}" src="/media/${shop.image_path}" class="img-fluid item-img w-100 max-img-size">
                             </a>
                         </div>
@@ -88,7 +88,7 @@ function displayPopular(){
                     <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                         <div class="list-card-image">
                             <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> ${shop.total_rating} (${shop.popularity_value}+)</span></div>
-                            <a href="/shop/${shop.name}/">
+                            <a href="/store/shop/${shop.name}/">
                                 <img alt="${shop.name}" src="/media/${shop.image_path}" class="img-fluid item-img w-100 max-img-size">
                             </a>
                         </div>
@@ -154,7 +154,7 @@ function displaySales() {
                             <div class="d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                                 <div class="list-card-image">
                                     <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> ${shop.total_rating} (${shop.popularity_value}+)</span></div>
-                                    <a href="/shop/${shop.name}/">
+                                    <a href="/store/shop/${shop.name}/">
                                         <img alt="${shop.name}" src="/media/${shop.image_path}" class="img-fluid item-img w-100 max-img-size">
                                     </a>
                                 </div>
@@ -181,7 +181,7 @@ function displaySales() {
     });
 }
 
-// 动态生成星级评价
+// generate star ratings
 function generateStars(rating){
     let starsHtml = '';
     for(let i = 0; i < 5; i++){

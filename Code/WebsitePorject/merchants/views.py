@@ -130,13 +130,18 @@ def new_store(request):
 
 
 # add product view
+'''
+在创建product时dataset_base_dir中寻找一个为文件夹名字为对应的shop数据的name的值（寻找，而不是创建一个同名的文件夹），
+然后进入其中的子文件夹Products中(例如'Dataset\Big Buger city\Products`)，然后在这个文件夹中
+创建一个名字为变量ｎａｍｅ的值的文件夹，然后将image存入这个product name文件夹中，然后将image path保存到对应的数据库中
+'''
 def add_product(request):
     if request.method == 'POST':
         username = request.session.get('username', None)
         if username is None:
             return JsonResponse({'error': 'Unauthorized access'}, status=401)
 
-        print("ready to add a product")
+        print("> ready to add a product")
         try:
             merchant = Merchant.objects.get(username=username)
             shop = merchant.shop
@@ -145,7 +150,7 @@ def add_product(request):
         except Merchant.DoesNotExist:
             return JsonResponse({'error': 'Merchant does not exist'}, status=404)
 
-        name = request.POST.get('name')
+        name = request.POST.get('name') # product name
         price = request.POST.get('price')
         description = request.POST.get('description')
         category = request.POST.get('category')
@@ -168,7 +173,18 @@ def add_product(request):
         #  Dataset path
         dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
         shop_path = os.path.join(dataset_base_dir, shop.name.replace(" ", "_"))  # use shop name
+        print(f"> shop path: {shop_path}")
+
+        # Check if shop_path exists, if not return an error or create it based on your requirement
+        if not os.path.exists(shop_path):
+            return JsonResponse({'error': 'Shop directory does not exist'}, status=404)
+
+        #  Product path
         products_path = os.path.join(shop_path, 'Products')
+        # Ensure the 'Products' directory exists under the shop directory
+        if not os.path.exists(products_path):
+            os.makedirs(products_path, exist_ok=True)
+
         product_folder_path = os.path.join(products_path, name.replace(" ", "_"))
 
         # make a product file

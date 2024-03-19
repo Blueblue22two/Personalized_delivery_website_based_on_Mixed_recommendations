@@ -35,7 +35,7 @@ urlpatterns = [
     path('customers/', include('customers.urls')),  # customers: cart, favorite
     path('merchants/', include('merchants.urls')),  # merchant: manage store
     path('orders/', include('orders.urls')),  # merchant: manage store
-    path('stores/', include('store.urls')),
+    path('store/', include('store.urls')),
     path('recommend/', include('recommendation.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
