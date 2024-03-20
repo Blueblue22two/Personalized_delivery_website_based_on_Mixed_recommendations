@@ -36,6 +36,7 @@ urlpatterns = [
     path('merchants/', include('merchants.urls')),  # merchant: manage store
     path('orders/', include('orders.urls')),  # merchant: manage store
     path('store/', include('store.urls')),
+    path('products/', include('products.urls')),
     path('recommend/', include('recommendation.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

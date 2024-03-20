@@ -57,32 +57,22 @@ function displayRecommend(){
     });
 }
 
-// display most popular section in html
-// function displayPopular(){
-//     // TODO:从后端django接收推荐的商店的信息
-//     // TODO: URL='recommend/get_popular/'
-//     // TODO:接收后端传来的数据，并将其生成对应的商店card
-//     // TODO:后端从共传来8个商店数据，将其对应的生成8个商店card，其中row1 放4个，row2放4个
-//     // TODO:对于html中的商店图片用图片路径显示并使用media: "/media/${image_path}"
-// }
 
 function displayPopular(){
     console.log("displayPopular function....")
     $.ajax({
-        url: '/recommend/get_popular/', // 从 Django 视图 `get_popular` 获取数据
+        url: '/recommend/get_popular/',
         type: 'GET',
         dataType: 'json',
         success: function(data) {
             let popularSection = $('.most_popular');
             popularSection.empty(); // 清空现有内容
-
-            // 创建两个 row 容器
+            // 2 row
             let row1 = $('<div class="row"></div>');
             let row2 = $('<div class="row"></div>');
 
-            // 遍历接收到的数据
             data.forEach(function(shop, index) {
-                // 创建商店卡片
+                // create shop card
                 let shopCard = `
                 <div class="col-md-3 pb-3">
                     <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
@@ -124,20 +114,10 @@ function displayPopular(){
     });
 }
 
-
-// display most sales section in html
-// function displaySales(){
-//     // TODO:从后端django接收推荐的商店的信息
-//     // TODO: URL='recommend/get_sales/'
-//     // TODO:接收后端传来的数据，并将其生成对应的商店card
-//     // TODO:一排放3个商店card，只有一排
-//     // TODO:对于html中的商店图片用图片路径显示并使用media: "/media/${image_path}"
-// }
-
 function displaySales() {
     console.log("displaySales function....")
     $.ajax({
-        url: '/recommend/get_sales/', // 请根据实际的后端 URL 路径调整
+        url: '/recommend/get_sales/',
         type: 'GET',
         dataType: 'json',
         success: function(shops) {

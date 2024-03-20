@@ -1,7 +1,9 @@
-// 对于html中的图片用图片路径显示并使用media: "/media/${image_path}"
-// 以确保csrf与url无误
+const cartItemContainer = $('.cart-items');
 
-const cartItemContainer = $('.cart-items'); // 使用新添加的类名作为选择器
+// get shop name element
+const shopNameElement = document.querySelector('.shop-name');
+
+// const shopNameElement = document.querySelector("h2.shop-name.font-weight-bold");
 
 function getCsrfTokenFromForm() {
     return document.querySelector('input[name="csrfmiddlewaretoken"]').value;
@@ -19,7 +21,7 @@ function generateStars(rating){
 // store info
 function storeInfo(){
     // get shop name
-    let shopNameElement = document.querySelector('.shop-name');
+    // let shopNameElement = document.querySelector('.shop-name');
     let shopName = shopNameElement.textContent;
 
     $.ajax({
@@ -45,7 +47,6 @@ function storeInfo(){
 // get category and product info
 function productInfo(){
     // get shop name
-    let shopNameElement = document.querySelector('.shop-name');
     let shopName = shopNameElement.textContent;
     $.ajax({
         type: "POST",
@@ -76,13 +77,17 @@ function productInfo(){
                             <!--  add to cart button-->
                             <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm">ADD</a></span>
                             <div class="media">
-                                <img src="/media/${product.image_path}" class="mr-3 rounded-pill product-img">
+                                <!-- 为图片添加链接，使用户点击图片能跳转到商品界面 -->
+                                <a href="/products/product_view/${product.id}/">
+                                    <img src="/media/${product.image_path}" class="mr-3 rounded-pill product-img">
+                                </a>
                                 <div class="media-body">
                                     <!--product id-->
-                                    <p class="text-muted mb-0">ID: ${product.id}</p>
+                                    <p class="text-muted mb-0 product-id">ID: ${product.id}</p>
                                     <!--  product name-->
                                     <h6 class="mb-1">${product.name}</h6>
-                                    <p class="text-muted mb-0">${product.price} $</p>
+                                    <!--product price-->
+                                    <p class="text-muted mb-0 product-price">${product.price} $</p>
                                 </div>
                             </div>
                         </div>`;
@@ -96,11 +101,13 @@ function productInfo(){
     });
 }
 
+// 将商品添加到购物车并将创建html使其显示到cart item section中
 function addToCart() {
     $('.menu-container').on('click', '.btn-outline-secondary', function(event) {
         event.preventDefault(); // Prevent default anchor action
         const productCard = $(this).closest('.gold-members');
-        const productId = productCard.find('p.text-muted.mb-0').text().split(': ')[1];
+        const productId = productCard.find('.product-id').text().split(': ')[1];
+        console.log("product id: ",productId)
 
         // 检查该商品是否已存在于购物车中
         let existingCartItem = $(`.osahan-cart-item .gold-members[data-product-id="${productId}"]`);
@@ -113,12 +120,13 @@ function addToCart() {
             // 商品不存在，添加新商品到购物车
             const productName = productCard.find('h6').text();
             const productPrice = productCard.find('p.text-muted.mb-0').last().text().split(' $')[0];
-
+            // 创建cartItem card添加到html中
             const cartItemHtml = `
                 <div class="gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom" data-product-id="${productId}">
                     <div class="media align-items-center">
                         <div class="mr-2 text-danger">&middot;</div>
                         <div class="media-body">
+                            <p class="m-0" id="pid">ID: ${productId}</p>
                             <p class="m-0">${productName}</p>
                         </div>
                     </div>
@@ -127,7 +135,9 @@ function addToCart() {
                             <button type="button" class="btn-sm left dec btn btn-outline-secondary">
                                 <i class="feather-minus"></i>
                             </button>
+                            <!-- Quantity of product-->
                             <input class="count-number-input" type="text" readonly="" value="1">
+                            
                             <button type="button" class="btn-sm right inc btn btn-outline-secondary">
                                 <i class="feather-plus"></i>
                             </button>
@@ -139,6 +149,7 @@ function addToCart() {
             // $('.osahan-cart-item .bg-white.border-bottom').append(cartItemHtml);
         }
         getTotalPrice();
+        updateCart();
     });
 }
 
@@ -148,6 +159,7 @@ function addNumber() {
         let value = parseInt(input.val(), 10);
         input.val(++value);
         getTotalPrice();
+        updateCart();
     });
 }
 
@@ -161,21 +173,22 @@ function minusNumber() {
             $(this).closest('.gold-members').remove(); // Remove item if quantity is 1 and minus is clicked
         }
         getTotalPrice();
+        updateCart();
     });
 }
 
 
 function getTotalPrice() {
-    let itemTotal = 0; // 商品总金额
+    let itemTotal = 0;
     $('.osahan-cart-item .gold-members').each(function() {
         const price = parseFloat($(this).find('.text-gray').text().split(' $')[0]);
         const quantity = parseInt($(this).find('.count-number-input').val(), 10);
-        itemTotal += price * quantity; // 累加每个商品的价格乘以其数量
+        itemTotal += price * quantity;
     });
 
-    // 假设配送费为固定值，根据您的应用逻辑调整
+    // set the deliveryFee
     const deliveryFee = 0;
-    const toPay = itemTotal + deliveryFee; // 总金额加上配送费
+    const toPay = itemTotal + deliveryFee;
     $('.osahan-cart-item .font-weight-bold').find('span').text(`$${toPay.toFixed(2)}`); // 更新 "TO PAY" 部分
     // 更新商品总金额
     $('.osahan-cart-item').find('.mb-1').first().find('span.text-dark').text(`$${itemTotal.toFixed(2)}`);
@@ -184,26 +197,145 @@ function getTotalPrice() {
 }
 
 
+// 从django数据库中获取cartItem数据中是否有属于该商店的，若有，则在该cart都显示出来
 function showCart(){
-    // TODO:从django数据库中获取cartItem数据中是否有属于该商店的，若有，则在该cart都显示出来
+    console.log("show Cart function working... ")
+    // get shop name
+    let shopName = shopNameElement.textContent;
+    let formData = new FormData();
+    formData.append('shopName', shopName);
+
+    console.log("showCart() :> shop name: ",shopName)
+    $.ajax({
+        type: "POST",
+        url: '/carts/get_cart_store/',
+        data: formData,
+        headers: {'X-CSRFToken': getCsrfTokenFromForm()},
+        processData: false, // Important: tell jQuery not to process the data
+        contentType: false, // Important: tell jQuery not to set contentType; it will be set automatically with the correct boundary
+
+        success: function(response) {
+            // Assuming `cartItemContainer` is the container where cart items should be displayed.
+            const products = response.products;
+            products.forEach(product => {
+                const productHtml = `
+                    <div class="gold-members d-flex align-items-center justify-content-between px-3 py-2 border-bottom" data-product-id="${product.id}">
+                        <div class="media align-items-center">
+                            <div class="mr-2 text-danger">&middot;</div>
+                            <div class="media-body">
+                                <p class="m-0" id="pid">ID: ${product.id}</p>
+                                <p class="m-0">${product.name}</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="count-number float-right">
+                                <button type="button" class="btn-sm left dec btn btn-outline-secondary">
+                                    <i class="feather-minus"></i>
+                                </button>
+                                <!--quantity-->
+                                <input class="count-number-input" type="text" readonly="" value="${product.quantity}">
+                                <button type="button" class="btn-sm right inc btn btn-outline-secondary">
+                                    <i class="feather-plus"></i>
+                                </button>
+                            </span>
+                            <p class="text-gray mb-0 float-right ml-2 text-muted small">${product.price} $</p>
+                        </div>
+                    </div>`;
+                // Append productHtml to the cart items container
+                cartItemContainer.append(productHtml);
+            });
+            getTotalPrice(); // Assuming this function recalculates the total price of items in the cart.
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
 }
 
-function updateCart(){
-    // TODO:更新购物车信息，每当用户在html中修改cart中的商品数据（增删改）时，调用该方法，将html中的cart的改变在数据库CartItem中存储
-    // TODO:存储时还需注意避免遇见重复的情况
+// update the cart item
+function updateCart() {
+    let shopName = shopNameElement.textContent; // get shop name
+    let products = []; // all the cart item info in cart
+    // 遍历每个购物车项目
+    $('.cart-items .gold-members').each(function() {
+        const productId = $(this).data('product-id'); // get product id
+        const quantity = parseInt($(this).find('.count-number-input').val(), 10); // get product quantity
+        products.push({ id: productId, quantity: quantity });
+    });
+    console.log("updateCart() :>  products[]: ");
+    console.log(products);
+    console.log("updateCart() :> shop name: ",shopName);
+    $.ajax({
+        type: "POST",
+        url: '/carts/upload_cart/',
+        data: JSON.stringify({
+            products: products,
+            shopName: shopName
+        }),
+        headers: {
+            'X-CSRFToken': getCsrfTokenFromForm(),
+            'Content-Type': 'application/json'
+        },
+        success: function(data) {
+            console.log('Cart updated successfully');
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
 }
 
 function checkLogin2(){
-    // TODO:后续操作，检查进行操作时是否为customer，如果是merchant或者未登录则提示需登录才能使用该功能
+    // TODO:检查进行操作时是否为customer，如果是merchant或者未登录则提示需登录才能使用该功能
+    // TODO:向后端获取session，若未登录或者user_type为'2'则将html中的一部分功能禁止掉
 }
 
-function addFavorite(){
-    // TODO:用户添加商店到收藏夹中的功能
+
+function addFavorite() {
+    // 获取shop name
+    let shopName = shopNameElement.textContent;
+    let csrfToken = getCsrfTokenFromForm();
+    let formData = new FormData();
+    formData.append('shopName', shopName);
+    $.ajax({
+        type: 'POST',
+        url: '/customers/add_fav/',// /customers/add_fav/
+        headers: {
+            'X-CSRFToken': csrfToken
+        },
+        processData: false, // Important: tell jQuery not to process the data
+        contentType: false, // Important: tell jQuery not to set contentType; it will be set automatically with the correct boundary
+        data: formData,
+        success: function(data) {
+            alert(data.message); // Show the message from the backend
+            // Disable the button and change its color to indicate it has been clicked
+            var button = document.getElementById("fav_button");
+            button.disabled = true;
+            button.classList.remove("btn-primary");
+            button.classList.add("btn-success");
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
 }
+
+
+// event of add to favorite button
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listener to the favorite button
+    let favButton = document.getElementById("fav_button");
+    if (favButton) {
+        favButton.addEventListener('click', function() {
+            addFavorite(); // Call the addFavorite function when the button is clicked
+        });
+    }
+});
 
 $(document).ready(function(){
     storeInfo();
     productInfo();
+    showCart();
     addToCart();
     addNumber();
     minusNumber();

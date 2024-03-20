@@ -10,4 +10,10 @@ urlpatterns = [
 
     # upload
     path('upload_cart/', views.upload_cart, name='upload_cart'),
+
+    # get a cart item of a store
+    path('get_cart_store/', views.get_cart_store, name='get_cart_store'),
+
+    # get all the cart item of a customer
+    path('get_cart/', views.get_cart, name='get_cart'),
 ]

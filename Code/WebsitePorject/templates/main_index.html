@@ -7,8 +7,14 @@
     <meta name="author" content="Calvin">
     <style>
         .max-img-size {
-            max-width: 150px; /* 设置最大宽度 */
-            max-height: 200px; /* 设置最大高度 */
+            max-width: 150px;
+            max-height: 200px;
+        }
+        .cat-item :hover {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
     </style>
 
@@ -34,20 +40,17 @@
         <section class="header-main shadow-sm bg-white">
             <div class="container">
                 <div class="row align-items-center">
-
-                    <!-- 列：LOGO -->
+                    <!-- LOGO -->
                     <div class="col-1">
                         <a href="/" class="brand-wrap mb-0">
                             <img alt="LOGO" class="img-fluid" src="{% static 'image/Doge.png' %}">
                         </a>
                         <!-- brand-wrap.// -->
                     </div>
-
+                    <!--location-->
                     <div class="col-3 d-flex align-items-center m-none">
-                        <!-- 位置下拉菜单，选择性 -->
                         <div class="dropdown mr-3">
                             <a class="text-dark dropdown-toggle d-flex align-items-center py-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <!-- 位置图标 -->
                                 <div><i class="feather-map-pin mr-2 bg-light rounded-pill p-2 icofont-size"></i></div>
                                 <div>
                                     <p class="text-muted mb-0 small">Location</p>
@@ -139,47 +142,42 @@
         <!-- Category Filters -->
         <div class="container">
             <div class="cat-slider">
-
+                <!-- Category 1 -->
                 <div class="cat-item px-1 py-3">
                     <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="trending.html">
                         <img alt="#" src="{% static 'image/icons/Fries.png' %}" class="img-fluid mb-2">
                         <p class="m-0 small">Fries</p>
                     </a>
                 </div>
-
-
+                <!-- Category 2 -->
                 <div class="cat-item px-1 py-3">
                     <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="trending.html">
                         <img alt="#" src="{% static 'image/icons/Pizza.png' %}" class="img-fluid mb-2">
                         <p class="m-0 small">Pizza</p>
                     </a>
                 </div>
-
-
+                <!-- Category 3 -->
                 <div class="cat-item px-1 py-3">
                     <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="trending.html">
                         <img alt="#" src="{% static 'image/icons/Burger.png' %}" class="img-fluid mb-2">
                         <p class="m-0 small">Burger</p>
                     </a>
                 </div>
-
-
+                <!-- Category 4 -->
                 <div class="cat-item px-1 py-3">
                     <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="trending.html">
                         <img alt="#" src="{% static 'image/icons/Steak.png' %}" class="img-fluid mb-2">
                         <p class="m-0 small">Steak</p>
                     </a>
                 </div>
-
-                <!-- 为中餐Chinese food -->
+                <!-- Category 5 -->
                 <div class="cat-item px-1 py-3">
                     <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="trending.html">
                         <img alt="#" src="{% static 'image/icons/Breakfast.png' %}" class="img-fluid mb-2">
                         <p class="m-0 small">Chinese food</p>
                     </a>
                 </div>
-
-
+                <!-- Category 6 -->
                 <div class="cat-item px-1 py-3">
                     <a class="bg-white rounded d-block p-2 text-center shadow-sm" href="trending.html">
                         <img alt="#" src="{% static 'image/icons/Salad.png' %}" class="img-fluid mb-2">
@@ -196,39 +194,15 @@
             </div>
             <!-- slider -->
             <div class="trending-slider">
-                <!-- Restaurant 1 一个描述shop card的HTML代码,下面都与这个一样-->
-{#                <div class="osahan-slider-item">#}
-{#                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">#}
-{#                        <div class="list-card-image">#}
-{#                            <!-- TODO:代表星级评分rate，括号里是参与rate的用户的数量 -->#}
-{#                            <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> 3.1 (300+)</span></div>#}
-{#                            <!-- TODO:餐厅页面的链接 与 图片,点击则跳转到对应的商店界面 -->#}
-{#                            <a href="#"><img alt="#" src="#" class="img-fluid item-img w-100"></a>#}
-{#                        </div>#}
-{#                        <div class="p-3 position-relative">#}
-{#                            <!-- 这个div类代表卡片主体部分 -->#}
-{#                            <div class="list-card-body">#}
-{#                                <h6 class="mb-1">#}
-{#                                    <!-- TODO:链接点击跳转到餐厅页面，以及餐厅的名字-->#}
-{#                                    <a href="restaurant.html" class="text-black">Famous Dave's Bar-B-Que</a>#}
-{#                                </h6>#}
-{#                                <!-- TODO:餐厅地址address -->#}
-{#                                <p class="text-gray mb-3">Vegetarian • Indian • Pure veg</p>#}
-{#                            </div>#}
-{#                            <div class="list-card-badge">#}
-{#                                <span class="badge badge-danger">OFFER</span>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
+                <!-- Restaurant card-->
             </div>
 
             <!-- Most popular section -->
             <div class="py-3 title d-flex align-items-center">
                 <h5 class="m-0">Most popular</h5>
-                <!-- 右侧”更多“链接，跳转到界面完全体的推荐界面-->
+                <!-- TODO:右侧”更多“链接，跳转到界面完全体的推荐界面-->
                 <a class="font-weight-bold ml-auto" href="most_popular.html">View all <i class="feather-chevrons-right"></i></a>
             </div>
-
             <!-- Most popular food cards -->
             <div class="most_popular">
 
