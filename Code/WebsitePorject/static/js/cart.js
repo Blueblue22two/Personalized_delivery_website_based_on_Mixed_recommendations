@@ -128,38 +128,52 @@ function updateCart() {
     });
 }
 
+
 function showAddress() {
     $.ajax({
         url: '/customers/get_address/',
         type: 'GET',
         dataType: 'json',
         success: function(response) {
-            // 检查响应中是否有地址数据
             if (response.addresses && response.addresses.length > 0) {
                 let addresses = response.addresses;
-                let container = $('.mb-3.font-weight-bold').next(); // 获取标题下方的容器
-                let row; // 用于动态创建新的行
+                let deliveryAddressSection = $(".osahan-cart-item-profile"); // 获取包含送货地址标题的容器
+                let addButton = deliveryAddressSection.find('a.btn-primary'); // 找到添加新地址的按钮
+
+                // 确保每次调用showAddress时清除旧的地址卡片容器
+                deliveryAddressSection.find('.address-cards-container').remove();
+
+                // 在添加按钮前动态创建一个专门用于地址卡片的容器
+                let addressCardsContainer = $('<div class="address-cards-container"></div>');
+                addButton.before(addressCardsContainer); // 将这个新容器放在添加按钮前
+
+                let row; // 初始化行变量
+
                 addresses.forEach(function(address, index) {
-                    // 每4个地址添加到一个新行
+                    // 检查是否需要创建新的行，每4个地址卡片一个新行
                     if (index % 4 === 0) {
                         row = $('<div class="row"></div>'); // 创建新的行
-                        container.append(row); // 将新行添加到容器中
+                        addressCardsContainer.append(row); // 将新行添加到地址卡片容器
                     }
-                    // 创建地址卡片的HTML结构
-                    let addressCard = $('<div class="col-lg-3 custom-control custom-radio mb-3 position-relative border-custom-radio address-card-container""></div>');
-                    let input = $('<input type="radio" class="custom-control-input" name="addressOption">').attr('id', 'customRadioInline' + address.id);
-                    let label = $('<label class="custom-control-label w-100"></label>').attr('for', 'customRadioInline' + address.id);
-                    let cardBody = $(
-                        '<div>' +
-                        '   <div class="p-3 bg-white rounded shadow-sm w-100">' +
-                        '       <div class="d-flex align-items-center mb-2">' +
-                        '           <h6 class="mb-0">Address:</h6>' +
-                        '       </div>' +
-                        '       <p class="small text-muted m-0">' + address.address_line + '</p>' +
-                        '   </div>' +
-                        '</div>'
+
+                    // 创建地址卡片HTML结构
+                    let addressCard = $('<div class="custom-control col-lg-3 custom-radio mb-3 position-relative border-custom-radio"></div>');
+                    let input = $('<input type="radio" id="customRadioInline' + index + '" name="customRadioInline1" class="custom-control-input">');
+                    let label = $('<label class="custom-control-label w-100" for="customRadioInline' + index + '"></label>');
+                    let cardBody = $('<div><div class="p-3 bg-white rounded shadow-sm w-100"></div></div>');
+                    let addressInfo = $(
+                        '<div class="d-flex align-items-center mb-2">' +
+                        '<h6 class="mb-0">Address:</h6>' +
+                        '<p class="mb-0 badge badge-light ml-auto"><i class="icofont-check-circled"></i> id: ' + address.id + '</p>' +
+                        '</div>' +
+                        '<p class="small text-muted m-0">' + address.province + '</p>' +
+                        '<p class="small text-muted m-0">' + address.city + '</p>' +
+                        '<p class="small text-muted m-0">' + address.district + '</p>' +
+                        '<p class="small text-muted m-0">' + address.detail + '</p>'
                     );
-                    // 组装地址卡片并添加到当前行
+                    cardBody.find('.p-3').append(addressInfo);
+
+                    // Assemble the address card and add it to the current row
                     label.append(cardBody);
                     addressCard.append(input).append(label);
                     row.append(addressCard);

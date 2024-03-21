@@ -7,15 +7,14 @@ function getCsrfTokenFromForm() {
 
 function createStore(){
     let name = $("#name").val(); // store name
-    let address = $("#address").val(); // store name
+    let province = $('#province').val();
+    let city = $('#city').val();
+    let distrct = $('#distrct').val();
+    let detail = $('#detail').val();
     let fileInput = $('#storeImage')[0]; // get image of store logo
     let file = fileInput.files[0];
 
     if (name === "") {
-        window.alert("Please fill in all items");
-        return false;
-    }
-    if (address === "") {
         window.alert("Please fill in all items");
         return false;
     }
@@ -47,7 +46,10 @@ function createStore(){
     let formData = new FormData();
     formData.append('storeImage', file);
     formData.append('name', name);
-    formData.append('address', address);
+    formData.append('province', province);
+    formData.append('city', city);
+    formData.append('distrct',distrct);
+    formData.append('detail', detail);
 
     $.ajax({
         type: "POST",
@@ -60,7 +62,6 @@ function createStore(){
         },
         success: function(response) {
             console.log(response.message);
-            // TODO:检查下面代码为何没有直接redirect to other page
             setTimeout(function() {
                 window.location.href = response.redirect_url;
             }, 500);
@@ -82,6 +83,59 @@ function createStore(){
     });
 
 }
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  // json path已经在html中定义全局变量
+  fetch(jsonPath)
+    .then(response => response.json())
+    .then(data => {
+      populateProvinces(data);  // 用获取到的数据填充省份下拉列表
+    });
+
+  // 填充省份下拉列表
+  function populateProvinces(data) {
+    const provinceSelect = document.getElementById('province');
+    data.forEach(item => {
+      const option = new Option(item.province, item.province);
+      provinceSelect.add(option);
+    });
+
+    // 当省份选择改变时，更新城市下拉列表
+    provinceSelect.addEventListener('change', function() {
+      const selectedProvince = this.value;
+      const cities = data.find(item => item.province === selectedProvince).citys;
+      populateCities(cities);
+    });
+  }
+
+  // 填充城市下拉列表
+  function populateCities(cities) {
+    const citySelect = document.getElementById('city');
+    citySelect.innerHTML = '<option selected>Choose a City</option>';  // 重置城市列表
+    cities.forEach(cityItem => {
+      const option = new Option(cityItem.city, cityItem.city);
+      citySelect.add(option);
+    });
+
+    // 当城市选择改变时，更新区域下拉列表
+    citySelect.addEventListener('change', function() {
+      const selectedCity = this.value;
+      const areas = cities.find(city => city.city === selectedCity).areas;
+      populateAreas(areas);
+    });
+  }
+
+  // 填充区域下拉列表
+  function populateAreas(areas) {
+    const areaSelect = document.getElementById('distrct');
+    areaSelect.innerHTML = '<option selected>Choose a District</option>';  // 重置区列表
+    areas.forEach(areaItem => {
+      const option = new Option(areaItem.area, areaItem.area);
+      areaSelect.add(option);
+    });
+  }
+});
 
 
 // add a event, after user click the submit 

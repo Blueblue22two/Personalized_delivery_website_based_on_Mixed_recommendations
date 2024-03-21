@@ -97,13 +97,15 @@ def add_address(request):
 
         province = request.POST.get('province')
         city = request.POST.get('city')
+        distrct= request.POST.get('distrct')
         detail = request.POST.get('detail')
-        address_line = f'{province}-{city}-{detail}'  # Concatenate the address string
+        address_line = f'{province}-{city}-{distrct}-{detail}'  # Concatenate the address string
 
         try:
             customer = Customer.objects.get(username=username)
-            # create Address object
-            Address.objects.create(customer=customer, address_line=address_line)
+            new_address = Address(customer=customer, address_line=address_line, province=province, city=city,
+                                  district=distrct, detail=detail)
+            new_address.save()
             return JsonResponse({'status': 'success', 'message': 'Address added successfully'})
         except Customer.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Customer does not exist'}, status=404)
@@ -124,12 +126,18 @@ def get_address(request):
         return JsonResponse({'error': 'Error user type or not logged in'}, status=400)
 
     try:
-        customer = Customer.objects.get(username=username)  # 根据用户名获取Customer对象
-        addresses = Address.objects.filter(customer=customer)  # 获取该Customer的所有地址
-        # 从Address实例中提取address_line并构造响应列表
-        address_lines = [{'id': address.id, 'address_line': address.address_line} for address in addresses]
+        customer = Customer.objects.get(username=username)
+        addresses = Address.objects.filter(customer=customer)
 
-        return JsonResponse({'addresses': address_lines})
+        address_list = [{
+            'id':address.id,
+            'province': address.province,
+            'city': address.city,
+            'district': address.district,
+            'detail': address.detail,
+        } for address in addresses]
+
+        return JsonResponse({'addresses': address_list})
     except Customer.DoesNotExist:
         return JsonResponse({'message': 'Customer does not exist'}, status=404)
     except Exception as e:

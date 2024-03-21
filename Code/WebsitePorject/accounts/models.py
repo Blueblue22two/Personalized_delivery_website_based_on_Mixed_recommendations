@@ -21,7 +21,7 @@ class Merchant(models.Model):
 
 class Address(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='addresses')
-    address_line = models.CharField(max_length=255) # 总地址，将下面的省份，城市，区与详细地址进行字符串拼接
+    address_line = models.CharField(max_length=255, null=True, blank=True) # 总地址，将下面的省份，城市，区与详细地址进行字符串拼接
     province = models.CharField(max_length=25, blank=True, default='')  # 省份
     city = models.CharField(max_length=25, blank=True, default='')  # 城市
     district = models.CharField(max_length=25, blank=True, default='')  # 区
@@ -38,8 +38,7 @@ class Shop(models.Model):
     name = models.CharField(max_length=255)
     total_rating = models.DecimalField(max_digits=3, decimal_places=1) # 默认为0
     image_path = models.CharField(max_length=255) # 存储在硬盘中的路径
-
-    address = models.CharField(max_length=255) # 总地址，将下面的省份，城市，区与详细地址进行字符串拼接
+    address = models.CharField(max_length=255, null=True, blank=True) # 总地址，将下面的省份，城市，区与详细地址进行字符串拼接
     province = models.CharField(max_length=25, blank=True, default='')  # 省份
     city = models.CharField(max_length=25, blank=True, default='')  # 城市
     district = models.CharField(max_length=25, blank=True, default='')  # 区

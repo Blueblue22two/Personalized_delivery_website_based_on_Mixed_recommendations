@@ -66,14 +66,11 @@ def new_store(request):
         user_type = request.session.get('user_type', None)  # if not exist then return none
         store_name = request.POST.get('name')
         store_image = request.FILES.get('storeImage', None)
-        address = request.POST.get('address')
-
-        print("-- new store --")
-        print("Username:", username)
-        print("User Type:", user_type)
-        print("Store Name:", store_name)
-        print("Address:", address)
-
+        province = request.POST.get('province')
+        city = request.POST.get('city')
+        distrct = request.POST.get('distrct')
+        detail = request.POST.get('detail')
+        address = f'{province}-{city}-{distrct}-{detail}'
         if not username or user_type != '2':
             logout_view(request)
             return JsonResponse({'error': 'Error user type or not logged in'}, status=400)
@@ -92,10 +89,9 @@ def new_store(request):
         if Shop.objects.filter(name=store_name).exists():
             return JsonResponse({'error': 'Store name already exists'}, status=400)
 
-        # TODO: 请重新修改下面的路径
-        # 计算 'Dataset' 目录的路径，现在它直接位于项目根目录下
+        # get the database file path
         dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
-        store_dir = os.path.join(dataset_base_dir, store_name.replace(" ", "_"))  # 使用店铺名创建目录，空格替换为下划线以避免路径问题
+        store_dir = os.path.join(dataset_base_dir, store_name.replace(" ", "_"))  # 使用店铺名创建目录
 
         # Paths for 'LOGO' and 'Products' directories within the store directory
         logo_dir = os.path.join(store_dir, 'LOGO')
@@ -110,6 +106,10 @@ def new_store(request):
         shop = Shop.objects.create(
             merchant=merchant,
             name=store_name,
+            province=province,
+            city=city,
+            district=distrct,
+            detail=detail,
             address=address,
             total_rating=0,  # default value
             image_path=os.path.relpath(image_dir, start=dataset_base_dir)

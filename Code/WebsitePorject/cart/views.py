@@ -43,16 +43,13 @@ def upload(request):
         if not username or user_type != '1':
             return JsonResponse({'error': 'Error user type or not logged in'}, status=400)
 
-        # TODO:获取前端传来的products列表
         data = json.loads(request.body.decode('utf-8'))
         products_data = data.get('products', [])
         print(f"upload_cart function: username: {username}")
 
         try:
-            # TOOD:通过username获取Customer表格中对应的customer，然后通过customer获取shoppingcart
             customer = Customer.objects.get(username=username)
             cart, created = ShoppingCart.objects.get_or_create(customer=customer)
-
             return JsonResponse({'message': 'Cart updated successfully'})
 
         except Customer.DoesNotExist:
