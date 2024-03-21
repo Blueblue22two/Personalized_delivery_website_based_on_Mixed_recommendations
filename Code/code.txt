@@ -16,6 +16,14 @@ How to run this project:
 python manage.py runserver
 
 
+如何将项目扩散到局域网内可以使用：
+1.使用ipconfig获取当前IPv4 地址：192.168.3.6
+2.将setting.py中 更换 ALLOWED_HOSTS = ['*']
+3. 将访问地址改为: http://ip地址:8000   http://192.168.3.6:8000
+4.运行项目：
+python manage.py runserver 0.0.0.0:8000
+
+
 How to create an application in project:
 python manage.py startapp app_name
 
