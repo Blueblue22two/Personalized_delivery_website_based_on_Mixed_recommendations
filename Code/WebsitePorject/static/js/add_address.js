@@ -28,8 +28,7 @@ function addAddress() {
         headers: {'X-CSRFToken': getCsrfTokenFromForm()},
         success: function(response) {
             if (response.status === 'success') {
-                alert('Address added successfully!');
-                // TODO:重定向到cart界面
+                window.alert('Address added successfully!');
             } else {
                 alert('Failed to add address: ' + response.message);
             }
@@ -46,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
   fetch(jsonPath)
     .then(response => response.json())
     .then(data => {
-      populateProvinces(data);  // 用获取到的数据填充省份下拉列表
+      populateProvinces(data);
     });
 
   // 填充省份下拉列表

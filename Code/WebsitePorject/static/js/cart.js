@@ -1,4 +1,6 @@
 const cartItemContainer = $('.cart-items');
+// 全局变量来存储选中的地址信息
+var selectedAddress = {};
 
 function getCsrfTokenFromForm() {
     return document.querySelector('input[name="csrfmiddlewaretoken"]').value;
@@ -50,7 +52,7 @@ function getTotalPrice() {
 }
 
 
-// 从django数据库中获取cartItem的所有数据并返回显示
+// 从数据库中获取cartItem的所有数据并在html中显示
 function showCart(){
     console.log("show Cart function working... ")
    $.ajax({
@@ -108,7 +110,6 @@ function updateCart() {
     });
     console.log("updateCart() :>  products[]: ");
     console.log(products);
-    console.log("updateCart() :> shop name: ",shopName);
     $.ajax({
         type: "POST",
         url: '/carts/upload/',
@@ -128,33 +129,35 @@ function updateCart() {
     });
 }
 
-
+// 从后端获取所有相关的address数据，并使用该数据在html中的address section中生成所有address card
 function showAddress() {
-    $.ajax({
+   $.ajax({
         url: '/customers/get_address/',
         type: 'GET',
         dataType: 'json',
         success: function(response) {
             if (response.addresses && response.addresses.length > 0) {
                 let addresses = response.addresses;
-                let deliveryAddressSection = $(".osahan-cart-item-profile"); // 获取包含送货地址标题的容器
-                let addButton = deliveryAddressSection.find('a.btn-primary'); // 找到添加新地址的按钮
 
-                // 确保每次调用showAddress时清除旧的地址卡片容器
+                let deliveryAddressSection = $(".osahan-cart-item-profile");
+                let addButton = deliveryAddressSection.find('a.btn-primary');
                 deliveryAddressSection.find('.address-cards-container').remove();
 
-                // 在添加按钮前动态创建一个专门用于地址卡片的容器
                 let addressCardsContainer = $('<div class="address-cards-container"></div>');
-                addButton.before(addressCardsContainer); // 将这个新容器放在添加按钮前
+                addButton.before(addressCardsContainer);
 
-                let row; // 初始化行变量
+                let row = $('<div class="row"></div>'); // 初始化row
+                addressCardsContainer.append(row); // 将row添加到容器中
 
                 addresses.forEach(function(address, index) {
-                    // 检查是否需要创建新的行，每4个地址卡片一个新行
-                    if (index % 4 === 0) {
-                        row = $('<div class="row"></div>'); // 创建新的行
-                        addressCardsContainer.append(row); // 将新行添加到地址卡片容器
+                    if (index % 4 === 0 && index !== 0) { // 当index为4的倍数且不为0时，重新创建一个row
+                        row = $('<div class="row"></div>');
+                        addressCardsContainer.append(row);
                     }
+
+                    // let addressCard = $('<div class="col-lg-3 custom-radio mb-3"></div>');
+                    // let input = $('<input type="radio" id="addressRadio' + index + '" name="addressRadio" class="custom-control-input">');
+                    // let label = $('<label class="custom-control-label" for="addressRadio' + index + '">...</label>'); // 省略了具体的标签结构以保持简洁
 
                     // 创建地址卡片HTML结构
                     let addressCard = $('<div class="custom-control col-lg-3 custom-radio mb-3 position-relative border-custom-radio"></div>');
@@ -172,9 +175,22 @@ function showAddress() {
                         '<p class="small text-muted m-0">' + address.detail + '</p>'
                     );
                     cardBody.find('.p-3').append(addressInfo);
-
                     // Assemble the address card and add it to the current row
                     label.append(cardBody);
+                    // addressCard.append(input).append(label);
+
+                    // 添加事件监听器更新全局变量
+                    input.change(function() {
+                        if (this.checked) {
+                            selectedAddress = {
+                                id: address.id,
+                                province: address.province,
+                                city: address.city,
+                                district: address.district,
+                                detail: address.detail
+                            };
+                        }
+                    });
                     addressCard.append(input).append(label);
                     row.append(addressCard);
                 });
@@ -182,6 +198,77 @@ function showAddress() {
         },
         error: function(xhr, status, error) {
             console.error("Failed to fetch addresses:", status, error);
+        }
+    });
+}
+
+// 使用此函数可以在任何地方获取当前选中的地址信息
+function getSelectedAddress() {
+    return selectedAddress;
+}
+
+
+// event of pay button
+$(document).ready(function() {
+    $('#pay_btn').click(function(e) {
+        e.preventDefault();
+        payment();
+    });
+});
+
+function payment() {
+    // get address id
+    let addressID=getSelectedAddress().id;
+    console.log("select addressID: ",addressID);
+    // Check if addressID is undefined or empty, then alert
+    if (addressID === undefined || addressID === "") {
+        window.alert("Please select an address");
+        return
+    }
+    // get total price
+    let totalPriceText = $('#totalPrice').text().trim();
+    let totalPrice = parseFloat(totalPriceText.replace('$', '')); // 确保获取的是数字
+    console.log("total pay: ",totalPrice)
+    if (totalPrice === 0){
+        window.alert("There is no item in the cart, please select the item you want to buy!")
+        return
+    }
+    let formData = new FormData();
+    formData.append('total_price', totalPrice);
+    formData.append('address_id', addressID);
+
+    // store all the product id and quantity
+    let products = [];
+    // get id and quantity
+    $('.gold-members').each(function() {
+        let productId = $(this).data('product-id');
+        let quantity = $(this).find('.count-number-input').val();
+        console.log("product id:",productId);
+        console.log("quantity:",quantity);
+        products.push({
+            product_id: productId,
+            quantity: quantity
+        });
+    });
+    let productsJson = JSON.stringify(products);
+    formData.append('products', productsJson);
+
+    $.ajax({
+        url: '/payment/generate_payment/',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        headers: {
+            'X-CSRFToken': getCsrfTokenFromForm()
+        },
+        success: function(response) {
+            console.log(response.message);
+            window.alert(response.message);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error sending order data:", error);
+            window.alert("Error sending order.");
         }
     });
 }

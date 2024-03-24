@@ -38,6 +38,7 @@ urlpatterns = [
     path('store/', include('store.urls')),
     path('products/', include('products.urls')),
     path('recommend/', include('recommendation.urls')),
+    path('payment/', include('payment.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

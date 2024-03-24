@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
 from accounts.models import Customer, Shop, Favorite, Address
@@ -106,7 +106,9 @@ def add_address(request):
             new_address = Address(customer=customer, address_line=address_line, province=province, city=city,
                                   district=distrct, detail=detail)
             new_address.save()
-            return JsonResponse({'status': 'success', 'message': 'Address added successfully'})
+            # return JsonResponse({'status': 'success', 'message': 'Address added successfully'})
+            # todo: return redirect()
+            return redirect('/carts/main/')
         except Customer.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Customer does not exist'}, status=404)
         except Exception as e:

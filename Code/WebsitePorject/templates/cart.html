@@ -41,13 +41,10 @@
 </head>
 
 <body class="fixed-bottom-bar">
-    {% csrf_token %}
     <header class="section-header">
         <section class="header-main shadow-sm bg-white">
             <div class="container">
                 <div class="row align-items-center">
-
-                    <!-- 列：LOGO -->
                     <div class="col-1">
                         <a href="/" class="brand-wrap mb-0">
                             <img alt="LOGO" class="img-fluid" src="{% static 'image/Doge.png' %}">
@@ -56,10 +53,8 @@
                     </div>
 
                     <div class="col-3 d-flex align-items-center m-none">
-                        <!-- 位置下拉菜单，选择性 -->
                         <div class="dropdown mr-3">
                             <a class="text-dark dropdown-toggle d-flex align-items-center py-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <!-- 位置图标 -->
                                 <div><i class="feather-map-pin mr-2 bg-light rounded-pill p-2 icofont-size"></i></div>
                                 <div>
                                     <p class="text-muted mb-0 small">Location</p>
@@ -69,10 +64,8 @@
                         </div>
                     </div>
 
-                     <!-- 搜索和其他功能按钮，如优惠、登录/注册等 -->
                     <div class="col-8">
                         <div class="d-flex align-items-center justify-content-end pr-5">
-
                             <!-- search bar -->
                             <a href="/accounts/search/" class="widget-header mr-4 text-dark">
                                 <div class="icon d-flex align-items-center">
@@ -107,8 +100,6 @@
                                     <i class="feather-shopping-cart h6 mr-2 mb-0"></i> <span>Cart</span>
                                 </div>
                             </a>
-
-                            <!-- 触发右边菜单功能，代码在footer下面-->
                             <a class="toggle" href="#">
                                 <span></span>
                             </a>
@@ -135,6 +126,7 @@
             </div>
             <!-- main -->
             <div class="container position-relative">
+                {% csrf_token %}
                 <div class="py-5 row">
                     <!--address section-->
                     <div class="col-md-8 mb-3">
@@ -145,7 +137,8 @@
                                         <h6 class="mb-3 font-weight-bold">Delivery Address</h6>
                                         <!--显示address，一排row显示4个address，如果更多则添加row -->
                                         <div class="row">
-                                            <!--Example address card-->
+                                                <!--Example address card-->
+                                                <!-- 这里放置地址卡片的容器 -->
                                         </div>
                                         <!-- address add button,跳转到添加地址界面-->
                                         <a class="btn btn-primary" type="button" href="/customers/add_address/"> ADD NEW ADDRESS </a>
@@ -171,11 +164,12 @@
                                     <p class="mb-1">Delivery Fee<span class="text-info ml-1"><i class="feather-info"></i></span><span class="float-right text-dark">$0</span></p>
                                     <!-- <p class="mb-1 text-success">Total Discount<span class="float-right text-success">$1884</span></p> -->
                                     <hr>
-                                    <h6 class="font-weight-bold mb-0">TO PAY <span class="float-right">$0</span></h6>
+                                    <!--total price-->
+                                    <h6 class="font-weight-bold mb-0">TO PAY <span class="float-right" id="totalPrice">$0</span></h6>
                                 </div>
-                                <!-- TODO:点击跳转到支付界面-->
+                                <!-- 点击跳转到支付界面-->
                                 <div class="p-3">
-                                    <a class="btn btn-success btn-block btn-lg" href="#">PAY<i class="feather-arrow-right"></i></a>
+                                    <a class="btn btn-success btn-block btn-lg" id="pay_btn" href="#">PAY<i class="feather-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>

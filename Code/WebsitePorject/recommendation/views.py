@@ -112,36 +112,40 @@ def get_sales(request):
     # TODO: 若该csv文件已存在,则重新覆盖该文件
     # csv文件中的数据如下:1.total_rating(float) 2.popularity_value（int） 3.image_path(string) 4.name(string) 5.address(string) 6. total_sales(float)
     # 对于popularity_value的值，是以每一个shop为单位，获取其对应ShopRating表格中对应的数据的数量。获取完毕后，再将其存入csv文件中对应的数据中
-    # TODO: 对于Shop表格中的每个商店，通过shop查找其在Merchant表格中的数据，再通过merchant来查找其在Order表格中所有对应的order中的quantity数据求和，这个数据叫total_sales
+    # TODO: 对于Shop表格中的每个商店，通过shop查找其在Merchant表格中的数据，再通过merchant来查找其在Order表格中所有对应的orderd,然后再通过order在OrderItem中寻找所有对应的数据中的quantity的数据，然后进行求和，这个数据叫total_sales
     # TODO:然后根据这个数据从高到低排序,取前10名的所有csv需要的数据存入csv文件中
     # TODO:返回csv中前3个商店的信息
     dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
     csv_file_path = os.path.join(dataset_base_dir, 'sales.csv')
-    print(f"sales.cv path: {csv_file_path}")
+    print(f"sales.cv path: {csv_file_path}") # 可删除
 
-    # Calculate total sales for each shop
-    shops_with_sales = Shop.objects.annotate(total_sales=Sum('products__orders__quantity')).order_by('-total_sales')[
-                       :10]
+    # get the store total_sales
+    shops_with_sales = Shop.objects.annotate(
+        total_sales=Sum('products__order_items__quantity')
+    ).order_by('-total_sales')[:10]
 
-    # Write to CSV
+    # 创建或覆盖CSV文件
     with open(csv_file_path, 'w', newline='') as csvfile:
         fieldnames = ['total_rating', 'popularity_value', 'image_path', 'name', 'address', 'total_sales']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()
         for shop in shops_with_sales:
+            popularity_value = ShopRating.objects.filter(shop=shop).count()
             writer.writerow({
                 'total_rating': shop.total_rating,
-                'popularity_value': ShopRating.objects.filter(shop=shop).count(),
+                'popularity_value': popularity_value,
                 'image_path': shop.image_path,
                 'name': shop.name,
                 'address': shop.address,
-                'total_sales': shop.total_sales
+                'total_sales': getattr(shop, 'total_sales', 0)  # 使用getattr以防total_sales为None
             })
 
-    # Return JsonResponse for the top 3 shops (since we already sorted and limited the queryset)
+    # 读取CSV文件返回前3个商店的信息
+    top_3_shops = []
     with open(csv_file_path, 'r') as csvfile:
         reader = csv.DictReader(csvfile)
-        top_3_shops = list(reader)[:3]
+        for row in list(reader)[:3]:
+            top_3_shops.append(row)
 
     return JsonResponse(top_3_shops, safe=False)
