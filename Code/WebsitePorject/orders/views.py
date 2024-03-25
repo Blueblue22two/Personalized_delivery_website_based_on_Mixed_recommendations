@@ -102,14 +102,6 @@ def send_order(request):
         return JsonResponse({'error': 'Invalid request method.'}, status=400)
 
 
-# jump to comment page
-def post_comment_view(request, order_id):
-    # 将order_id包装在字典中，作为上下文传递给模板
-    context = {'order_id': order_id}
-    # 注意，render函数的第二个参数是模板名称的字符串
-    return render(request, 'comment.html', context)
-
-
 # get the info from database
 def get_info(request):
     if request.method == 'POST':
@@ -148,7 +140,7 @@ def get_info(request):
         return JsonResponse({'error': 'Invalid request method.'}, status=400)
 
 
-# 接收前端传来的评论与评分数据，然后操作
+
 # def post_comment(request):
 #     if request.method == 'POST':
 #         username = request.session.get('username', None)
@@ -170,6 +162,7 @@ def get_info(request):
 #     else:
 #         return JsonResponse({'error': 'Invalid request method.'}, status=400)
 
+# 接收前端传来的评论与评分数据，然后操作
 def post_comment(request):
     if request.method == 'POST':
         username = request.session.get('username')
@@ -178,10 +171,13 @@ def post_comment(request):
         user_type = request.session.get('user_type')
         if not username or user_type != '1':  # Assuming '1' is the user type for customers
             return JsonResponse({'error': 'Error user type or not logged in'}, status=400)
+
         # get fromData
         order_id = request.POST.get('order_id')
         shopRating = request.POST.get('shopRating')
         commentText = request.POST.get('commentText')
+        print(f"order id:{order_id}")
+        print(f"shopRating: {shopRating}")
 
         customer = get_object_or_404(Customer, username=username)
         order = get_object_or_404(Order, id=order_id, customer=customer)
@@ -205,4 +201,12 @@ def post_comment(request):
             return JsonResponse({'error': str(e)}, status=500)
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=400)
+
+
+# jump to the comment page with order id
+def post_comment_view(request, id):
+    # 将order_id包装在字典中，作为上下文传递给模板
+    context = {'order_id': id}
+    print(f"order id: {id}")
+    return render(request, 'comment.html', context)
 

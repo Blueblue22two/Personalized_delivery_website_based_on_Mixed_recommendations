@@ -1,5 +1,6 @@
 import json
 from django.contrib.auth import logout
+from django.db import transaction
 from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render
 from accounts.models import Customer, ShoppingCart, Shop
@@ -32,12 +33,41 @@ def upload(request):
             return JsonResponse({'error': 'Error user type or not logged in'}, status=400)
 
         data = json.loads(request.body.decode('utf-8'))
+        # products_data is a list of { id: productId, quantity: quantity }
         products_data = data.get('products', [])
         print(f"upload_cart function: username: {username}")
 
         try:
+            # Fetching the Customer object
             customer = Customer.objects.get(username=username)
-            cart, created = ShoppingCart.objects.get_or_create(customer=customer)
+            # Retrieving the ShoppingCart object, create if not exist
+            shopping_cart, _ = ShoppingCart.objects.get_or_create(customer=customer)
+            # Fetching all CartItems for the customer's shopping cart
+            existing_cart_items = CartItem.objects.filter(cart=shopping_cart)
+
+            # Start database transaction
+            with transaction.atomic():
+                # Product IDs in the request
+                product_ids = [item['id'] for item in products_data]
+
+                # Update existing or create new CartItems
+                for product_data in products_data:
+                    product_id = product_data['id']
+                    quantity = product_data['quantity']
+
+                    # Fetch or create the Product object
+                    product, _ = Product.objects.get_or_create(id=product_id)
+
+                    # Update or create CartItem
+                    cart_item, created = CartItem.objects.update_or_create(
+                        cart=shopping_cart,
+                        product=product,
+                        defaults={'quantity': quantity}
+                    )
+
+                # Remove CartItems not in the products_data
+                existing_cart_items.exclude(product__id__in=product_ids).delete()
+
             return JsonResponse({'message': 'Cart updated successfully'})
 
         except Customer.DoesNotExist:

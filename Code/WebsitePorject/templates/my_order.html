@@ -20,6 +20,23 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <!-- Sidebar CSS -->
     <link href="{% static 'css/demo.css' %}" rel="stylesheet">
+    <style>
+        .product_card {
+            background-color: #f8f9fa; /* Slightly different background for emphasis */
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .product-info label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            max-width: 300px; /* Limit input width for better aesthetics */
+            margin: auto; /* Center align the input fields */
+        }
+    </style>
 </head>
 
 <body class="fixed-bottom-bar">
@@ -111,25 +128,24 @@
         </div>
     </div>
 
-    <section class="py-4 osahan-main-body">
+   <section class="py-4 osahan-main-body">
         <div class="container">
-            <!--Order section-->
             <div class="row">
                 <!--Order status section-->
                 <!--显示在页面左侧，总共有三种订单状态，点击切换 显示对应状态的订单信息-->
                 <div class="col-md-3 mb-3">
                     <ul class="nav nav-tabsa custom-tabsa border-0 flex-column bg-white rounded overflow-hidden shadow-sm p-2 c-t-order" id="myTab" role="tablist">
-                        <!--TODO:点击，将下面Order item section中显示所有订单状态=' completed '的Order info-->
+                        <!--点击，将下面Order item section中显示所有订单状态=' completed '的Order info-->
                         <li class="nav-item" role="presentation">
                             <a class="nav-link border-0 text-dark py-3 active" id="completed-tab" data-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="true">
                                 <i class="feather-check mr-2 text-success mb-0"></i> Completed</a>
                         </li>
-                        <!--TODO:点击，将下面Order item section中显示所有订单状态=' Progress '的Order info-->
+                        <!--点击，将下面Order item section中显示所有订单状态=' Progress '的Order info-->
                         <li class="nav-item border-top" role="presentation">
                             <a class="nav-link border-0 text-dark py-3" id="progress-tab" data-toggle="tab" href="#progress" role="tab" aria-controls="progress" aria-selected="false">
                                 <i class="feather-clock mr-2 text-warning mb-0"></i> On Progress</a>
                         </li>
-                        <!--TODO:点击，将下面Order item section中显示所有订单状态=' Canceled '的Order info-->
+                        <!--点击，将下面Order item section中显示所有订单状态=' Canceled '的Order info-->
                         <li class="nav-item border-top" role="presentation">
                             <a class="nav-link border-0 text-dark py-3" id="canceled-tab" data-toggle="tab" href="#canceled" role="tab" aria-controls="canceled" aria-selected="false">
                                 <i class="feather-x-circle mr-2 text-danger mb-0"></i> Canceled</a>
@@ -138,42 +154,40 @@
                 </div>
 
                 <!--Order item section-->
-                <!--显示所有订单状态=' completed '的Order info-->
                 <div class="tab-content col-md-9" id="myTabContent">
+                    <!--显示所有订单状态=' completed '的Order info-->
                     <div class="tab-pane fade show active" id="completed" role="tabpanel" aria-labelledby="completed-tab">
                         <div class="order-body">
                             <!--Example: Order and store info card -->
                             <div class="pb-3">
                                 <div class="p-3 rounded shadow-sm bg-white">
                                     <!-- Example: store info card -->
-                                    <div class="d-flex border-bottom pb-3 store_card">
+                                    <div class="d-flex border-bottom pb-3">
                                         <div class="text-muted mr-3">
-                                            <!--TODO: Store logo image-->
-                                            <!--"src=/media/${shop.image_path}"-->
-                                            <img alt="#" src="" class="img-fluid order_img rounded shop-logo">
-                                        </div>
-                                        <div>
-                                            <!--TODO: Store name，并且点击跳转到对应的商店界面,href='/shop/${shop.name}/'-->
-                                            <p class="mb-0 font-weight-bold "><a href="restaurant.html" class="text-dark shop-name">Conrad Restaurant</a></p>
-                                            <!--TODO: Store address-->
-                                            <p class="mb-0 text-dark font-italic shop-name">Punjab, India</p>
-                                            <!--TODO: ORDER id-->
-                                            <p class="order-id">#321DERS</p>
+                                            <!--Store logo image-->
+                                            <img alt="#" src="img/popular5.png" class="img-fluid order_img rounded shop-logo">
                                         </div>
 
+                                        <div>
+                                            <!--Store name，并且点击跳转到对应的商店界面,href='/shop/${shop.name}/'-->
+                                            <p class="mb-0 font-weight-bold "><a href="restaurant.html" class="text-dark shop-name">Conrad Restaurant</a></p>
+                                            <!--Store address-->
+                                            <p class="mb-0 text-dark font-italic shop-name">Punjab, India</p>
+                                            <!--ORDER id-->
+                                            <p class="order-id">#321DERS</p>
+                                        </div>
                                         <div class="ml-auto">
                                             <!-- Order status -->
                                             <p class="bg-success text-white py-1 px-2 rounded small mb-1 order-status">Delivered</p>
-                                            <!--TODO: Order date-->
+                                            <!--Order date-->
                                             <p class="small font-weight-bold text-center order-date"><i class="feather-clock"></i> 06/04/2020</p>
                                         </div>
                                     </div>
-
                                     <!-- Example: product info card -->
                                     <div class="d-flex pt-3 product_card">
-                                         <!--order item-info-->
+                                        <!--order item-info-->
                                         <div class="small product-info">
-                                            <!--TODO: show all product name and quantity-->
+                                            <!--show all product name and quantity-->
                                             <!--Example 1: product name * quantity-->
                                             <p class="text- font-weight-bold mb-0 name_price">Kesar Sweet x 1</p>
                                             <!--Example 2: product name * quantity-->
@@ -181,72 +195,135 @@
                                         </div>
 
                                         <div class="text-muted m-0 ml-auto mr-3 small total_info">Total Payment<br>
-                                            <!--TODO: Order total price-->
+                                            <!--Order total price-->
                                             <span class="text-dark font-weight-bold total_price">$12.74</span>
                                         </div>
 
                                         <!--按钮叫post a comment，用于customer发送评论-->
                                         <!--仅对于customer用户显示，仅在order status='completed并且isComment为False的订单中加入该部分-->
-{#                                        <div class="text-right">#}
-{#                                            <!-- post button-->#}
-{#                                            <a href="" class="btn btn-primary px-3">post a comment</a>#}
-{#                                        </div>#}
+                                        <div class="text-right">
+                                            <!-- post button-->
+                                            <a href="" class="btn btn-primary px-3">post a comment</a>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
-                            <!-- 其他Order store info也一样 -->
+                            <!--其他一样的order info card-->
                         </div>
                     </div>
 
                     <!--显示所有订单状态='progress'的Order info-->
                     <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
                         <div class="order-body">
+                            <!--Example: Order and store info card -->
                             <div class="pb-3">
-                                <!--与前面example一样省略-->
-
-                                        <div class="ml-auto">
-                                            <!--此处部分不同，Order status:Process-->
-                                            <p class="bg-warning text-white py-1 px-2 rounded small mb-1 order-status">On Process</p>
-                                            <!--与前面example一样省略-->
+                                <div class="p-3 rounded shadow-sm bg-white">
+                                    <!-- Example: store info card -->
+                                    <div class="d-flex border-bottom pb-3">
+                                        <div class="text-muted mr-3">
+                                            <!--Store logo image-->
+                                            <img alt="#" src="img/popular5.png" class="img-fluid order_img rounded shop-logo">
                                         </div>
 
-                                <!-- 与前面一样可省略.. -->
-                                    <!-- Example: product info card-->
+                                        <div>
+                                            <!--Store name，并且点击跳转到对应的商店界面,href='/shop/${shop.name}/'-->
+                                            <p class="mb-0 font-weight-bold "><a href="restaurant.html" class="text-dark shop-name">Conrad Restaurant</a></p>
+                                            <!--Store address-->
+                                            <p class="mb-0 text-dark font-italic shop-name">Punjab, India</p>
+                                            <!--ORDER id-->
+                                            <p class="order-id">#321DERS</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <!-- Order status -->
+                                            <p class="bg-warning text-white py-1 px-2 rounded small mb-1 order-status">On Process</p>
+                                            <!--Order date-->
+                                            <p class="small font-weight-bold text-center order-date"><i class="feather-clock"></i> 06/04/2020</p>
+                                        </div>
+                                    </div>
+                                    <!-- Example: product info card -->
                                     <div class="d-flex pt-3 product_card">
-                                        <!-- 与前面一样可省略.. -->
+                                        <!--order item-info-->
+                                        <div class="small product-info">
+                                            <!--show all product name and quantity-->
+                                            <!--Example 1: product name * quantity-->
+                                            <p class="text- font-weight-bold mb-0 name_price">Kesar Sweet x 1</p>
+                                            <!--Example 2: product name * quantity-->
+                                            <p class="text- font-weight-bold mb-0 name_price">Gulab Jamun x 4</p>
+                                        </div>
+
+                                        <div class="text-muted m-0 ml-auto mr-3 small total_info">Total Payment<br>
+                                            <!--Order total price-->
+                                            <span class="text-dark font-weight-bold total_price">$12.74</span>
+                                        </div>
 
                                         <!--对于customer隐藏该部分，仅对于merchant显示该按钮-->
                                         <!--该部分仅在订单状态为Progress的订单中显示，且仅限于Merchant用户-->
-{#                                        <div class="text-right">#}
-{#                                            <!-- send button-->#}
-{#                                            <a href="" class="btn btn-primary px-3">Send</a>#}
-{#                                        </div>#}
-                                    </div>
+                                        <div class="text-right">
+                                            <!-- send button-->
+                                            <a href="" class="btn btn-primary px-3">Send</a>
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
-
+                            <!--其他一样的order info card-->
                         </div>
                     </div>
 
                     <!--显示所有订单状态='canceled'的Order info-->
                     <div class="tab-pane fade" id="canceled" role="tabpanel" aria-labelledby="canceled-tab">
                         <div class="order-body">
+                            <!--Example: Order and store info card -->
                             <div class="pb-3">
-                                <!-- 与前面一样可省略.. -->
-                                        <div class="ml-auto">
-                                            <!--此处部分不同，Order status: canceled-->
-                                            <p class="bg-danger text-white py-1 px-2 rounded small mb-1 order-status">Canceled</p>
-                                            <!-- 与前面一样可省略.. -->
+                                <div class="p-3 rounded shadow-sm bg-white">
+                                    <!-- Example: store info card -->
+                                    <div class="d-flex border-bottom pb-3">
+                                        <div class="text-muted mr-3">
+                                            <!--Store logo image-->
+                                            <img alt="#" src="img/popular5.png" class="img-fluid order_img rounded shop-logo">
                                         </div>
-                                <!-- 与前面一样可省略.. -->
+
+                                        <div>
+                                            <!--Store name，并且点击跳转到对应的商店界面,href='/shop/${shop.name}/'-->
+                                            <p class="mb-0 font-weight-bold "><a href="restaurant.html" class="text-dark shop-name">Conrad Restaurant</a></p>
+                                            <!--Store address-->
+                                            <p class="mb-0 text-dark font-italic shop-name">Punjab, India</p>
+                                            <!--ORDER id-->
+                                            <p class="order-id">#321DERS</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <!-- Order status -->
+                                            <p class="bg-danger text-white py-1 px-2 rounded small mb-1 order-status">Canceled</p>
+                                            <!--Order date-->
+                                            <p class="small font-weight-bold text-center order-date"><i class="feather-clock"></i> 06/04/2020</p>
+                                        </div>
+                                    </div>
+                                    <!-- Example: product info card -->
+                                    <div class="d-flex pt-3 product_card">
+                                        <!--order item-info-->
+                                        <div class="small product-info">
+                                            <!--show all product name and quantity-->
+                                            <!--Example 1: product name * quantity-->
+                                            <p class="text- font-weight-bold mb-0 name_price">Kesar Sweet x 1</p>
+
+                                        </div>
+
+                                        <div class="text-muted m-0 ml-auto mr-3 small total_info">Total Payment<br>
+                                            <!--Order total price-->
+                                            <span class="text-dark font-weight-bold total_price">$12.74</span>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
+                            <!--其他一样的order info card-->
                         </div>
+
                     </div>
 
-                </div><!--end of Order item section-->
-
-            </div><!--end ofOrder item section-->
+                </div>
+            </div>
         </div>
     </section>
 

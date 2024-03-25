@@ -4,35 +4,10 @@ function getCsrfTokenFromForm() {
     return document.querySelector('input[name="csrfmiddlewaretoken"]').value;
 }
 
-
-// function displayDataInComment(){
-//     // get order id
-//     let orderIdText = $('#order-id').text();
-//     let orderId = orderIdText.split(': ')[1];
-//
-//     $.ajax({
-//         url: `/orders/get_info/`,
-//         type: 'POST',
-//         data: { order_id: orderId },
-//         headers: {
-//             'X-CSRFToken': getCsrfTokenFromForm()
-//         },
-//         success: function(response) {
-//             // TODO:若获取成功，接收数据
-//             // TODO:然后按照html中的example生成对应的html元素
-//         },
-//         error: function(xhr, status, error) {
-//             console.error("Error sending order data:", error);
-//             window.alert("Error sending order."); // 提示用户错误信息
-//         }
-//     });
-// }
-
-// get all order info from database, and display it in html
 function displayDataInComment() {
-    // get order id
     let orderIdText = $('#order-id').text();
     let orderId = orderIdText.split(': ')[1];
+    console.log("order id:", orderId);
     $.ajax({
         url: `/orders/get_info/`,
         type: 'POST',
@@ -41,47 +16,55 @@ function displayDataInComment() {
             'X-CSRFToken': getCsrfTokenFromForm()
         },
         success: function(response) {
-            // 清除现有的订单信息
-            $('.order-body').empty();
-            // 遍历每个订单数据
-            response.orders.forEach(order => {
-                let orderHtml = `
-                <div class="pb-3">
+            $('.order-body').empty(); // Clear existing order info
+
+            // Loop through each order in the response
+            response.orders.forEach((order) => {
+                let orderContent = `
                     <div class="p-3 rounded shadow-sm bg-white">
                         <div class="d-flex border-bottom pb-3 store_card">
                             <div class="text-muted mr-3">
-                                <img alt="#" src="/media/${order.shop_image_path}" class="img-fluid order_img rounded shop-logo">
+                                <img alt="${order.shop_name}" src="/media/${order.shop_image_path}" class="img-fluid order_img rounded shop-logo">
                             </div>
                             <div>
-                                <p class="mb-0 font-weight-bold"><a href="/shop/${order.shop_name}/" class="text-dark shop-name">${order.shop_name}</a></p>
-                                <p class="mb-0 text-dark font-italic shop-name">${order.shop_address}</p>
-                                <p class="order-id">#${orderId}</p>
+                                <p class="mb-0 fw-bold"><a href="/store/shop/${order.shop_name}/" style="color: red; font-size: 1.5rem; font-weight: bold;" class="text-danger shop-name">${order.shop_name}</a></p>
+                                <p class="mb-0 text-dark font-italic shop-address">${order.shop_address}</p>
                             </div>
                             <div class="ml-auto">
-                                <p class="bg-success text-white py-1 px-2 rounded small mb-1 order-status">Delivered</p>
-                                <p class="small font-weight-bold text-center order-date"><i class="feather-clock"></i> ${order.sale_time}</p>
+                                <p id="order-id" class="small font-weight-bold text-center">Order ID: ${orderId}</p>
+                                <p class="small font-weight-bold text-center order-date"><i class = "feather-clock"></i> ${order.sale_time}</p>
+                            </div>
+                            
+                        </div>
+                        <div class="shop-rating text-center my-3">
+                                <label for="shopRating" class="form-label"><i class="feather-star"></i>Shop rating score:</label>
+                                <input type="number" class="form-control" id="shopRating" name="shopRating" min="0" max="5" step="0.1" value="5" required>
+                        </div>
+                `;
+
+                order.order_items.forEach((item) => {
+                    orderContent += `
+                        <div class="d-flex justify-content-center align-items-center pt-3 product_card bg-light p-3">
+                            <div class="text-center product-info">
+                                <p class="font-weight-bold mb-0 p_name">${item.product_name}</p>
+                                <p class="font-weight-bold mb-0 p_price">$${item.product_price}</p>
+                                <div class="my-2">
+                                    <label for="productRating-${item.product_name}" class="form-label"><i class="feather-star"></i>Rate this product:</label>
+                                    <input type="number" class="form-control" id="productRating-${item.product_name}" name="productRating" min="0" max="5" step="0.1" value="5" required>
+                                </div>
                             </div>
                         </div>
-                        <div class="d-flex pt-3 product_card">`;
-
-                // 遍历每个订单项
-                order.order_items.forEach(item => {
-                    orderHtml += `
-                        <div class="small product-info">
-                            <p class="text- font-weight-bold mb-0 name_price">${item.product_name} x ${item.quantity}</p>
-                        </div>`;
+                    `;
                 });
-                orderHtml += `
-                        <div class="text-muted m-0 ml-auto mr-3 small total_info">Total Payment<br>
-                            <span class="text-dark font-weight-bold total_price">$${order.total_price}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
 
-                // 将生成的HTML添加到页面上
-                $('.order-body').append(orderHtml);
+                orderContent += `
+                    <textarea class="form-control mt-3" name="commentText" rows="3" placeholder="Leave your comment here..." maxlength="225" required></textarea>
+                    <button class="btn btn-primary mt-3 d-flex align-items-center justify-content-center" type="submit" id="post_btn"><i class="feather-send"></i> Post</button>
+                </div>`;
+
+                $('.order-body').append(orderContent);
             });
+
         },
         error: function(xhr, status, error) {
             console.error("Error fetching order data:", error);
@@ -98,12 +81,16 @@ $(document).ready(function() {
         submitComment();
     });
 });
-
+// submit your comment and rate score
 function submitComment() {
     let orderIdText = $('#order-id').text();
     let orderId = orderIdText.split(': ')[1];
+    console.log("Order id: ",orderId);
+
     // get shopRating value
     let shopRating = $('input[name="shopRating"]').val();
+    console.log("shopRating: ",shopRating);
+
     // get product name and productRating
     let productRatings = [];
     $('.product-info').each(function() {
@@ -111,6 +98,8 @@ function submitComment() {
         let productRating = $(this).find('input[name="productRating"]').val();
         productRatings.push({name: productName, rating: productRating});
     });
+    console.log("productRatings: ",productRatings);
+
     // get comment content
     let commentText = $('textarea[name="commentText"]').val();
 
@@ -149,5 +138,5 @@ function submitComment() {
 
 
 $(document).ready(function() {
-    displayDataInComment()
+    displayDataInComment();
 });

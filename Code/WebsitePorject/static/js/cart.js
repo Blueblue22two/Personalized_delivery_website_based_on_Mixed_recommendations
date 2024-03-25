@@ -233,9 +233,6 @@ function payment() {
         window.alert("There is no item in the cart, please select the item you want to buy!")
         return
     }
-    let formData = new FormData();
-    formData.append('total_price', totalPrice);
-    formData.append('address_id', addressID);
 
     // store all the product id and quantity
     let products = [];
@@ -246,25 +243,26 @@ function payment() {
         console.log("product id:",productId);
         console.log("quantity:",quantity);
         products.push({
-            product_id: productId,
+            productId: productId, // 从 product_id 改为 productId
             quantity: quantity
         });
     });
-    let productsJson = JSON.stringify(products);
-    formData.append('products', productsJson);
 
     $.ajax({
         url: '/payment/generate_payment/',
         type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
+        data: JSON.stringify({
+            total_price: totalPrice,
+            address_id: addressID,
+            products: products
+        }),
+        contentType: 'application/json', // 指定发送的数据类型为JSON
         headers: {
             'X-CSRFToken': getCsrfTokenFromForm()
         },
         success: function(response) {
-            console.log(response.message);
-            window.alert(response.message);
+            console.log("generate successfully");
+            window.location.href = response.redirect_url;
         },
         error: function(xhr, status, error) {
             console.error("Error sending order data:", error);

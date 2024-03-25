@@ -8,7 +8,7 @@
 
     {% load static %}
     <link rel="icon" type="image/x-icon" href="{% static 'image/LOGO.ico' %}">
-    <title>Online Food Ordering Website</title>
+    <title>Comment page</title>
 
     <!-- Slick Slider -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/slick.min.css' %}" />
@@ -21,6 +21,59 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <!-- Sidebar CSS -->
     <link href="{% static 'css/demo.css' %}" rel="stylesheet">
+    <style>
+        .feather-star {
+          color: orange;
+        }
+        .order-body {
+            margin-top: 20px;
+        }
+
+        .store_card, .product_card {
+            margin-bottom: 15px;
+        }
+
+        .order_img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .shop-logo {
+            width: 50px; /* Adjust based on your preference */
+            height: auto;
+        }
+
+        .shop-rating, .total_info {
+            display: flex;
+            align-items: center;
+        }
+
+        .product_card {
+            background-color: #f8f9fa; /* Slightly different background for emphasis */
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .product-info label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            max-width: 300px; /* Limit input width for better aesthetics */
+            margin: auto; /* Center align the input fields */
+        }
+        #post_btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease-in-out;
+        }
+        #post_btn:hover {
+            background-color: #007bff; /* Darker shade of primary color */
+        }
+    </style>
+
 </head>
 
 <body class="fixed-bottom-bar">
@@ -105,14 +158,14 @@
     </header>
 
      <section class="py-4 osahan-main-body">
+        <p id="order-id" class="small font-weight-bold text-center" style="display: none;">Order ID: {{ order_id }}</p>
         <div class="container">
-            <p id="order-id">Order ID: {{ order_id }}</p>
             <!--Order section-->
             <div class="row">
-
                 <!--Order item section-->
                 <div class="tab-content col-md-9" id="myTabContent">
                     <div class="tab-pane fade show active" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                        <h4 class="fw-bold text-center text-dark">Comment page</h4>
                         <div class="order-body">
                             <!--Example: Order and store info card -->
                             <div class="pb-3">
@@ -125,28 +178,29 @@
                                             <img alt="#" src="" class="img-fluid order_img rounded shop-logo">
                                         </div>
                                         <div>
-                                            <!--TODO: Store name，并且点击跳转到对应的商店界面,href='/shop/${shop.name}/'-->
-                                            <p class="mb-0 font-weight-bold "><a href="restaurant.html" class="text-dark shop-name">Conrad Restaurant</a></p>
+                                            <!--TODO: Store name，并且点击跳转到对应的商店界面,href='/store/shop/${shop.name}/'-->
+                                            <p class="mb-0 font-weight-bold "><a href="#" class="text-dark shop-name">Conrad Restaurant</a></p>
                                             <!--TODO: Store address-->
                                             <p class="mb-0 text-dark font-italic shop-name">Punjab, India</p>
-                                            <!-- ORDER id-->
-                                            <p id="order-id">Order ID: {{ order_id }}</p>
                                         </div>
 
                                         <div class="ml-auto">
-                                            <!-- Order status -->
-                                            <p class="bg-success text-white py-1 px-2 rounded small mb-1 order-status">Delivered</p>
+                                            <!--TODO: Order id-->
+                                            <p class="small font-weight-bold text-center order-date"> Order id: order id</p>
                                             <!--TODO: Order date-->
                                             <p class="small font-weight-bold text-center order-date"><i class="feather-clock"></i> 06/04/2020</p>
                                         </div>
-
-                                        <!--shop rating -->
+                                            <div class="shop-rating text-center my-3">
+                                    <label for="shopRating" class="form-label">Shop rating score:</label>
+                                    <input type="number" class="form-control" id="shopRating" name="shopRating" min="0" max="5" step="0.1" value="5" required>
+                                </div>
+                                        <!--input shop rating -->
                                         <div class="shop-rating">
                                             <input type="number" class="form-control" name="shopRating" min="0" max="5" step="0.1" value="5" required>
                                         </div>
                                     </div>
 
-                                    <!-- Example: product info card -->
+                                    <!-- Example: product info card,该order中的所有商品信息 -->
                                     <div class="d-flex pt-3 product_card">
                                          <!--Example: order item-info 1-->
                                         <div class="small product-info">
@@ -157,7 +211,6 @@
                                             <!-- 此部分的input框，默认值为5分，让用户输入0-5分（step=0.1）的对该商品的评分  -->
                                             <input type="number" class="form-control" name="productRating" min="0" max="5" step="0.1" value="5" required>
                                         </div>
-
                                         <!--省略其他order item-info-->
                                         <div class="text-muted m-0 ml-auto mr-3 small total_info">Total Payment<br>
                                             <!--TODO: Order total price-->

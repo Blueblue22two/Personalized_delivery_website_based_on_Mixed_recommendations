@@ -10,6 +10,7 @@ urlpatterns = [
 
     # upload cart item form store page
     path('upload_cart/', views.upload_cart, name='upload_cart'),
+
     # upload cart item form cart page
     path('upload/', views.upload, name='upload'),
 
