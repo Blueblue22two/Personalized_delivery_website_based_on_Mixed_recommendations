@@ -60,7 +60,6 @@ function merchant_login(){
     $("a:contains('Favorite')").hide();
 }
 
-// 若用户登录则将html中my account中<img></img>中的文字Hi后面加上username
 function display_name(name){
     let greetingText = "Hi " + name;
     // Find the element containing the text "Hi" and append the username

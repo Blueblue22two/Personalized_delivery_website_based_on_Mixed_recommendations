@@ -3,20 +3,27 @@ function getCsrfTokenFromForm() {
 }
 
 function addAddress() {
-    // get form data
+   // get form data
     let province = $('#province').val();
     let city = $('#city').val();
-    let distrct = $('#distrct').val();
+    let district = $('#district').val();
     let detail = $('#detail').val();
-    console.log("province: ",province)
-    console.log("city: ",city)
-    console.log("Distrct",distrct)
-    console.log("detail: ",detail)
-
+    console.log("Province: ", province)
+    console.log("City: ", city)
+    console.log("District", district)
+    console.log("Detail: ", detail)
+    // Validate form data
+    if (!province || province === "Choose a Province" ||
+        !city || city === "Choose a City" ||
+        !district || district === "Choose a District" ||
+        !detail || detail.length > 225) {
+        alert("Please ensure all fields are filled correctly. Detail must not exceed 225 characters.");
+        return;
+    }
     let formData = new FormData();
     formData.append('province', province);
     formData.append('city', city);
-    formData.append('distrct',distrct);
+    formData.append('district',district);
     formData.append('detail', detail);
 
     $.ajax({
@@ -83,8 +90,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // 填充区域下拉列表
   function populateAreas(areas) {
-    const areaSelect = document.getElementById('distrct');
-    areaSelect.innerHTML = '<option selected>Choose a District</option>';  // 重置区列表
+    const areaSelect = document.getElementById('district');
+    areaSelect.innerHTML = '<option selected>Choose a District</option>';
     areas.forEach(areaItem => {
       const option = new Option(areaItem.area, areaItem.area);
       areaSelect.add(option);

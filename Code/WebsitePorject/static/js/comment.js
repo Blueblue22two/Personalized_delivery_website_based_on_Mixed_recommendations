@@ -59,7 +59,7 @@ function displayDataInComment() {
 
                 orderContent += `
                     <textarea class="form-control mt-3" name="commentText" rows="3" placeholder="Leave your comment here..." maxlength="225" required></textarea>
-                    <button class="btn btn-primary mt-3 d-flex align-items-center justify-content-center" type="submit" id="post_btn"><i class="feather-send"></i> Post</button>
+                    
                 </div>`;
 
                 $('.order-body').append(orderContent);
@@ -73,51 +73,51 @@ function displayDataInComment() {
     });
 }
 
-
-// event of post button
 $(document).ready(function() {
-    $('#post_btn').click(function(e) {
-        e.preventDefault(); // Prevent form submission if inside a form
+    $('#post_btn').click(function(event) {
+        event.preventDefault();
+        console.log('Button clicked with jQuery!');
         submitComment();
     });
 });
+
 // submit your comment and rate score
 function submitComment() {
     let orderIdText = $('#order-id').text();
     let orderId = orderIdText.split(': ')[1];
-    console.log("Order id: ",orderId);
-
-    // get shopRating value
+    console.log("Order id: ", orderId);
+    // get shop rate score
     let shopRating = $('input[name="shopRating"]').val();
-    console.log("shopRating: ",shopRating);
-
-    // get product name and productRating
+    console.log("Shop rating: ", shopRating);
+    // get product info
     let productRatings = [];
     $('.product-info').each(function() {
         let productName = $(this).find('.p_name').text().trim();
         let productRating = $(this).find('input[name="productRating"]').val();
-        productRatings.push({name: productName, rating: productRating});
+        productRatings.push({ name: productName, rating: productRating });
     });
-    console.log("productRatings: ",productRatings);
-
-    // get comment content
+    console.log("Product ratings: ", productRatings);
+    // get comment
     let commentText = $('textarea[name="commentText"]').val();
+    // validation
+    if (!validateFormData()) {
+        console.log("Validation failed");
+        return;
+    }
+    console.log("Validation successfully");
 
-    let formData = new FormData();
-    formData.append('order_id', orderId);
-    formData.append('shopRating', shopRating);
-    formData.append('commentText', commentText);
-    productRatings.forEach((item, index) => {
-        formData.append(`productRatings[${index}][name]`, item.name);
-        formData.append(`productRatings[${index}][rating]`, item.rating);
-    });
+    let data = {
+        order_id: orderId,
+        shopRating: shopRating,
+        commentText: commentText,
+        productRatings: productRatings
+    };
 
     $.ajax({
         type: "POST",
         url: '/orders/post_comment/',
-        data: formData,
-        processData: false, // Prevent jQuery from automatically transforming the data into a query string
-        contentType: false, // This is set to false since the data sent is a FormData object which needs the Content-Type header set to multipart/form-data
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8", // Json
         headers: {
             'X-CSRFToken': getCsrfTokenFromForm()
         },
@@ -134,6 +134,36 @@ function submitComment() {
             alert(`Error: ${errorMessage}`);
         }
     });
+}
+
+// validate data
+function validateFormData() {
+    let isValid = true;
+
+    // 验证商店评分
+    let shopRating = $('input[name="shopRating"]').val();
+    if (shopRating < 0 || shopRating > 5) {
+         window.alert('Shop rating must be between 0 and 5.');
+        isValid = false;
+    }
+
+    // 验证产品评分
+    $('input[name="productRating"]').each(function() {
+        let productRating = $(this).val();
+        if (productRating < 0 || productRating > 5) {
+            window.alert('Product rating must be between 0 and 5.');
+            isValid = false;
+            return false; // 退出循环
+        }
+    });
+
+    // 验证评论内容
+    let commentText = $('textarea[name="commentText"]').val().trim();
+    if (!commentText) {
+         window.alert('Comment cannot be empty.');
+        isValid = false;
+    }
+    return isValid;
 }
 
 

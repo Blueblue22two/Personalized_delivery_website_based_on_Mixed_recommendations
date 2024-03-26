@@ -9,7 +9,7 @@ urlpatterns = [
     path("get_order/", views.get_order, name="get_order"),
 
     # Send Order
-    path("send_order/<int:id>/", views.send_order, name="send_order"),
+    path("send_order/", views.send_order, name="send_order"),
 
     # get order info in comment page
     path("get_info/", views.get_info, name="get_info"),

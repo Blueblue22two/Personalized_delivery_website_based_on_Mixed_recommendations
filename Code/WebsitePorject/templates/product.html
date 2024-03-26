@@ -39,7 +39,6 @@
                     </div>
 
                     <div class="col-3 d-flex align-items-center m-none">
-                        <!-- 位置下拉菜单，选择性 -->
                         <div class="dropdown mr-3">
                             <a class="text-dark dropdown-toggle d-flex align-items-center py-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div><i class="feather-map-pin mr-2 bg-light rounded-pill p-2 icofont-size"></i></div>
@@ -51,7 +50,6 @@
                         </div>
                     </div>
 
-                     <!-- 搜索和其他功能按钮，如优惠、登录/注册等 -->
                     <div class="col-8">
                         <div class="d-flex align-items-center justify-content-end pr-5">
 
@@ -105,10 +103,9 @@
         <!-- header-main .// -->
     </header>
 
-    <!-- 主体内容区域 -->
     <div class="osahan-home-page">
         <div class="container">
-            <!-- 商品信息Section-->
+            <!-- product Section-->
             <div class="product-info-section py-3">
                 <div class="row">
                     <!-- Product Image -->
@@ -121,6 +118,7 @@
                         <h2>{{ product.name }}</h2>
                         <p id="product-id"><strong>ID:</strong> {{ product.id }}</p>
                         <p><strong>Category:</strong> {{ product.category|default:"N/A" }}</p>
+                        <label><i class="feather-star text-warning"></i><strong>Average Rating: {{ average_rating}}</strong></label>
                         <!-- Price Details -->
                         <!-- 显示商品价格，使用 Django 模板语言处理有无折扣的情况 -->
                         {% if product.discount_price and product.discount_time %}
@@ -130,6 +128,7 @@
                             <p><strong>Price:</strong> ${{ product.price }}</p>
                         {% endif %}
                         <p><strong>Description:</strong> {{ product.description|default:"No description available." }}</p>
+
                         <!-- Favorite button-->
                         <div class="col-6 col-md-2">
                             <button type="button" class="btn btn-primary" id="fav_button">
@@ -146,12 +145,7 @@
             <!-- Comment Section -->
             <div class="comments-section py-3">
                 <h3>Comments</h3>
-                <!--TODO: Example of comment card-->
-{#                <div class="comment py-2 border rounded mb-2">#}
-{#                    <p><strong>Username:</strong> User123</p>#}
-{#                    <p><strong>Rate:</strong> 5 Stars</p>#}
-{#                    <p><strong>Comment:</strong> Absolutely loved it! Highly recommend.</p>#}
-{#                </div>#}
+                <!-- Example of comment card-->
             </div>
         </div>
     </div>

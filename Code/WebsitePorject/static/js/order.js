@@ -5,7 +5,6 @@ function getCsrfTokenFromForm() {
 }
 
 
-// 从后端获取my order的数据并按照html中展示
 function displayData() {
     $.ajax({
         url: '/orders/get_order/',
@@ -14,7 +13,7 @@ function displayData() {
         success: function(response) {
             const userType = response.user_type;
             const orders = response.orders; // order data
-            // 清空现有的订单信息，以防重复
+            // empty order body html
             $('#completed .order-body').empty();
             $('#progress .order-body').empty();
             $('#canceled .order-body').empty();
@@ -25,7 +24,7 @@ function displayData() {
                 let commentButtonHtml = '';
                 console.log("orded if: ",order.order_id);
                 console.log("order.payment_status: ",order.payment_status);
-                // 根据订单状态确定要插入的部分
+
                 if (!order.payment_status) { // status = Canceled
                     statusSection = '#canceled .order-body';
                 } else if (order.payment_status && !order.delivery_status) { // status = Progress
@@ -33,7 +32,6 @@ function displayData() {
                     if (userType === '2') {
                         sendButtonHtml = `
                             <div class="text-right">
-                                <!-- TODO:send button，让js获取该按钮-->
                                 <a href="#" class="btn btn-primary px-3 send_btn" data-order-id="${order.order_id}">Send</a>
                             </div>
                         `;
@@ -69,6 +67,10 @@ function displayData() {
                                     <p class="small font-weight-bold text-center order-date"><i class="feather-clock"></i> ${order.sale_time}</p>
                                 </div>
                             </div>
+                            <div id="c-address">
+                                <label>Customer address:</label>
+                                <p class="mb-0 text-dark font-italic customer-address">${order.address_line}</p>
+                            </div>
                             <div class="d-flex pt-3 product_card">
                                 <div class="small product-info">
                 `;
@@ -79,6 +81,7 @@ function displayData() {
 
                 orderHtml += `
                                 </div>
+ 
                                 <div class="text-muted m-0 ml-auto mr-3 small total_info">Total Payment<br>
                                     <span class="text-dark font-weight-bold total_price">$${order.total_price}</span>
                                 </div>
@@ -105,9 +108,9 @@ $(document).on('click', '.send_btn', function(e) {
 });
 
 function sendOrder(element) {
-    var orderId = $(element).data('order-id'); // 获取data-order-id属性的值
+    let orderId = $(element).data('order-id');
     $.ajax({
-        url: `/orders/send_order/${orderId}/`, // 使用模板字符串插入orderId
+        url: `/orders/send_order/`,
         type: 'POST',
         data: { order_id: orderId },
         headers: {
@@ -116,6 +119,7 @@ function sendOrder(element) {
         success: function(response) {
             console.log(response.message)
             window.alert(response.message);
+            location.reload();
         },
         error: function(xhr, status, error) {
             console.error("Error sending order data:", error);
@@ -123,10 +127,6 @@ function sendOrder(element) {
         }
     });
 }
-
-// $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-//   displayData(); // 在这里调用displayData函数重新加载并显示数据
-// });
 
 $(document).ready(function() {
     displayData();

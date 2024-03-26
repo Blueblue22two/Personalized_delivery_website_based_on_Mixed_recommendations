@@ -7,9 +7,55 @@ function getCsrfTokenFromForm() {
     return document.querySelector('input[name="csrfmiddlewaretoken"]').value;
 }
 
-// get all the comment
+function checkLogin2(){
+    console.log('start checking...');
+    fetch('/accounts/get_info')
+        .then(response => response.json())
+        .then(data => {
+            if (data.is_logged_in) {
+                if (data.user_type === '1') {
+                    console.log("")
+                } else {
+                    console.log("Not customer user type");
+                    // Disable the favorite function
+                    let favButton = document.getElementById("fav_button");
+                    if (favButton) {
+                        favButton.disabled = true;
+                        favButton.classList.add("disabled");
+                    }
+                }
+            } else {
+                console.log("Not logged in");
+                // Disable the favorite function
+                let favButton = document.getElementById("fav_button");
+                if (favButton) {
+                    favButton.disabled = true;
+                    favButton.classList.add("disabled");
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Disable the favorite function
+            let favButton = document.getElementById("fav_button");
+            if (favButton) {
+                favButton.disabled = true;
+                favButton.classList.add("disabled");
+            }
+        });
+}
+
+
+function generateStars(rating){
+    let starsHtml = '';
+    for(let i = 0; i < 5; i++){
+        starsHtml += `<i class="feather ${i < Math.round(rating) ? 'feather-star text-warning' : 'feather-star'}"></i>`;
+    }
+    return `<span class="stars">${starsHtml}</span>`;
+}
+
+// get all the comment and display it in html
 function getComment() {
-    // get product id
     let productId = productIdText.replace('ID:', '').trim();
     let formData = new FormData();
     formData.append('productId', productId);
@@ -17,24 +63,24 @@ function getComment() {
         url: '/products/get_comment/',
         type: 'POST',
         data: formData,
-        processData: false, // Important: tell jQuery not to process the data
-        contentType: false, // Important: tell jQuery not to set contentType; it will be set automatically with the correct boundary
+        processData: false,
+        contentType: false,
         headers: {'X-CSRFToken': getCsrfTokenFromForm()},
         success: function(response) {
-            var comments = JSON.parse(response.comments);
-            var commentsHtml = '';
-            // 动态生成评论HTML
+            let comments = response.comments;
+            let commentsHtml = '';
             comments.forEach(function(comment) {
-                var commentObj = JSON.parse(comment.fields);
-                commentsHtml += '<div class="comment py-2 border rounded mb-2">' +
-                                '<p><strong>Username:</strong> ' + commentObj.customer + '</p>' +
-                                '<p><strong>Rate:</strong> ' + commentObj.rating + ' Stars</p>' +
-                                '<p><strong>Comment:</strong> ' + commentObj.text + '</p>' +
-                                '</div>';
+                let starRating = generateStars(comment.rating);
+                commentsHtml += `
+                    <div class="comment py-2 border rounded mb-2 bg-light">
+                        <p><strong>Username:</strong> ${comment.customer_username}</p>
+                        <p><strong>Rate:</strong> ${starRating} </p>
+                        <p><strong>Comment:</strong> ${comment.text}</p>
+                    </div>
+                `;
             });
-            // 将生成的评论HTML添加到评论区域
             document.querySelector('.comments-section').innerHTML += commentsHtml;
-            console.log("comment set successfully")
+            console.log("Comments set successfully");
         },
         error: function(xhr, status, error) {
             console.log("Error: " + error);
@@ -85,5 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 $(document).ready(function() {
+    checkLogin2();
     getComment();
 });

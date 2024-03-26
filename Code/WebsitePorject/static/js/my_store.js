@@ -29,7 +29,7 @@ function logOut() {
     window.location.href = '/accounts/logout/';
 }
 
-
+// receive data and display it in html
 function displayData(){
     console.log("ready to display")
     $.ajax({
@@ -38,7 +38,7 @@ function displayData(){
         dataType: 'json',
         success: function(data) {
             console.log("get successfully")
-            // 展示获取到的数据
+            // display all data
             $('#storeName').val(data.storeName);
             $('#storeAddress').val(data.address);
             $('#storePhone').val(data.phone);
@@ -47,6 +47,8 @@ function displayData(){
             $('#storeSales').val(data.totalSales);
             $('#totalProducts').val(data.totalProducts);
             $('#topSellingProduct').val(data.topSellingProduct);
+            $('#favNumber').val(data.favNumber);
+            $('#orderNumber').val(data.orderNumber);
             // add the store url to html
             var storeLinkHtml = `<a class="dropdown-item" href="/store/shop/${data.storeName}/">Visit ${data.storeName}</a>`;
             $('#storeLinkContainer').html(storeLinkHtml);

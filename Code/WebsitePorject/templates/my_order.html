@@ -36,6 +36,15 @@
             max-width: 300px; /* Limit input width for better aesthetics */
             margin: auto; /* Center align the input fields */
         }
+
+        #c-address label {
+            font-weight: bold;
+        }
+
+        #c-address p {
+            font-size: smaller;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -165,14 +174,16 @@
                                     <div class="d-flex border-bottom pb-3">
                                         <div class="text-muted mr-3">
                                             <!--Store logo image-->
-                                            <img alt="#" src="img/popular5.png" class="img-fluid order_img rounded shop-logo">
+{#                                            <img alt="#" src="img/popular5.png" class="img-fluid order_img rounded shop-logo">#}
                                         </div>
 
                                         <div>
                                             <!--Store name，并且点击跳转到对应的商店界面,href='/shop/${shop.name}/'-->
-                                            <p class="mb-0 font-weight-bold "><a href="restaurant.html" class="text-dark shop-name">Conrad Restaurant</a></p>
+                                            <p class="mb-0 font-weight-bold "><a href="#" class="text-dark shop-name">Conrad Restaurant</a></p>
                                             <!--Store address-->
-                                            <p class="mb-0 text-dark font-italic shop-name">Punjab, India</p>
+                                            <p class="mb-0 text-dark font-italic shop-address">Punjab, India</p>
+                                            <!--customer address-->
+                                            <p class="mb-0 text-dark font-italic customer-address">Customer address: Punjab, India</p>
                                             <!--ORDER id-->
                                             <p class="order-id">#321DERS</p>
                                         </div>
@@ -188,10 +199,6 @@
                                         <!--order item-info-->
                                         <div class="small product-info">
                                             <!--show all product name and quantity-->
-                                            <!--Example 1: product name * quantity-->
-                                            <p class="text- font-weight-bold mb-0 name_price">Kesar Sweet x 1</p>
-                                            <!--Example 2: product name * quantity-->
-                                            <p class="text- font-weight-bold mb-0 name_price">Gulab Jamun x 4</p>
                                         </div>
 
                                         <div class="text-muted m-0 ml-auto mr-3 small total_info">Total Payment<br>
@@ -223,12 +230,12 @@
                                     <div class="d-flex border-bottom pb-3">
                                         <div class="text-muted mr-3">
                                             <!--Store logo image-->
-                                            <img alt="#" src="img/popular5.png" class="img-fluid order_img rounded shop-logo">
+                                            <img alt="#" src="#" class="img-fluid order_img rounded shop-logo">
                                         </div>
 
                                         <div>
-                                            <!--Store name，并且点击跳转到对应的商店界面,href='/shop/${shop.name}/'-->
-                                            <p class="mb-0 font-weight-bold "><a href="restaurant.html" class="text-dark shop-name">Conrad Restaurant</a></p>
+                                            <!--Store name-->
+                                            <p class="mb-0 font-weight-bold "><a href="#" class="text-dark shop-name">Conrad Restaurant</a></p>
                                             <!--Store address-->
                                             <p class="mb-0 text-dark font-italic shop-name">Punjab, India</p>
                                             <!--ORDER id-->
@@ -281,12 +288,12 @@
                                     <div class="d-flex border-bottom pb-3">
                                         <div class="text-muted mr-3">
                                             <!--Store logo image-->
-                                            <img alt="#" src="img/popular5.png" class="img-fluid order_img rounded shop-logo">
+                                            <img alt="#" src="#" class="img-fluid order_img rounded shop-logo">
                                         </div>
 
                                         <div>
                                             <!--Store name，并且点击跳转到对应的商店界面,href='/shop/${shop.name}/'-->
-                                            <p class="mb-0 font-weight-bold "><a href="restaurant.html" class="text-dark shop-name">Conrad Restaurant</a></p>
+                                            <p class="mb-0 font-weight-bold "><a href="#" class="text-dark shop-name">Conrad Restaurant</a></p>
                                             <!--Store address-->
                                             <p class="mb-0 text-dark font-italic shop-name">Punjab, India</p>
                                             <!--ORDER id-->

@@ -48,11 +48,11 @@ def get_info(request):
             'user_type': user_type
         }
         print("get info successfully")
-        return JsonResponse(data,status=200)
+        return JsonResponse(data, status=200)
     else:
         data = {'is_logged_in': False}
         print("get info failed, not login")
-        return JsonResponse(data,status=400)
+        return JsonResponse(data, status=403)
 
 
 # -- Log In --

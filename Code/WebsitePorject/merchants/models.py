@@ -16,6 +16,7 @@ class Product(models.Model):
     discount_time = models.DateTimeField(null=True, blank=True)
     description = models.TextField(blank=True)
     image_path = models.CharField(max_length=255, blank=True)  # Assuming image path could be blank
+    average_rate = models.DecimalField(max_digits=3, decimal_places=1, default=0)  # Added field
 
 
 class ShopRating(models.Model):

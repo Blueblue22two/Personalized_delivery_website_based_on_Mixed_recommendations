@@ -11,11 +11,11 @@ from merchants.models import ShopRating, Product
 
 # 用于生成点击跳转到商店页面的链接
 def shop_view(request, name):
-    # 使用传入的name参数来过滤特定的商店
     shop = get_object_or_404(Shop, name=name)
     return render(request, 'store.html', {'shop': shop})
 
 
+# get shop info in store page
 def shop_info(request):
     if request.method == 'POST':
         shop_name = request.POST.get('shopName')
@@ -31,11 +31,10 @@ def shop_info(request):
         except Shop.DoesNotExist:
             return JsonResponse({'error': 'Shop not found.'}, status=404)
 
-    # 如果请求方法不是POST，返回错误
     return JsonResponse({'error': 'Invalid request method.'}, status=400)
 
 
-# 返回指定的关于商店中的product的数据并返回给前端
+# get all product of a store in store page
 def product_info(request):
     if request.method == 'POST':
         print("product_info....")
@@ -66,7 +65,7 @@ def category_info(request):
             shop = Shop.objects.get(name=shop_name)
             categories = Product.objects.filter(shop=shop).values_list('category', flat=True).distinct()
             category_list = list(categories)
-            print("Categories list:")  # 打印所有的类别列表
+            print("Categories list:")
             print(category_list)
             print("get category successfully")
             return JsonResponse(category_list, safe=False)

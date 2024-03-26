@@ -21,7 +21,6 @@ function generateStars(rating){
 // store info
 function storeInfo(){
     // get shop name
-    // let shopNameElement = document.querySelector('.shop-name');
     let shopName = shopNameElement.textContent;
 
     $.ajax({
@@ -77,7 +76,7 @@ function productInfo(){
                             <!--  add to cart button-->
                             <span class="float-right"><a href="#" class="btn btn-outline-secondary btn-sm">ADD</a></span>
                             <div class="media">
-                                <!-- 为图片添加链接，使用户点击图片能跳转到商品界面 -->
+                              
                                 <a href="/products/product_view/${product.id}/">
                                     <img src="/media/${product.image_path}" class="mr-3 rounded-pill product-img">
                                 </a>
@@ -153,6 +152,7 @@ function addToCart() {
     });
 }
 
+
 function addNumber() {
     $('.osahan-cart-item').on('click', '.inc', function() {
         const input = $(this).siblings('.count-number-input');
@@ -189,15 +189,15 @@ function getTotalPrice() {
     // set the deliveryFee
     const deliveryFee = 0;
     const toPay = itemTotal + deliveryFee;
-    $('.osahan-cart-item .font-weight-bold').find('span').text(`$${toPay.toFixed(2)}`); // 更新 "TO PAY" 部分
-    // 更新商品总金额
+    $('.osahan-cart-item .font-weight-bold').find('span').text(`$${toPay.toFixed(2)}`);
+    // update total
     $('.osahan-cart-item').find('.mb-1').first().find('span.text-dark').text(`$${itemTotal.toFixed(2)}`);
-    // 更新配送费
+    // update delivery fee
     $('.osahan-cart-item').find('p.mb-1').last().find('span.text-dark').text(`$${deliveryFee.toFixed(2)}`);
 }
 
 
-// 从django数据库中获取cartItem数据中是否有属于该商店的，若有，则在该cart都显示出来
+// 从django数据库中获取cartItem数据中是否有属于该商店的,若有则显示
 function showCart(){
     console.log("show Cart function working... ")
     // get shop name
@@ -211,8 +211,8 @@ function showCart(){
         url: '/carts/get_cart_store/',
         data: formData,
         headers: {'X-CSRFToken': getCsrfTokenFromForm()},
-        processData: false, // Important: tell jQuery not to process the data
-        contentType: false, // Important: tell jQuery not to set contentType; it will be set automatically with the correct boundary
+        processData: false,
+        contentType: false,
 
         success: function(response) {
             // Assuming `cartItemContainer` is the container where cart items should be displayed.
@@ -256,7 +256,7 @@ function showCart(){
 function updateCart() {
     let shopName = shopNameElement.textContent; // get shop name
     let products = []; // all the cart item info in cart
-    // 遍历每个购物车项目
+    // Iterate over each cart item
     $('.cart-items .gold-members').each(function() {
         const productId = $(this).data('product-id'); // get product id
         const quantity = parseInt($(this).find('.count-number-input').val(), 10); // get product quantity
@@ -285,31 +285,98 @@ function updateCart() {
     });
 }
 
+
 function checkLogin2(){
-    // TODO:检查进行操作时是否为customer，如果是merchant或者未登录则提示需登录才能使用该功能
-    // TODO:向后端获取session，若未登录或者user_type为'2'则将html中的一部分功能禁止掉
+    console.log('start checking...');
+    fetch('/accounts/get_info')
+        .then(response => response.json())
+        .then(data => {
+            if (data.is_logged_in) {
+                if (data.user_type === '1') {
+                    showCart();
+                    addToCart();
+                    addNumber();
+                    minusNumber();
+                } else {
+                    console.log("Not customer user type");
+                    disableButton();
+                    // Disable the favorite function
+                    let favButton = document.getElementById("fav_button");
+                    if (favButton) {
+                        favButton.disabled = true;
+                        favButton.classList.add("disabled");
+                    }
+                }
+            } else {
+                disableButton();
+                console.log("Not logged in");
+                // Disable the favorite function
+                let favButton = document.getElementById("fav_button");
+                if (favButton) {
+                    favButton.disabled = true;
+                    favButton.classList.add("disabled");
+                }
+            }
+        })
+        .catch(error => {
+            disableButton();
+            console.error('Error:', error);
+            // Disable the favorite function
+            let favButton = document.getElementById("fav_button");
+            if (favButton) {
+                favButton.disabled = true;
+                favButton.classList.add("disabled");
+            }
+        });
+}
+
+// disable some function which can only access by customer
+function disableButton() {
+    // Disable the cart link
+    let cartLink = document.querySelector("a[href='/carts/main/']");
+    if (cartLink) {
+        cartLink.href = "#";
+        cartLink.addEventListener("click", function(event) {
+            window.alert("Only customer user can use cart function, please log in as a customer");
+            console.error("Only customer user can use cart function, please log in as a customer");
+            event.preventDefault();
+        });
+    }
+
+    // Disable every add button in product card
+    let addButtons = document.querySelectorAll(".product-card .btn-outline-secondary");
+    addButtons.forEach(function(button) {
+        button.disabled = true;
+        button.classList.add("disabled");
+        button.addEventListener("click", function(event) {
+            window.alert("Only customer user can use cart function, please log in as customer");
+            console.error("Only customer user can use cart function, please log in as customer");
+            event.preventDefault();
+        });
+    });
+    console.log("Disable function done")
 }
 
 
 function addFavorite() {
-    // 获取shop name
+    // get shop name
     let shopName = shopNameElement.textContent;
     let csrfToken = getCsrfTokenFromForm();
     let formData = new FormData();
     formData.append('shopName', shopName);
     $.ajax({
         type: 'POST',
-        url: '/customers/add_fav/',// /customers/add_fav/
+        url: '/customers/add_fav/',
         headers: {
             'X-CSRFToken': csrfToken
         },
-        processData: false, // Important: tell jQuery not to process the data
-        contentType: false, // Important: tell jQuery not to set contentType; it will be set automatically with the correct boundary
+        processData: false,
+        contentType: false,
         data: formData,
         success: function(data) {
             alert(data.message); // Show the message from the backend
             // Disable the button and change its color to indicate it has been clicked
-            var button = document.getElementById("fav_button");
+            let button = document.getElementById("fav_button");
             button.disabled = true;
             button.classList.remove("btn-primary");
             button.classList.add("btn-success");
@@ -333,11 +400,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 $(document).ready(function(){
+    checkLogin2();
+    disableButton();
     storeInfo();
     productInfo();
-    showCart();
-    addToCart();
-    addNumber();
-    minusNumber();
     console.log("Initialization complete.");
 });

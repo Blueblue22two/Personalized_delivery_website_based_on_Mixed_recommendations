@@ -1,19 +1,19 @@
 from decimal import Decimal, InvalidOperation
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
 from django.http import JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
-from accounts.models import Customer, Merchant, Shop
+from accounts.models import Merchant, Shop, Favorite
 from merchants.models import Product, ShopRating
-from orders.models import Order
+from orders.models import Order, OrderItem
 from django.db.models import Sum, Avg
 import os
 from django.conf import settings
 import shutil
 
-
 # Create your views here.
+
 
 # -- My store --
 def my_store(request):
@@ -306,7 +306,7 @@ def promote_product(request):
     return
 
 
-# -- get store info --
+# -- get the store info --
 def get_info(request):
     username = request.session.get('username', None)
     if username is None:
@@ -319,24 +319,46 @@ def get_info(request):
         if not shop:
             return JsonResponse({'error': 'Shop not found'}, status=404)
 
-        # get store information
-        total_income = Order.objects.filter(merchant=merchant).aggregate(Sum('total_price'))['total_price__sum'] or 0
-        total_sales = Order.objects.filter(merchant=merchant).aggregate(Sum('quantity'))['quantity__sum'] or 0
-        top_selling_product = Product.objects.filter(shop=shop).annotate(sold=Sum('orders__quantity')).order_by(
-            '-sold').first()
-        top_product_name = top_selling_product.name if top_selling_product else 'None'
+        # get total_sales:
+        total_sales = OrderItem.objects.filter(order__shop=shop).aggregate(Sum('quantity'))['quantity__sum'] or 0
 
+        # get store total income
+        total_income = Order.objects.filter(merchant=merchant).aggregate(Sum('total_price'))['total_price__sum'] or 0
+
+        # get top product
+        top_selling_product_info = OrderItem.objects.filter(order__shop=shop) \
+            .values('product__id', 'product__name') \
+            .annotate(total_sold=Sum('quantity')) \
+            .order_by('-total_sold') \
+            .first()
+
+        top_product_name = top_selling_product_info['product__name'] if top_selling_product_info else 'None'
+        top_product_id = top_selling_product_info['product__id'] if top_selling_product_info else None
+
+        # Calculate average rate
+        average_rate = ShopRating.objects.filter(shop=shop).aggregate(Avg('rate'))['rate__avg'] or 0
+
+        # Calculate total number of orders for the shop
+        order_number = Order.objects.filter(shop=shop).count()
+
+        # Calculate how many times the shop has been favorited
+        fav_number = Favorite.objects.filter(shop=shop).count()
+        print(f"store name:{shop.name}, rate:{average_rate}")
+        print(f"total income: {total_income}, total sales: {total_sales}")
         data = {
             'storeName': shop.name,
             'address': shop.address,
             'phone': merchant.phone_number,
-            'rate': float(shop.total_rating) if shop.total_rating else 0,
+            'rate': round(average_rate, 1),  # Round to 1 decimal places
             'totalIncome': total_income,
+            'favNumber': fav_number,
+            'orderNumber': order_number,
             'totalSales': total_sales,
             'totalProducts': shop.products.count(),
-            'topSellingProduct': top_product_name
+            'topSellingProduct': top_product_name,
+            'topSellingProductId': top_product_id
         }
-        # upload rate
+        # upload the shop rate
         if not upload_rate(request):
             print("upload rate failed")
         return JsonResponse(data, status=200)
@@ -353,17 +375,16 @@ def upload_rate(request):
         return False
 
     try:
-        # 通过username查询对应的Merchant
         merchant = Merchant.objects.get(username=username)
         if merchant.shop is None:
             return False
 
-        # 查询对应Shop的所有ShopRating，计算平均评分
+        # Calculate average rate
         average_rate = ShopRating.objects.filter(shop=merchant.shop).aggregate(Avg('rate'))['rate__avg']
         print(f"average_rate: {average_rate}")
         if average_rate is not None:
             # 更新Shop的total_rating字段
-            merchant.shop.total_rating = Decimal(average_rate).quantize(Decimal('0.1'))  # 四舍五入到一位小数
+            merchant.shop.total_rating = Decimal(average_rate).quantize(Decimal('0.1'))
             merchant.shop.save()
             print("Shop rating updated successfully")
             return True

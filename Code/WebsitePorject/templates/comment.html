@@ -64,13 +64,9 @@
             margin: auto; /* Center align the input fields */
         }
         #post_btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s ease-in-out;
-        }
-        #post_btn:hover {
-            background-color: #007bff; /* Darker shade of primary color */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 
@@ -173,21 +169,20 @@
                                     <!-- Example: store info card -->
                                     <div class="d-flex border-bottom pb-3 store_card">
                                         <div class="text-muted mr-3">
-                                            <!--TODO: Store logo image-->
-                                            <!--"src=/media/${shop.image_path}"-->
+                                            <!--Store logo image-->
                                             <img alt="#" src="" class="img-fluid order_img rounded shop-logo">
                                         </div>
                                         <div>
-                                            <!--TODO: Store name，并且点击跳转到对应的商店界面,href='/store/shop/${shop.name}/'-->
+                                            <!--Store name，并且点击跳转到对应的商店界面-->
                                             <p class="mb-0 font-weight-bold "><a href="#" class="text-dark shop-name">Conrad Restaurant</a></p>
-                                            <!--TODO: Store address-->
+                                            <!--Store address-->
                                             <p class="mb-0 text-dark font-italic shop-name">Punjab, India</p>
                                         </div>
 
                                         <div class="ml-auto">
-                                            <!--TODO: Order id-->
+                                            <!--Order id-->
                                             <p class="small font-weight-bold text-center order-date"> Order id: order id</p>
-                                            <!--TODO: Order date-->
+                                            <!--Order date-->
                                             <p class="small font-weight-bold text-center order-date"><i class="feather-clock"></i> 06/04/2020</p>
                                         </div>
                                             <div class="shop-rating text-center my-3">
@@ -204,9 +199,9 @@
                                     <div class="d-flex pt-3 product_card">
                                          <!--Example: order item-info 1-->
                                         <div class="small product-info">
-                                            <!--TODO:在此部分展示每个cart item中的name,price与一个input框用于让顾客对该商品进行评分rating-->
-                                            <p class="text- font-weight-bold mb-0 p_name">Kesar</p><!--TODO:展示product name-->
-                                            <p class="text- font-weight-bold mb-0 p_price">$52</p><!--TODO:展示product price-->
+                                            <!--在此部分展示每个cart item中的name,price与一个input框用于让顾客对该商品进行评分rating-->
+                                            <p class="text- font-weight-bold mb-0 p_name">Kesar</p><!--展示product name-->
+                                            <p class="text- font-weight-bold mb-0 p_price">$52</p><!--展示product price-->
 
                                             <!-- 此部分的input框，默认值为5分，让用户输入0-5分（step=0.1）的对该商品的评分  -->
                                             <input type="number" class="form-control" name="productRating" min="0" max="5" step="0.1" value="5" required>
@@ -220,12 +215,13 @@
                                     <!--此部分添加一个input框，接收用户输入comment的文本，并且要求不能为空，最多接受225个字符-->
                                     <!-- 在此除添加一个Post按钮，使用feather icon让用户来提交上面的信息-->
                                     <textarea class="form-control mt-3" name="commentText" rows="3" placeholder="Leave your comment here..." maxlength="225" required></textarea>
-                                    <button class="btn btn-primary mt-3" type="submit" id="post_btn"><i class="feather icon-send"></i> Post</button>
+
                                 </div>
                             </div>
                             <!-- 其他Order store info也一样 -->
                         </div>
                     </div>
+                    <button class="btn btn-primary mt-3 d-flex align-items-center justify-content-center" type="submit" id="post_btn"><i class="feather-send"></i> Post</button>
                 </div><!--end of Order item section-->
 
             </div><!--end ofOrder item section-->
