@@ -1,134 +1,99 @@
 "use strict"
-// get select type
-var selectType = $('select[name="select_type"]');
-// get input
-var searchInput = $("#search");
-var searchBtn = $("#search_btn");
 
-
-function search(){
-    var type = selectType.value;
-    var input = searchInput.value;
-    // Validate input validity
-    if  (input == "") {
-       window.alert("Please fill in all items");
-       return;
-    }
-   if(input.length > 50) {
-       window.alert("The name must &lt = 50 characters");
-       return;
-    }
-    console.log("keyword:" + input);
-    console.log("type:" + type);
-
-    // TODO: 改写下面的方法
-    // send request
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST",  "/Search",true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    var jsonData = JSON.stringify({
-        "keyword": input,
-        "type": type
-    });
-
-    // Receiving the response
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            console.log("Request done");
-            try {
-              console.log("http status:" + xhr.status);
-              if (xhr.status === 200) {
-                // Clear thes product information
-                var productsDiv = document.getElementById("products_div");
-                productsDiv.innerHTML = "";
-                var response = JSON.parse(xhr.response);
-                if(type =="products"){
-                    // for each
-                    response.forEach(function (product) {
-                        // Create an HTML element for the item information
-                        var productElement = document.createElement("div");
-                        productElement.classList.add("product"); // add class .product
-                        
-                        // Create an HTML element for the anchor tag
-                        var anchorElement = document.createElement("a");
-                        anchorElement.href = "/Product?name=" + product.name;
-
-                        // Create an HTML element for the image information
-                        var imageElement = document.createElement("img");
-                        imageElement.src = "data:image/jpeg;base64," + product.image;
-                        imageElement.alt = product.name;
-            
-                        // Create an HTML element for the name of the item information
-                        var nameElement = document.createElement("h3");
-                        nameElement.textContent = product.name;
-            
-                        // Create an HTML element for the price of the item
-                        var priceElement = document.createElement("p");
-                        priceElement.classList.add("price");
-                        priceElement.textContent = "$" + product.price.toFixed(2);
-                        
-                        // Add the image element to the anchor tag
-                        anchorElement.appendChild(imageElement);
-
-                        // Add the product information to the page
-                        productElement.appendChild(anchorElement);
-                        productElement.appendChild(nameElement);
-                        productElement.appendChild(priceElement);
-            
-                        var productsDiv = document.getElementById("products_div");
-                        productsDiv.classList.add("products-container");
-                        productsDiv.appendChild(productElement);
-                    });
-                    console.log("search done");
-
-                }else{ // type = stores
-                    response.forEach(function (product) {
-                        // Create an HTML element for the item information
-                        var productElement = document.createElement("div");
-                        productElement.classList.add("product"); // add class .product
-                        
-                        // Create an HTML element for the anchor tag
-                        var anchorElement = document.createElement("a");
-                        anchorElement.href = "/Store?id=" + product.id;
-                        console.log("Store id: ", product.id)
-
-                        // Create an HTML element for the image information
-                        var imageElement = document.createElement("img");
-                        imageElement.src = "data:image/jpeg;base64," + product.image;
-                        imageElement.alt = product.name;
-                    
-                        // Create an HTML element for the name of the item information
-                        var nameElement = document.createElement("h3");
-                        nameElement.textContent = product.name;
-                        
-                        // Add the image element to the anchor tag
-                        anchorElement.appendChild(imageElement);
-
-                        // Add the product information to the page
-                        productElement.appendChild(anchorElement);
-                        productElement.appendChild(nameElement);
-            
-                        var productsDiv = document.getElementById("products_div");
-                        productsDiv.classList.add("products-container");
-                        productsDiv.appendChild(productElement);
-                    });
-                    console.log("search done");
-                }
-              } else {
-                console.log("HTTP Error: " + xhr.status);
-                return;
-              }
-            } catch (e) {
-              console.log("Parsing response failed :" + e.message);
-            }
-          }
-    };
-    xhr.send(jsonData);
+function getCsrfTokenFromForm() {
+    return document.querySelector('input[name="csrfmiddlewaretoken"]').value;
 }
 
-// search button
-searchBtn.addEventListener("click", function(event) {
-    event.preventDefault();
-    console.log("start searching");
-    setTimeout(search, 300);
+// generate star ratings
+function generateStars(rating){
+    let starsHtml = '';
+    for(let i = 0; i < 5; i++){
+        starsHtml += `<i class="feather-star ${i < Math.round(rating) ? 'star_active' : ''}"></i>`;
+    }
+    return `<li>${starsHtml}</li>`;
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // add a event for result
+    document.querySelector('.input-group-prepend button').addEventListener('click', function() {
+        displayResult();
+    });
+});
+
+
+function displayResult(){
+    // get input value
+    let inputText = document.getElementById('inlineFormInputGroup').value;
+    if (inputText.length > 50) {
+        window.alert('The entered text is too long. Please enter less than 50 characters.');
+        return;
+    }
+
+    // TODO:使用Post方法将字符串发送到后端,url='/recommend/get_search/'
+}
+
+
+function displayData(){
+    // TODO:使用get形式，向后端获取所有store的信息
+    // url='/recommend/get_search/'
+    // TODO:若获取成功则按照html中的example来显示
+    $.ajax({
+        url: '/recommend/get_popular/',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            let popularSection = $('.most_popular');
+            popularSection.empty(); // 清空现有内容
+            // 2 row
+            let row1 = $('<div class="row"></div>');
+            let row2 = $('<div class="row"></div>');
+
+            data.forEach(function(shop, index) {
+                // create shop card
+                let shopCard = `
+                <div class="col-md-3 pb-3">
+                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                        <div class="list-card-image">
+                            <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> ${shop.total_rating} (${shop.popularity_value}+)</span></div>
+                            <a href="/store/shop/${shop.name}/">
+                                <img alt="${shop.name}" src="/media/${shop.image_path}" class="img-fluid item-img w-100 max-img-size">
+                            </a>
+                        </div>
+                        <div class="p-3 position-relative">
+                            <div class="list-card-body">
+                                <h6 class="mb-1"><a href="/shop/${shop.name}/" class="text-black">${shop.name}</a></h6>
+                                <p class="text-gray mb-1 small">• ${shop.address}</p>
+                                <ul class="rating-stars list-unstyled">
+                                    ${generateStars(shop.total_rating)}
+                                </ul>
+                            </div>
+                            <div class="list-card-badge">
+                                <span class="badge badge-danger">OFFER</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+                // 根据索引，将商店卡片分配到不同的行
+                if(index < 4) {
+                    row1.append(shopCard);
+                } else {
+                    row2.append(shopCard);
+                }
+            });
+            // 将行添加到 most_popular 部分
+            popularSection.append(row1);
+            popularSection.append(row2);
+        },
+        error: function(xhr, status, error) {
+            console.error("An error occurred: " + status + " " + error);
+        }
+    });
+}
+
+
+$(document).ready(function() {
+    displayStore();
+    displayProduct();
 });

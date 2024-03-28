@@ -149,3 +149,18 @@ def get_sales(request):
             top_3_shops.append(row)
 
     return JsonResponse(top_3_shops, safe=False)
+
+
+def get_search(request):
+    if request.method == 'POST':
+        # TODO: 接收来自前端的传来的字符串s
+        # TODO: 在数据库的Shop表格与Product表格中搜索name中包含该字符串s的数据，打包返回到前端
+        # TODO: 对于Shop表格中的数据，按照 total_rating的数值降序排列，获取其id,name，total_rating，image_path和address
+        # TODO: 对于Product表格中的数据，按照average_rate的分数降序排序，并且获取其id,name,price, category, image_path和average_rate
+
+        return
+    else:
+        # TODO: 在数据库的Shop表格与Product表格中的所有数据打包返回到前端
+        # TODO: 对于Shop表格中的数据，按照 total_rating的数值降序排列，获取其id,name，total_rating，image_path和address
+        # TODO: 对于Product表格中的数据，按照average_rate的分数降序排序，并且获取其id,name,price, category, image_path和average_rate
+        return

@@ -13,4 +13,7 @@ urlpatterns = [
 
     # most sales
     path("get_sales/", views.get_sales, name="get_sales"),
+
+    # all product info
+    path("get_search/", views.get_search, name="get_search"),
 ]

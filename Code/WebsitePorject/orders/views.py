@@ -154,11 +154,13 @@ def post_comment(request):
         print(f"order id:{order_id}")
         print(f"shopRating: {shopRating}")
         print(f"comment: {commentText}")
-        print(f"producyRating: {productRatings}")
+        print(f"productRating: {productRatings}")
 
-        customer = get_object_or_404(Customer, username=username)
-        order = get_object_or_404(Order, id=order_id, customer=customer)
         try:
+            customer = get_object_or_404(Customer, username=username)
+            order = get_object_or_404(Order, id=order_id, customer=customer)
+            print(f"Order shop: {order.shop.name}")  # 打印订单所属的店铺名称
+
             # create ShopRating object
             ShopRating.objects.create(shop=order.shop, rate=shopRating)
 
@@ -166,17 +168,23 @@ def post_comment(request):
             for productRating in productRatings:
                 product_name = productRating['name']
                 rating = productRating['rating']
-                print(f"product: {product_name}, rating: {rating}")
-                product = get_object_or_404(Product, name=product_name, shop=order.shop)
-                # 让rating值赋值给对应的product中的average_rate数据
-                product.average_rate=rating;
-                Comment.objects.create(customer=customer, product=product, text=commentText, rating=rating)
+                try:
+                    product = Product.objects.get(name=product_name, shop=order.shop)
+                    # 让rating值赋值给对应的product中的average_rate数据
+                    product.average_rate = rating
+                    product.save()
+                    Comment.objects.create(customer=customer, product=product, text=commentText, rating=rating)
+                    print(f"Product found and comment created for {product_name} with rating {rating}")
+                except ObjectDoesNotExist:
+                    print(f"Error: No product matches the given query for name {product_name} in shop {order.shop.name}")
+                    return JsonResponse({'error': f"No product matches the given query for name {product_name}"}, status=400)
 
             # set the isComment=True
             order.isComment = True
             order.save()
             return JsonResponse({'success': True, 'redirect_url': '/orders/my_orders/'})
         except Exception as e:
+            print(f"An unexpected error occurred: {str(e)}")
             return JsonResponse({'error': str(e)}, status=500)
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=400)
