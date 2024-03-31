@@ -4,6 +4,7 @@ function getCsrfTokenFromForm() {
     return document.querySelector('input[name="csrfmiddlewaretoken"]').value;
 }
 
+
 // generate star ratings
 function generateStars(rating){
     let starsHtml = '';
@@ -14,77 +15,120 @@ function generateStars(rating){
 }
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    // add a event for result
-    document.querySelector('.input-group-prepend button').addEventListener('click', function() {
-        displayResult();
-    });
-});
-
-
-function displayResult(){
-    // get input value
-    let inputText = document.getElementById('inlineFormInputGroup').value;
-    if (inputText.length > 50) {
-        window.alert('The entered text is too long. Please enter less than 50 characters.');
-        return;
-    }
-
-    // TODO:使用Post方法将字符串发送到后端,url='/recommend/get_search/'
-}
-
-
-function displayData(){
-    // TODO:使用get形式，向后端获取所有store的信息
-    // url='/recommend/get_search/'
-    // TODO:若获取成功则按照html中的example来显示
-    $.ajax({
-        url: '/recommend/get_popular/',
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            let popularSection = $('.most_popular');
-            popularSection.empty(); // 清空现有内容
-            // 2 row
-            let row1 = $('<div class="row"></div>');
-            let row2 = $('<div class="row"></div>');
-
-            data.forEach(function(shop, index) {
-                // create shop card
-                let shopCard = `
-                <div class="col-md-3 pb-3">
-                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
-                        <div class="list-card-image">
-                            <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> ${shop.total_rating} (${shop.popularity_value}+)</span></div>
-                            <a href="/store/shop/${shop.name}/">
-                                <img alt="${shop.name}" src="/media/${shop.image_path}" class="img-fluid item-img w-100 max-img-size">
-                            </a>
-                        </div>
-                        <div class="p-3 position-relative">
-                            <div class="list-card-body">
-                                <h6 class="mb-1"><a href="/shop/${shop.name}/" class="text-black">${shop.name}</a></h6>
-                                <p class="text-gray mb-1 small">• ${shop.address}</p>
-                                <ul class="rating-stars list-unstyled">
-                                    ${generateStars(shop.total_rating)}
-                                </ul>
-                            </div>
-                            <div class="list-card-badge">
-                                <span class="badge badge-danger">OFFER</span>
-                            </div>
+// function to dynamically create shop or product card
+function createCard(item, type) {
+    let cardHtml = '';
+    if (type === 'shop') {
+        cardHtml = `
+            <div class="col-md-3 pb-3">
+                <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                    <div class="list-card-image">
+                        <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> ${item.total_rating} (${item.shop_rate_number})</span></div>
+                        <a href="/store/shop/${item.name}/">
+                            <img alt="#" src="/media/${item.image_path}" class="img-fluid item-img w-100 card-img">
+                        </a>
+                    </div>
+                    <div class="p-3 position-relative">
+                        <div class="list-card-body">
+                            <h6 class="mb-1"><a href="/store/shop/${item.name}/" class="text-black">${item.name}</a></h6>
+                            <p class="text-gray mb-1 small">${item.address}</p>
                         </div>
                     </div>
                 </div>
-                `;
-                // 根据索引，将商店卡片分配到不同的行
-                if(index < 4) {
-                    row1.append(shopCard);
-                } else {
-                    row2.append(shopCard);
-                }
+            </div>
+        `;
+    } else if (type === 'product') {
+        cardHtml = `
+            <div class="col-md-3 pb-3">
+                <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                    <div class="list-card-image">
+                        <div class="star position-absolute"><span class="badge badge-success"><i class="feather-star"></i> ${item.average_rate} (${item.product_rate_number})</span></div>
+                        <a href="/products/product_view/${item.id}/">
+                            <img alt="#" src="/media/${item.image_path}" class="img-fluid item-img w-100 card-img">
+                        </a>
+                    </div>
+                    <div class="p-3 position-relative">
+                        <div class="list-card-body">
+                            <h6 class="mb-1"><a href="/products/product_view/${item.id}/" class="text-gray">${item.name}</a></h6>
+                            <p class="text-success mb-1 small ">$${item.price} • ${item.category}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    return cardHtml;
+}
+
+
+// function to display result of search page
+function displayData() {
+    $.ajax({
+        url: '/recommend/get_search/',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            // 更新导航标签中的数量
+            $('#home-tab').html(`<i class="feather-home mr-2"></i>Restaurants (${data.shops.length})`);
+            $('#profile-tab').html(`<i class="feather-disc mr-2"></i>Dishes (${data.products.length})`);
+            // 清除旧内容
+            $('#home .container .row').empty();
+            $('#profile .container .row').empty();
+
+            // 添加新卡片
+            data.shops.forEach(shop => {
+                $('#home .container .row').append(createCard(shop, 'shop'));
             });
-            // 将行添加到 most_popular 部分
-            popularSection.append(row1);
-            popularSection.append(row2);
+            data.products.forEach(product => {
+                $('#profile .container .row').append(createCard(product, 'product'));
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("An error occurred: " + status + " " + error);
+        }
+    });
+}
+
+
+// function to get search result and display it
+function displayResult() {
+    let inputText = $('#inlineFormInputGroup').val().trim();
+    // verify
+    if (inputText.length > 50) {
+        alert('The entered text is too long. Please enter less than 50 characters.');
+        return;
+    } else if (inputText.length === 0) {
+        alert('Please enter some text to search.');
+        return;
+    }
+
+    $.ajax({
+        url: '/recommend/get_search/',
+        type: 'POST',
+        data: {s: inputText},
+        dataType: 'json',
+        headers: {"X-CSRFToken": getCsrfTokenFromForm()},
+        success: function(data) {
+            $('#home-tab').html(`<i class="feather-home mr-2"></i>Restaurants (${data.shops.length})`);
+            $('#profile-tab').html(`<i class="feather-disc mr-2"></i>Dishes (${data.products.length})`);
+            // 清除旧内容
+            $('#home .container .row').empty();
+            $('#profile .container .row').empty();
+            // 处理搜索结果为空的情况
+            if (data.shops.length === 0) {
+                $('#home .container').html('<div class="text-center py-5">Nothing found for Restaurants</div>');
+            } else {
+                data.shops.forEach(shop => {
+                    $('#home .container .row').append(createCard(shop, 'shop'));
+                });
+            }
+            if (data.products.length === 0) {
+                $('#profile .container').html('<div class="text-center py-5">Nothing found for Dishes</div>');
+            } else {
+                data.products.forEach(product => {
+                    $('#profile .container .row').append(createCard(product, 'product'));
+                });
+            }
         },
         error: function(xhr, status, error) {
             console.error("An error occurred: " + status + " " + error);
@@ -94,6 +138,10 @@ function displayData(){
 
 
 $(document).ready(function() {
-    displayStore();
-    displayProduct();
+    displayData();
+
+    // event for click search button
+    $('.input-group-prepend button').on('click', function() {
+        displayResult();
+    });
 });

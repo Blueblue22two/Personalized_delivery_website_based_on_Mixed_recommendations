@@ -1,6 +1,7 @@
 import json
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Avg
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from accounts.models import Customer, Merchant
@@ -163,6 +164,10 @@ def post_comment(request):
 
             # create ShopRating object
             ShopRating.objects.create(shop=order.shop, rate=shopRating)
+            # 更新店铺的总评分
+            new_total_rating = ShopRating.objects.filter(shop=order.shop).aggregate(Avg('rate'))['rate__avg']
+            order.shop.total_rating = new_total_rating
+            order.shop.save()
 
             # create comment object
             for productRating in productRatings:
@@ -174,7 +179,10 @@ def post_comment(request):
                     product.average_rate = rating
                     product.save()
                     Comment.objects.create(customer=customer, product=product, text=commentText, rating=rating)
-                    print(f"Product found and comment created for {product_name} with rating {rating}")
+                    # 更新产品的平均评分
+                    new_average_rate = Comment.objects.filter(product=product).aggregate(Avg('rating'))['rating__avg']
+                    product.average_rate = new_average_rate
+                    product.save()
                 except ObjectDoesNotExist:
                     print(f"Error: No product matches the given query for name {product_name} in shop {order.shop.name}")
                     return JsonResponse({'error': f"No product matches the given query for name {product_name}"}, status=400)

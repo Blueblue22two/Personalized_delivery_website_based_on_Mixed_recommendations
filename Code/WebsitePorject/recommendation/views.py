@@ -151,16 +151,44 @@ def get_sales(request):
     return JsonResponse(top_3_shops, safe=False)
 
 
+# search page function
 def get_search(request):
     if request.method == 'POST':
-        # TODO: 接收来自前端的传来的字符串s
-        # TODO: 在数据库的Shop表格与Product表格中搜索name中包含该字符串s的数据，打包返回到前端
-        # TODO: 对于Shop表格中的数据，按照 total_rating的数值降序排列，获取其id,name，total_rating，image_path和address
-        # TODO: 对于Product表格中的数据，按照average_rate的分数降序排序，并且获取其id,name,price, category, image_path和average_rate
+        s = request.POST.get('s', '')  # 接收来自前端的字符串
 
-        return
+        # 搜索包含字符串s的店铺，并计算每个店铺的评分数量
+        shop_results = Shop.objects.filter(name__icontains=s).annotate(
+            shop_rate_number=Count('ratings')
+        ).order_by('-total_rating').values(
+            'id', 'name', 'total_rating', 'image_path', 'address', 'shop_rate_number'
+        )
+
+        # 搜索包含字符串s的产品，并计算每个产品的评论数量
+        product_results = Product.objects.filter(name__icontains=s).annotate(
+            product_rate_number=Count('comments')
+        ).order_by('-average_rate').values(
+            'id', 'name', 'price', 'category', 'image_path', 'average_rate', 'product_rate_number'
+        )
+
+        return JsonResponse({
+            'shops': list(shop_results),
+            'products': list(product_results)
+        })
     else:
-        # TODO: 在数据库的Shop表格与Product表格中的所有数据打包返回到前端
-        # TODO: 对于Shop表格中的数据，按照 total_rating的数值降序排列，获取其id,name，total_rating，image_path和address
-        # TODO: 对于Product表格中的数据，按照average_rate的分数降序排序，并且获取其id,name,price, category, image_path和average_rate
-        return
+        # 返回所有店铺和产品的信息，包括评分数量和评论数量
+        shop_results = Shop.objects.annotate(
+            shop_rate_number=Count('ratings')
+        ).order_by('-total_rating').values(
+            'id', 'name', 'total_rating', 'image_path', 'address', 'shop_rate_number'
+        )
+
+        product_results = Product.objects.annotate(
+            product_rate_number=Count('comments')
+        ).order_by('-average_rate').values(
+            'id', 'name', 'price', 'category', 'image_path', 'average_rate', 'product_rate_number'
+        )
+
+        return JsonResponse({
+            'shops': list(shop_results),
+            'products': list(product_results)
+        })
