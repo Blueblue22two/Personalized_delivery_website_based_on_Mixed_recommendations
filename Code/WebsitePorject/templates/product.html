@@ -22,6 +22,20 @@
     <!-- Sidebar CSS -->
     <link href="{% static 'css/demo.css' %}" rel="stylesheet">
     <link href="{% static 'css/product.css' %}" rel="stylesheet">
+
+    <style>
+        .card-img {
+            object-fit: cover;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border: 1px solid #ddd;
+        }
+         .price-color {
+            color: #ff6408;
+        }
+        .category-underline {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body class="fixed-bottom-bar">
@@ -110,24 +124,24 @@
                 <div class="row">
                     <!-- Product Image -->
                     <div class="col-md-4">
-                        <img src="/media/{{ product.image_path }}" alt="{{ product.name }}" class="img-fluid mb-3" style="max-width: 200px; height: auto;">
+                        <img src="/media/{{ product.image_path }}" alt="{{ product.name }}" class="img-fluid mb-3 card-img" style="max-width: 200px; height: auto;">
                     </div>
 
                     <!-- Product Details -->
                     <div class="col-md-8">
-                        <h2>{{ product.name }}</h2>
-                        <p id="product-id"><strong>ID:</strong> {{ product.id }}</p>
-                        <p><strong>Category:</strong> {{ product.category|default:"N/A" }}</p>
-                        <label><i class="feather-star text-warning"></i><strong>Average Rating: {{ average_rating}}</strong></label>
+                        <h2 class="font-weight-bold">{{ product.name }}</h2>
+                        <p class="mb-2" id="product-id"><strong>ID:</strong> {{ product.id }}</p>
+                        <p class="mb-2"><strong>Category:</strong> <strong class="category-underline">{{ product.category|default:"N/A" }}</strong></p>
+
+                        <label class="mb-2"><i class="feather-star text-warning"></i><strong>Average Rating: {{ average_rating}}</strong></label>
                         <!-- Price Details -->
-                        <!-- 显示商品价格，使用 Django 模板语言处理有无折扣的情况 -->
                         {% if product.discount_price and product.discount_time %}
-                            <p><strong>Discounted Price:</strong> ${{ product.discount_price }}</p>
-                            <p><strong>Original Price:</strong> <s>${{ product.price }}</s></p>
+                            <p class="mb-2"><strong>Discounted Price:</strong><strong class="font-weight-bold price-color"> ${{ product.discount_price }}</strong></p>
+                            <p class="mb-2 "><strong>Original Price:</strong> <s>${{ product.price }}</s></p>
                         {% else %}
-                            <p><strong>Price:</strong> ${{ product.price }}</p>
+                            <p class="mb-2"><strong>Price:</strong><strong class="font-weight-bold price-color"> ${{ product.price }}</strong></p>
                         {% endif %}
-                        <p><strong>Description:</strong> {{ product.description|default:"No description available." }}</p>
+                        <p class="mb-2"><strong>Description:</strong> <strong class="small text-gray">{{ product.description|default:"No description available." }}</strong></p>
 
                         <!-- Favorite button-->
                         <div class="col-6 col-md-2">
@@ -137,6 +151,11 @@
                                 </span>
                                 Favorite
                             </button>
+                        </div>
+                        <br>
+                        <!-- store page link-->
+                        <div class="col-7 col-md-2 mb-1">
+                            <a class='btn text-success category-underline'href="/store/shop/{{ shop_name }}/">Go to shop</a>
                         </div>
                     </div>
                 </div>

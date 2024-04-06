@@ -6,13 +6,16 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
 
     # recommend
-    path("get_recommend/", views.get_recommend, name="get_recommend"),
+    path("get_recommend_dish/", views.get_recommend_dish, name="get_recommend_dish"),
+    path("recommend_view/", views.all_recommend, name="all_recommend"),
 
     # most popular
     path("get_popular/", views.get_popular, name="get_popular"),
+    path("popular_view/", views.all_popular, name="all_popular"),
 
     # most sales
     path("get_sales/", views.get_sales, name="get_sales"),
+    path("sales_view/", views.all_sales, name="all_sales"),
 
     # all product info
     path("get_search/", views.get_search, name="get_search"),

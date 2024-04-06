@@ -12,12 +12,19 @@
         .max-img-size {
             max-width: 150px;
             max-height: 200px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         }
         .cat-item :hover {
             background-color: #f8f9fa;
             border-color: #dee2e6;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .price-color {
+            color: #ff6408;
+        }
+        .category-underline {
+            text-decoration: underline;
         }
     </style>
 
@@ -196,33 +203,30 @@
         <div class="container">
             <!-- Recommend -->
             <div class="pt-4 pb-2 title d-flex align-items-center">
-                <h5 class="m-0">Recommend:</h5>
+                <h5 class="m-0 font-weight-bold">Recommend dish:</h5>
+                <a class="font-weight-bold ml-auto" href="/recommend/recommend_view/">View all <i class="feather-chevrons-right"></i></a>
             </div>
             <!-- slider -->
             <div class="trending-slider">
-                <!-- Restaurant card-->
             </div>
 
             <!-- Most popular section -->
             <div class="py-3 title d-flex align-items-center">
-                <h5 class="m-0">Most popular</h5>
-                <!-- TODO:右侧”更多“链接，跳转到界面完全体的推荐界面-->
-                <a class="font-weight-bold ml-auto" href="most_popular.html">View all <i class="feather-chevrons-right"></i></a>
+                <h5 class="m-0 font-weight-bold">Most popular</h5>
+                <a class="font-weight-bold ml-auto" href="/recommend/popular_view/">View all <i class="feather-chevrons-right"></i></a>
             </div>
             <!-- Most popular food cards -->
             <div class="most_popular">
 
             </div>
 
-            <!-- Most sales section 销量最高-->
+            <!-- Most sales section-->
             <div class="pt-2 pb-3 title d-flex align-items-center">
-                <h5 class="m-0">Most sales</h5>
-                <!-- TODO: View all -->
-                <a class="font-weight-bold ml-auto" href="#">View all <i class="feather-chevrons-right"></i></a>
+                <h5 class="m-0 font-weight-bold">Most sales</h5>
+                <a class="font-weight-bold ml-auto" href="/recommend/sales_view/">View all <i class="feather-chevrons-right"></i></a>
             </div>
             <!-- Most sales -->
             <div class="most_sale">
-                <!-- 一排3个商店Card -->
                 <div class="row mb-3">
 
                 </div>
@@ -233,30 +237,15 @@
 
     <!-- Footer -->
     <div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center d-none">
-        <!-- 底部菜单 -->
         <div class="row">
-            <!-- 首页链接 -->
+
             <div class="col selected">
                 <a href="/" class="text-danger small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-home text-danger"></i></p>
                     Home
                 </a>
             </div>
-            <!-- 热门链接 -->
-            <div class="col">
-                <a href="most_popular.html" class="text-dark small font-weight-bold text-decoration-none">
-                    <p class="h4 m-0"><i class="feather-map-pin"></i></p>
-                    Trending
-                </a>
-            </div>
-            <!-- 购物车-->
-            <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
-                <div class="bg-danger rounded-circle mt-n0 shadow">
-                    <a href="cart.html" class="text-white small font-weight-bold text-decoration-none">
-                        <i class="feather-shopping-cart"></i>
-                    </a>
-                </div>
-            </div>
+
             <!-- 收藏链接 -->
             <div class="col">
                 <a href="favorites.html" class="text-dark small font-weight-bold text-decoration-none">
@@ -264,7 +253,6 @@
                     Favorites
                 </a>
             </div>
-            <!-- 用户资料链接 -->
             <div class="col">
                 <a href="profile.html" class="text-dark small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-user"></i></p>
@@ -277,10 +265,8 @@
     <!-- footer -->
     <footer class="section-footer border-top bg-dark">
         <div class="container">
-            <!-- 页脚顶部 -->
             <section class="footer-top padding-y py-5">
                 <div class="row">
-                    <!-- 公司介绍 -->
                     <aside class="col-md-4 footer-about">
                         <article class="d-flex pb-3">
                             <div><img alt="LOGO" src="{% static 'image/Doge.png' %}" class="logo-footer mr-3"></div> <!-- LOGO -->

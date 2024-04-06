@@ -8,7 +8,7 @@
 
     {% load static %}
     <link rel="icon" type="image/x-icon" href="{% static 'image/LOGO.ico' %}">
-    <title>Search page</title>
+    <title>{{ type }} page</title>
 
     <!-- Slick Slider -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/slick.min.css' %}" />
@@ -116,14 +116,15 @@
     </header>
 
 
-    <div class="osahan-popular">
+    <div class="card_section">
         <div class="container">
-            <h1 id="category_name" class="text-center mt-5 mb-0" >Category: {{ category_name }}</h1>
+            <h1 id="category_type" class="text-center mt-5 mb-0" >{{ type }}</h1>
             <div class="category py-5">
                 <!-- Content Row -->
                 <div class="container mt-4 mb-4 p-0" id="category_box">
+                    <!--TODO:一排最多显示4个card，若更多则添加row-->
                     <div class="row">
-
+                    <!--TODO:显示card-->
                     </div>
                 </div>
             </div>
@@ -340,7 +341,7 @@
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/osahan.js' %}"></script>
     <script src="{% static 'js/menu.js' %}"></script>
-    <script src="{% static 'js/category.js' %}"></script>
+    <script src="{% static 'js/view.js' %}"></script>
 </body>
 
 </html>

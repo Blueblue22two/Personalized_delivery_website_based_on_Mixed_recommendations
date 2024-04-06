@@ -14,7 +14,7 @@ from django.core import serializers
 # display product page
 def product_view(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-
+    shop_name = product.shop.name
     average_rating = Comment.objects.filter(product=product).aggregate(Avg('rating'))['rating__avg'] or 'Not Rated'
     if average_rating != 'Not Rated':
         average_rating = round(average_rating, 1)
@@ -22,6 +22,7 @@ def product_view(request, product_id):
         average_rating=0
     # return data
     context = {
+        'shop_name':shop_name,
         'product': product,
         'average_rating': average_rating,
     }

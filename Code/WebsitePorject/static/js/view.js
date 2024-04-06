@@ -61,89 +61,99 @@ function createCard(item, type) {
     return cardHtml;
 }
 
-
-// function to display result of search page
-function displayData() {
+// display recommend dish
+function displayRecommend(){
     $.ajax({
-        url: '/recommend/get_search/',
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            // 更新导航标签中的数量
-            $('#home-tab').html(`<i class="feather-home mr-2"></i>Restaurants (${data.shops.length})`);
-            $('#profile-tab').html(`<i class="feather-disc mr-2"></i>Dishes (${data.products.length})`);
-            // 清除旧内容
-            $('#home .container .row').empty();
-            $('#profile .container .row').empty();
-
-            // 添加新卡片
-            data.shops.forEach(shop => {
-                $('#home .container .row').append(createCard(shop, 'shop'));
-            });
-
-            data.products.forEach(product => {
-                $('#profile .container .row').append(createCard(product, 'product'));
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error("An error occurred: " + status + " " + error);
-        }
-    });
-}
-
-
-// function to get search result and display it
-function displayResult() {
-    let inputText = $('#inlineFormInputGroup').val().trim();
-    // verify
-    if (inputText.length > 50) {
-        alert('The entered text is too long. Please enter less than 50 characters.');
-        return;
-    } else if (inputText.length === 0) {
-        alert('Please enter some text to search.');
-        return;
-    }
-
-    $.ajax({
-        url: '/recommend/get_search/',
+        url: '/recommend/recommend_view/',
         type: 'POST',
-        data: {s: inputText},
-        dataType: 'json',
-        headers: {"X-CSRFToken": getCsrfTokenFromForm()},
+         headers: {
+            'X-CSRFToken': getCsrfTokenFromForm()
+        },
         success: function(data) {
-            $('#home-tab').html(`<i class="feather-home mr-2"></i>Restaurants (${data.shops.length})`);
-            $('#profile-tab').html(`<i class="feather-disc mr-2"></i>Dishes (${data.products.length})`);
-            // 清除旧内容
-            $('#home .container .row').empty();
-            $('#profile .container .row').empty();
-            // 处理搜索结果为空的情况
-            if (data.shops.length === 0) {
-                $('#home .container').html('<div class="text-center py-5">Nothing found for Restaurants</div>');
-            } else {
-                data.shops.forEach(shop => {
-                    $('#home .container .row').append(createCard(shop, 'shop'));
-                });
-            }
-            if (data.products.length === 0) {
-                $('#profile .container').html('<div class="text-center py-5">Nothing found for Dishes</div>');
-            } else {
-                data.products.forEach(product => {
-                    $('#profile .container .row').append(createCard(product, 'product'));
-                });
-            }
+             // empty row
+            $("#category_box .row").empty();
+            // add product card
+            data.products.forEach(product => {
+                $("#category_box .row").append(createCard(product, 'product'));
+            });
         },
         error: function(xhr, status, error) {
             console.error("An error occurred: " + status + " " + error);
         }
     });
+    console.log("displayRecommend done");
 }
+
+// display most popular store
+function displayPopular(){
+    $.ajax({
+        url: '/recommend/popular_view/',
+        type: 'POST',
+         headers: {
+            'X-CSRFToken': getCsrfTokenFromForm()
+        },
+        success: function(data) {
+            $("#category_box .row").empty();
+            if (data.shops && Array.isArray(data.shops)) { // 确保 data.shops 存在且为数组
+                data.shops.forEach(shop => {
+                    $("#category_box .row").append(createCard(shop, 'shop'));
+                });
+            } else {
+                console.error("Expected 'shops' to be an array, received:", data.shops);
+            }
+        },
+        // success: function(data) {
+        //     // empty row
+        //     $("#category_box .row").empty();
+        //     console.log(data);
+        //     data.shops.forEach(shop => {
+        //         $("#category_box .row").append(createCard(shop, 'shop'));
+        //     });
+        // },
+        error: function(xhr, status, error) {
+            console.error("An error occurred: " + status + " " + error);
+        }
+    });
+    console.log("displayPopular done");
+}
+
+// display most sales store
+function displaySales(){
+    $.ajax({
+        url: '/recommend/sales_view/',
+        type: 'POST',
+         headers: {
+            'X-CSRFToken': getCsrfTokenFromForm()
+        },
+        success: function(data) {
+            // empty row
+            $("#category_box .row").empty();
+
+            data.shops.forEach(shop => {
+                $("#category_box .row").append(createCard(shop, 'shop'));
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("An error occurred: " + status + " " + error);
+        }
+    });
+    console.log("displaySales done");
+}
+
 
 
 $(document).ready(function() {
-    displayData();
-
-    // event for click search button
-    $('.input-group-prepend button').on('click', function() {
-        displayResult();
-    });
+    // get value of type
+    let value = $("#category_type").text();
+    console.log("display: ",value);
+    if (value === 'recommend') {
+        displayRecommend();
+    } else if (value === 'popular') {
+        displayPopular();
+    } else if (value === 'sales') {
+        displaySales();
+    }else{
+        console.log("Error: not found type");
+        window.alert("Error: not found type");
+    }
 });

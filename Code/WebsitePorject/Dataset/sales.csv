@@ -1,11 +1,13 @@
 total_rating,popularity_value,image_path,name,address,total_sales
-4.5,14,Pizza_shop\LOGO\22489.jpg,Pizza_shop,ËÄ´¨Ê¡-³É¶¼ÊĞ-³É»ªÇø-erxian bridge,27
-4.2,5,Chinese_food\LOGO\3046wh300.jpg,Chinese_food,ËÄ´¨Ê¡-³É¶¼ÊĞ-³É»ªÇø-erxian bridge,25
-4.5,5,Big_Buger_city\LOGO\hamburger-1238246_640.jpg,Big_Buger_city,ËÄ´¨Ê¡-³É¶¼ÊĞ-½ğÅ£Çø-jianshe road,20
-4.4,3,Crazy_Dave_shop\LOGO\img.png,Crazy_Dave_shop,ËÄ´¨Ê¡-ÒË±öÊĞ-ÆÁÉ½ÏØ-junshan road,13
-4.3,4,Beef_store\LOGO\118395.jpg,Beef_store,ËÄ´¨Ê¡-³É¶¼ÊĞ-¸ßĞÂÇø-haha st,11
-3.9,1,Food_canteen\LOGO\109357.jpg,Food canteen,ËÄ´¨Ê¡-ÒË±öÊĞ-ĞğÖİÇø-55 st,11
-4.3,3,The_Mystery_Shop\LOGO\58582c1cf034562c58220600.png,The Mystery Shop,ËÄ´¨Ê¡-ÀÖÉ½ÊĞ-ãå´¨ÏØ-have a guess,11
-4.6,2,Dumpling_store\LOGO\62969.jpg,Dumpling_store,ËÄ´¨Ê¡-³É¶¼ÊĞ-½ğÅ£Çø-haha st,9
-4.3,3,2_fast\LOGO\1188.jpg_wh300.jpg,2 fast,ËÄ´¨Ê¡-³É¶¼ÊĞ-³É»ªÇø-CDUT,8
-4.2,2,12Food_shop\LOGO\baozou.png,12Food_shop,ËÄ´¨Ê¡-³É¶¼ÊĞ-ÎäºîÇø-52 st,6
+4.3,12,Big_Buger_city\LOGO\hamburger-1238246_640.jpg,Big_Buger_city,å››å·çœ-æˆéƒ½å¸‚-é‡‘ç‰›åŒº-jianshe road,45
+4.3,19,Pizza_shop\LOGO\22489.jpg,Pizza_shop,å››å·çœ-æˆéƒ½å¸‚-æˆååŒº-erxian bridge,44
+4.2,8,The_Mystery_Shop\LOGO\58582c1cf034562c58220600.png,The Mystery Shop,å››å·çœ-ä¹å±±å¸‚-æ²å·å¿-have a guess,34
+4.2,7,Chinese_food\LOGO\3046wh300.jpg,Chinese_food,å››å·çœ-æˆéƒ½å¸‚-æˆååŒº-erxian bridge,31
+4.3,7,Food_canteen\LOGO\109357.jpg,Food canteen,å››å·çœ-å®œå®¾å¸‚-å™å·åŒº-55 st,28
+4.4,6,Crazy_Dave_shop\LOGO\img.png,Crazy_Dave_shop,å››å·çœ-å®œå®¾å¸‚-å±å±±å¿-junshan road,26
+4.3,7,2_fast\LOGO\1188.jpg_wh300.jpg,2 fast,å››å·çœ-æˆéƒ½å¸‚-æˆååŒº-CDUT,21
+4.2,6,Dumpling_store\LOGO\62969.jpg,Dumpling_store,å››å·çœ-æˆéƒ½å¸‚-é‡‘ç‰›åŒº-haha st,17
+3.7,5,The_rock_official\LOGO\R-C.jfif,The rock official,ä¸Šæµ·å¸‚-ä¸Šæµ·å¸‚-é»„æµ¦åŒº-Rock st.,17
+4.3,5,Beef_store\LOGO\118395.jpg,Beef_store,å››å·çœ-æˆéƒ½å¸‚-é«˜æ–°åŒº-haha st,13
+4.4,4,12Food_shop\LOGO\baozou.png,12Food_shop,å››å·çœ-æˆéƒ½å¸‚-æ­¦ä¾¯åŒº-52 st,11
+4.3,4,Beef_home\LOGO\677746.jpg,Beef home,å‰æ—çœ-é•¿æ˜¥å¸‚-å®½åŸåŒº-cow st.,11

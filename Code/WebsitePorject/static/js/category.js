@@ -28,8 +28,9 @@ function createCard(item) {
                     </div>
                     <div class="p-3 position-relative">
                         <div class="list-card-body">
-                            <h6 class="mb-1"><a href="/products/product_view/${item.id}/" class="text-gray">${item.name}</a></h6>
-                            <p class="text-success mb-1 small ">$${item.price} • ${item.category}</p>
+                            <h6 class="mb-1"><a href="/products/product_view/${item.id}/" class="font-weight-bold">${item.name}</a></h6>
+                            <p class="mb-1 font-weight-bold price-color">$${item.price}</p>
+                            <p class="mb-1 small category-underline">Category: ${item.category}</p> 
                         </div>
                     </div>
                 </div>

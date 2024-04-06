@@ -18,16 +18,6 @@ class Order(models.Model):
     delivery_status = models.BooleanField(default=False)  # 送达状态，默认为未送达
     isComment = models.BooleanField(default=False)  # 订单是否评论状态
 
-    # 考虑暂时ban掉该部分，由django中实现该部分代码
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)  # 确保Order实例保存并获得主键值
-    #     if not self.pk:  # 如果没有主键值，不执行后续操作
-    #         return
-    #     # 现在可以安全地访问self.orderitems.all()
-    #     self.total_price = sum([item.product_price * item.quantity for item in self.orderitems.all()])
-    #     # 再次保存Order实例以更新total_price
-    #     super().save(*args, **kwargs)
-
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='orderitems')
