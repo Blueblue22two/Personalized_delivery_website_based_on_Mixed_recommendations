@@ -17,6 +17,9 @@ urlpatterns = [
     path("get_sales/", views.get_sales, name="get_sales"),
     path("sales_view/", views.all_sales, name="all_sales"),
 
-    # all product info
+    # search function
     path("get_search/", views.get_search, name="get_search"),
+
+    # my favorite function
+    path("get_favorite/", views.get_favorite, name="get_favorite"),
 ]

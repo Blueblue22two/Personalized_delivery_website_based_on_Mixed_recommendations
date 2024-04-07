@@ -111,7 +111,6 @@
                                     <img alt="User" src="{% static 'image/The rock.png' %}" class="img-fluid rounded-circle header-user mr-2 header-user"> Hi
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="/customers/profile/">Profile</a> <!-- user information and address, for customer -->
                                     <a class="dropdown-item" href="/customers/fav/">Favorite</a> <!-- Favorite food, for customer-->
                                     <a class="dropdown-item" href="/merchants/my_store/">My store</a> <!-- My store, for merchant-->
                                     <a class="dropdown-item" href="/orders/my_orders">My orders</a><!-- My orders, for both user-->
@@ -250,7 +249,6 @@
                 </a>
             </div>
 
-            <!-- 购物车链接 -->
             <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
                 <div class="bg-danger rounded-circle mt-n0 shadow">
                     <a href="/carts/main" class="text-white small font-weight-bold text-decoration-none">
@@ -258,20 +256,13 @@
                     </a>
                 </div>
             </div>
-            <!-- 收藏链接 -->
             <div class="col">
                 <a href="/customers/fav" class="text-dark small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-heart"></i></p>
                     Favorites
                 </a>
             </div>
-            <!-- 用户资料链接 -->
-            <div class="col">
-                <a href="/customers/info" class="text-dark small font-weight-bold text-decoration-none">
-                    <p class="h4 m-0"><i class="feather-user"></i></p>
-                    Profile
-                </a>
-            </div>
+
         </div>
     </div>
 

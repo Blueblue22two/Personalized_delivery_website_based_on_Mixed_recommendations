@@ -69,14 +69,13 @@ function displayData() {
         type: 'GET',
         dataType: 'json',
         success: function(data) {
-            // 更新导航标签中的数量
             $('#home-tab').html(`<i class="feather-home mr-2"></i>Restaurants (${data.shops.length})`);
             $('#profile-tab').html(`<i class="feather-disc mr-2"></i>Dishes (${data.products.length})`);
-            // 清除旧内容
+            // clear row
             $('#home .container .row').empty();
             $('#profile .container .row').empty();
 
-            // 添加新卡片
+
             data.shops.forEach(shop => {
                 $('#home .container .row').append(createCard(shop, 'shop'));
             });

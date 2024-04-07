@@ -344,6 +344,38 @@ def get_search(request):
         })
 
 
+# return favorite info
+def get_favorite(request):
+    username = request.session.get('username', None)
+    user_type = request.session.get('user_type', None)
+    if username and user_type == '1':
+        try:
+            customer = Customer.objects.get(username=username)
+
+            shop_results = Favorite.objects.filter(user=customer).annotate(
+                shop_rate_number=Count('shop__favorited_by')  # Counts the number of favorites for each shop
+            ).order_by('-shop__total_rating').values(
+                'shop__id', 'shop__name', 'shop__total_rating', 'shop__image_path', 'shop__address', 'shop_rate_number'
+            )
+
+
+            product_results = FavItem.objects.filter(customer=customer).annotate(
+                product_rate_number=Count('product__comments')  # Counts the number of comments for each product
+            ).order_by('-product__average_rate').values(
+                'product__id', 'product__name', 'product__price', 'product__category', 'product__image_path',
+                'product__average_rate', 'product_rate_number'
+            )
+
+            return JsonResponse({
+                'shops': list(shop_results),
+                'products': list(product_results)
+            })
+        except Customer.DoesNotExist:
+            return JsonResponse({'message': 'User does not exist.'}, status=404)
+    else:
+        return JsonResponse({'message': 'error: Non-existent user type.'}, status=400)
+
+
 def all_recommend(request):
     if request.method == 'POST':
         username = request.session.get('username', None)

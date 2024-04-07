@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.http import JsonResponse
 from accounts.models import Customer, Shop, Favorite, Address
@@ -8,14 +8,39 @@ from merchants.models import Product
 # Create your views here.
 
 
-# user profile page (optional)
-def profile(request):
-    return render(request, 'profile.html')
-
-
 # customer favorite page
 def fav(request):
-    return render(request, 'fav.html')
+    return render(request, 'favorites.html')
+
+
+def cancel_product_fav(request, id):
+    username = request.session.get('username', None)
+    user_type = request.session.get('user_type', None)
+    if username and user_type == '1':
+        try:
+            customer = Customer.objects.get(username=username)
+            product = get_object_or_404(Product, pk=id)
+            FavItem.objects.filter(customer=customer, product=product).delete()
+            return JsonResponse({'message': 'Product favorite successfully cancelled.'})
+        except Customer.DoesNotExist:
+            return JsonResponse({'message': 'Customer does not exist.'}, status=404)
+    else:
+        return JsonResponse({'message': 'error: Non-existent user type.'}, status=400)
+
+
+def cancel_shop_fav(request, name):
+    username = request.session.get('username', None)
+    user_type = request.session.get('user_type', None)
+    if username and user_type == '1':
+        try:
+            customer = Customer.objects.get(username=username)
+            shop = get_object_or_404(Shop, name=name)
+            Favorite.objects.filter(user=customer, shop=shop).delete()
+            return JsonResponse({'message': 'Shop favorite successfully cancelled.'})
+        except Customer.DoesNotExist:
+            return JsonResponse({'message': 'Customer does not exist.'}, status=404)
+    else:
+        return JsonResponse({'message': 'error: Non-existent user type.'}, status=400)
 
 
 # add store to favorite
