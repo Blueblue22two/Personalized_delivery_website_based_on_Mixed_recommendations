@@ -31,6 +31,25 @@ function validateForm(formData) {
         alert('The phone number should be 11 digits.');
         return false;
     }
+
+    // // Check for special characters in the username
+    // if (!/^[A-Za-z0-9]+$/.test(formData.username)) {
+    //     alert('username must not contain special characters.');
+    //     return false;
+    // }
+
+    // Check for special characters in the password
+    if (!/^[A-Za-z0-9]+$/.test(formData.password)) {
+        alert('Password must not contain special characters.');
+        return false;
+    }
+
+    // Check for special characters in the phone
+    if (!/^[A-Za-z0-9]+$/.test(formData.phone)) {
+        alert('phone must not contain special characters.');
+        return false;
+    }
+
     // Form is valid
     console.log("Form validation passed")
     return true;
@@ -87,15 +106,14 @@ $(document).ready(function () {
                     }, 500);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    // 尝试解析来自后端的JSON响应体中的错误信息
-                    let errorMessage = "An unknown error occurred"; // 默认错误消息
+                    let errorMessage = "An unknown error occurred";
                     try {
                         let responseJson = JSON.parse(jqXHR.responseText);
-                        if (responseJson.error) {
-                            errorMessage = responseJson.error;
+                        if (responseJson.message) {
+                            errorMessage = responseJson.message;
                         }
                     } catch(e) {
-                        // 解析JSON失败，使用默认错误消息
+                        console.error("Error processing response:", e);
                     }
                     console.error("Error sending data:", textStatus, errorThrown, errorMessage);
                     alert("Error: " + errorMessage);
@@ -105,3 +123,20 @@ $(document).ready(function () {
         //
     });
 });
+
+
+ document.addEventListener('DOMContentLoaded', function () {
+        // Disable copy, paste, and cut on specified inputs
+        var inputs = document.querySelectorAll('#password, #confirm_password, #phone');
+        inputs.forEach(function(input) {
+            input.addEventListener('copy', function(e) {
+                e.preventDefault();
+            });
+            input.addEventListener('paste', function(e) {
+                e.preventDefault();
+            });
+            input.addEventListener('cut', function(e) {
+                e.preventDefault();
+            });
+        });
+ });

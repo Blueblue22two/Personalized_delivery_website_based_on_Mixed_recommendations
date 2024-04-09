@@ -140,27 +140,30 @@ function submitComment() {
 function validateFormData() {
     let isValid = true;
 
-    // 验证商店评分
+    // verify shop rate
     let shopRating = $('input[name="shopRating"]').val();
     if (shopRating < 0 || shopRating > 5) {
          window.alert('Shop rating must be between 0 and 5.');
         isValid = false;
     }
 
-    // 验证产品评分
+    // verify product rate
     $('input[name="productRating"]').each(function() {
         let productRating = $(this).val();
         if (productRating < 0 || productRating > 5) {
             window.alert('Product rating must be between 0 and 5.');
             isValid = false;
-            return false; // 退出循环
+            return false;
         }
     });
 
-    // 验证评论内容
+    // verify comment content
     let commentText = $('textarea[name="commentText"]').val().trim();
     if (!commentText) {
-         window.alert('Comment cannot be empty.');
+        window.alert('Comment cannot be empty.');
+        isValid = false;
+    } else if (commentText.length > 225) {
+        window.alert('Comment cannot exceed 225 characters.');
         isValid = false;
     }
     return isValid;

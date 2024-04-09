@@ -75,9 +75,7 @@ def login_merchant(request):
         return render(request, 'login_merchant.html')
 
 
-"""
-This Function to receive form and login account for user
-"""
+# This Function to receive form and login account for user
 def submit_log(request):
     if request.method == 'POST':
         # get the form data
@@ -89,7 +87,7 @@ def submit_log(request):
         print("Password:", password)
         print("User Type:", user_type)
 
-        # if user_type != '1' and user_type != '2':  # 注意：比较的是字符串
+        # if user_type != '1' and user_type != '2':
         if user_type != '1' and user_type != '2':  # customer
             print("error: Non-existent user type: " + user_type)
             return JsonResponse({'message': 'error: Non-existent user type.'}, status=400)
@@ -147,9 +145,7 @@ def merchant_register(request):
         return render(request, 'register_merchant.html')
 
 
-"""
-This Function to receive form and register an account for user
-"""
+# This Function to receive form and register an account for user
 def submit_register(request):
     if request.method == 'POST':
         # get the form data
@@ -163,7 +159,7 @@ def submit_register(request):
         print("Phone:", phone)
         print("User Type:", user_type)
 
-        # if user_type != '1' and user_type != '2':  # 注意：比较的是字符串
+        # if user_type != '1' and user_type != '2':
         if user_type != '1' and user_type != '2':  # customer
             print("Error: Non-existent user type: " + user_type)
             return JsonResponse({'message': 'Error: Non-existent user type.'}, status=400)
@@ -179,7 +175,7 @@ def submit_register(request):
                     # Store info into the database
                     customer_info.save()
                 else:
-                    return JsonResponse({'message': 'Error:Already have a same username.'})
+                    return JsonResponse({'message': 'Error: Already have a same username.'}, status=409)
             else:
                 if check_duplication_merchant(username):
                     merchant_info = Merchant()
@@ -189,7 +185,7 @@ def submit_register(request):
                     # Store info into the database
                     merchant_info.save()
                 else:
-                    return JsonResponse({'message': 'Error:Already have a same username.'})
+                    return JsonResponse({'message': 'Error: Already have a same username.'}, status=409)
         except Exception as e:
             print("Error connecting to database:", str(e))
             return JsonResponse({'error': 'Error connecting to database.'}, status=500)
@@ -208,9 +204,7 @@ def submit_register(request):
     return JsonResponse({'error': 'Invalid request method.'}, status=400)
 
 
-"""
-This function is used to check if the customer username is duplicated
-"""
+# This function is used to check if the customer username is duplicated
 def check_duplication_customer(name):
     existing_customer = Customer.objects.filter(username=name).first()
     if existing_customer:
@@ -219,9 +213,7 @@ def check_duplication_customer(name):
     return True
 
 
-"""
-This function is used to check if the merchant username is duplicated
-"""
+# This function is used to check if the merchant username is duplicated
 def check_duplication_merchant(name):
     existing_merchant = Merchant.objects.filter(username=name).first()
     if existing_merchant:
@@ -230,17 +222,11 @@ def check_duplication_merchant(name):
     return True
 
 
-"""
-Function jump to main page
-"""
+# Function jump to main page
 def main_page(request):
     print("redirect to main page")
     return render(request, 'main_index.html')
 
 
 def search(request):
-    if request.method == 'POST':
-        # TODO: 接收前端的数据，数据库中搜索
-        return
-    return render(request,"search.html")
-
+    return render(request, 'search.html')

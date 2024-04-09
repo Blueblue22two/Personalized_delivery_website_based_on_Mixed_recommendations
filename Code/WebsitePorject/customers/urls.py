@@ -6,7 +6,8 @@ urlpatterns = [
     # favorites page
     path('fav/', views.fav, name='fav'),
     # Cancel favorite
-    path('cancel_product_fav/<int:product_id>/', views.cancel_product_fav, name='cancel_product_fav'),
+    path('cancel_product_fav/<int:id>/', views.cancel_product_fav, name='cancel_product_fav'),
+
     path('cancel_shop_fav/<str:name>/', views.cancel_shop_fav, name='cancel_shop_fav'),
     # add store to fav
     path('add_fav/',views.add_fav,name='add_fav'),
