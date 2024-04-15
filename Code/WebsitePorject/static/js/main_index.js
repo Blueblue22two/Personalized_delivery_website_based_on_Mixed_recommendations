@@ -48,7 +48,7 @@ function displayRecommend(){
     });
 }
 
-
+// display most popular
 function displayPopular(){
     console.log("displayPopular function....")
     $.ajax({
@@ -105,6 +105,7 @@ function displayPopular(){
     });
 }
 
+// display most sales section
 function displaySales() {
     console.log("displaySales function....")
     $.ajax({

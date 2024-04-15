@@ -38,6 +38,21 @@
         .category-underline {
             text-decoration: underline;
         }
+        #category_type {
+            text-decoration: underline;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease-in-out;
+        }
+        #category_type:hover {
+            transform: scale(1.1);
+        }
+        .img-hover-zoom {
+          transition: transform 0.5s ease;
+          display: block;
+        }
+        .img-hover-zoom:hover {
+          transform: scale(1.2);
+        }
     </style>
 </head>
 
@@ -51,14 +66,13 @@
                     <!-- LOGO -->
                     <div class="col-1">
                         <a href="/" class="brand-wrap mb-0">
-                            <img alt="LOGO" class="img-fluid" src="{% static 'image/Doge.png' %}">
+                            <img alt="LOGO" class="img-fluid img-hover-zoom" src="{% static 'image/Doge.png' %}">
                         </a>
-                        <!-- brand-wrap.// -->
                     </div>
 
                     <div class="col-3 d-flex align-items-center m-none">
-                        <div class="dropdown mr-3">
-                            <a class="text-dark dropdown-toggle d-flex align-items-center py-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="mr-3">
+                            <a class="text-dark d-flex align-items-center py-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div><i class="feather-map-pin mr-2 bg-light rounded-pill p-2 icofont-size"></i></div>
                                 <div>
                                     <p class="text-muted mb-0 small">Location</p>
@@ -117,13 +131,12 @@
 
     <div class="card_section">
         <div class="container">
-            <h1 id="category_type" class="text-center mt-5 mb-0" >{{ type }}</h1>
+            <h1 id="category_type" class="text-center mt-5 mb-0 text-success">{{ type }}</h1>
             <div class="category py-5">
                 <!-- Content Row -->
                 <div class="container mt-4 mb-4 p-0" id="category_box">
-                    <!--TODO:一排最多显示4个card，若更多则添加row-->
                     <div class="row">
-                    <!--TODO:显示card-->
+                    <!--display card-->
                     </div>
                 </div>
             </div>
@@ -153,19 +166,12 @@
                     Favorites
                 </a>
             </div>
-            <div class="col">
-                <a href="/customers/info" class="text-dark small font-weight-bold text-decoration-none">
-                    <p class="h4 m-0"><i class="feather-user"></i></p>
-                    Profile
-                </a>
-            </div>
         </div>
     </div>
 
     <!-- footer -->
     <footer class="section-footer border-top bg-dark">
         <div class="container">
-            <!-- 页脚顶部 -->
             <section class="footer-top padding-y py-5">
                 <div class="row">
                     <aside class="col-md-4 footer-about">
@@ -174,7 +180,6 @@
                             <div>
                                 <h6 class="title text-white">About Us</h6>
                                 <p class="text-muted">An Online food delivery website.</p>
-
                                 <!-- social media icon-->
                                 <div class="d-flex align-items-center">
                                     <a class="btn btn-icon btn-outline-light mr-1 btn-sm" title="Github" target="_blank" href="https://github.com/Blueblue22two/"><i class="feather-github"></i></a>

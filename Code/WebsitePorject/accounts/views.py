@@ -58,7 +58,6 @@ def get_info(request):
 # -- Log In --
 def login_customer(request):
     if request.method == 'POST':
-        # TODO: receive
         print("> Post: request of a customer login ")
         response = submit_log(request)
         return response

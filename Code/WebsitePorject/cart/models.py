@@ -10,8 +10,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class CartItem(models.Model):
     cart = models.ForeignKey(ShoppingCart, on_delete=models.CASCADE, related_name='cart_items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='cart_items')
-    quantity = models.IntegerField(validators=[MinValueValidator(1)])
-
+    quantity = models.IntegerField(default=1, validators=[MinValueValidator(1)])
     class Meta:
         constraints = [
             models.CheckConstraint(check=models.Q(quantity__gt=0), name='quantity_gt_0'),

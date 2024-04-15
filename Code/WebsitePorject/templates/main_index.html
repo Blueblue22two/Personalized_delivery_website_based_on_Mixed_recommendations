@@ -26,6 +26,13 @@
         .category-underline {
             text-decoration: underline;
         }
+        .img-hover-zoom {
+          transition: transform 0.5s ease;
+          display: block;
+        }
+        .img-hover-zoom:hover {
+          transform: scale(1.2);
+        }
     </style>
 
     {% load static %}
@@ -53,14 +60,13 @@
                     <!-- LOGO -->
                     <div class="col-1">
                         <a href="/" class="brand-wrap mb-0">
-                            <img alt="LOGO" class="img-fluid" src="{% static 'image/Doge.png' %}">
+                            <img alt="LOGO" class="img-fluid img-hover-zoom" src="{% static 'image/Doge.png' %}">
                         </a>
-                        <!-- brand-wrap.// -->
                     </div>
                     <!--location-->
                     <div class="col-3 d-flex align-items-center m-none">
-                        <div class="dropdown mr-3">
-                            <a class="text-dark dropdown-toggle d-flex align-items-center py-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="mr-3">
+                            <a class="text-dark d-flex align-items-center py-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div><i class="feather-map-pin mr-2 bg-light rounded-pill p-2 icofont-size"></i></div>
                                 <div>
                                     <p class="text-muted mb-0 small">Location</p>
@@ -235,15 +241,12 @@
     <!-- Footer -->
     <div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center d-none">
         <div class="row">
-
             <div class="col selected">
                 <a href="/" class="text-danger small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-home text-danger"></i></p>
                     Home
                 </a>
             </div>
-
-            <!-- 收藏链接 -->
             <div class="col">
                 <a href="favorites.html" class="text-dark small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-heart"></i></p>
@@ -334,7 +337,6 @@
         </ul>
     </nav>
 
-    <!-- 模态框：该元素用于创建一个弹出式模态框，用于显示筛选器和其他内容 -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -431,7 +433,6 @@
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/osahan.js' %}"></script>
     <script src="{% static 'js/menu.js' %}"></script>
-
     <script src="{% static 'js/main_index.js' %}"></script>
 </body>
 

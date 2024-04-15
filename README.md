@@ -9,7 +9,7 @@
 
 ---
  
-## 🚀Configuration:  
+## 🚀Environment:  
 - Language: python (3.9) (Version >=3.7)   
 - Database: mysql  
 - Framework: django (4.2)  
@@ -26,9 +26,10 @@
 ----
 
 ## 📜Recommendation system:
+> two types of recommend algorithm:
 ### Collaborative Filtering:  
-- User CF:  
-> user similarity matrix
+- User-CF:  
+> we use ***Adjusted Cosine Similarity (John.S.Breese)*** to calculate the similarity between user, and store it in *user similarity matrix*.  
 
 ### Content-based recommendation:  
 > Using content-based recommendation as a strategy for cold start.
@@ -36,16 +37,21 @@
 ---
 
 ## 💻Deploy & Run project:
-- How to run this project?  
-`python manage.py runserver`  
-url: `http://127.0.0.1:8000/`  
 
-- How to migrate a database?
+### 1. connect with database:
+- Use the database sql file `onlinefooddelivery.sql`
+- Config the mysql in `setting.py`
+
+- Perform database migrations
 ```
 python manage.py makemigrations
 
 python manage.py migrate
 ``` 
+
+### 2. - How to run this project?  
+`python manage.py runserver`  
+url: `http://127.0.0.1:8000/`  
 
 ---
 
@@ -65,7 +71,7 @@ Password: cdut8888
 --- 
 
 ### View of website:
-- main page
+- Index page (not log in)
 ![main page](md_img/main_1.jpg)
 ![main page](md_img/main_2.jpg)
 ![main page](md_img/main_3.jpg)

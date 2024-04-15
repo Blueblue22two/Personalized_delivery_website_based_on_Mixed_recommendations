@@ -32,13 +32,8 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
-# 基于内容的推荐函数，用于冷启动
+# 基于内容的推荐 content-based，用于冷启动
 def content_based_recommendation():
-    """
-    对于基于内容的推荐函数，基于商品的下面几种属性来生成：
-    商品平均评分，商品被收藏次数，商品销量
-    其中三个属性的推荐权重为2：1：1
-    """
     logger.info("Starting content_based_recommendation")
     dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
 
@@ -72,20 +67,17 @@ def adjusted_cosine_similarity(user_item_matrix):
     user_ratings_mean = np.mean(user_item_matrix, axis=1)
     # 中心化处理：将用户评分减去该用户的平均评分
     matrix_user_mean = user_item_matrix.sub(user_ratings_mean, axis=0)
-
     # 计算修正的余弦相似度
     # np.dot用于计算点积，np.linalg.norm用于计算Frobenius范数
     similarity_matrix = np.dot(matrix_user_mean, matrix_user_mean.T) / \
                         (np.linalg.norm(matrix_user_mean, axis=1)[:, np.newaxis] * \
                          np.linalg.norm(matrix_user_mean.T, axis=0)[np.newaxis, :])
-
     # 将NaN值填充为0（因为中心化可能导致除以0的情况）
     similarity_matrix = np.nan_to_num(similarity_matrix)
-
     return similarity_matrix
 
 
-# 基于用户的协同过滤推荐函数，生成用户特征矩阵
+# User based collab
 def user_cf_recommendation():
     print("user_cf_recommendation function working...")
     dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
@@ -126,9 +118,6 @@ def user_cf_recommendation():
         print(f"Error during generating user cf recommendation: {e}")
 
 
-# 推荐函数，对于用户的登录状态与登录类型来为推荐商品给用户
-# 当用户为登录状态且用户类型为customer时则使用user_cf_recommendation()
-# 其他情况都使用content_based_recommendation()
 def get_recommend_dish(request):
     username = request.session.get('username', None)
     user_type = request.session.get('user_type', None)  # '1'表示customer
@@ -163,7 +152,7 @@ def get_recommend_dish(request):
         order_count = Order.objects.filter(customer=customer).count()
         user_cf_recommendation()
 
-        if order_count < 5:  # 对于购买订单小于3的用户也使用 content_based_recommendation
+        if order_count < 5:  # 对于购买订单小于5的用户也使用 content_based_recommendation
             filepath = os.path.join(dataset_base_dir, 'content_product.csv')
             df = pd.read_csv(filepath)
             top_products_dict = df.sort_values(by='recommend_score', ascending=False).head(8).to_dict('records')
@@ -237,7 +226,6 @@ def get_recommend_dish(request):
 # 然后对csv中每条数据，取其total_rating与popularity_value按照 score = total_rating*0.5 + popularity_value*0.3 + shop_fav_number * 0.2的公式计算出score(score保留一位小数)
 # 对这个csv文件按照score的数值从大到小重新排序
 # 按照排序的顺序，仅返回csv中排名前8的所有数据
-
 def get_popular(request):
     dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
     if not os.path.exists(dataset_base_dir):

@@ -1,8 +1,9 @@
 import json
 from django.contrib.auth import logout
-from django.db import transaction
+from django.db import IntegrityError, transaction
+from django.core.exceptions import ValidationError
 from django.http import JsonResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from accounts.models import Customer, ShoppingCart, Shop
 from cart.models import CartItem
 from merchants.models import Product
@@ -21,10 +22,46 @@ def main_page(request):
     return render(request, 'cart.html')
 
 
+# add product to cart#
+def add_cart(request):
+    if request.method == 'POST':
+        username = request.session.get('username', None)
+        if username is None:
+            return JsonResponse({'message': 'Unauthorized access'}, status=401)
+        user_type = request.session.get('user_type', None)
+        if not username or user_type != '1':
+            return JsonResponse({'error': 'Error user type or not logged in'}, status=400)
+        product_id = request.POST.get('productId')
+
+        try:
+            customer = Customer.objects.get(username=username)
+            shopping_cart = get_object_or_404(ShoppingCart, customer=customer)
+            product = get_object_or_404(Product, pk=product_id)
+            cart_item, created = CartItem.objects.get_or_create(
+                cart=shopping_cart,
+                product=product,
+                defaults={'quantity': 1}
+            )
+            if not created:
+                cart_item.quantity += 1
+            cart_item.save()
+            return JsonResponse({'message': f'Product {product_id} added to cart successfully.'})
+
+        except Product.DoesNotExist:
+            return JsonResponse({'error': 'Product does not exist'}, status=404)
+        except Customer.DoesNotExist:
+            return JsonResponse({'error': 'Customer does not exist'}, status=404)
+        except Exception as e:
+            print(f"Unexpected error: {str(e)}")
+            return JsonResponse({'error': str(e)}, status=500)
+    print(" add_cart function,request method != post")
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
 # upload cart item info from cart page
 def upload(request):
     if request.method == 'POST':
-        username = request.session.get('username', None) # customer username
+        username = request.session.get('username', None)
         if username is None:
             return JsonResponse({'message': 'Unauthorized access'}, status=401)
 
@@ -33,7 +70,6 @@ def upload(request):
             return JsonResponse({'error': 'Error user type or not logged in'}, status=400)
 
         data = json.loads(request.body.decode('utf-8'))
-        # products_data is a list of { id: productId, quantity: quantity }
         products_data = data.get('products', [])
         print(f"upload_cart function: username: {username}")
 
@@ -68,13 +104,16 @@ def upload(request):
                 # Remove CartItems not in the products_data
                 existing_cart_items.exclude(product__id__in=product_ids).delete()
 
-            return JsonResponse({'message': 'Cart updated successfully'})
+            return JsonResponse({'message': 'Cart updated successfully'},status=200)
 
         except Customer.DoesNotExist:
             return JsonResponse({'error': 'Customer not found'}, status=404)
         except Product.DoesNotExist:
             return JsonResponse({'error': 'Product not found'}, status=404)
+        except IntegrityError as e:
+            return JsonResponse({'error': str(e)}, status=500)
         except Exception as e:
+            print(str(e))
             return JsonResponse({'error': str(e)}, status=500)
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
@@ -102,20 +141,18 @@ def upload_cart(request):
             shop = Shop.objects.get(name=shop_name)
             cart, created = ShoppingCart.objects.get_or_create(customer=customer)
 
-            # 获取当前商店的所有产品ID
+            # get al pid in this store
             product_ids = [product['id'] for product in products_data]
             shop_products = Product.objects.filter(id__in=product_ids, shop=shop)
 
-            # 更新或创建CartItem
+            # update ot create CartItem
             for product_data in products_data:
                 product_id = product_data['id']
                 quantity = product_data['quantity']
                 product = shop_products.get(id=product_id)
                 CartItem.objects.update_or_create(cart=cart, product=product, defaults={'quantity': quantity})
 
-            # 删除不存在于products_data中的CartItem
             CartItem.objects.filter(cart=cart, product__in=shop_products).exclude(product__id__in=product_ids).delete()
-
             return JsonResponse({'message': 'Cart updated successfully'})
 
         except Customer.DoesNotExist:

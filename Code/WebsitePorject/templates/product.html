@@ -32,8 +32,16 @@
          .price-color {
             color: #ff6408;
         }
-        .category-underline {
-            text-decoration: underline;
+        .img-hover-zoom {
+          transition: transform 0.5s ease;
+          display: block;
+        }
+        .img-hover-zoom:hover {
+          transform: scale(1.2);
+        }
+        .hov_button:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
         }
     </style>
 </head>
@@ -47,7 +55,7 @@
                     <!--LOGO -->
                     <div class="col-1">
                         <a href="/" class="brand-wrap mb-0">
-                            <img alt="LOGO" class="img-fluid" src="{% static 'image/Doge.png' %}">
+                            <img alt="LOGO" class="img-fluid img-hover-zoom" src="{% static 'image/Doge.png' %}">
                         </a>
                         <!-- brand-wrap.// -->
                     </div>
@@ -123,14 +131,14 @@
                 <div class="row">
                     <!-- Product Image -->
                     <div class="col-md-4">
-                        <img src="/media/{{ product.image_path }}" alt="{{ product.name }}" class="img-fluid mb-3 card-img" style="max-width: 200px; height: auto;">
+                        <img src="/media/{{ product.image_path }}" alt="{{ product.name }}" class="img-fluid mb-3 card-img img-hover-zoom" style="max-width: 200px; height: auto;">
                     </div>
 
                     <!-- Product Details -->
                     <div class="col-md-8">
                         <h2 class="font-weight-bold">{{ product.name }}</h2>
                         <p class="mb-2" id="product-id"><strong>ID:</strong> {{ product.id }}</p>
-                        <p class="mb-2"><strong>Category:</strong> <strong class="category-underline">{{ product.category|default:"N/A" }}</strong></p>
+                        <p class="mb-2"><strong>Category:</strong> <strong>{{ product.category|default:"N/A" }}</strong></p>
 
                         <label class="mb-2"><i class="feather-star text-warning"></i><strong>Average Rating: {{ average_rating}}</strong></label>
                         <!-- Price Details -->
@@ -142,19 +150,35 @@
                         {% endif %}
                         <p class="mb-2"><strong>Description:</strong> <strong class="small text-gray">{{ product.description|default:"No description available." }}</strong></p>
 
-                        <!-- Favorite button-->
-                        <div class="col-6 col-md-2">
-                            <button type="button" class="btn btn-primary" id="fav_button">
-                                <span class="me-2">
-                                    <i class="feather-heart"></i>
-                                </span>
-                                Favorite
-                            </button>
+                        <!-- Row for buttons -->
+                        <div class="row mb-3"> <!-- mb-3 adds some space below the row -->
+                            <!-- Favorite button -->
+                            <div class="col-6 col-md-2">
+                                <button type="button" class="btn btn-success hov_button" id="fav_button">
+                                    <span class="me-2">
+                                        <i class="feather-heart"></i>
+                                    </span>
+                                    Favorite
+                                </button>
+                            </div>
+
+                            <!-- Add to cart button -->
+                            <div class="col-6 col-md-3">
+                                <button type="button" class="btn btn-success text-white hov_button" id="cart_button">
+                                    <span class="me-2">
+                                        <i class="feather-shopping-cart"></i>
+                                    </span>
+                                    Add to cart
+                                </button>
+                            </div>
                         </div>
-                        <br>
-                        <!-- store page link-->
-                        <div class="col-7 col-md-2 mb-1">
-                            <a class='btn text-success category-underline'href="/store/shop/{{ shop_name }}/">Go to shop</a>
+
+                        <!-- Row for the link -->
+                        <div class="row">
+                            <!-- Store page link -->
+                            <div class="col-12 col-md-3">
+                                <a class='btn text-success category-underline' style="text-decoration: underline;" href="/store/shop/{{ shop_name }}/">Go to shop</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -170,7 +194,6 @@
 
     <!-- Footer -->
     <div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center d-none">
-        <!-- 底部菜单 -->
         <div class="row">
             <div class="col selected">
                 <a href="/" class="text-danger small font-weight-bold text-decoration-none">
@@ -178,8 +201,6 @@
                     Home
                 </a>
             </div>
-
-            <!-- 购物车链接 -->
             <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
                 <div class="bg-danger rounded-circle mt-n0 shadow">
                     <a href="/carts/main" class="text-white small font-weight-bold text-decoration-none">
@@ -187,18 +208,10 @@
                     </a>
                 </div>
             </div>
-            <!-- 收藏链接 -->
             <div class="col">
                 <a href="/customers/fav" class="text-dark small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-heart"></i></p>
                     Favorites
-                </a>
-            </div>
-            <!-- 用户资料链接 -->
-            <div class="col">
-                <a href="/customers/info" class="text-dark small font-weight-bold text-decoration-none">
-                    <p class="h4 m-0"><i class="feather-user"></i></p>
-                    Profile
                 </a>
             </div>
         </div>
@@ -207,10 +220,8 @@
     <!-- footer -->
     <footer class="section-footer border-top bg-dark">
         <div class="container">
-            <!-- 页脚顶部 -->
             <section class="footer-top padding-y py-5">
                 <div class="row">
-                    <!-- 公司介绍 -->
                     <aside class="col-md-4 footer-about">
                         <article class="d-flex pb-3">
                             <div><img alt="LOGO" src="{% static 'image/Doge.png' %}" class="logo-footer mr-3"></div> <!-- LOGO -->

@@ -29,11 +29,11 @@ function storeInfo(){
         data: {'shopName': shopName,},
         headers: {'X-CSRFToken': getCsrfTokenFromForm()},
         success: function(response) {
-            // 更新星级评分图标
+            // update rate score
             let ratingElement = document.getElementById('shopRating');
             let totalRating = ratingElement.getAttribute('data-total-rating');
             $('.rating-stars').html(generateStars(parseFloat(totalRating)));
-            // 更新评分人数的数值
+            // update rate number
             $('.label-rating').text(` (${response.ratingsCount} rated)`);
         },
         error: function(xhr, status, error) {
@@ -55,15 +55,14 @@ function productInfo(){
         success: function(products){
             let categoryMap = {}; // store the category of this shop
             products.forEach(function(product) {
-                // 如果该类别不存在，创建一个空数组
                 if (!categoryMap[product.category]) {
                     categoryMap[product.category] = [];
                 }
-                // 将商品添加到对应的类别中
+                // add product card to category
                 categoryMap[product.category].push(product);
             });
 
-            // 遍历分类并生成 HTML 元素
+            // generate product card
             for (const category in categoryMap) {
                 // category header
                 let categoryHtml = `<h6 class="p-3 m-0 category-title">${category}</h6>`;
@@ -78,7 +77,7 @@ function productInfo(){
                             <div class="media">
                               
                                 <a href="/products/product_view/${product.id}/">
-                                    <img src="/media/${product.image_path}" class="mr-3 rounded-pill product-img">
+                                    <img src="/media/${product.image_path}" class="mr-3 rounded-pill product-img img-hover-zoom">
                                 </a>
                                 <div class="media-body">
                                     <!--product id-->
@@ -100,7 +99,7 @@ function productInfo(){
     });
 }
 
-// 将商品添加到购物车并将创建html使其显示到cart item section中
+// click add to cart button, then add this product to card
 function addToCart() {
     $('.menu-container').on('click', '.btn-outline-secondary', function(event) {
         event.preventDefault(); // Prevent default anchor action
@@ -293,13 +292,15 @@ function checkLogin2(){
         .then(data => {
             if (data.is_logged_in) {
                 if (data.user_type === '1') {
+                    console.log("User type: customer")
                     showCart();
                     addToCart();
                     addNumber();
                     minusNumber();
                 } else {
-                    console.log("Not customer user type");
+                    console.log("User type: not customer");
                     disableButton();
+                    displayNotification("Please login as customer to more function");
                     // Disable the favorite function
                     let favButton = document.getElementById("fav_button");
                     if (favButton) {
@@ -309,7 +310,8 @@ function checkLogin2(){
                 }
             } else {
                 disableButton();
-                console.log("Not logged in");
+                console.log("User not logged in");
+                displayNotification("Please login as customer to more function");
                 // Disable the favorite function
                 let favButton = document.getElementById("fav_button");
                 if (favButton) {
@@ -321,6 +323,7 @@ function checkLogin2(){
         .catch(error => {
             disableButton();
             console.error('Error:', error);
+            displayNotification("Please login as customer to more function");
             // Disable the favorite function
             let favButton = document.getElementById("fav_button");
             if (favButton) {
@@ -328,6 +331,22 @@ function checkLogin2(){
                 favButton.classList.add("disabled");
             }
         });
+}
+
+// display notification message
+function displayNotification(message) {
+    let notification = document.createElement('div');
+    notification.style.backgroundColor = 'white';
+    notification.style.color = '#FF6666'
+    notification.style.padding = '10px';
+    notification.style.position = 'fixed'
+    notification.style.top = '0';
+    notification.style.width = '100%';
+    notification.style.textAlign = 'center';
+    notification.style.fontSize = '16px';
+    notification.style.border = '2px solid lightgreen';
+    notification.textContent = message;
+    document.body.prepend(notification);
 }
 
 // disable some function which can only access by customer
@@ -357,7 +376,7 @@ function disableButton() {
     console.log("Disable function done")
 }
 
-
+// add store to favorite
 function addFavorite() {
     // get shop name
     let shopName = shopNameElement.textContent;

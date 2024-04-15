@@ -23,6 +23,16 @@
     <link href="{% static 'css/demo.css' %}" rel="stylesheet">
     <!-- css -->
     <link href="{% static 'css/my_store.css' %}" rel="stylesheet">
+
+    <style>
+    .img-hover-zoom {
+      transition: transform 0.5s ease;
+      display: block;
+    }
+    .img-hover-zoom:hover {
+      transform: scale(1.2);
+    }
+    </style>
 </head>
 
 <body class="fixed-bottom-bar">
@@ -30,13 +40,11 @@
         <section class="header-main shadow-sm bg-white">
             <div class="container">
                 <div class="row align-items-center">
-
-                    <!-- 列：LOGO -->
                     <div class="col-1">
                         <a href="/" class="brand-wrap mb-0">
-                            <img alt="LOGO" class="img-fluid" src="{% static 'image/Doge.png' %}">
+                            <img alt="LOGO" class="img-fluid img-hover-zoom" src="{% static 'image/Doge.png' %}">
                         </a>
-                        <!-- brand-wrap.// -->
+
                     </div>
 
                     <div class="col-8">

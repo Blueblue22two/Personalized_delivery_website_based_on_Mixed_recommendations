@@ -32,7 +32,6 @@
         color: white;
         background-color: maroon;
     }
-
     .shop-img {
         width: 100%;
         max-width: 140px;
@@ -40,7 +39,14 @@
         display: block;
         margin: 0 auto;
     }
+    .img-hover-zoom {
+          transition: transform 0.5s ease; /* Smooth transition for the transformation */
+          display: block; /* Ensures the image doesn't exceed its container */
+    }
 
+    .img-hover-zoom:hover {
+          transform: scale(1.2); /* Increase the scale of the image */
+    }
     .offer-section {
         background-color: maroon;
     }
@@ -57,8 +63,8 @@
         color: white;
     }
     #fav_button:hover {
-        transform: scale(1.1); /* 将按钮放大 10% */
-        transition: transform 0.3s ease; /* 添加过渡效果 */
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
     }
     </style>
 </head>
@@ -78,8 +84,8 @@
                     </div>
 
                     <div class="col-3 d-flex align-items-center m-none">
-                        <div class="dropdown mr-3">
-                            <a class="text-dark dropdown-toggle d-flex align-items-center py-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="mr-3">
+                            <a class="text-dark d-flex align-items-center py-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div><i class="feather-map-pin mr-2 bg-light rounded-pill p-2 icofont-size"></i></div>
                                 <div>
                                     <p class="text-muted mb-0 small">Location</p>
@@ -140,9 +146,8 @@
     </header>
 
 
-    <div class="d-none"> <!-- 隐藏的div，不在页面上显示 -->
+    <div class="d-none">
         <div class="bg-primary p-3 d-flex align-items-center">
-            <!-- 一个可点击的切换按钮 -->
             <a class="toggle togglew toggle-2" href="#"><span></span></a>
             <h4 class="font-weight-bold m-0 text-white">Online food</h4>
         </div>
@@ -151,7 +156,7 @@
     <div class="offer-section py-4">
         <div class="container position-relative">
             <!-- shop image -->
-            <img alt="Shop image" src="/media/{{ shop.image_path }}" class="restaurant-pic shop-img">
+            <img alt="Shop image" src="/media/{{ shop.image_path }}" class="restaurant-pic shop-img img-hover-zoom">
             <div class="pt-3 text-white">
                 <!-- shop name -->
                 <h2 class="shop-name font-weight-bold">{{ shop.name }}</h2>

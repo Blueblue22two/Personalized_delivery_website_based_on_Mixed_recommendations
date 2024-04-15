@@ -90,11 +90,11 @@ def add_fav_product(request):
             customer = Customer.objects.get(username=username)
             product = Product.objects.get(id=product_id)
 
-            # 检查是否已经添加到收藏
+            # check if it is exists
             if FavItem.objects.filter(customer=customer, product=product).exists():
-                return JsonResponse({'message': 'You have already added this product to favorites.'}, status=400)
+                return JsonResponse({'message': 'You have already added this product to favorites.'}, status=200)
 
-            # add
+            # add product to favorite
             FavItem.objects.create(customer=customer, product=product)
             return JsonResponse({'message': 'Product added to favorites successfully!'})
 

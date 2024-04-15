@@ -55,6 +55,13 @@
         .category-underline {
             text-decoration: underline;
         }
+        .img-hover-zoom {
+          transition: transform 0.5s ease;
+          display: block;
+        }
+        .img-hover-zoom:hover {
+          transform: scale(1.2);
+        }
     </style>
 </head>
 
@@ -64,13 +71,11 @@
         <section class="header-main shadow-sm bg-white">
             <div class="container">
                 <div class="row align-items-center">
-
                     <!-- LOGO -->
                     <div class="col-1">
                         <a href="/" class="brand-wrap mb-0">
-                            <img alt="LOGO" class="img-fluid" src="{% static 'image/Doge.png' %}">
+                            <img alt="LOGO" class="img-fluid img-hover-zoom" src="{% static 'image/Doge.png' %}">
                         </a>
-                        <!-- brand-wrap.// -->
                     </div>
 
                     <div class="col-3 d-flex align-items-center m-none">
@@ -298,7 +303,6 @@
         </ul>
     </nav>
 
-    <!-- Bootstrap框架的模态窗口（Modal） -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

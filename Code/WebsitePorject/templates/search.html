@@ -38,6 +38,13 @@
         .category-underline {
             text-decoration: underline;
         }
+        .img-hover-zoom {
+          transition: transform 0.5s ease;
+          display: block;
+        }
+        .img-hover-zoom:hover {
+          transform: scale(1.2);
+        }
     </style>
 </head>
 
@@ -51,14 +58,13 @@
                     <!-- LOGO -->
                     <div class="col-1">
                         <a href="/" class="brand-wrap mb-0">
-                            <img alt="LOGO" class="img-fluid" src="{% static 'image/Doge.png' %}">
+                            <img alt="LOGO" class="img-fluid img-hover-zoom" src="{% static 'image/Doge.png' %}">
                         </a>
-                        <!-- brand-wrap.// -->
                     </div>
 
                     <div class="col-3 d-flex align-items-center m-none">
-                        <div class="dropdown mr-3">
-                            <a class="text-dark dropdown-toggle d-flex align-items-center py-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="mr-3">
+                            <a class="text-dark d-flex align-items-center py-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div><i class="feather-map-pin mr-2 bg-light rounded-pill p-2 icofont-size"></i></div>
                                 <div>
                                     <p class="text-muted mb-0 small">Location</p>

@@ -5,8 +5,8 @@ urlpatterns = [
     # shopping cart page
     path('main/', views.main_page, name='main_page'),
 
-    # # upload cart information & pay
-    # path('cart_info/', views.cart_info, name='cart_info'),
+    # add product to cart in product page
+    path('add_cart/', views.add_cart, name='add_cart'),
 
     # upload cart item form store page
     path('upload_cart/', views.upload_cart, name='upload_cart'),
