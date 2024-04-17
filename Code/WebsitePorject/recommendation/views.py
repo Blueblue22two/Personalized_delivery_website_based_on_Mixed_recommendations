@@ -1,6 +1,6 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count, Sum, Avg
-from django.http import HttpResponseRedirect
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth import logout
 from decimal import Decimal
 from django.conf import settings
@@ -9,18 +9,18 @@ import logging
 import csv
 import os
 # model
-from accounts.models import Customer, Merchant, Shop, Favorite
+from accounts.models import Customer, Shop, Favorite
 from merchants.models import Product, ShopRating
 from orders.models import Order, OrderItem
 from customers.models import Comment, FavItem
 # math
-from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.metrics import jaccard_score
 import numpy as np
 import pandas as pd
+from decimal import Decimal
 
 logger = logging.getLogger(__name__)
-
-
 # Create your views here.
 
 
@@ -32,38 +32,112 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
-# 基于内容的推荐 content-based，用于冷启动
-def content_based_recommendation():
-    logger.info("Starting content_based_recommendation")
+# cold start function
+# recommend product based on the popularity and sales of product
+def cold_start_recommendation():
     dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
-
     if not os.path.exists(dataset_base_dir):
         os.makedirs(dataset_base_dir)
-    filepath = os.path.join(dataset_base_dir, 'content_product.csv')
+    filepath = os.path.join(dataset_base_dir, 'cold_start.csv')
     try:
         products = Product.objects.annotate(
             favorite_count=Count('favored_by'),
             total_sales=Sum('order_items__quantity')
         ).values('id', 'average_rate', 'favorite_count', 'total_sales')
-
-        # 转换为DataFrame
         df = pd.DataFrame(list(products))
-        # 计算推荐得分
-        df['recommend_score'] = df['average_rate'].apply(Decimal) * Decimal('2') + \
-                                df['favorite_count'].apply(Decimal) * Decimal('1') + \
-                                df['total_sales'].apply(Decimal) * Decimal('1')
 
-        # 无论原本csv中之前是否存在数据，将新数据覆盖并保存到CSV文件中
+        # Normalize data
+        df['norm_average_rate'] = df['average_rate'] / Decimal('5.0')
+        df['norm_favorite_count'] = df['favorite_count'] / 1000
+        df['norm_total_sales'] = df['total_sales'] / 1000
+
+        # Ensure no division by zero issues, replace NaN with 0
+        df[['norm_favorite_count', 'norm_total_sales']] = df[['norm_favorite_count', 'norm_total_sales']].fillna(0)
+
+        # Calculate recommendation score with the weight of each data
+        df['recommend_score'] = (df['norm_average_rate'] * Decimal('0.4') +
+                                 df['norm_favorite_count'] * Decimal('0.3') + # line 59
+                                 df['norm_total_sales'] * Decimal('0.3'))
+
         df.to_csv(filepath, index=False)
-        print(f"Content-based recommendation data saved to {filepath}")
-        logger.info(f"Content-based recommendation data saved to {filepath}")
+        print(f"cold start data saved to {filepath}")
+        logger.info(f"cold start data saved to {filepath}")
     except Exception as e:
         logger.error(f"Error during generating content based recommendation: {e}", exc_info=True)
         print(f"Error during generating content based recommendation: {e}")
 
 
+# Content-based recommendation
+def content_based_recommendation(user_id):
+    dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
+    csv_file_path = os.path.join(dataset_base_dir, 'cb.csv') # csv
+    if not os.path.exists(csv_file_path):
+        os.makedirs(csv_file_path)
+
+    user = Customer.objects.get(id=user_id)
+    orders = Order.objects.filter(customer=user)
+    favorites = FavItem.objects.filter(customer=user)
+    comments = Comment.objects.filter(customer=user, rating__gte=4.0)
+
+    # get all products
+    all_products = Product.objects.all()
+
+    # Create feature matrix for all products
+    categories = np.array([product.category for product in all_products])
+    one_hot_encoder = OneHotEncoder()
+    category_features = one_hot_encoder.fit_transform(categories.reshape(-1, 1)).toarray()
+
+    numeric_features = np.array([
+        [int(product.average_rate > 0),
+         int(product.favored_by.count() > 0),
+         int(product.order_items.aggregate(total_sales=Count('id'))['total_sales'] > 0),
+         int(product.comments.count() > 0)]
+        for product in all_products
+    ])
+
+    # Combine category and numeric features
+    feature_matrix = np.hstack((category_features, numeric_features))
+
+    # Map product IDs to their indices in the feature matrix
+    product_index_map = {product.id: idx for idx, product in enumerate(all_products)}
+
+    # Fetch products user has interacted with
+    bought_products_ids = OrderItem.objects.filter(order__in=orders).values_list('product_id', flat=True)
+    favored_product_ids = [fav.product_id for fav in favorites]
+    rated_products_ids = [comment.product_id for comment in comments if comment.rating >= 3.5]
+
+    # Build user profile based on interactions
+    user_profile = np.zeros(feature_matrix.shape[1])
+    for pid in set(bought_products_ids):
+        user_profile += feature_matrix[product_index_map[pid], :]
+    for pid in set(favored_product_ids):
+        user_profile += feature_matrix[product_index_map[pid], :]
+    for pid in set(rated_products_ids):
+        user_profile += feature_matrix[product_index_map[pid], :]
+
+    # Normalize user profile to binary
+    user_profile = np.array(user_profile > 0, dtype=int)
+
+    # Compute Jaccard similarity between user profile and all products
+    similarities = np.array([jaccard_score(user_profile, f, average='binary') for f in feature_matrix])
+
+    # Save similarities to CSV
+    with open(csv_file_path, 'w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['Product ID', 'Similarity'])
+        for index, similarity in enumerate(similarities):
+            writer.writerow([all_products[index].id, similarity])
+
+    # Get top 20 similar products
+    similar_indices = np.argsort(similarities)[::-1][:20]
+    print(f"number of cb product list: {len(similar_indices)}")
+    recommended_product_ids = [all_products[int(i)].id for i in similar_indices]  # Convert to int
+    return recommended_product_ids
+
+
+# adjust cosine similarity
 def adjusted_cosine_similarity(user_item_matrix):
-    # 计算每个用户的平均评分
+    # Calculate the average rating for each user
     user_ratings_mean = np.mean(user_item_matrix, axis=1)
     # 中心化处理：将用户评分减去该用户的平均评分
     matrix_user_mean = user_item_matrix.sub(user_ratings_mean, axis=0)
@@ -77,7 +151,7 @@ def adjusted_cosine_similarity(user_item_matrix):
     return similarity_matrix
 
 
-# User based collab
+# User based Collaborative filtering function
 def user_cf_recommendation():
     print("user_cf_recommendation function working...")
     dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
@@ -85,32 +159,27 @@ def user_cf_recommendation():
         os.makedirs(dataset_base_dir)
 
     try:
-        # 创建Item-User表,倒排表
+        # create Item-User table
         favorites = FavItem.objects.values_list('product_id', 'customer_id')
         order_items = OrderItem.objects.annotate(count=Count('id')).filter(count__gt=3).values_list('product_id',
                                                                                                     'order__customer_id')
         high_ratings = Comment.objects.values('product_id').annotate(avg_rating=Avg('rating')).filter(
             avg_rating__gt=4.0).values_list('product_id', 'customer_id')
 
-        # 合并这些查询集
         all_likes = list(favorites) + list(order_items) + list(high_ratings)
-
-        # 转换成DataFrame
         likes_df = pd.DataFrame(all_likes, columns=['product_id', 'user_id'])
-        likes_df.drop_duplicates(inplace=True)  # 移除重复项
+        likes_df.drop_duplicates(inplace=True)  # remove duplicate item
 
-        # 保存Item-User表到CSV
+        # save Item_User.csv file
         item_user_filepath = os.path.join(dataset_base_dir, 'Item_User.csv')
         likes_df.to_csv(item_user_filepath, index=False)
 
-        # 建立用户喜爱物品交集矩阵
         user_item_matrix = pd.crosstab(likes_df.user_id, likes_df.product_id)
-
-        # 使用修正的余弦相似度计算用户相似度矩阵
+        # Use adjusted_cosine_similarity to calculate user similarity
         similarity_matrix = adjusted_cosine_similarity(user_item_matrix)
-        np.fill_diagonal(similarity_matrix, 0)  # 将对角线设置为0
+        np.fill_diagonal(similarity_matrix, 0)
 
-        # 保存用户相似度矩阵到CSV
+        # save user_similarity_matrix.csv file
         user_similarity_filepath = os.path.join(dataset_base_dir, 'user_similarity_matrix.csv')
         pd.DataFrame(similarity_matrix, index=user_item_matrix.index, columns=user_item_matrix.index).to_csv(
             user_similarity_filepath)
@@ -118,106 +187,118 @@ def user_cf_recommendation():
         print(f"Error during generating user cf recommendation: {e}")
 
 
+def weighted_hybrid_recommendation(cb_products, user_cf_products, cb_weight, user_cf_weight):
+    cb_weight = Decimal(str(cb_weight))
+    user_cf_weight = Decimal(str(user_cf_weight))
+    combined_scores = {}
+    cb_dict = {product['id']: product for product in cb_products}
+    user_cf_dict = {product['id']: product for product in user_cf_products}
+
+    # calculate the cb weight score
+    for product_id, product in cb_dict.items():
+        average_rate = Decimal(product.get('average_rate', 0))
+        combined_scores[product_id] = combined_scores.get(product_id, Decimal('0')) + cb_weight * average_rate
+
+    # calculate the User-cf weight score
+    for product_id, product in user_cf_dict.items():
+        average_rate = Decimal(product.get('average_rate', 0))
+        combined_scores[product_id] = combined_scores.get(product_id, Decimal('0')) + user_cf_weight * average_rate
+
+    top_product_ids = sorted(combined_scores, key=lambda x: combined_scores[x], reverse=True)[:20]
+    final_recommendations = [cb_dict.get(pid, None) or user_cf_dict.get(pid, None) for pid in top_product_ids]
+    return final_recommendations
+
+
+# filter the low rated product in recommend product list
+def filter_low_rated_products(customer_id, products):
+    rated_products = Comment.objects.filter(customer_id=customer_id).values('product_id').annotate(avg_rating=Avg('rating'))
+    low_rated_product_ids = {prod['product_id'] for prod in rated_products if prod['avg_rating'] < 3.5}
+    print(f"filter_low_rated_products numbers: {len(low_rated_product_ids)}")
+    return [product for product in products if product['id'] not in low_rated_product_ids]
+
+
+# get and return recommended product(dish) list
 def get_recommend_dish(request):
     username = request.session.get('username', None)
-    user_type = request.session.get('user_type', None)  # '1'表示customer
-
-    recommend_products = []  # 初始化推荐的商品列表
+    user_type = request.session.get('user_type', None)
     dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
+    recommend_products = []  # recommended product list
 
     if username is None or user_type != '1':
-        # content_based_recommendation
-        content_based_recommendation()
-        filepath = os.path.join(dataset_base_dir, 'content_product.csv')
+        # use cold_start_recommendation
+        filepath = os.path.join(dataset_base_dir, 'cold_start.csv')
+        cold_start_recommendation()
+
         if not os.path.exists(filepath) or os.stat(filepath).st_size == 0:
             logger.error(f"CSV file at {filepath} is missing or empty.")
             print(f"CSV file at {filepath} is missing or empty.")
             return JsonResponse({'error': 'Data is missing or empty'}, status=500)
         else:
             df = pd.read_csv(filepath)
-            # 转化为字典并排序
             top_products_dict = df.sort_values(by='recommend_score', ascending=False).head(8).to_dict('records')
-            # 从top_products_dict中get product ID
             top_product_ids = [product_dict['id'] for product_dict in top_products_dict]
-
             top_products = list(Product.objects.filter(id__in=top_product_ids).annotate(
                 product_rate_number=Count('comments')
             ).values(
                 'id', 'name', 'price', 'category', 'image_path', 'average_rate', 'product_rate_number'
             ))
     else:
-        # user_cf_recommendation
-        customer = Customer.objects.get(username=username)
-        customer_id = customer.id
+        # Hybrid recommendation: user_cf_recommendation & content based recommendation
+        try:
+            customer = Customer.objects.get(username=username)
+            customer_id = customer.id
+        except ObjectDoesNotExist:
+            return JsonResponse({'error': 'Customer not found'}, status=404)
         order_count = Order.objects.filter(customer=customer).count()
-        user_cf_recommendation()
 
-        if order_count < 5:  # 对于购买订单小于5的用户也使用 content_based_recommendation
-            filepath = os.path.join(dataset_base_dir, 'content_product.csv')
-            df = pd.read_csv(filepath)
-            top_products_dict = df.sort_values(by='recommend_score', ascending=False).head(8).to_dict('records')
-            top_product_ids = [product_dict['id'] for product_dict in top_products_dict]
-            top_products = list(Product.objects.filter(id__in=top_product_ids).annotate(
-                product_rate_number=Count('comments')
-            ).values(
-                'id', 'name', 'price', 'category', 'image_path', 'average_rate', 'product_rate_number'
-            ))
+        # get recommend product from cb
+        cb_list = content_based_recommendation(customer_id)
+        cb_products = list(Product.objects.filter(id__in=cb_list).annotate(
+            product_rate_number=Count('comments')
+        ).values(
+            'id', 'name', 'price', 'category', 'image_path', 'average_rate', 'product_rate_number'
+        ))
+
+        if order_count <= 5:
+            # only content based recommend
+            top_products = cb_products
         else:
-            print("User-CF working!!!")
+            # Hybrid recommend
+            # get User CF
+            user_cf_recommendation()
             user_similarity_filepath = os.path.join(dataset_base_dir, 'user_similarity_matrix.csv')
             similarity_matrix = pd.read_csv(user_similarity_filepath, index_col=0)
 
-            # 若customer_id不在相似度矩阵中，使用内容推荐
-            if str(customer_id) not in similarity_matrix.columns:
-                print(f"customer id: {customer_id} was not found in the user_similarity_matrix.csv")
-                filepath = os.path.join(dataset_base_dir, 'content_product.csv')
-                df = pd.read_csv(filepath)
-                top_products_dict = df.sort_values(by='recommend_score', ascending=False).head(8).to_dict('records')
-                top_product_ids = [product_dict['id'] for product_dict in top_products_dict]
-                top_products = list(Product.objects.filter(id__in=top_product_ids).annotate(
-                    product_rate_number=Count('comments')
-                ).values(
-                    'id', 'name', 'price', 'category', 'image_path', 'average_rate', 'product_rate_number'
-                ))
-            else:
-                # 获取与用户最相似的用户列表
-                similar_users = similarity_matrix[str(customer_id)].sort_values(ascending=False).head(8).index
-                item_user_filepath = os.path.join(dataset_base_dir, 'Item_User.csv')
-                item_user_df = pd.read_csv(item_user_filepath)
+            # get all the similar users
+            similar_users = similarity_matrix[str(customer_id)].sort_values(ascending=False).head(8).index
+            item_user_filepath = os.path.join(dataset_base_dir, 'Item_User.csv')
+            item_user_df = pd.read_csv(item_user_filepath)
 
-                # 获取相似用户喜欢的商品
-                liked_items = item_user_df[item_user_df['user_id'].isin(similar_users)]
-                top_products_ids = liked_items['product_id'].value_counts().head(8).index
-                top_products = Product.objects.filter(id__in=top_products_ids).values('id', 'name', 'price', 'category',
-                                                                                      'image_path', 'average_rate')
+            # Get items that similar users like
+            liked_items = item_user_df[item_user_df['user_id'].isin(similar_users)]
+            user_cf_products_ids = liked_items['product_id'].value_counts().head(8).index
+            user_cf_products = Product.objects.filter(id__in=user_cf_products_ids).values('id', 'name', 'price',
+                                                                                          'category',
+                                                                                          'image_path', 'average_rate')
 
-                # Calculate the average rating for each product by the logged-in customer
-                # and remove those with an average rating less than 4.
-                filtered_products = []
-                for product in top_products:
-                    average_rating = \
-                        Comment.objects.filter(customer=customer, product_id=product['id']).aggregate(
-                            Avg('rating'))[
-                            'rating__avg'] or 0
-                    if average_rating >= 3.5:
-                        filtered_products.append(product)
-                top_products = filtered_products
+            # hybrid weight recommend
+            top_products = weighted_hybrid_recommendation(cb_products, user_cf_products, cb_weight=0.5,
+                                                          user_cf_weight=0.5)
+            # filter out the low rated product
+            top_products = filter_low_rated_products(customer_id, top_products)
 
-    # 将查询集转换为列表字典
-    recommend_products = list(top_products)
-
-    # 获取每个推荐产品的评价数量
+    recommend_products = list(top_products)[:8]
     for product in recommend_products:
         product_id = product['id']
         product_rate_number = Comment.objects.filter(product_id=product_id).count()
         product['product_rate_number'] = product_rate_number
-    print(recommend_products)
+
+    # print(recommend_products)
     print("recommend dish successfully!")
     return JsonResponse({'products': recommend_products})
 
 
 # -- get the most popular store--
-# 在数据库中查找的商店信息并返回到前端
 # 创建一个csv文件叫popular.csv位于dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')中
 # csv文件中的数据1.total_rating(float) 2.popularity_value（int） 3.image_path(string) 4.name(string) 5.address(string) 6. score(float)
 # 以一个shop为单位，在Shop表格中先按照total_rating的数值从高到低排序，取排名前24的shop的total_rating, image_path ,name, address先存入该csv文件中
@@ -284,24 +365,19 @@ def get_popular(request):
 # 按照商店shop中所有product的销量之和 （商店的总销量）来排序
 # 创建一个csv文件叫sales.csv位于dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')中
 # csv文件中的数据如下:1.total_rating(float) 2.popularity_value（int） 3.image_path(string) 4.name(string) 5.address(string) 6. total_sales(float)
-# 对于popularity_value的值，是以每一个shop为单位，获取其对应ShopRating表格中对应的数据的数量。获取完毕后，再将其存入csv文件中对应的数据中
-# 对于Shop表格中的每个商店，通过shop查找其在Merchant表格中的数据，
-# 再通过merchant来查找其在Order表格中所有对应的orderd,然后再通过order在OrderItem中寻找所有对应的数据中的quantity的数据，然后进行求和，这个数据叫total_sales
 # 然后根据total_sales数据从高到低排序,取前24名的需要的数据存入csv文件中
 # 返回csv中前3个商店的信息
 def get_sales(request):
     dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
     if not os.path.exists(dataset_base_dir):
         os.makedirs(dataset_base_dir)
-
     csv_file_path = os.path.join(dataset_base_dir, 'sales.csv')
 
-    # 获取店铺的总销量
+    # get total sales
     shops_with_sales = Shop.objects.annotate(
         total_sales=Sum('products__order_items__quantity')
     ).order_by('-total_sales')[:24]
 
-    # 创建或覆盖CSV文件，指定编码为utf-8
     with open(csv_file_path, 'w', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['total_rating', 'popularity_value', 'image_path', 'name', 'address', 'total_sales']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -315,7 +391,7 @@ def get_sales(request):
                 'image_path': shop.image_path,
                 'name': shop.name,
                 'address': shop.address,
-                'total_sales': getattr(shop, 'total_sales', 0)  # 使用getattr防止total_sales为None
+                'total_sales': getattr(shop, 'total_sales', 0)
             })
 
     top_3_shops = []
@@ -327,17 +403,17 @@ def get_sales(request):
     return JsonResponse(top_3_shops, safe=False)
 
 
-# search page function
+# search function
 def get_search(request):
     if request.method == 'POST':
         s = request.POST.get('s', '')  # get the search text
-
+        # search shop
         shop_results = Shop.objects.filter(name__icontains=s).annotate(
             shop_rate_number=Count('ratings')
         ).order_by('-total_rating').values(
             'id', 'name', 'total_rating', 'image_path', 'address', 'shop_rate_number'
         )
-
+        # search product
         product_results = Product.objects.filter(name__icontains=s).annotate(
             product_rate_number=Count('comments')
         ).order_by('-average_rate').values(
@@ -349,7 +425,7 @@ def get_search(request):
             'products': list(product_results)
         })
     else:
-
+        # default
         shop_results = Shop.objects.annotate(
             shop_rate_number=Count('ratings')
         ).order_by('-total_rating').values(
@@ -368,7 +444,7 @@ def get_search(request):
         })
 
 
-# return favorite info
+# return all favorite info of the customer
 def get_favorite(request):
     username = request.session.get('username', None)
     user_type = request.session.get('user_type', None)
@@ -399,49 +475,67 @@ def get_favorite(request):
         return JsonResponse({'message': 'error: Non-existent user type.'}, status=400)
 
 
-# get all recommend dish
+# get the info of all the recommended product, and redirect to the page
 def all_recommend(request):
     if request.method == 'POST':
         username = request.session.get('username', None)
         user_type = request.session.get('user_type', None)
 
         dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
-        content_filepath = os.path.join(dataset_base_dir, 'content_product.csv')
+        cold_start_filepath = os.path.join(dataset_base_dir, 'cold_start.csv')
         item_user_filepath = os.path.join(dataset_base_dir, 'Item_User.csv')
         user_similarity_filepath = os.path.join(dataset_base_dir, 'user_similarity_matrix.csv')
         products = []  # recommended product list
 
         if username and user_type == '1':
+            try:
+                customer = Customer.objects.get(username=username)
+                customer_id = customer.id
+            except ObjectDoesNotExist:
+                return JsonResponse({'error': 'Customer not found'}, status=404)
             customer_orders_count = Order.objects.filter(customer__username=username).count()
-            if customer_orders_count > 3:
+            if customer_orders_count > 10:
+                # Hybrid
                 similarity_matrix = pd.read_csv(user_similarity_filepath, index_col=0)
-                customer_id = Customer.objects.get(username=username).id
 
-                if str(customer_id) in similarity_matrix.columns:
-                    # user cf recommendation
-                    similar_users = similarity_matrix[str(customer_id)].sort_values(ascending=False).index[:20]
-                    item_user_df = pd.read_csv(item_user_filepath)
-                    liked_product_ids = item_user_df[item_user_df['user_id'].isin(similar_users)][
-                        'product_id'].value_counts().head(20).index
-                    products_queryset = Product.objects.filter(id__in=liked_product_ids)
-                else:
-                    # content_based_recommendation
-                    df = pd.read_csv(content_filepath)
-                    product_ids = df.sort_values(by='recommend_score', ascending=False).head(20)['id']
-                    products_queryset = Product.objects.filter(id__in=product_ids)
+                # Get user CF products
+                similar_users = similarity_matrix[str(customer_id)].sort_values(ascending=False).head(20).index
+                item_user_df = pd.read_csv(item_user_filepath)
+                liked_product_ids = item_user_df[item_user_df['user_id'].isin(similar_users)][
+                    'product_id'].value_counts().head(20).index
+                user_cf_products = list(
+                    Product.objects.filter(id__in=liked_product_ids).values('id', 'name', 'price', 'category',
+                                                                            'image_path', 'average_rate'))
+
+                # Get cb products
+                cb_product_ids = content_based_recommendation(customer_id)
+                cb_products = list(
+                    Product.objects.filter(id__in=cb_product_ids).values('id', 'name', 'price', 'category',
+                                                                         'image_path', 'average_rate'))
+                # Weighted hybrid recommendation
+                top_products = weighted_hybrid_recommendation(cb_products, user_cf_products, cb_weight=0.5,
+                                                              user_cf_weight=0.5)
+                print("all_recommend(): hybrid recommend successfully")
+
             else:
-                # content_based_recommendation
-                df = pd.read_csv(content_filepath)
-                product_ids = df.sort_values(by='recommend_score', ascending=False).head(20)['id']
-                products_queryset = Product.objects.filter(id__in=product_ids)
+                # Content-based recommendation
+                cb_product_ids = content_based_recommendation(customer_id)
+                top_products = list(
+                    Product.objects.filter(id__in=cb_product_ids).values('id', 'name', 'price', 'category',
+                                                                         'image_path', 'average_rate'))
+                print("all_recommend(): Content-based recommend successfully")
+            products_queryset = Product.objects.filter(id__in=[p['id'] for p in top_products])
+            products = list(products_queryset.annotate(product_rate_number=Count('comments')).values(
+                'id', 'name', 'price', 'category', 'image_path', 'average_rate', 'product_rate_number'))
+            products = filter_low_rated_products(customer_id, products)  # filer out low filter
         else:
-            # content_based_recommendation
-            df = pd.read_csv(content_filepath)
+            # cold start recommendation
+            df = pd.read_csv(cold_start_filepath)
             product_ids = df.sort_values(by='recommend_score', ascending=False).head(20)['id']
             products_queryset = Product.objects.filter(id__in=product_ids)
-
-        products = list(products_queryset.annotate(product_rate_number=Count('comments')).values(
-            'id', 'name', 'price', 'category', 'image_path', 'average_rate', 'product_rate_number'))
+            print("all_recommend(): cold start recommend successfully")
+            products = list(products_queryset.annotate(product_rate_number=Count('comments')).values(
+                'id', 'name', 'price', 'category', 'image_path', 'average_rate', 'product_rate_number'))
 
         return JsonResponse({'products': products, 'type': 'product'})
     else:
@@ -449,7 +543,7 @@ def all_recommend(request):
         return render(request, 'view.html', context)
 
 
-# all the most popular store page
+# get the info of all the most popular store, and redirect to the page
 def all_popular(request):
     if request.method == 'POST':
         dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
@@ -469,7 +563,7 @@ def all_popular(request):
         return render(request, 'view.html', context)
 
 
-# all the most sales store page
+# get the info of all the most sales store, and redirect to the page
 def all_sales(request):
     if request.method == 'POST':
         # get sales.csv

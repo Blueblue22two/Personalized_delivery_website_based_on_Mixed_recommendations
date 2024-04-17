@@ -99,6 +99,7 @@ function submitComment() {
     console.log("Product ratings: ", productRatings);
     // get comment
     let commentText = $('textarea[name="commentText"]').val();
+
     // validation
     if (!validateFormData()) {
         console.log("Validation failed");

@@ -10,6 +10,7 @@ from merchants.models import Product, ShopRating
 from orders.models import Order, OrderItem
 
 
+# redirect to my order page
 def my_orders(request):
     return render(request, "my_order.html")
 
@@ -20,15 +21,16 @@ def get_order(request):
     if username is None:
         return JsonResponse({'message': 'Unauthorized access'}, status=401)
     user_type = request.session.get('user_type', None)
-    if user_type in ['1', '2']:  # user type exists
+
+    if user_type in ['1', '2']:
         try:
-            if user_type == '1': # for customer
+            if user_type == '1':
+                # for customer
                 customer = Customer.objects.get(username=username)
-                # 使用order_by('-id')按订单ID降序排列
                 orders = Order.objects.filter(customer=customer).order_by('-id')
-            else: # for merchant
+            else:
+                # for merchant
                 merchant = Merchant.objects.get(username=username)
-                # 使用order_by('-id')按订单ID降序排列
                 orders = Order.objects.filter(merchant=merchant).order_by('-id')
 
             order_data = [] # store all order data
@@ -147,7 +149,6 @@ def post_comment(request):
 
         # get json data
         data = json.loads(request.body.decode('utf-8'))
-
         order_id = data.get('order_id')
         shopRating = data.get('shopRating')
         commentText = data.get('commentText')
@@ -160,29 +161,22 @@ def post_comment(request):
         try:
             customer = get_object_or_404(Customer, username=username)
             order = get_object_or_404(Order, id=order_id, customer=customer)
-            print(f"Order shop: {order.shop.name}")  # 打印订单所属的店铺名称
 
             # create ShopRating object
             ShopRating.objects.create(shop=order.shop, rate=shopRating)
-            # 更新店铺的总评分
+            # update store total rating
             new_total_rating = ShopRating.objects.filter(shop=order.shop).aggregate(Avg('rate'))['rate__avg']
             order.shop.total_rating = new_total_rating
             order.shop.save()
-
-            # create comment object
+            # create comment
             for productRating in productRatings:
                 product_name = productRating['name']
                 rating = productRating['rating']
                 try:
                     product = Product.objects.get(name=product_name, shop=order.shop)
-                    # 让rating值赋值给对应的product中的average_rate数据
-                    product.average_rate = rating
-                    product.save()
                     Comment.objects.create(customer=customer, product=product, text=commentText, rating=rating)
-                    # 更新产品的平均评分
-                    new_average_rate = Comment.objects.filter(product=product).aggregate(Avg('rating'))['rating__avg']
-                    product.average_rate = new_average_rate
-                    product.save()
+                    # update product average rate
+                    product.update_average_rate()
                 except ObjectDoesNotExist:
                     print(f"Error: No product matches the given query for name {product_name} in shop {order.shop.name}")
                     return JsonResponse({'error': f"No product matches the given query for name {product_name}"}, status=400)

@@ -5,12 +5,13 @@ from django.utils import timezone
 from django.db import transaction
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from django.views.decorators.http import require_POST
 from accounts.models import Customer, Address, Shop
 from cart.models import CartItem
 from merchants.models import Product
 from orders.models import Order, OrderItem
 
+# get a logger named as 'django'
+logger = logging.getLogger('django')
 
 # Create your views here.
 def payment_view(request):
@@ -34,81 +35,75 @@ def payment_view(request):
         return render(request, 'payment.html')
 
 
-# get a logger named as 'django'
-logger = logging.getLogger('django')
-
-
-@require_POST
 def generate_payment(request):
-    try:
-        logger.debug("generate_payment called")
-        username = request.session.get('username', None)
-        if username is None:
-            logger.error("Unauthorized access attempt")
-            return JsonResponse({'message': 'Unauthorized access'}, status=401)
+    if request.method == 'POST':
+        try:
+            logger.debug("generate_payment called")
+            username = request.session.get('username', None)
+            if username is None:
+                logger.error("Unauthorized access attempt")
+                return JsonResponse({'message': 'Unauthorized access'}, status=401)
 
-        customer = Customer.objects.get(username=username)
-        logger.debug(f"Customer retrieved: {customer.username}")
+            customer = Customer.objects.get(username=username)
+            logger.debug(f"Customer retrieved: {customer.username}")
 
-        data = json.loads(request.body)
-        logger.debug(f"Request data: {data}")
+            data = json.loads(request.body)
+            logger.debug(f"Request data: {data}")
 
-        products = data.get('products', [])
+            products = data.get('products', [])
+            total_price = data.get('total_price', 0)
+            address_id = data.get('address_id', None)
+            address = Address.objects.get(id=address_id, customer=customer)
+            sale_time = timezone.now()
+            logger.debug(f"Address retrieved: {address.address_line}")
+            logger.debug(f"Sale time: {sale_time}")
 
-        total_price = data.get('total_price', 0)
-        address_id = data.get('address_id', None)
+            temp = []
+            with transaction.atomic():
+                for product_data in products:
+                    product_id = product_data.get('productId')
+                    quantity = product_data.get('quantity', 1)
+                    product = Product.objects.get(id=product_id)
+                    shop = product.shop
+                    logger.debug(f"Processing product ID {product_id} with quantity {quantity}")
+                    shop_id = shop.id
+                    matching_order_info = next((item for item in temp if item['shopId'] == shop_id), None)
 
-        address = Address.objects.get(id=address_id, customer=customer)
-        logger.debug(f"Address retrieved: {address.address_line}")
+                    if not matching_order_info:
+                        merchant = shop.merchant
+                        order = Order.objects.create(customer=customer, merchant=merchant, shop=shop, total_price=0,
+                                                     sale_time=sale_time, address_line=address.address_line)
+                        logger.debug(f"Created order ID: {order.id}")
+                        temp.append({'shopId': shop_id, 'orderId': order.id})
 
-        sale_time = timezone.now()
-        logger.debug(f"Sale time: {sale_time}")
+                    else:
+                        order = Order.objects.get(id=matching_order_info['orderId'])
 
-        temp = []
-        with transaction.atomic():
-            for product_data in products:
-                product_id = product_data.get('productId')
-                quantity = product_data.get('quantity', 1)
-                product = Product.objects.get(id=product_id)
-                shop = product.shop
-                logger.debug(f"Processing product ID {product_id} with quantity {quantity}")
-                shop_id = shop.id
-                matching_order_info = next((item for item in temp if item['shopId'] == shop_id), None)
+                    # create OrderItem
+                    OrderItem.objects.create(order=order, product=product, product_price=product.price, quantity=quantity)
+                    # update total_price
+                    calculate_order_price(order.id)
 
-                if not matching_order_info:
-                    merchant = shop.merchant
-                    order = Order.objects.create(customer=customer, merchant=merchant, shop=shop, total_price=0,
-                                                 sale_time=sale_time, address_line=address.address_line)
-                    logger.debug(f"Created order ID: {order.id}")
-                    temp.append({'shopId': shop_id, 'orderId': order.id})
+            logger.info("generate payment successfully!")
+            # clear the shoppingcart
+            CartItem.objects.filter(cart__customer=customer).delete()
+            request.session['order_summary'] = {'orders': temp, 'total_price': total_price}
+            return JsonResponse({'redirect_url': '/payment/payment_view/'}, status=200)
 
-                else:
-                    order = Order.objects.get(id=matching_order_info['orderId'])
-
-                # create OrderItem
-                OrderItem.objects.create(order=order, product=product, product_price=product.price, quantity=quantity)
-                # update total_price
-                calculate_order_price(order.id)
-
-        logger.info("generate payment successfully!")
-        # clear the shoppingcart
-        CartItem.objects.filter(cart__customer=customer).delete()
-        # 将必要的数据存入session，便于在跳转后的页面中使用
-        request.session['order_summary'] = {'orders': temp, 'total_price': total_price}
-        return JsonResponse({'redirect_url': '/payment/payment_view/'}, status=200)
-
-    except Customer.DoesNotExist:
-        logger.exception("Customer not found")
-        return JsonResponse({'error': 'Customer not found'}, status=404)
-    except Address.DoesNotExist:
-        logger.exception("Address not found")
-        return JsonResponse({'error': 'Address not found'}, status=404)
-    except Product.DoesNotExist:
-        logger.exception("Product not found for given product ID")
-        return JsonResponse({'error': 'Product not found'}, status=404)
-    except Exception as e:
-        logger.exception(f"Unexpected error: {str(e)}")
-        return JsonResponse({'error': 'An unexpected error occurred'}, status=500)
+        except Customer.DoesNotExist:
+            logger.exception("Customer not found")
+            return JsonResponse({'error': 'Customer not found'}, status=404)
+        except Address.DoesNotExist:
+            logger.exception("Address not found")
+            return JsonResponse({'error': 'Address not found'}, status=404)
+        except Product.DoesNotExist:
+            logger.exception("Product not found for given product ID")
+            return JsonResponse({'error': 'Product not found'}, status=404)
+        except Exception as e:
+            logger.exception(f"Unexpected error: {str(e)}")
+            return JsonResponse({'error': 'An unexpected error occurred'}, status=500)
+    else:
+        return JsonResponse({'message': 'error'}, status=400)
 
 
 def calculate_order_price(order_id):

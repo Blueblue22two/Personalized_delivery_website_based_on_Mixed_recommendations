@@ -1,6 +1,7 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from accounts.models import Merchant, Shop
+from django.db.models import Avg
 
 
 # Create your models here.
@@ -17,6 +18,15 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     image_path = models.CharField(max_length=255, blank=True)  # Assuming image path could be blank
     average_rate = models.DecimalField(max_digits=3, decimal_places=1, default=0)  # Added field
+
+    def update_average_rate(self):
+        aggregation = self.comments.aggregate(avg_rating=Avg('rating'))
+        self.average_rate = aggregation.get('avg_rating', 0)
+        self.save()
+
+    def get_average_rate(self):
+        self.update_average_rate()
+        return self.average_rate
 
 
 class ShopRating(models.Model):
