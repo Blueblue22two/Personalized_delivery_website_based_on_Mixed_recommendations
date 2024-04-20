@@ -1,6 +1,6 @@
 # Online food delivery website with Recommendation system
 ## General introduction:  
-> This is an intelligence recommendation system for online food ordering platform based on **Collaborative Filtering** and **Content-based recommendation**.  
+> This is an intelligence recommendation system for online food ordering platform based on a **hybrid recommendation system** (use **Collaborative Filtering** and **Content-based recommendation**).  
 
 - **User type**:
 1. customer
@@ -25,14 +25,16 @@
 
 ----
 
-## 📜Recommendation system:
-> two types of recommend algorithm:
+## 📜Hybrid Recommendation system:
+> This project combines two different recommendation algorithms in terms of weights.  
 ### Collaborative Filtering:  
 - User-CF:  
-> we use ***Adjusted Cosine Similarity (John.S.Breese)*** to calculate the similarity between user, and store it in *user similarity matrix*.  
+> we use ***Adjusted Cosine Similarity (John.S.Breese)*** to calculate the similarity between user, and store it in *user similarity matrix*.   
 
 ### Content-based recommendation:  
-> Using content-based recommendation as a strategy for cold start.
+> Using  ***Jaccard index*** to measure the similarity of item.  
+
+In addition, we also create a **popularity-based recommendation function** to recommend items based only on the data of the item itself (such as sales and number of favorites), which solves the ***cold start*** problem of the above two recommendation algorithms.  
 
 ---
 
@@ -61,12 +63,7 @@ url: `http://127.0.0.1:8000/`
 
 - How to create an admin account?  
 `python  manage.py createsuperuser `  
-
-- Administrator account:  
-```
-username: Blueblue2222
-Password: cdut8888
-```  
+ 
 
 --- 
 
