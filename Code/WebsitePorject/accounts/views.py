@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from accounts.models import Customer, Merchant
+import json
 
 
 # Create your views here.
@@ -10,7 +11,6 @@ from accounts.models import Customer, Merchant
 
 # -- logout(clear session) & redirect to main page--
 def logout_view(request):
-    print("log out...")
     logout(request)
     print("log out successfully,redirect to /")
     return HttpResponseRedirect('/')

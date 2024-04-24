@@ -48,14 +48,7 @@ INSTALLED_APPS = [
     'products',
     'store',
     'recommendation',
-    # 'accounts.apps.AccountsConfig',
-    # 'cart.apps.CartConfig',
-    # 'customers.apps.CustomersConfig',
-    # 'merchants.apps.MerchantsConfig',
-    # 'orders.apps.OrdersConfig',
-    # 'payment.apps.PaymentConfig',
-    # 'products.apps.ProductsConfig',
-    # 'recommendation.apps.RecommendationConfig',
+    'TestApp',
 ]
 
 MIDDLEWARE = [

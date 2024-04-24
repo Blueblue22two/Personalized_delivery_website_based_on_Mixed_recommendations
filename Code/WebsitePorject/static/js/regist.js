@@ -32,12 +32,6 @@ function validateForm(formData) {
         return false;
     }
 
-    // // Check for special characters in the username
-    // if (!/^[A-Za-z0-9]+$/.test(formData.username)) {
-    //     alert('username must not contain special characters.');
-    //     return false;
-    // }
-
     // Check for special characters in the password
     if (!/^[A-Za-z0-9]+$/.test(formData.password)) {
         alert('Password must not contain special characters.');

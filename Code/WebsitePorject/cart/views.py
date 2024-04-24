@@ -58,7 +58,7 @@ def add_cart(request):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
-# upload cart item info from cart page
+# upload the cart item and number from cart page
 def upload(request):
     if request.method == 'POST':
         username = request.session.get('username', None)

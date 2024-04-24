@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.http import JsonResponse
 from accounts.models import Customer, Shop, Favorite, Address
 from customers.models import FavItem
@@ -34,9 +34,12 @@ def cancel_shop_fav(request, name):
     if username and user_type == '1':
         try:
             customer = Customer.objects.get(username=username)
-            shop = get_object_or_404(Shop, name=name)
-            Favorite.objects.filter(user=customer, shop=shop).delete()
-            return JsonResponse({'message': 'Shop favorite successfully cancelled.'})
+            try:
+                shop = get_object_or_404(Shop, name=name)
+                Favorite.objects.filter(user=customer, shop=shop).delete()
+                return JsonResponse({'message': 'Shop favorite successfully cancelled.'})
+            except Http404:
+                return JsonResponse({'message': 'Shop does not exist.'}, status=404)
         except Customer.DoesNotExist:
             return JsonResponse({'message': 'Customer does not exist.'}, status=404)
     else:

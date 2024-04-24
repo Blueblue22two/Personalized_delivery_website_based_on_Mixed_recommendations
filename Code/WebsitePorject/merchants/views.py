@@ -12,8 +12,6 @@ import os
 from django.conf import settings
 import shutil
 
-# Create your views here.
-
 
 # -- My store --
 def my_store(request):
@@ -64,13 +62,14 @@ def new_store(request):
     if request.method == 'POST':
         username = request.session.get('username', None)
         user_type = request.session.get('user_type', None)  # if not exist then return none
+
         store_name = request.POST.get('name')
         store_image = request.FILES.get('storeImage', None)
         province = request.POST.get('province')
         city = request.POST.get('city')
-        distrct = request.POST.get('distrct')
+        district = request.POST.get('district')
         detail = request.POST.get('detail')
-        address = f'{province}-{city}-{distrct}-{detail}'
+        address = f'{province}-{city}-{district}-{detail}'
         if not username or user_type != '2':
             logout_view(request)
             return JsonResponse({'error': 'Error user type or not logged in'}, status=400)
@@ -91,7 +90,7 @@ def new_store(request):
 
         # get the database file path
         dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
-        store_dir = os.path.join(dataset_base_dir, store_name.replace(" ", "_"))  # 使用店铺名创建目录
+        store_dir = os.path.join(dataset_base_dir, store_name.replace(" ", "_"))
 
         # Paths for 'LOGO' and 'Products' directories within the store directory
         logo_dir = os.path.join(store_dir, 'LOGO')
@@ -108,7 +107,7 @@ def new_store(request):
             name=store_name,
             province=province,
             city=city,
-            district=distrct,
+            district=district,
             detail=detail,
             address=address,
             total_rating=0,  # default value
@@ -130,51 +129,45 @@ def new_store(request):
 
 
 # add product view
-'''
-在创建product时dataset_base_dir中寻找一个为文件夹名字为对应的shop数据的name的值（寻找，而不是创建一个同名的文件夹），
-然后进入其中的子文件夹Products中(例如'Dataset\Big Buger city\Products`)，然后在这个文件夹中
-创建一个名字为变量ｎａｍｅ的值的文件夹，然后将image存入这个product name文件夹中，然后将image path保存到对应的数据库中
-'''
 def add_product(request):
     if request.method == 'POST':
         username = request.session.get('username', None)
         if username is None:
             return JsonResponse({'error': 'Unauthorized access'}, status=401)
 
-        print("> ready to add a product")
         try:
             merchant = Merchant.objects.get(username=username)
-            shop = merchant.shop
+            shop = Shop.objects.get(merchant=merchant)
             if shop is None:
                 return JsonResponse({'error': 'Shop does not exist for this merchant'}, status=404)
         except Merchant.DoesNotExist:
             return JsonResponse({'error': 'Merchant does not exist'}, status=404)
 
-        name = request.POST.get('name') # product name
+        name = request.POST.get('name')  # product name
         price = request.POST.get('price')
         description = request.POST.get('description')
         category = request.POST.get('category')
         product_image = request.FILES.get('productImage')
         # Validation
-        print("Validating...")
         if not all([name, price, description, category, product_image]):
             return JsonResponse({'error': 'Missing data'}, status=400)
-
-        # check same product name
-        if Product.objects.filter(shop=shop, name=name).exists():
-            print(f"Product with this name {name} already exists in your shop")
-            return JsonResponse({'error': 'Product with this name already exists in your shop'}, status=409)
-
         try:
             price = Decimal(price)
-        except:
+            if price <= 0:
+                return JsonResponse({'error': 'Price must be greater than zero'}, status=400)
+            # check the image file
+            if not product_image.name.endswith(('.png', '.jpg', '.jpeg')):
+                return JsonResponse({'error': 'Invalid file type'}, status=400)
+            # check same product name
+            if Product.objects.filter(shop=shop, name=name).exists():
+                print(f"Product with this name {name} already exists in your shop")
+                return JsonResponse({'error': 'Product with this name already exists in your shop'}, status=409)
+        except InvalidOperation:
             return JsonResponse({'error': 'Invalid price format'}, status=400)
 
         #  Dataset path
         dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
         shop_path = os.path.join(dataset_base_dir, shop.name.replace(" ", "_"))  # use shop name
-        print(f"> shop path: {shop_path}")
-
         # Check if shop_path exists, if not return an error or create it based on your requirement
         if not os.path.exists(shop_path):
             return JsonResponse({'error': 'Shop directory does not exist'}, status=404)
@@ -184,17 +177,18 @@ def add_product(request):
         # Ensure the 'Products' directory exists under the shop directory
         if not os.path.exists(products_path):
             os.makedirs(products_path, exist_ok=True)
-
         product_folder_path = os.path.join(products_path, name.replace(" ", "_"))
 
-        # make a product file
+        # create a product file
         os.makedirs(product_folder_path, exist_ok=True)
         image_file_path = os.path.join(product_folder_path, product_image.name)
-
-        # save image
-        with open(image_file_path, 'wb+') as destination:
-            for chunk in product_image.chunks():
-                destination.write(chunk)
+        # save image in product file
+        try:
+            with open(image_file_path, 'wb+') as destination:
+                for chunk in product_image.chunks():
+                    destination.write(chunk)
+        except IOError as e:
+            return JsonResponse({'error': 'Failed to save image'}, status=500)
 
         product = Product(
             shop=shop,
@@ -205,9 +199,8 @@ def add_product(request):
             image_path=os.path.relpath(image_file_path, start=dataset_base_dir)
         )
         product.save()
-
-        print("product save successfully")
-        return JsonResponse({'message': 'Product added successfully', 'redirect_url': '/merchants/my_store/'},
+        print("add product successfully")
+        return JsonResponse({'message': 'add Product successfully', 'redirect_url': '/merchants/my_store/'},
                             status=200)
     else:
         return render(request, 'add_product.html')
@@ -231,7 +224,7 @@ def show_product(request):
 
 # -- modify product page, receive modify data and store it --
 def modify_product(request):
-    username = request.session.get('username', None) # merchant name
+    username = request.session.get('username', None)  # merchant name
     if username is None:
         logout_view()
         return JsonResponse({'error': 'Unauthorized access'}, status=401)
@@ -289,13 +282,12 @@ def delete_product(request):
             product = Product.objects.get(id=product_id, shop__merchant__username=username)
             product_folder_path = os.path.join(settings.BASE_DIR, 'Dataset', product.shop.name.replace(" ", "_"),
                                                'Products', product.name.replace(" ", "_"))
-            # shutil.rmtree() to delete all file
+            # shutil.rmtree() to delete all file of product
             if os.path.exists(product_folder_path):
                 shutil.rmtree(product_folder_path)
             product.delete()
-
             return JsonResponse({'message': 'Product removed successfully'})
-        except ObjectDoesNotExist:
+        except Product.DoesNotExist:
             return JsonResponse({'error': 'Product not found'}, status=404)
     else:
         return JsonResponse({'error': 'Invalid request'}, status=400)
@@ -383,7 +375,6 @@ def upload_rate(request):
         average_rate = ShopRating.objects.filter(shop=merchant.shop).aggregate(Avg('rate'))['rate__avg']
         print(f"average_rate: {average_rate}")
         if average_rate is not None:
-            # 更新Shop的total_rating字段
             merchant.shop.total_rating = Decimal(average_rate).quantize(Decimal('0.1'))
             merchant.shop.save()
             print("Shop rating updated successfully")

@@ -13,7 +13,7 @@ from orders.models import Order, OrderItem
 # get a logger named as 'django'
 logger = logging.getLogger('django')
 
-# Create your views here.
+
 def payment_view(request):
     if request.method == 'POST':
         try:

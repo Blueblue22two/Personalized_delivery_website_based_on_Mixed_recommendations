@@ -32,7 +32,7 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
-# cold start function
+# item-based popularity recommendation
 # recommend product based on the popularity and sales of product
 def cold_start_recommendation():
     dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
@@ -46,31 +46,33 @@ def cold_start_recommendation():
         ).values('id', 'average_rate', 'favorite_count', 'total_sales')
         df = pd.DataFrame(list(products))
 
+        # Convert decimal.Decimal to float
+        df['average_rate'] = df['average_rate'].astype(float)
+        df['favorite_count'] = df['favorite_count'].astype(float)
+        df['total_sales'] = df['total_sales'].astype(float)
+
         # Normalize data
-        df['norm_average_rate'] = df['average_rate'] / Decimal('5.0')
-        df['norm_favorite_count'] = df['favorite_count'] / 1000
-        df['norm_total_sales'] = df['total_sales'] / 1000
+        df['norm_average_rate'] = df['average_rate'] / 5.0
+        df['norm_favorite_count'] = df['favorite_count'] / 1000.0
+        df['norm_total_sales'] = df['total_sales'] / 5000.0
 
         # Ensure no division by zero issues, replace NaN with 0
         df[['norm_favorite_count', 'norm_total_sales']] = df[['norm_favorite_count', 'norm_total_sales']].fillna(0)
 
-        # Calculate recommendation score with the weight of each data
-        df['recommend_score'] = (df['norm_average_rate'] * Decimal('0.4') +
-                                 df['norm_favorite_count'] * Decimal('0.3') + # line 59
-                                 df['norm_total_sales'] * Decimal('0.3'))
-
+        # Calculate recommendation score
+        df['recommend_score'] = (df['norm_average_rate'] * 0.4 +
+                                 df['norm_favorite_count'] * 0.3 +
+                                 df['norm_total_sales'] * 0.3)
         df.to_csv(filepath, index=False)
-        print(f"cold start data saved to {filepath}")
         logger.info(f"cold start data saved to {filepath}")
     except Exception as e:
         logger.error(f"Error during generating content based recommendation: {e}", exc_info=True)
-        print(f"Error during generating content based recommendation: {e}")
 
 
 # Content-based recommendation
 def content_based_recommendation(user_id):
     dataset_base_dir = os.path.join(settings.BASE_DIR, 'Dataset')
-    csv_file_path = os.path.join(dataset_base_dir, 'cb.csv') # csv
+    csv_file_path = os.path.join(dataset_base_dir, 'cb.csv')
     if not os.path.exists(csv_file_path):
         os.makedirs(csv_file_path)
 
@@ -142,7 +144,6 @@ def adjusted_cosine_similarity(user_item_matrix):
     # 中心化处理：将用户评分减去该用户的平均评分
     matrix_user_mean = user_item_matrix.sub(user_ratings_mean, axis=0)
     # 计算修正的余弦相似度
-    # np.dot用于计算点积，np.linalg.norm用于计算Frobenius范数
     similarity_matrix = np.dot(matrix_user_mean, matrix_user_mean.T) / \
                         (np.linalg.norm(matrix_user_mean, axis=1)[:, np.newaxis] * \
                          np.linalg.norm(matrix_user_mean.T, axis=0)[np.newaxis, :])
@@ -260,8 +261,23 @@ def get_recommend_dish(request):
         ))
 
         if order_count <= 5:
-            # only content based recommend
-            top_products = cb_products
+            # use cold_start_recommendation
+            filepath = os.path.join(dataset_base_dir, 'cold_start.csv')
+            cold_start_recommendation()
+
+            if not os.path.exists(filepath) or os.stat(filepath).st_size == 0:
+                logger.error(f"CSV file at {filepath} is missing or empty.")
+                print(f"CSV file at {filepath} is missing or empty.")
+                return JsonResponse({'error': 'Data is missing or empty'}, status=500)
+            else:
+                df = pd.read_csv(filepath)
+                top_products_dict = df.sort_values(by='recommend_score', ascending=False).head(8).to_dict('records')
+                top_product_ids = [product_dict['id'] for product_dict in top_products_dict]
+                top_products = list(Product.objects.filter(id__in=top_product_ids).annotate(
+                    product_rate_number=Count('comments')
+                ).values(
+                    'id', 'name', 'price', 'category', 'image_path', 'average_rate', 'product_rate_number'
+                ))
         else:
             # Hybrid recommend
             # get User CF
@@ -494,7 +510,7 @@ def all_recommend(request):
             except ObjectDoesNotExist:
                 return JsonResponse({'error': 'Customer not found'}, status=404)
             customer_orders_count = Order.objects.filter(customer__username=username).count()
-            if customer_orders_count > 10:
+            if customer_orders_count > 5:
                 # Hybrid
                 similarity_matrix = pd.read_csv(user_similarity_filepath, index_col=0)
 
@@ -518,15 +534,30 @@ def all_recommend(request):
                 print("all_recommend(): hybrid recommend successfully")
 
             else:
+                # use cold_start_recommendation
+                filepath = os.path.join(dataset_base_dir, 'cold_start.csv')
+                cold_start_recommendation()
+
+                if not os.path.exists(filepath) or os.stat(filepath).st_size == 0:
+                    logger.error(f"CSV file at {filepath} is missing or empty.")
+                    print(f"CSV file at {filepath} is missing or empty.")
+                    return JsonResponse({'error': 'Data is missing or empty'}, status=500)
+                else:
+                    df = pd.read_csv(filepath)
+                    top_products_dict = df.sort_values(by='recommend_score', ascending=False).head(20).to_dict('records')
+                    top_products = [product_dict['id'] for product_dict in top_products_dict]
+
                 # Content-based recommendation
-                cb_product_ids = content_based_recommendation(customer_id)
-                top_products = list(
-                    Product.objects.filter(id__in=cb_product_ids).values('id', 'name', 'price', 'category',
-                                                                         'image_path', 'average_rate'))
-                print("all_recommend(): Content-based recommend successfully")
+                # cb_product_ids = content_based_recommendation(customer_id)
+                # top_products = list(
+                #     Product.objects.filter(id__in=cb_product_ids).values('id', 'name', 'price', 'category',
+                #                                                          'image_path', 'average_rate'))
+                # print("all_recommend(): Content-based recommend successfully")
+
             products_queryset = Product.objects.filter(id__in=[p['id'] for p in top_products])
             products = list(products_queryset.annotate(product_rate_number=Count('comments')).values(
                 'id', 'name', 'price', 'category', 'image_path', 'average_rate', 'product_rate_number'))
+
             products = filter_low_rated_products(customer_id, products)  # filer out low filter
         else:
             # cold start recommendation

@@ -31,7 +31,6 @@ class Address(models.Model):
 class ShoppingCart(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='shopping_carts')
     quantity = models.IntegerField(validators=[MaxValueValidator(100)])
-    # TODO:后面可考虑删除quantity
 
 
 class Shop(models.Model):
@@ -40,10 +39,10 @@ class Shop(models.Model):
     total_rating = models.DecimalField(max_digits=3, decimal_places=1,default=0)
     image_path = models.CharField(max_length=255)
     address = models.CharField(max_length=255, null=True, blank=True)
-    province = models.CharField(max_length=25, blank=True, default='')
-    city = models.CharField(max_length=25, blank=True, default='')
-    district = models.CharField(max_length=25, blank=True, default='')
-    detail = models.CharField(max_length=100, blank=True, default='')
+    province = models.CharField(max_length=25, blank=True, null=False, default='')
+    city = models.CharField(max_length=25, blank=True, null=False, default='')
+    district = models.CharField(max_length=25, blank=True, null=False, default='')
+    detail = models.CharField(max_length=100, blank=True, null=False, default='')
 
 
 class Favorite(models.Model):
