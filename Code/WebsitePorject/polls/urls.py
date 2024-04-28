@@ -7,6 +7,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("login/",views.login,name="login"),
 
-    # test template
+    # testing
     path("template/",views.template,name="template"),
 ]

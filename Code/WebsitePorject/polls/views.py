@@ -1,26 +1,25 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.http import JsonResponse
 from django.conf import settings
-import os
+from django.contrib.auth.hashers import make_password
 
 
-# Create your views here.
-
-
-# return the template of index page
+# redirect to main page
 def index(request):
-    # get the root directory
-    root_directory = settings.BASE_DIR
-    print(f"Project root directory is: {root_directory}")
-
     return render(request, 'main_index.html')
 
 
+# redirect to login page of choose user type
 def login(request):
     return render(request, 'login.html')
 
 
-#test
+# test
 def template(request):
-    return render(request, 'template.html')
+    psw1 = '11111111'
+    psw2 = '99999999'
+
+    # hash password
+    password1 = make_password(psw1)
+    print("Hash Password1:", password1)
+    password2 = make_password(psw2)
+    print("Hash Password2:", password2)

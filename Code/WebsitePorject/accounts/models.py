@@ -7,14 +7,14 @@ from django.dispatch import receiver
 
 
 class Customer(models.Model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+    username = models.CharField(max_length=50, db_index=True)
+    password = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=11)
 
 
 class Merchant(models.Model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+    username = models.CharField(max_length=50, db_index=True)
+    password = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=11)
     shop = models.ForeignKey('Shop', on_delete=models.SET_NULL, null=True, related_name='merchants')
 

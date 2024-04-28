@@ -1,4 +1,3 @@
-
 function getCsrfTokenFromForm() {
     return document.querySelector('input[name="csrfmiddlewaretoken"]').value;
 }
@@ -54,7 +53,7 @@ $(document).ready(function () {
     $('#registrationForm').submit(function (event) {
         event.preventDefault();
 
-        var formData = {
+        let formData = {
             username: $('#username').val().trim(),
             password: $('#password').val().trim(),
             confirmPassword: $('#confirm_password').val().trim(),
@@ -66,10 +65,6 @@ $(document).ready(function () {
         if (!validateForm(formData)) {
             console.log("Validation failed");
         }else{
-            // (md5)
-            formData.password = md5(formData.password);
-            console.log("Hash: ", formData.password);
-
             // set the url
             let url_regis;
             if (formData.userType === '1'){

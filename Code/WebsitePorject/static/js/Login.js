@@ -43,7 +43,7 @@ $(document).ready(function() {
     $('form').submit(function(event) {
         event.preventDefault(); // Prevent the default form submission
 
-        var formData = {
+        let formData = {
             username: $('#username').val().trim(),
             password: $('#password').val().trim(),
             userType: $("#userType").text().trim()
@@ -53,8 +53,6 @@ $(document).ready(function() {
             console.log("Verification failed");
             return;
         }
-        formData.password = md5(formData.password); // Hash the password
-        console.log("Hashed Password: ", formData.password);
 
         // based on the userType, decide where to send the data
         let loginUrl = '';

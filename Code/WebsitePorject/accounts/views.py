@@ -1,17 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.contrib.auth import login, logout
 from accounts.models import Customer, Merchant
-import json
-
-
-# Create your views here.
+from django.contrib.auth.hashers import make_password, check_password
 
 
 # -- logout(clear session) & redirect to main page--
 def logout_view(request):
-    logout(request)
+    logout(request) # logout and clear session
     print("log out successfully,redirect to /")
     return HttpResponseRedirect('/')
 
@@ -77,51 +74,43 @@ def login_merchant(request):
 # This Function to receive form and login account for user
 def submit_log(request):
     if request.method == 'POST':
-        # get the form data
         username = request.POST.get('username')
         password = request.POST.get('password')
         user_type = request.POST.get('userType')
-
         print("Username:", username)
         print("Password:", password)
         print("User Type:", user_type)
 
         # if user_type != '1' and user_type != '2':
-        if user_type != '1' and user_type != '2':  # customer
+        if user_type != '1' and user_type != '2':
             print("error: Non-existent user type: " + user_type)
             return JsonResponse({'message': 'error: Non-existent user type.'}, status=400)
 
-        # Connect the database
         try:
             if user_type == '1':  # customer
-                if Customer.objects.filter(username=username, password=password).exists():
-                    # User exists and password is correct
-                    pass  # You can perform additional actions if needed
-                else:
-                    # User does not exist or password is incorrect
-                    return JsonResponse({'message': 'Invalid username or password.'}, status=400)
-
+                customer = Customer.objects.get(username=username)
+                hash_password = customer.password
+                if not check_password(password, hash_password):  # validate password
+                    return JsonResponse({'message': 'Invalid password.'}, status=401)
             else:  # merchant
-                if Merchant.objects.filter(username=username, password=password).exists():
-                    # User exists and password is correct
-                    pass  # You can perform additional actions if needed
-                else:
-                    # User does not exist or password is incorrect
-                    return JsonResponse({'message': 'Invalid username or password.'}, status=400)
-        except Exception as e:
-            print("Error connecting to database:", str(e))
-            return JsonResponse({'error': 'Error connecting to database.'}, status=500)
+                merchant = Merchant.objects.get(username=username)
+                hash_password = merchant.password
+                if not check_password(password, hash_password):  # validate password
+                    return JsonResponse({'message': 'Invalid password.'}, status=401)
 
-        # Create a response
+        except Customer.DoesNotExist:
+            return JsonResponse({'error': 'Merchant: username does not exist.'}, status=404)
+        except Merchant.DoesNotExist:
+            return JsonResponse({'error': 'Merchant: username does not exist.'}, status=404)
+
         redirect_url = '/accounts/main/'
         response = JsonResponse({'message': username + ' login successfully.', 'redirect_url': redirect_url},
                                 status=200)
-        # create session
+        # session
         request.session['username'] = username
         request.session['user_type'] = user_type
         return response
 
-    # if request != post, return error
     return JsonResponse({'error': 'Invalid request method.'}, status=400)
 
 
@@ -147,39 +136,40 @@ def merchant_register(request):
 # This Function to receive form and register an account for user
 def submit_register(request):
     if request.method == 'POST':
-        # get the form data
         username = request.POST.get('username')
         password = request.POST.get('password')
         phone = request.POST.get('phone')
         user_type = request.POST.get('userType')
-
         print("Username:", username)
         print("Password:", password)
         print("Phone:", phone)
         print("User Type:", user_type)
 
+        # hash password
+        hash_password = make_password(password)
+        print("Hash Password:", hash_password)
+
         # if user_type != '1' and user_type != '2':
-        if user_type != '1' and user_type != '2':  # customer
+        if user_type != '1' and user_type != '2':
             print("Error: Non-existent user type: " + user_type)
             return JsonResponse({'message': 'Error: Non-existent user type.'}, status=400)
 
-        # Connect the database
         try:
-            if user_type == '1':
+            if user_type == '1': # customer
                 if check_duplication_customer(username):
                     customer_info = Customer()
                     customer_info.username = username
-                    customer_info.password = password
+                    customer_info.password = hash_password
                     customer_info.phone_number = phone
                     # Store info into the database
                     customer_info.save()
                 else:
                     return JsonResponse({'message': 'Error: Already have a same username.'}, status=409)
-            else:
+            else: # merchant
                 if check_duplication_merchant(username):
                     merchant_info = Merchant()
                     merchant_info.username = username
-                    merchant_info.password = password
+                    merchant_info.password = hash_password
                     merchant_info.phone_number = phone
                     # Store info into the database
                     merchant_info.save()
@@ -189,17 +179,16 @@ def submit_register(request):
             print("Error connecting to database:", str(e))
             return JsonResponse({'error': 'Error connecting to database.'}, status=500)
 
-        # Create a response
+        # Response
         redirect_url = '/accounts/main/'
         response = JsonResponse({'message': username + ' saved successfully.', 'redirect_url': redirect_url},
                                 status=200)
 
-        # create session
+        # Session
         request.session['username'] = username
         request.session['user_type'] = user_type
         return response
 
-    # if request != post, return error
     return JsonResponse({'error': 'Invalid request method.'}, status=400)
 
 

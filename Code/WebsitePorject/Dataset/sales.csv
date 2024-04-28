@@ -1,15 +1,16 @@
 total_rating,popularity_value,image_path,name,address,total_sales
-4.3,24,Pizza_shop\LOGO\22489.jpg,Pizza_shop,四川省-成都市-成华区-erxian bridge,62
-4.3,18,Food_canteen\LOGO\109357.jpg,Food canteen,四川省-宜宾市-叙州区-55 st,62
-3.9,18,Chinese_food\LOGO\3046wh300.jpg,Chinese_food,四川省-成都市-成华区-erxian bridge,60
-4.2,15,Big_Buger_city\LOGO\hamburger-1238246_640.jpg,Big_Buger_city,四川省-成都市-金牛区-jianshe road,52
-4.1,13,The_Mystery_Shop\LOGO\58582c1cf034562c58220600.png,The Mystery Shop,四川省-乐山市-沐川县-have a guess,42
-3.9,15,2_fast\LOGO\1188.jpg_wh300.jpg,2 fast,四川省-成都市-成华区-CDUT,41
-4.0,9,The_rock_official\LOGO\R-C.jfif,The rock official,上海市-上海市-黄浦区-Rock st.,39
-4.4,9,Crazy_Dave_shop\LOGO\img.png,Crazy_Dave_shop,四川省-宜宾市-屏山县-junshan road,31
+4.3,29,Pizza_shop\LOGO\22489.jpg,Pizza_shop,四川省-成都市-成华区-erxian bridge,81
+4.3,24,Food_canteen\LOGO\109357.jpg,Food canteen,四川省-宜宾市-叙州区-55 st,80
+3.8,21,Chinese_food\LOGO\3046wh300.jpg,Chinese_food,四川省-成都市-成华区-erxian bridge,64
+4.0,19,Big_Buger_city\LOGO\hamburger-1238246_640.jpg,Big_Buger_city,四川省-成都市-金牛区-jianshe road,58
+4.1,17,The_Mystery_Shop\LOGO\58582c1cf034562c58220600.png,The Mystery Shop,四川省-乐山市-沐川县-have a guess,51
+3.9,18,2_fast\LOGO\1188.jpg_wh300.jpg,2 fast,四川省-成都市-成华区-CDUT,50
+3.9,10,The_rock_official\LOGO\R-C.jfif,The rock official,上海市-上海市-黄浦区-Rock st.,43
+4.2,13,12Food_shop\LOGO\baozou.png,12Food_shop,四川省-成都市-武侯区-52 st,33
+4.4,10,Crazy_Dave_shop\LOGO\img.png,Crazy_Dave_shop,四川省-宜宾市-屏山县-junshan road,32
+4.0,11,Beef_store\LOGO\118395.jpg,Beef_store,四川省-成都市-高新区-haha st,31
+4.5,10,Loopy_canteen_\LOGO\CC1774B4-6AFE-4B78-955A-EA6ED22597D0.jpeg,Loopy canteen ,重庆市-重庆市-城口县-hongya ,30
 4.3,7,Beef_home\LOGO\677746.jpg,Beef home,吉林省-长春市-宽城区-cow st.,26
-4.1,7,Beef_store\LOGO\118395.jpg,Beef_store,四川省-成都市-高新区-haha st,25
-4.4,6,Loopy_canteen_\LOGO\CC1774B4-6AFE-4B78-955A-EA6ED22597D0.jpeg,Loopy canteen ,重庆市-重庆市-城口县-hongya ,24
-4.4,7,12Food_shop\LOGO\baozou.png,12Food_shop,四川省-成都市-武侯区-52 st,19
-4.0,8,Dumpling_store\LOGO\62969.jpg,Dumpling_store,四川省-成都市-金牛区-haha st,18
-4.0,1,Fries_home\LOGO\106608.jpg,Fries home,四川省-泸州市-合江县-idk,1
+4.1,9,Dumpling_store\LOGO\62969.jpg,Dumpling_store,四川省-成都市-金牛区-haha st,22
+4.0,5,Fries_home\LOGO\106608.jpg,Fries home,四川省-泸州市-合江县-idk,14
+0.0,0,Test_product1\LOGO\25564.jpg,Test_shop1,吉林省-长春市-宽城区-idk st.,

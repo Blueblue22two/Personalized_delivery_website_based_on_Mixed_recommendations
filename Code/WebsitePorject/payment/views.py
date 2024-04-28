@@ -4,8 +4,8 @@ from django.db.models import Sum, F
 from django.utils import timezone
 from django.db import transaction
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
-from accounts.models import Customer, Address, Shop
+from django.shortcuts import render
+from accounts.models import Customer, Address
 from cart.models import CartItem
 from merchants.models import Product
 from orders.models import Order, OrderItem

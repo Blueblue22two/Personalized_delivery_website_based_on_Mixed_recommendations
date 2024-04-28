@@ -1,5 +1,4 @@
 import json
-
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Avg
 from django.http import JsonResponse

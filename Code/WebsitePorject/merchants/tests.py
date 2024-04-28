@@ -1,14 +1,10 @@
-import os
 from decimal import Decimal
-import json
 from PIL import Image
 from io import BytesIO
 from django.core.files.images import ImageFile
 import pytest
 from django.urls import reverse
 from django.test import RequestFactory
-
-from WebsitePorject import settings
 from accounts.models import Shop, Merchant
 from merchants.models import Product
 from django.contrib.sessions.middleware import SessionMiddleware
@@ -38,7 +34,7 @@ def rf():
 
 
 @pytest.fixture
-def merchant():
+def merchant(db):
     return Merchant.objects.create(username='TestMerchant1', password='password1234', phone_number='12345678901')
 
 
