@@ -41,34 +41,31 @@ function getCsrfTokenFromForm() {
 
 $(document).ready(function() {
     $('form').submit(function(event) {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault();
 
         let formData = {
             username: $('#username').val().trim(),
             password: $('#password').val().trim(),
             userType: $("#userType").text().trim()
         };
-
         if(!validation(formData)){
             console.log("Verification failed");
             return;
         }
-
         // based on the userType, decide where to send the data
         let loginUrl = '';
         switch (formData.userType) {
             case '1':
-                loginUrl = '/accounts/login/customer/'; // Set this to your actual customer login endpoint
+                loginUrl = '/accounts/login/customer/';
                 break;
             case '2':
-                loginUrl = '/accounts/login/merchant/'; // Set this to your actual merchant login endpoint
+                loginUrl = '/accounts/login/merchant/';
                 break;
             default:
                 window.alert("Invalid user type");
                 return;
         }
 
-        // Perform the AJAX request to the server
         $.ajax({
             type: 'POST',
             url: loginUrl,
@@ -76,7 +73,6 @@ $(document).ready(function() {
             headers: {'X-CSRFToken': getCsrfTokenFromForm()},
             success: function(response) {
                 console.log("Login successful: ", response);
-                // TODO: Redirect to main page after successful login
                 setTimeout(function(){
                     window.location.href = response.redirect_url;
                 }, 500);

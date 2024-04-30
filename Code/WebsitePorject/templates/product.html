@@ -47,7 +47,6 @@
 </head>
 
 <body class="fixed-bottom-bar">
-    {% csrf_token %}
     <header class="section-header">
         <section class="header-main shadow-sm bg-white">
             <div class="container">
@@ -125,6 +124,7 @@
     </header>
 
     <div class="osahan-home-page">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
         <div class="container">
             <!-- product Section-->
             <div class="product-info-section py-3">

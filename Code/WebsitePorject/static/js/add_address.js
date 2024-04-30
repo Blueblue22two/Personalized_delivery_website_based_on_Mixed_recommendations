@@ -16,8 +16,8 @@ function addAddress() {
     if (!province || province === "Choose a Province" ||
         !city || city === "Choose a City" ||
         !district || district === "Choose a District" ||
-        !detail || detail.length > 225) {
-        alert("Please ensure all fields are filled correctly. Detail must not exceed 225 characters.");
+        !detail || detail.length > 100) {
+        alert("Please ensure all fields are filled correctly. Detail must not exceed 100 characters.");
         return;
     }
     let formData = new FormData();

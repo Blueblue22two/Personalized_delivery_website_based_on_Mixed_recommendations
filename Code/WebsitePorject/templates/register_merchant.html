@@ -26,7 +26,7 @@
 <div class="container">
     <h2 class="mt-5 mb-4">Merchant register</h2>
     <form id="registrationForm"  method = "post" action ="">
-        {% csrf_token %}
+         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
         <div class="mb-3">
                 <label for="username" class="form-label">User name</label>
                 <input type="text" class="form-control" id="username" name="username" required placeholder="Name do not contain special chars">

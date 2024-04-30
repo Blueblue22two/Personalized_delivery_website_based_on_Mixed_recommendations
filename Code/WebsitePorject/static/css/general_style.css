@@ -1,0 +1,52 @@
+/*card,price,star, imgsize and hover*, cancel btn/
+
+.feather-star {
+  color: orange;
+}
+.card-img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+}
+.price-color {
+    color: #ff6408;
+}
+
+.category-underline {
+    text-decoration: underline;
+}
+#category_type {
+    text-decoration: underline;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease-in-out;
+}
+#category_type:hover {
+    transform: scale(1.1);
+}
+
+.img-hover-zoom {
+  transition: transform 0.5s ease;
+  display: block;
+}
+.img-hover-zoom:hover {
+  transform: scale(1.2);
+}
+
+ .cancel-btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px 0;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.cancel-btn:hover, .cancel-btn:focus {
+    background-color: #bb2d3b;
+    color: white;
+    text-decoration: none;
+}

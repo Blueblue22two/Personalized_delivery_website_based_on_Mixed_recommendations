@@ -1,7 +1,6 @@
 "use strict"
-// File: use for the top menu
 
-// function：get is_logged_in, username, user_type from django session
+// Retrieve session details
 function checkLogin() {
     console.log('start checking...');
     fetch('/accounts/get_info')
@@ -62,7 +61,6 @@ function merchant_login(){
 
 function display_name(name){
     let greetingText = "Hi " + name;
-    // Find the element containing the text "Hi" and append the username
     $(".dropdown-toggle").each(function() {
         if ($(this).text().includes("Hi")) {
             $(this).text(function() {

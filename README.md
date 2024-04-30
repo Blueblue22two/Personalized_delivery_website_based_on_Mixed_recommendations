@@ -15,6 +15,7 @@
 - Framework: django (4.2)  
 
 **third-party library:**  
+- Django-csp
 - PyMySql 1.1.0  
 - numpy 1.26.4  
 - pandas 2.2.1  
@@ -27,8 +28,7 @@
 
 ## 📜Hybrid Recommendation system:
 > This project combines two different recommendation algorithms in terms of weights.  
-### Collaborative Filtering:  
-- User-CF:  
+### User based collaborative Filtering:   
 > we use ***Adjusted Cosine Similarity (John.S.Breese)*** to calculate the similarity between user, and store it in *user similarity matrix*.   
 
 ### Content-based recommendation:  

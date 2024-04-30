@@ -13,6 +13,10 @@ def login(request):
     return render(request, 'login.html')
 
 
+def error_view(request):
+    return render(request, 'error.html')
+
+
 # test
 def template(request):
     psw1 = '11111111'

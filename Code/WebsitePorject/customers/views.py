@@ -127,6 +127,13 @@ def add_address(request):
         city = request.POST.get('city')
         district= request.POST.get('district')
         detail = request.POST.get('detail')
+
+        # data validation
+        if not province or not city or not district or not detail:
+            return JsonResponse({'status': 'error', 'message': 'All fields are required.'}, status=400)
+        if len(province) > 25 or len(city) > 25 or len(district) > 25 or len(detail) > 100:
+            return JsonResponse({'status': 'error', 'message': 'Input exceeds maximum length allowed.'}, status=400)
+
         address_line = f'{province}-{city}-{district}-{detail}'  # Concatenate the address string
 
         try:

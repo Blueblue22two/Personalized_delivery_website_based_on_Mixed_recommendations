@@ -21,7 +21,6 @@ import pandas as pd
 from decimal import Decimal
 
 logger = logging.getLogger(__name__)
-# Create your views here.
 
 
 # -- logout(clear session) & redirect to main page--

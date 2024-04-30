@@ -4,6 +4,9 @@ from django.http import JsonResponse
 from django.contrib.auth import login, logout
 from accounts.models import Customer, Merchant
 from django.contrib.auth.hashers import make_password, check_password
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 # -- logout(clear session) & redirect to main page--
@@ -78,7 +81,6 @@ def submit_log(request):
         password = request.POST.get('password')
         user_type = request.POST.get('userType')
         print("Username:", username)
-        print("Password:", password)
         print("User Type:", user_type)
 
         # if user_type != '1' and user_type != '2':
@@ -141,13 +143,10 @@ def submit_register(request):
         phone = request.POST.get('phone')
         user_type = request.POST.get('userType')
         print("Username:", username)
-        print("Password:", password)
-        print("Phone:", phone)
         print("User Type:", user_type)
 
         # hash password
         hash_password = make_password(password)
-        print("Hash Password:", hash_password)
 
         # if user_type != '1' and user_type != '2':
         if user_type != '1' and user_type != '2':
@@ -176,8 +175,8 @@ def submit_register(request):
                 else:
                     return JsonResponse({'message': 'Error: Already have a same username.'}, status=409)
         except Exception as e:
-            print("Error connecting to database:", str(e))
-            return JsonResponse({'error': 'Error connecting to database.'}, status=500)
+            logger.error("Error connecting to database: %s", str(e))
+            return JsonResponse({'error': 'An unexpected error occurred. Please try again later.'}, status=500)
 
         # Response
         redirect_url = '/accounts/main/'

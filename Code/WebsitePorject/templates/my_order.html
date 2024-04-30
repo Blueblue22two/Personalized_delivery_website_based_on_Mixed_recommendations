@@ -20,43 +20,11 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <!-- Sidebar CSS -->
     <link href="{% static 'css/demo.css' %}" rel="stylesheet">
-    <style>
-        .product_card {
-            background-color: #f8f9fa; /* Slightly different background for emphasis */
-            border-radius: 5px;
-            padding: 15px;
-            margin-top: 10px;
-        }
-
-        .product-info label {
-            font-weight: bold;
-        }
-
-        .form-control {
-            max-width: 300px; /* Limit input width for better aesthetics */
-            margin: auto; /* Center align the input fields */
-        }
-
-        #c-address label {
-            font-weight: bold;
-        }
-
-        #c-address p {
-            font-size: smaller;
-            text-decoration: underline;
-        }
-        .img-hover-zoom {
-          transition: transform 0.5s ease;
-          display: block;
-        }
-        .img-hover-zoom:hover {
-          transform: scale(1.2);
-        }
-    </style>
+    <!-- my order CSS -->
+    <link href="{% static 'css/my_order_style.css' %}" rel="stylesheet">
 </head>
 
 <body class="fixed-bottom-bar">
-    {% csrf_token %}
     <header class="section-header">
         <section class="header-main shadow-sm bg-white">
             <div class="container">
@@ -121,7 +89,6 @@
                                 <span></span>
                             </a>
                         </div>
-                        <!-- widgets-wrap.// -->
                     </div>
                     <!-- col.// -->
                 </div>
@@ -132,7 +99,6 @@
         <!-- header-main .// -->
     </header>
 
-    <!-- 主体内容section -->
     <div class="d-none">
         <div class="bg-primary border-bottom p-3 d-flex align-items-center">
             <a class="toggle togglew toggle-2" href=""><span></span></a>
@@ -141,23 +107,22 @@
     </div>
 
    <section class="py-4 osahan-main-body">
+       <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
         <div class="container">
             <div class="row">
                 <!--Order status section-->
-                <!--显示在页面左侧，总共有三种订单状态，点击切换 显示对应状态的订单信息-->
                 <div class="col-md-3 mb-3">
                     <ul class="nav nav-tabsa custom-tabsa border-0 flex-column bg-white rounded overflow-hidden shadow-sm p-2 c-t-order" id="myTab" role="tablist">
-                        <!--点击，将下面Order item section中显示所有订单状态=' completed '的Order info-->
                         <li class="nav-item" role="presentation">
                             <a class="nav-link border-0 text-dark py-3 active" id="completed-tab" data-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="true">
                                 <i class="feather-check mr-2 text-success mb-0"></i> Completed</a>
                         </li>
-                        <!--点击，将下面Order item section中显示所有订单状态=' Progress '的Order info-->
+
                         <li class="nav-item border-top" role="presentation">
                             <a class="nav-link border-0 text-dark py-3" id="progress-tab" data-toggle="tab" href="#progress" role="tab" aria-controls="progress" aria-selected="false">
                                 <i class="feather-clock mr-2 text-warning mb-0"></i> On Progress</a>
                         </li>
-                        <!--点击，将下面Order item section中显示所有订单状态=' Canceled '的Order info-->
+
                         <li class="nav-item border-top" role="presentation">
                             <a class="nav-link border-0 text-dark py-3" id="canceled-tab" data-toggle="tab" href="#canceled" role="tab" aria-controls="canceled" aria-selected="false">
                                 <i class="feather-x-circle mr-2 text-danger mb-0"></i> Canceled</a>
@@ -167,21 +132,17 @@
 
                 <!--Order item section-->
                 <div class="tab-content col-md-9" id="myTabContent">
-                    <!--显示所有订单状态=' completed '的Order info-->
+                    <!--Order info-->
                     <div class="tab-pane fade show active" id="completed" role="tabpanel" aria-labelledby="completed-tab">
                         <div class="order-body">
                             <!--Example: Order and store info card -->
                             <div class="pb-3">
                                 <div class="p-3 rounded shadow-sm bg-white">
-                                    <!-- Example: store info card -->
-                                    <div class="d-flex border-bottom pb-3">
-                                        <div class="text-muted mr-3">
-                                            <!--Store logo image-->
-{#                                            <img alt="#" src="img/popular5.png" class="img-fluid order_img rounded shop-logo">#}
-                                        </div>
 
+                                    <div class="d-flex border-bottom pb-3">
+                                        <div class="text-muted mr-3"></div>
                                         <div>
-                                            <!--Store name，并且点击跳转到对应的商店界面,href='/shop/${shop.name}/'-->
+                                            <!--Store name-->
                                             <p class="mb-0 font-weight-bold "><a href="#" class="text-dark shop-name">Conrad Restaurant</a></p>
                                             <!--Store address-->
                                             <p class="mb-0 text-dark font-italic shop-address">Punjab, India</p>
@@ -209,30 +170,25 @@
                                             <span class="text-dark font-weight-bold total_price">$12.74</span>
                                         </div>
 
-                                        <!--按钮叫post a comment，用于customer发送评论-->
-                                        <!--仅对于customer用户显示，仅在order status='completed并且isComment为False的订单中加入该部分-->
+                                        <!--post a comment-->
                                         <div class="text-right">
-                                            <!-- post button-->
                                             <a href="" class="btn btn-primary px-3">post a comment</a>
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
-                            <!--其他一样的order info card-->
                         </div>
                     </div>
 
-                    <!--显示所有订单状态='progress'的Order info-->
+
                     <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
                         <div class="order-body">
                             <!--Example: Order and store info card -->
                             <div class="pb-3">
                                 <div class="p-3 rounded shadow-sm bg-white">
-                                    <!-- Example: store info card -->
                                     <div class="d-flex border-bottom pb-3">
                                         <div class="text-muted mr-3">
-                                            <!--Store logo image-->
                                             <img alt="#" src="#" class="img-fluid order_img rounded shop-logo">
                                         </div>
 
@@ -267,8 +223,6 @@
                                             <span class="text-dark font-weight-bold total_price">$12.74</span>
                                         </div>
 
-                                        <!--对于customer隐藏该部分，仅对于merchant显示该按钮-->
-                                        <!--该部分仅在订单状态为Progress的订单中显示，且仅限于Merchant用户-->
                                         <div class="text-right">
                                             <!-- send button-->
                                             <a href="" class="btn btn-primary px-3">Send</a>
@@ -277,25 +231,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--其他一样的order info card-->
                         </div>
                     </div>
 
-                    <!--显示所有订单状态='canceled'的Order info-->
+                    <!--Canceled Order info-->
                     <div class="tab-pane fade" id="canceled" role="tabpanel" aria-labelledby="canceled-tab">
                         <div class="order-body">
                             <!--Example: Order and store info card -->
                             <div class="pb-3">
                                 <div class="p-3 rounded shadow-sm bg-white">
-                                    <!-- Example: store info card -->
                                     <div class="d-flex border-bottom pb-3">
                                         <div class="text-muted mr-3">
-                                            <!--Store logo image-->
                                             <img alt="#" src="#" class="img-fluid order_img rounded shop-logo">
                                         </div>
 
                                         <div>
-                                            <!--Store name，并且点击跳转到对应的商店界面,href='/shop/${shop.name}/'-->
+                                            <!--Store name-->
                                             <p class="mb-0 font-weight-bold "><a href="#" class="text-dark shop-name">Conrad Restaurant</a></p>
                                             <!--Store address-->
                                             <p class="mb-0 text-dark font-italic shop-name">Punjab, India</p>
@@ -311,10 +262,7 @@
                                     </div>
                                     <!-- Example: product info card -->
                                     <div class="d-flex pt-3 product_card">
-                                        <!--order item-info-->
                                         <div class="small product-info">
-                                            <!--show all product name and quantity-->
-                                            <!--Example 1: product name * quantity-->
                                             <p class="text- font-weight-bold mb-0 name_price">Kesar Sweet x 1</p>
 
                                         </div>
@@ -327,7 +275,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--其他一样的order info card-->
                         </div>
 
                     </div>
@@ -339,9 +286,7 @@
 
     <!-- Footer -->
     <div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center d-none">
-        <!-- 底部菜单 -->
         <div class="row">
-            <!-- 首页链接 -->
             <div class="col selected">
                 <a href="#" class="text-danger small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-home text-danger"></i></p>
@@ -349,7 +294,6 @@
                 </a>
             </div>
 
-            <!-- 购物车链接 -->
             <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
                 <div class="bg-danger rounded-circle mt-n0 shadow">
                     <a href="/carts/main" class="text-white small font-weight-bold text-decoration-none">
@@ -357,18 +301,11 @@
                     </a>
                 </div>
             </div>
-            <!-- 收藏链接 -->
+
             <div class="col">
                 <a href="/customers/fav" class="text-dark small font-weight-bold text-decoration-none">
                     <p class="h4 m-0"><i class="feather-heart"></i></p>
                     Favorites
-                </a>
-            </div>
-            <!-- 用户资料链接 -->
-            <div class="col">
-                <a href="/customers/info" class="text-dark small font-weight-bold text-decoration-none">
-                    <p class="h4 m-0"><i class="feather-user"></i></p>
-                    Profile
                 </a>
             </div>
         </div>
@@ -377,10 +314,8 @@
     <!-- footer -->
     <footer class="section-footer border-top bg-dark">
         <div class="container">
-            <!-- 页脚顶部 -->
             <section class="footer-top padding-y py-5">
                 <div class="row">
-                    <!-- 公司介绍 -->
                     <aside class="col-md-4 footer-about">
                         <article class="d-flex pb-3">
                             <div><img alt="LOGO" src="{% static 'image/Doge.png' %}" class="logo-footer mr-3"></div> <!-- LOGO -->
@@ -457,7 +392,6 @@
         </ul>
     </nav>
 
-    <!-- Bootstrap框架的模态窗口（Modal） -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

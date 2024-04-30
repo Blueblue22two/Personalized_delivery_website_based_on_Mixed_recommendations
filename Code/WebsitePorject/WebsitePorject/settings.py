@@ -23,7 +23,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'Dataset')
 SECRET_KEY = "django-insecure-o%ykroim##iooqyisphhr8dan3kvx17=hp7!+zq*^dgb8yex+f"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #
+DEBUG = False #
 # Debug
 INTERNAL_IPS = [
     '127.0.0.1', # debug ip
@@ -36,6 +36,18 @@ SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True # Prevent JavaScript from accessing session cookies
 SESSION_COOKIE_AGE = 1200 # Setting a session timeout (20 min)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+
+# CSP
+CSP_SCRIPT_SRC = ("'self'", 'https://s3.pstatp.com', "'unsafe-inline'")
+CSP_IMG_SRC = ("'self'", "data:")
+CSP_STYLE_SRC = ("'self'", "https://fonts.googleapis.com", "'unsafe-inline'")
+CSP_FONT_SRC = ("'self'", "https://fonts.gstatic.com")
+CSP_FORM_ACTION = ("'self'",) # form
+CSP_FRAME_ANCESTORS = ("'self'",)
+
+# CSRF
+CSRF_COOKIE_HTTPONLY = True
 
 
 # Application definition
@@ -64,6 +76,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    'csp.middleware.CSPMiddleware',
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
