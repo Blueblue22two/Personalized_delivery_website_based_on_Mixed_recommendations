@@ -1,0 +1,30 @@
+.osahan-home-page {
+    background-color: #f4f4f4;
+    padding: 20px 0;
+}
+
+.product-info-section, .interaction-section, .comments-section {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.product-info-section h2, .comments-section h3 {
+    margin-bottom: 15px;
+}
+
+.comment {
+    border-top: 1px solid #eaeaea;
+    padding-top: 15px;
+}
+
+#fav_button {
+    display: flex;
+    align-items: center;
+}
+
+.feather-heart {
+    stroke: #fff;
+}

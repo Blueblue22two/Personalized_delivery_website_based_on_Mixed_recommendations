@@ -16,10 +16,12 @@
     <!-- Feather Icon-->
     <link href="{% static 'css/feather.css' %}" rel="stylesheet" type="text/css">
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/general_style.css' %}" rel="stylesheet" type="text/css">
     <!-- Sidebar CSS -->
+<<<<<<< Updated upstream
     <link href="{% static 'css/demo.css' %}" rel="stylesheet">
     <style>
         .feather-star {
@@ -63,10 +65,12 @@
           transform: scale(1.2);
         }
     </style>
+=======
+    <link href="{% static 'css/demo.css' %}" rel="stylesheet" type="text/css">
+>>>>>>> Stashed changes
 </head>
 
 <body class="fixed-bottom-bar">
-    {% csrf_token %}
     <header class="section-header">
         <section class="header-main shadow-sm bg-white">
             <div class="container">
@@ -125,7 +129,6 @@
                                 <span></span>
                             </a>
                         </div>
-                        <!-- widgets-wrap.// -->
                     </div>
                     <!-- col.// -->
                 </div>
@@ -144,7 +147,7 @@
     </div>
 
     <div class="osahan-popular">
-
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
         <div class="container">
             <div class="search py-5">
                 <h1 class="text-center mt-3 mb-3" >My favorites</h1>

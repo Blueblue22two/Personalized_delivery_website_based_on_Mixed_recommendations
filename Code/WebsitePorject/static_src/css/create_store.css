@@ -1,0 +1,22 @@
+body {
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 900px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.footer {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+    color: #0c5460;
+}
