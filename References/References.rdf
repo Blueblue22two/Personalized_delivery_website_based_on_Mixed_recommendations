@@ -1,0 +1,2821 @@
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:z="http://www.zotero.org/namespaces/export#"
+ xmlns:dcterms="http://purl.org/dc/terms/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:bib="http://purl.org/net/biblio#"
+ xmlns:vcard="http://nwalsh.com/rdf/vCard#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:link="http://purl.org/rss/1.0/modules/link/"
+ xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/">
+    <rdf:Description rdf:about="urn:isbn:978-1-72819-018-1">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-72819-018-1</dc:identifier>
+                <dc:title>2021 IEEE Asia-Pacific Conference on Image Processing, Electronics and Computers (IPEC)</dc:title>
+                <dc:identifier>DOI 10.1109/IPEC51340.2021.9421092</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Dalian, China</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Li</foaf:surname>
+                        <foaf:givenName>Xiangpo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_7"/>
+        <dc:title>Research on the Application of Collaborative Filtering Algorithm in Mobile E-Commerce Recommendation System</dc:title>
+        <dcterms:abstract>With the rise of e-commerce in the Internet industry, e-commerce recommendation system has been widely concerned. Electrical contractor recommendation system is based on the user's personal information such as features, historical behavior and items through collaborative filtering, content filtering, knowledge discovery, interactive and recommend recommendation technology, referring users to the items that may be of interest, in many recommendation algorithm, collaborative filtering recommendation technology is currently one of the most widely used recommendation algorithm, this paper test the collaborative filtering algorithm in the application of mobile electronic commerce recommendation system experiment, it is concluded that the realization of the collaborative filtering algorithm is better personalized recommendation.</dcterms:abstract>
+        <dc:date>2021-4-14</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/9421092/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-26 07:48:30</dcterms:dateSubmitted>
+        <bib:pages>924-926</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2021 IEEE Asia-Pacific Conference on Image Processing, Electronics and Computers (IPEC)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_7">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Li - 2021 - Research on the Application of Collaborative Filte.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=9421092&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50Lzk0MjEwOTI=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-26 07:48:26</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Report rdf:about="https://www.statista.com/study/40457/food-delivery/">
+        <z:itemType>report</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+               <foaf:name>Statista Market Insights</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                       <foaf:surname>Statista Market Insights</foaf:surname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:relation rdf:resource="#item_21"/>
+        <dc:title>Online Food Delivery: market data &amp; analysis</dc:title>
+        <dc:date>March 2023</dc:date>
+        <z:language>English</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.statista.com/study/40457/food-delivery/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-30</dcterms:dateSubmitted>
+    </bib:Report>
+    <z:Attachment rdf:about="#item_21">
+        <z:itemType>attachment</z:itemType>
+        <dc:relation rdf:resource="https://www.statista.com/study/40457/food-delivery/"/>
+        <dc:title>Online Food Delivery market data analysis.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://ieeexplore.ieee.org/document/8393165">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>2017 13th International Conference on Natural Computation, Fuzzy Systems and Knowledge Discovery (ICNC-FSKD)</dc:title>
+                <dc:identifier>DOI 10.1109/FSKD.2017.8393165</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Xiu-Li</foaf:surname>
+                        <foaf:givenName>Pang</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wei</foaf:surname>
+                        <foaf:givenName>Jiang</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_23"/>
+        <dc:title>Research on influential factors of E-commerce recommendation user behavior intention</dc:title>
+        <dcterms:abstract>Exiting study on E-Commerce recommendation system focus on addressing its low adoption from from a technical point of view, and less analyzing from Chinses users' behavior in B2C E-Commerce website where the users' habits and behavior is special. So we propose the user adoption model of e-commerce recommendation system based on TAM model. Fistly, we use the behavior intention to express the customer adoption behavior for online shopping behavior is difficult to. Then, we use the concept of compatibility in the IDT model, which is the influence factor on usefulness and ease of use. The study found that, as external factor, compatibility affects the user perceived usefulness and ease of use, perceived ease of use significantly affect the usefulness, usefulness and ease of use are important factors affecting the user adoption of e-commerce recommendation system, then we provide comments and suggestions on the recommendation system for the e-commerce business.</dcterms:abstract>
+        <dc:date>2017-07</dc:date>
+        <z:libraryCatalog>IEEE Xplore</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://ieeexplore.ieee.org/document/8393165</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-30 08:38:58</dcterms:dateSubmitted>
+        <bib:pages>2485-2490</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2017 13th International Conference on Natural Computation, Fuzzy Systems and Knowledge Discovery (ICNC-FSKD)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_23">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>IEEE Xplore Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=8393165&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzgzOTMxNjU=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-30 08:39:15</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://ieeexplore.ieee.org/document/5192712">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>2009 Chinese Control and Decision Conference</dc:title>
+                <dc:identifier>DOI 10.1109/CCDC.2009.5192712</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhu</foaf:surname>
+                        <foaf:givenName>XiaoMing</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ye</foaf:surname>
+                        <foaf:givenName>HongWu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gong</foaf:surname>
+                        <foaf:givenName>SongJie</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_26"/>
+        <dc:title>A personalized recommendation system combining case-based reasoning and user-based collaborative filtering</dc:title>
+        <dcterms:abstract>Personalized recommendation systems are becoming increasingly popular with the evolution of the Internet, and collaborative filtering is one of the most important technologies in recommender systems. Such technology recommends items to a customer according to the preference data of similar customers. The main problems of collaborative filtering are about prediction accuracy and data sparsity. To solve these problems, this paper presents a personalized recommendation algorithm combining case-based reasoning and user-based collaborative filtering. Firstly, it employs case-based reasoning technology to fill the vacant ratings of the user-item matrix. Then, it produces prediction of the target user to the target item using user-based collaborative filtering. The personalized recommendation system combining case-based reasoning and user-based collaborative filtering can alleviate the sparsity issue and can produce more accuracy recommendation than the traditional recommender systems.</dcterms:abstract>
+        <dc:date>2009-06</dc:date>
+        <z:libraryCatalog>IEEE Xplore</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://ieeexplore.ieee.org/document/5192712</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-30 08:48:11</dcterms:dateSubmitted>
+        <dc:description>ISSN: 1948-9447</dc:description>
+        <bib:pages>4026-4028</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+               <dc:title>2009 Chinese Control and Decision Conference</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_26">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>IEEE Xplore Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=5192712&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzUxOTI3MTI=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-30 08:48:22</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://ieeexplore.ieee.org/document/9987306">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>2022 Sixth International Conference on I-SMAC (IoT in Social, Mobile, Analytics and Cloud) (I-SMAC)</dc:title>
+                <dc:identifier>DOI 10.1109/I-SMAC55078.2022.9987306</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Malathi</foaf:surname>
+                        <foaf:givenName>M</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sarujith</foaf:surname>
+                        <foaf:givenName>S</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Menon</foaf:surname>
+                        <foaf:givenName>Samyuktha</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_28"/>
+        <dc:title>Rating-based Restaurant and Food Recommendation System using Nearest Neighbor Algorithm</dc:title>
+        <dcterms:abstract>Nowadays, People prefer restaurants more than for special occasions. Simultaneously, availability of many restaurants in many areas and online food ordering platforms increases the reach of restaurants and restaurant food for people. Proposing a recommendation system will help the people to identify preferred food and restaurants rather than searching a list of restaurants and food items. Recommending restaurants and food items based on people’s rating on food items shows the quality of that food item in that restaurant and increases the reliability to new users on this recommendation system as the ratings are given by public users.</dcterms:abstract>
+        <dc:date>2022-11</dc:date>
+        <z:libraryCatalog>IEEE Xplore</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://ieeexplore.ieee.org/document/9987306</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-30 08:51:42</dcterms:dateSubmitted>
+        <dc:description>ISSN: 2768-0673</dc:description>
+        <bib:pages>876-879</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2022 Sixth International Conference on I-SMAC (IoT in Social, Mobile, Analytics and Cloud) (I-SMAC)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_28">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>IEEE Xplore Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=9987306&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50Lzk5ODczMDY=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-30 08:52:02</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://ieeexplore.ieee.org/document/9777500">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>2022 IEEE Asia-Pacific Conference on Image Processing, Electronics and Computers (IPEC)</dc:title>
+                <dc:identifier>DOI 10.1109/IPEC54454.2022.9777500</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Huang</foaf:surname>
+                        <foaf:givenName>Gang</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_30"/>
+        <dc:title>E-Commerce Intelligent Recommendation System Based on Deep Learning</dc:title>
+        <dcterms:abstract>With the popularity of smart phones, e-commerce has developed rapidly. Intelligent recommendation is a very important task in the field of e-commerce. Researchers have proposed the use of association rules, collaborative filtering, Markov chain, recurrent neural network and other technologies for shopping basket recommendation. This paper mainly studies e-commerce intelligent recommendation system(IRS) based on deep learning. In this paper, the overall design of e-commerce recommendation system is firstly carried out, and the functional modules and system architecture of e-commerce IRS are proposed. Then, this paper discusses the recommendation algorithm in the e-commerce IRS, and optimizes the e-commerce IRS based on convolutional neural network. Finally, this paper compares and analyzes the performance of three popular recommendation algorithms on Alibaba data set. Experimental results show that the proposed convolutional neural network recommendation algorithm based on deep learning is superior to the other two algorithms and has strong practical significance and promotion value.</dcterms:abstract>
+        <dc:date>2022-04</dc:date>
+        <z:libraryCatalog>IEEE Xplore</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://ieeexplore.ieee.org/document/9777500</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-30 08:53:43</dcterms:dateSubmitted>
+        <bib:pages>1154-1157</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2022 IEEE Asia-Pacific Conference on Image Processing, Electronics and Computers (IPEC)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_30">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>IEEE Xplore Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=9777500&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50Lzk3Nzc1MDA=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-30 08:53:56</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://ieeexplore.ieee.org/document/10266133">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>2023 3rd International Conference on Pervasive Computing and Social Networking (ICPCSN)</dc:title>
+                <dc:identifier>DOI 10.1109/ICPCSN58827.2023.00179</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sonwane</foaf:surname>
+                        <foaf:givenName>Rahul</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Deshmukh</foaf:surname>
+                        <foaf:givenName>Atul</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Choudhary</foaf:surname>
+                        <foaf:givenName>Swapna</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_38"/>
+        <dc:title>Designing Web Application of Online Food Ordering for Restaurant Chain using Web Technologies</dc:title>
+        <dcterms:abstract>Secret Rasoi Restaurant Chain - Online Food Service is a web application that helps customers order from the nearest branch. The system provides quick and easy online menu management that allows customers to navigate and consume their orders with just a few clicks. The proposed food ordering system consists of two components. One is a user interface where customers can view menus and place orders, and the other is an admin interface where restaurants can receive and process customer orders. The manager reserves the right to view orders and change their status.</dcterms:abstract>
+        <dc:date>2023-06</dc:date>
+        <z:libraryCatalog>IEEE Xplore</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/10266133</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-31 07:44:49</dcterms:dateSubmitted>
+        <bib:pages>1055-1058</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2023 3rd International Conference on Pervasive Computing and Social Networking (ICPCSN)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_38">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>IEEE Xplore Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=10266133&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzEwMjY2MTMz</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-31 07:44:58</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://ieeexplore.ieee.org/document/9906293">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>2022 Moratuwa Engineering Research Conference (MERCon)</dc:title>
+                <dc:identifier>DOI 10.1109/MERCon55799.2022.9906293</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gunarathna</foaf:surname>
+                        <foaf:givenName>Prabhath</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Silva</foaf:surname>
+                        <foaf:givenName>Lasitha de</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_40"/>
+        <dc:title>Factors Influencing Online Fast-Food Ordering Intension among Millennials and Generation Z–Evidence from Sri Lanka</dc:title>
+        <dcterms:abstract>The fast advancement of information and communication technology, and increased Internet penetration, have altered the nature of consumers’ everyday activities with a majority of offline activities switching to online activities. This is a common occurrence across the commercial sector, and the fast-food industry is no exception. Although this area of online fast-food ordering has been researched by many academics, fewer studies have been conducted in the Sri Lankan context. As a result, this study aims to bridge the knowledge gaps and make suitable recommendations for increasing the quality of online fast-food ordering. In this study convenience, website quality, quality of food, and social influence have all been identified as factors that impact online fast-food ordering, whilst consumer satisfaction serves as a mediating variable. Findings from 384 respondents aged 20 to 40 years old residing in the western province, Sri Lanka revealed that website quality is the most influential element while convenience has no influence on online fast-food ordering intentions. Customer satisfaction was also discovered to mediate the relationship between website quality, quality of food, and online fast-food ordering intention, as well as social influence and online fast-food ordering intention. Finally, premised on the discussions, recommendations have been made in the areas of promotion, food delivery, food quality, website design, and advertising.</dcterms:abstract>
+        <dc:date>2022-07</dc:date>
+        <z:libraryCatalog>IEEE Xplore</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://ieeexplore.ieee.org/document/9906293</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-31 07:47:28</dcterms:dateSubmitted>
+        <dc:description>ISSN: 2691-364X</dc:description>
+        <bib:pages>1-6</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2022 Moratuwa Engineering Research Conference (MERCon)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_40">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>IEEE Xplore Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=9906293&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50Lzk5MDYyOTM=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-31 07:47:45</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Data rdf:about="https://waimai.meituan.com/">
+        <z:itemType>computerProgram</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>Meituan</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <dc:title>Meituan Waimai</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://waimai.meituan.com/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-31</dcterms:dateSubmitted>
+    </bib:Data>
+    <bib:Data rdf:about="https://www.ele.me">
+        <z:itemType>computerProgram</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>Ele.me</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <dc:title>Ele.me</dc:title>
+        <dc:identifier>
+           <dcterms:URI><rdf:value>https://www.ele.me</rdf:value></dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-31</dcterms:dateSubmitted>
+    </bib:Data>
+    <bib:Data rdf:about="https://www.ubereats.com">
+        <z:itemType>computerProgram</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>Uber Eats</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <dc:title>Uber Eats</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.ubereats.com</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-10-31</dcterms:dateSubmitted>
+    </bib:Data>
+    <bib:Report rdf:about="https://www.statista.com/study/63164/catering-services-in-china/">
+        <z:itemType>report</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>Statista</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                       <foaf:surname>Statista</foaf:surname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:title>Catering-services-in-china</dc:title>
+        <z:language>English</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.statista.com/study/63164/catering-services-in-china/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-11-01</dcterms:dateSubmitted>
+    </bib:Report>
+    <rdf:Description rdf:about="https://ieeexplore.ieee.org/document/10092591">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>2022 International Conference on Cloud Computing, Big Data Applications and Software Engineering (CBASE)</dc:title>
+                <dc:identifier>DOI 10.1109/CBASE57816.2022.00049</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Liu</foaf:surname>
+                        <foaf:givenName>Hongjiao</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_58"/>
+        <dc:title>Implementation and Effectiveness Evaluation of Four Common Algorithms of Recommendation Systems - User Collaboration Filter, Item-based Collaborative Filtering, Matrix Factorization and Neural Collaborative Filtering</dc:title>
+        <dcterms:abstract>Recommendation systems are widely used in various industries and are seen as one of the effective methods in reducing information overload. This paper selected four common algorithms for implementation and evaluation among many recommendation algorithms. Two traditional collaborative filtering algorithms - User Collaboration Filter and Item-based Collaborative Filtering; most popular algorithms in the recommendation field - Matrix Factorization; and Neural Collaborative Filtering - the algorithm based on Matrix Factorization and combined with neural networks.</dcterms:abstract>
+        <dc:date>2022-09</dc:date>
+        <z:libraryCatalog>IEEE Xplore</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/10092591</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-11-01 13:36:22</dcterms:dateSubmitted>
+        <bib:pages>224-227</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2022 International Conference on Cloud Computing, Big Data Applications and Software Engineering (CBASE)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_58">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>IEEE Xplore Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=10092591&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzEwMDkyNTkx</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-11-01 13:36:27</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://ieeexplore.ieee.org/document/9853485">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>2022 International Conference on Computer Engineering and Artificial Intelligence (ICCEAI)</dc:title>
+                <dc:identifier>DOI 10.1109/ICCEAI55464.2022.00038</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yu</foaf:surname>
+                        <foaf:givenName>Qiaochu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhao</foaf:surname>
+                        <foaf:givenName>Mingqing</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Luo</foaf:surname>
+                        <foaf:givenName>Yuting</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_60"/>
+        <dc:title>Collaborative Filtering Hybrid Recommendation Algorithm based on Optimal Weight</dc:title>
+        <dcterms:abstract>A collaborative filtering hybrid recommendation algorithm based on the idea of optimal combination prediction (BEST-CF) is proposed, and the effectiveness of BEST-CF is verified on Movielens 100K data set using the optimal combination of the user-based collaborative filtering recommendation algorithm (User-CF) and the item-based collaborative filtering recommendation algorithm (Item-CF). Experiments results show that the BEST-CF algorithm significantly improves the rating prediction accuracy and can enhance the recommendation quality.</dcterms:abstract>
+        <dc:date>2022-07</dc:date>
+        <z:libraryCatalog>IEEE Xplore</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://ieeexplore.ieee.org/document/9853485</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-11-01 13:37:46</dcterms:dateSubmitted>
+        <bib:pages>144-147</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2022 International Conference on Computer Engineering and Artificial Intelligence (ICCEAI)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_60">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>IEEE Xplore Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=9853485&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50Lzk4NTM0ODU=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-11-01 13:37:48</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-66540-331-3">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-66540-331-3</dc:identifier>
+                <dc:title>2020 International Conference on Big Data Economy and Information Management (BDEIM)</dc:title>
+                <dc:identifier>DOI 10.1109/BDEIM52318.2020.00037</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Zhengzhou, China</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wang</foaf:surname>
+                        <foaf:givenName>Chuanpeng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:title>Customer Satisfaction Evaluation of Food Delivery Platforms-Taking Meituan as an Example</dc:title>
+        <dc:date>12/2020</dc:date>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/9407094/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-12-26 20:11:52</dcterms:dateSubmitted>
+        <bib:pages>124-127</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2020 International Conference on Big Data Economy and Information Management (BDEIM)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <bib:Article rdf:about="https://www.mdpi.com/2076-3417/13/4/2299">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:2076-3417"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sánchez</foaf:surname>
+                        <foaf:givenName>Claudia N.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Domínguez-Soberanes</foaf:surname>
+                        <foaf:givenName>Julieta</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Arreola</foaf:surname>
+                        <foaf:givenName>Alejandra</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Graff</foaf:surname>
+                        <foaf:givenName>Mario</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_145"/>
+        <dc:title>Recommendation System for a Delivery Food Application Based on Number of Orders</dc:title>
+        <dcterms:abstract>With the recent growth in food-delivery applications, creating new recommendation systems tailored to this platform is essential. State-of-the-art restaurant recommendation systems are based on users’ ratings or reviews, with data that are obtained from questionnaires or online platforms such as TripAdvisor, Zomato, Foursquare, or Yield. However, not all users give ratings or reviews after their purchase. This document proposes a recommendation system whose input is the number of orders stored by a real food-delivery application. These data are always available for all food-delivery applications and are stored all the time. Our proposal is based on the nearest-neighbor technique that calculates the client’s preferred restaurants and analyzes other clients with similar buying patterns. In addition, we propose a performance metric that can be used for this speciﬁc recommendation system that is based on real restaurant sales. We use a real dataset (available online) to validate our proposal. Based on our experiments, the recommendation system successfully gives only an average of 7.7 options from 187 that are available. We compared our proposal with other state-of-the-art recommendation techniques and obtained a better performance. Our results indicate that it is possible to generate recommendations based on the number of orders, making the use of a restaurant-recommendation system feasible in a real food-delivery application.</dcterms:abstract>
+        <dc:date>2023-02-10</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.mdpi.com/2076-3417/13/4/2299</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-12-26 20:24:43</dcterms:dateSubmitted>
+        <bib:pages>2299</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:2076-3417">
+        <prism:volume>13</prism:volume>
+        <dc:title>Applied Sciences</dc:title>
+        <dc:identifier>DOI 10.3390/app13042299</dc:identifier>
+        <prism:number>4</prism:number>
+        <dcterms:alternative>Applied Sciences</dcterms:alternative>
+        <dc:identifier>ISSN 2076-3417</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_145">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Sánchez 等 - 2023 - Recommendation System for a Delivery Food Applicat.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="http://link.springer.com/10.1007/s10586-018-1814-y">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1386-7857,%201573-7543"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wang</foaf:surname>
+                        <foaf:givenName>Linan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yi</foaf:surname>
+                        <foaf:givenName>Bo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_152"/>
+        <dc:title>Research on O2O take-away restaurant recommendation system: taking ele.me APP as an example</dc:title>
+        <dcterms:abstract>Online to Ofﬂine (O2O) take-away has the great potentialT for development in China, but with a large number of merchants taking part in O2O take-away APP, resulting in the problem of information overload. And the recommended system can effectively relieve the information overload of APP. In this paper, the O2O take-away restaurant recommendation system is studied in detail. By analyzing the current situation of the O2O takeaway restaurant recommendation system, we put forward a recommendation algorithm based on rank-centroid/analytic hierarchy process. Through transforming the recent booking preferences of user into the take-away service standard weight, we establish the model, combined with the case of ele.me APP, compute actual scores of the restaurants by the comprehensive score, and choose the high score of the restaurants to recommend. Compared with the mainstream collaborative ﬁltering recommendation method, the proposed method is simple and computationally smaller.</dcterms:abstract>
+        <dc:date>5/2019</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Research on O2O take-away restaurant recommendation system</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://link.springer.com/10.1007/s10586-018-1814-y</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2023-12-26 20:31:13</dcterms:dateSubmitted>
+        <bib:pages>6069-6077</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1386-7857,%201573-7543">
+        <prism:volume>22</prism:volume>
+        <dc:title>Cluster Computing</dc:title>
+        <dc:identifier>DOI 10.1007/s10586-018-1814-y</dc:identifier>
+        <prism:number>S3</prism:number>
+        <dcterms:alternative>Cluster Comput</dcterms:alternative>
+        <dc:identifier>ISSN 1386-7857, 1573-7543</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_152">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Wang 和 Yi - 2019 - Research on O2O take-away restaurant recommendatio.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-66543-587-1">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-66543-587-1</dc:identifier>
+                <dc:title>2021 6th International Conference on Communication and Electronics Systems (ICCES)</dc:title>
+                <dc:identifier>DOI 10.1109/ICCES51350.2021.9489125</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Coimbatre, India</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sunandana</foaf:surname>
+                        <foaf:givenName>G.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Reshma</foaf:surname>
+                        <foaf:givenName>M.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Pratyusha</foaf:surname>
+                        <foaf:givenName>Y.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kommineni</foaf:surname>
+                        <foaf:givenName>Madhuri</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gogulamudi</foaf:surname>
+                        <foaf:givenName>Subbarao</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_196"/>
+        <dc:title>Movie recommendation system using enhanced content-based filtering algorithm based on user demographic data</dc:title>
+        <dcterms:abstract>Now-a-days people are consuming content in form of movies, series, etc. for entertainment. In this modern era, people always look up to entertainment and in that process, they waste their time in searching for movies. Everyone wants to watch good films that have great content. It takes lot of time to search for a movie they like. Recommendation system comes into play in such situations. It helps to people by recommending movies. This paper develops a Movie Recommendation System to recommend movies based on different parameters. The principal objective of the project is to construct a movie recommendation framework to prescribe pictures to users. There are many algorithms that help to build a recommendation system. Here, the Content-based algorithm has been employed to recommend movies based on the similarity with other films by analyzing the content of the movie. To find the similarity, the cosine similarity method has been used. Here, the cosine similarity has been computed by using linear kernel, where the parameters are taken by the result of TF-IDF vectorization. Then the most similar movies are recommended.</dcterms:abstract>
+        <dc:date>2021-7-8</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/9489125/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-09 16:52:53</dcterms:dateSubmitted>
+        <dc:rights>https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html</dc:rights>
+        <bib:pages>1-5</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2021 6th International Conference on Communication and Electronics Systems (ICCES)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_196">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Sunandana 等 - 2021 - Movie recommendation system using enhanced content.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://ieeexplore-ieee-org-s.vpn.cdut.edu.cn:8118/stampPDF/getPDF.jsp?tp=&amp;arnumber=9489125&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50Lzk0ODkxMjU=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-09 16:52:49</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:9798350320954">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 9798350320954</dc:identifier>
+                <dc:title>2023 International Conference on Computer Science, Information Technology and Engineering (ICCoSITE)</dc:title>
+                <dc:identifier>DOI 10.1109/ICCoSITE57641.2023.10127844</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Jakarta, Indonesia</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mulyana</foaf:surname>
+                        <foaf:givenName>Refa Septiansyah</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Id Hadiana</foaf:surname>
+                        <foaf:givenName>Asep</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ramadhan</foaf:surname>
+                        <foaf:givenName>Edvin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_198"/>
+        <dc:title>Recommendation System Of Product Sales Ideas For MSMEs Using Content-based Filtering and Collaborative Filtering Methods</dc:title>
+        <dcterms:abstract>Looking for an idea to differentiate a product from other sellers is not easy. Sometimes sellers of MSME products need sales recommendations on what is trending among the public. A product recommendation can help users recommend a product that is interesting and needed by that user. Recommendation systems can help users come up with previously unknown or unthinkable information, which can directly aid user knowledge in their search results. In this research, a recommendation system will be built to search for product ideas. This study uses content-based filtering and collaborative filtering methods as well as the TF-IDF algorithm to assist users in recommending the products they are looking for to assist users in finding product-selling ideas they expect. Previous research has examined the recommendation system for Modern Musical Instrument Sales using the Simple Additive Weighing method but has the drawback that the weighting calculation must use fuzzy numbers. Therefore, the content-based and collaborative filtering methods are assisted by the TF-IDF algorithm used in this study to answer these problems. After implementation, we test accuracy by dividing the test data and training data differently. System testing is done by using a confusion matrix. The results that have been tested get an accuracy of 78%. Subsequent research suggests adding MSME product data in recommending product sales ideas to MSMEs so that recommendations are more optimal.</dcterms:abstract>
+        <dc:date>2023-2-16</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/10127844/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-09 16:53:53</dcterms:dateSubmitted>
+        <dc:rights>https://doi.org/10.15223/policy-029</dc:rights>
+        <bib:pages>252-256</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2023 International Conference on Computer Science, Information Technology and Engineering (ICCoSITE)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_198">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Mulyana 等 - 2023 - Recommendation System Of Product Sales Ideas For M.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://ieeexplore-ieee-org-s.vpn.cdut.edu.cn:8118/stampPDF/getPDF.jsp?tp=&amp;arnumber=10127844&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzEwMTI3ODQ0</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-09 16:53:49</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:9798350396393">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 9798350396393</dc:identifier>
+                <dc:title>2022 International Conference on Cloud Computing, Big Data Applications and Software Engineering (CBASE)</dc:title>
+                <dc:identifier>DOI 10.1109/CBASE57816.2022.00049</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Suzhou, China</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Liu</foaf:surname>
+                        <foaf:givenName>Hongjiao</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_200"/>
+        <dc:title>Implementation and Effectiveness Evaluation of Four Common Algorithms of Recommendation Systems - User Collaboration Filter, Item-based Collaborative Filtering, Matrix Factorization and Neural Collaborative Filtering</dc:title>
+        <dc:date>9/2022</dc:date>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/10092591/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-09 16:55:53</dcterms:dateSubmitted>
+        <dc:rights>https://doi.org/10.15223/policy-029</dc:rights>
+        <bib:pages>224-227</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2022 International Conference on Cloud Computing, Big Data Applications and Software Engineering (CBASE)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_200">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Liu - 2022 - Implementation and Effectiveness Evaluation of Fou.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://ieeexplore-ieee-org-s.vpn.cdut.edu.cn:8118/stampPDF/getPDF.jsp?tp=&amp;arnumber=10092591&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzEwMDkyNTkx</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-09 16:55:50</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-72818-624-5">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-72818-624-5</dc:identifier>
+                <dc:title>2020 5th International Conference on Control, Robotics and Cybernetics (CRC)</dc:title>
+                <dc:identifier>DOI 10.1109/CRC51253.2020.9253466</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Wuhan, China</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ji</foaf:surname>
+                        <foaf:givenName>Ruonan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Tian</foaf:surname>
+                        <foaf:givenName>Yi</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ma</foaf:surname>
+                        <foaf:givenName>Mengdi</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_202"/>
+        <dc:title>Collaborative Filtering Recommendation Algorithm Based on User Characteristics</dc:title>
+        <dcterms:abstract>This paper proposes a collaborative filtering algorithm based on user characteristics. The algorithm is mainly aimed at the problems of data sparsity and cold start in traditional collaborative filtering algorithm. First, through the analysis of user behavior, the time-interest weight function is introduced to improve the modified cosine similarity formula; then both the user preference degree and trust degree are introduced to improve the accuracy of the recommendation results. Finally, the experimental results based on hetrec2011 dataset show that the accuracy of the recommendation generated by the improved collaborative filtering algorithm is significantly improved compared with the traditional recommendation algorithm. The problems of data sparsity and cold start are effectively alleviated.</dcterms:abstract>
+        <dc:date>2020-10-16</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/9253466/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-09 17:03:36</dcterms:dateSubmitted>
+        <dc:rights>https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html</dc:rights>
+        <bib:pages>56-60</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2020 5th International Conference on Control, Robotics and Cybernetics (CRC)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_202">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Ji 等 - 2020 - Collaborative Filtering Recommendation Algorithm B.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://ieeexplore-ieee-org-s.vpn.cdut.edu.cn:8118/stampPDF/getPDF.jsp?tp=&amp;arnumber=9253466&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzkyNTM0NjY=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-09 17:03:32</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Data rdf:about="https://www.just-eat.ie/">
+        <z:itemType>computerProgram</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>Just Eat</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <z:programmers>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                       <foaf:surname>Just Eat</foaf:surname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </z:programmers>
+        <dc:title>Just Eat</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.just-eat.ie/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+    </bib:Data>
+    <bib:Article rdf:about="#item_236">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Breese</foaf:surname>
+                        <foaf:givenName>John S</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kadie</foaf:surname>
+                        <foaf:givenName>David Heckerman Carl</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_235"/>
+        <dc:subject>Adjusted Cosine Similarity</dc:subject>
+        <dc:title>Empirical Analysis of Predictive Algorithms for Collaborative Filtering</dc:title>
+        <dc:date>1998-7-24</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_235">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Breese 和 Kadie - Empirical Analysis of Predictive Algorithms for Co.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://dl.acm.org/doi/pdf/10.5555/2074094.2074100</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-11 09:40:13</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-5386-8097-1">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-5386-8097-1</dc:identifier>
+                <dc:title>2018 14th International Conference on Natural Computation, Fuzzy Systems and Knowledge Discovery (ICNC-FSKD)</dc:title>
+                <dc:identifier>DOI 10.1109/FSKD.2018.8687118</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Huangshan, China</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zou</foaf:surname>
+                        <foaf:givenName>Zhiquan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wang</foaf:surname>
+                        <foaf:givenName>Zhijun</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhang</foaf:surname>
+                        <foaf:givenName>Suming</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Cheng</foaf:surname>
+                        <foaf:givenName>Shuhan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_242"/>
+        <dc:title>An improved user-based collaborative filtering algorithm</dc:title>
+        <dcterms:abstract>The collaborative filtering algorithm[1] proposed by Grouplens[2] is one of the most commonly used methods for personalized recommendation in recommendation systems[3][4][5][6],and the core component of User-based collaborative filtering is the similarity measure. The traditional user similarity measurement method does not consider the influence of factors such as frequent user interest transfer and content popularity degree difference on the accuracy of the algorithm, and the existing improvement strategies cannot comprehensively consider these two factors. Based on the traditional similarity algorithm, this paper introduces influential factors such as user interest decline over time and content popularity, so as to improve the existing user similarity algorithm and to compare the actual data to prove the improved algorithm.</dcterms:abstract>
+        <dc:date>7/2018</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/8687118/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-11 09:45:58</dcterms:dateSubmitted>
+        <bib:pages>861-865</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2018 14th International Conference on Natural Computation, Fuzzy Systems and Knowledge Discovery (ICNC-FSKD)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_242">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Zou 等 - 2018 - An improved user-based collaborative filtering alg.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://ieeexplore-ieee-org-s.vpn.cdut.edu.cn:8118/stampPDF/getPDF.jsp?tp=&amp;arnumber=8687118&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50Lzg2ODcxMTg=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-11 09:45:55</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-5090-4099-5">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-5090-4099-5</dc:identifier>
+                <dc:title>2016 16th International Symposium on Communications and Information Technologies (ISCIT)</dc:title>
+                <dc:identifier>DOI 10.1109/ISCIT.2016.7751627</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Qingdao, China</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yi</foaf:surname>
+                        <foaf:givenName>Peng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yang</foaf:surname>
+                        <foaf:givenName>Chen</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhou</foaf:surname>
+                        <foaf:givenName>Xiaoming</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Li</foaf:surname>
+                        <foaf:givenName>Chen</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_251"/>
+        <dc:title>A movie cold-start recommendation method optimized similarity measure</dc:title>
+        <dcterms:abstract>With the explosion of Internet information, recommender system plays an increasingly important position in online video searching. Collaborative filtering technique the most popular recommendation algorithm is inefficient in cold-start scenario. In this paper, we focus on new movie cold start problem and aim to bridge the gap between movie labels and movie similarity. A useful approach is proposed to optimize the movie similarity measure by computing the similarities among directors and actors. We verify the usefulness of our method on MovieLens-1M data sets. The experiments show that our method has a significant improvement on movie cold start problem.</dcterms:abstract>
+        <dc:date>9/2016</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://ieeexplore.ieee.org/document/7751627/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-12 14:30:18</dcterms:dateSubmitted>
+        <bib:pages>231-234</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2016 16th International Symposium on Communications and Information Technologies (ISCIT)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_251">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Yi 等 - 2016 - A movie cold-start recommendation method optimized.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://ieeexplore-ieee-org-s.vpn.cdut.edu.cn:8118/stampPDF/getPDF.jsp?tp=&amp;arnumber=7751627&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50Lzc3NTE2Mjc=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-12 14:30:13</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-5386-0807-4">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-5386-0807-4</dc:identifier>
+                <dc:title>2018 2nd International Conference on Inventive Systems and Control (ICISC)</dc:title>
+                <dc:identifier>DOI 10.1109/ICISC.2018.8398959</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Coimbatore</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Darshna</foaf:surname>
+                        <foaf:givenName>Parmar</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_257"/>
+        <dc:title>Music recommendation based on content and collaborative approach &amp; reducing cold start problem</dc:title>
+        <dcterms:abstract>Nowadays, Recommendation becomes the most popular area for many researchers. The main aim of recommendation is to provide meaningful suggestions to users for particular item based on users past interest and behaviors towards items. There are two most popular recommendation algorithm is 1) Content-Based Filtering 2) Collaborative Filtering. Content-Based method recommends music based on user data. Collaborative method uses rating and content sharing between different users to recommend music. Here, to provide music recommendation by content-based method music subjective features Speechiness, loudness, Acoustiness etc. are analyzed. The extracted features are stores into database by using Kmean clustering algorithm. For Content-based method, whenever user fires query to database music feature attribute value compares with clusters centroid. Once attribute value match, music can be recommended to user as Content-based method. For collaborative method, rating given by user to particular music is considered and adjusted cosine similarity is used to find similarity between user-user. Once similarity found, prediction rating algorithm is used to provide recommendation to user. Cold-start is most common problem for new user. Here, most popular tracks are recommending to user to solve it..</dcterms:abstract>
+        <dc:date>1/2018</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/8398959/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-12 15:19:59</dcterms:dateSubmitted>
+        <bib:pages>1033-1037</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2018 2nd International Conference on Inventive Systems and Control (ICISC)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_257">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Darshna - 2018 - Music recommendation based on content and collabor.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://ieeexplore-ieee-org-s.vpn.cdut.edu.cn:8118/stampPDF/getPDF.jsp?tp=&amp;arnumber=8398959&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzgzOTg5NTk=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-12 15:19:54</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://doi.org/10.1007/s44196-024-00429-4">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1875-6883"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Al-Hassan</foaf:surname>
+                        <foaf:givenName>Malak</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Abu-Salih</foaf:surname>
+                        <foaf:givenName>Bilal</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Alshdaifat</foaf:surname>
+                        <foaf:givenName>Esra’a</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Aloqaily</foaf:surname>
+                        <foaf:givenName>Ahmad</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Rodan</foaf:surname>
+                        <foaf:givenName>Ali</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_270"/>
+        <link:link rdf:resource="#item_272"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Collaborative filtering</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>Ontology</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Personalization services</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Recommender system</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Semantic similarity</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>An Improved Fusion-Based Semantic Similarity Measure for Effective Collaborative Filtering Recommendations</dc:title>
+        <dcterms:abstract>Semantic-enhanced recommendation systems are promising approaches to overcome the sparsity and cold-start problems, which are hard to handle using the conventional collaborative filtering (CF) approaches. Further research is needed to effectively integrate ontologies into collaborative filtering recommender systems. This paper proposes an ontology-based semantic similarity measure to evaluate similarities between items and eventually generate accurate recommendations. The proposed semantic similarity measure termed fusion-based semantic similarity takes into account the semantics of ontological instances (i.e. items) inferred from a specific domain ontology, which is determined by analyzing the hierarchical relationships among the instances, as well as the features of the instances and their relationships to other instances. The new measure comprehensively captures the semantic knowledge associated with instances by exploiting all possible shared semantics between instances in a given domain ontology. Furthermore, this paper proposes a new semantic-enhanced hybrid recommendation approach as a result of combining the new semantic similarity measure with the standard item-based CF to enhance the quality of generated recommendations. In order to assess the effectiveness of our semantic-enhanced hybrid collaborative filtering method, a series of experiments were conducted to compare the performance of the proposed approach against well-established benchmark techniques. The reported experimental results consistently emphasize its superiority, demonstrating enhanced predictive abilities and a notable improvement in the quality of recommendations. More specifically, the proposed approach achieved notable 6% reduction in Mean Absolute Error (MAE) in certain cases, outperforming other benchmark techniques. Additionally, this study highlights the potential of using semantic-based similarity to enhance the performance of recommendation systems. Such enhancements address challenges within collaborative filtering, potentially leading to advancements in recommendation system design and optimization.</dcterms:abstract>
+        <dc:date>2024-03-14</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Springer Link</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://doi.org/10.1007/s44196-024-00429-4</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-16 06:17:21</dcterms:dateSubmitted>
+        <bib:pages>45</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1875-6883">
+        <prism:volume>17</prism:volume>
+        <dc:title>International Journal of Computational Intelligence Systems</dc:title>
+        <dc:identifier>DOI 10.1007/s44196-024-00429-4</dc:identifier>
+        <prism:number>1</prism:number>
+        <dcterms:alternative>Int J Comput Intell Syst</dcterms:alternative>
+        <dc:identifier>ISSN 1875-6883</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_270">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Al-Hassan 等 - 2024 - An Improved Fusion-Based Semantic Similarity Measu.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_272">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://link.springer.com/content/pdf/10.1007%2Fs44196-024-00429-4.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-16 06:18:42</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://www.mdpi.com/2079-9292/11/1/141">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:2079-9292"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ko</foaf:surname>
+                        <foaf:givenName>Hyeyoung</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lee</foaf:surname>
+                        <foaf:givenName>Suyeon</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Park</foaf:surname>
+                        <foaf:givenName>Yoonseo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Choi</foaf:surname>
+                        <foaf:givenName>Anna</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_282"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>collaborative filtering</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>content-based filtering</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>hybrid system</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>recommendation algorithm</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>recommendation system</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>recommendation technique</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>recommender system</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>A Survey of Recommendation Systems: Recommendation Models, Techniques, and Application Fields</dc:title>
+        <dcterms:abstract>This paper reviews the research trends that link the advanced technical aspects of recommendation systems that are used in various service areas and the business aspects of these services. First, for a reliable analysis of recommendation models for recommendation systems, data mining technology, and related research by application service, more than 135 top-ranking articles and top-tier conferences published in Google Scholar between 2010 and 2021 were collected and reviewed. Based on this, studies on recommendation system models and the technology used in recommendation systems were systematized, and research trends by year were analyzed. In addition, the application service fields where recommendation systems were used were classified, and research on the recommendation system model and recommendation technique used in each field was analyzed. Furthermore, vast amounts of application service-related data used by recommendation systems were collected from 2010 to 2021 without taking the journal ranking into consideration and reviewed along with various recommendation system studies, as well as applied service field industry data. As a result of this study, it was found that the flow and quantitative growth of various detailed studies of recommendation systems interact with the business growth of the actual applied service field. While providing a comprehensive summary of recommendation systems, this study provides insight to many researchers interested in recommendation systems through the analysis of its various technologies and trends in the service field to which recommendation systems are applied.</dcterms:abstract>
+        <dc:date>2022/1</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>A Survey of Recommendation Systems</z:shortTitle>
+        <z:libraryCatalog>www.mdpi.com</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.mdpi.com/2079-9292/11/1/141</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-18 09:11:12</dcterms:dateSubmitted>
+        <dc:rights>http://creativecommons.org/licenses/by/3.0/</dc:rights>
+        <dc:description>Number: 1
+Publisher: Multidisciplinary Digital Publishing Institute</dc:description>
+        <bib:pages>141</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:2079-9292">
+        <prism:volume>11</prism:volume>
+        <dc:title>Electronics</dc:title>
+        <dc:identifier>DOI 10.3390/electronics11010141</dc:identifier>
+        <prism:number>1</prism:number>
+        <dc:identifier>ISSN 2079-9292</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_282">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.mdpi.com/2079-9292/11/1/141/pdf?version=1641256804</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-18 09:11:16</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_289">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>5</prism:volume>
+                <dc:title>TWEB</dc:title>
+                <dcterms:alternative>TWEB</dcterms:alternative>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Cacheda</foaf:surname>
+                        <foaf:givenName>Fidel</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Carneiro</foaf:surname>
+                        <foaf:givenName>Victor</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Fernández</foaf:surname>
+                        <foaf:givenName>Diego</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Formoso</foaf:surname>
+                        <foaf:givenName>Vreixo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_291"/>
+        <link:link rdf:resource="#item_290"/>
+        <dc:title>Comparison of collaborative filtering algorithms: Limitations of current techniques and proposals for scalable, high-performance recommender systems</dc:title>
+        <dcterms:abstract>The technique of collaborative filtering is especially successful in generating personalized recommendations. More than a decade of research has resulted in numerous algorithms, although no comparison of the different strategies has been made. In fact, a universally accepted way of evaluating a collaborative filtering algorithm does not exist yet. In this work, we compare different techniques found in the literature, and we study the characteristics of each one, highlighting their principal strengths and weaknesses. Several experiments have been performed, using the most popular metrics and algorithms. Moreover, two new metrics designed to measure the precision on good items have been proposed. The results have revealed the weaknesses of many algorithms in extracting information from user profiles especially under sparsity conditions. We have also confirmed the good results of SVD-based techniques already reported by other authors. As an alternative, we present a new approach based on the interpretation of the tendencies or differences between users and items. Despite its extraordinary simplicity, in our experiments, it obtained noticeably better results than more complex algorithms. In fact, in the cases analyzed, its results are at least equivalent to those of the best approaches studied. Under sparsity conditions, there is more than a 20% improvement in accuracy over the traditional user-based algorithms, while maintaining over 90% coverage. Moreover, it is much more efficient computationally than any other algorithm, making it especially adequate for large amounts of data.</dcterms:abstract>
+        <dc:date>2011-01-01</dc:date>
+        <z:shortTitle>Comparison of collaborative filtering algorithms</z:shortTitle>
+        <z:libraryCatalog>ResearchGate</z:libraryCatalog>
+        <bib:pages>2</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_291">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.researchgate.net/profile/Fidel-Cacheda/publication/220593852_Comparison_of_collaborative_filtering_algorithms_Limitations_of_current_techniques_and_proposals_for_scalable_high-performance_recommender_systems/links/00b7d51a612f8e5394000000/Comparison-of-collaborative-filtering-algorithms-Limitations-of-current-techniques-and-proposals-for-scalable-high-performance-recommender-systems.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-18 17:05:03</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_290">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>ResearchGate Link</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.researchgate.net/profile/Fidel-Cacheda/publication/220593852_Comparison_of_collaborative_filtering_algorithms_Limitations_of_current_techniques_and_proposals_for_scalable_high-performance_recommender_systems/links/00b7d51a612f8e5394000000/Comparison-of-collaborative-filtering-algorithms-Limitations-of-current-techniques-and-proposals-for-scalable-high-performance-recommender-systems.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-18 17:04:57</dcterms:dateSubmitted>
+        <z:linkMode>3</z:linkMode>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_292">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>10</prism:volume>
+                <dc:title>Foods</dc:title>
+                <dc:identifier>DOI 10.3390/foods10081801</dc:identifier>
+                <dcterms:alternative>Foods</dcterms:alternative>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Song</foaf:surname>
+                        <foaf:givenName>Cen</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yu</foaf:surname>
+                        <foaf:givenName>Qing</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jose</foaf:surname>
+                        <foaf:givenName>Esther</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhuang</foaf:surname>
+                        <foaf:givenName>Jun</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Geng</foaf:surname>
+                        <foaf:givenName>He</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_294"/>
+        <link:link rdf:resource="#item_293"/>
+        <dc:title>A Hybrid Recommendation Approach for Viral Food Based on Online Reviews</dc:title>
+        <dcterms:abstract>Nowadays, there are many types of viral foods and consumers expect to be able to quickly find foods that meet their own tastes. Traditional recommendation systems make recommendations based on the popularity of viral foods or user ratings. However, because of the different sentimental levels of users, deviations occur and it is difficult to meet the user’s specific needs. Based on the characteristics of viral food, this paper constructs a hybrid recommendation approach based on viral food reviews and label attribute data. A user-based recommendation approach is combined with a content-based recommendation approach in a weighted combination. Compared with the traditional recommendation approaches, it is found that the hybrid recommendation approach performs more accurately in identifying the sentiments of user evaluations, and takes into account the similarities between users and foods. We can conclude that the proposed hybrid recommendation approach combined with the sentimental value of food reviews provides novel insights into improving the existing recommendation system used by e-commerce platforms.</dcterms:abstract>
+        <dc:date>2021-08-04</dc:date>
+        <z:libraryCatalog>ResearchGate</z:libraryCatalog>
+        <bib:pages>1801</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_294">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>全文</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.mdpi.com/2304-8158/10/8/1801/pdf?version=1629990236</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-18 17:09:51</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_293">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>ResearchGate Link</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.researchgate.net/publication/353714122_A_Hybrid_Recommendation_Approach_for_Viral_Food_Based_on_Online_Reviews</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-18 17:09:45</dcterms:dateSubmitted>
+        <z:linkMode>3</z:linkMode>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-66543-434-8">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-66543-434-8</dc:identifier>
+                <dc:title>2021 IEEE International Conference on Communication, Networks and Satellite (COMNETSAT)</dc:title>
+                <dc:identifier>DOI 10.1109/COMNETSAT53002.2021.9530823</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Purwokerto, Indonesia</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wayan Priscila Yuni Praditya</foaf:surname>
+                        <foaf:givenName>Ni</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Erna Permanasari</foaf:surname>
+                        <foaf:givenName>Adhistya</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hidayah</foaf:surname>
+                        <foaf:givenName>Indriana</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_300"/>
+        <dc:title>Designing a tourism recommendation system using a hybrid method (Collaborative Filtering and Content-Based Filtering)</dc:title>
+        <dcterms:abstract>A recommendation system is an application model based on observations of the customer's circumstances and desires. The recommendation system can be applied in various fields, one of which is tourism. By utilizing a recommendation system, tourism can introduce and promote its tourism to the wider community. In the recommendation system, several methods are used to support how the system works in producing information. This paper's uses the Hybrid (Collaborative Filtering &amp; Content-Based Filtering) method and the Nearest Neighbor (NN) algorithm. This method has a weakness when an item does not have a rating at all. Therefore, it needs a method that can overcome the weaknesses of the method. We implement a hybrid method, which combines several methods in the recommendation system to produce recommendation items under the user's wishes. In addition, this system will use Whatsapp Messenger as a promotional medium. This paper aims to propose a recommendation system that will help several historical tours become the foremost destinations when visiting Palembang. The result of developing this recommendation system is a website that can recommend tours desired by users.</dcterms:abstract>
+        <dc:date>2021-7-17</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/9530823/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-18 17:15:22</dcterms:dateSubmitted>
+        <dc:rights>https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html</dc:rights>
+        <bib:pages>298-305</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2021 IEEE International Conference on Communication, Networks and Satellite (COMNETSAT)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_300">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Wayan Priscila Yuni Praditya 等 - 2021 - Designing a tourism recommendation system using a .pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=9530823&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50Lzk1MzA4MjM=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-18 17:15:18</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-5386-3581-0">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-5386-3581-0</dc:identifier>
+                <dc:title>2017 IEEE/ACS 14th International Conference on Computer Systems and Applications (AICCSA)</dc:title>
+                <dc:identifier>DOI 10.1109/AICCSA.2017.12</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Hammamet</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kbaier</foaf:surname>
+                        <foaf:givenName>Mohamed Elyes Ben Haj</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Masri</foaf:surname>
+                        <foaf:givenName>Hela</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Krichen</foaf:surname>
+                        <foaf:givenName>Saoussen</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_330"/>
+        <dc:title>A Personalized Hybrid Tourism Recommender System</dc:title>
+        <dcterms:abstract>This paper focuses on building personalized recommender system in the tourism ﬁeld. The application recommends to a tourist the best attractions in a particular place according to his preferences, his proﬁle and his appreciation to previous visited places. This paper proposes a hybrid recommender system that combines the three most known recommender methods which are: the collaborative ﬁltering (CF), the content-based ﬁltering (CB) and the demographic ﬁltering (DF). In order to implement these recommender methods, we have applied different machine learning algorithms which are the K-nearest neighbors (K-NN) for both CB and CF and the decision tree for the DF. The hybridization is a good choice to make the best of their advantages and to overcome the cold start problem. To enhance the recommendation accuracy, we use two hybridization techniques : switching and weighted. For the weighted approach, a novel linear programming model is applied to obtain the optimal weights’ values. An extensive experimental study is conducted based on different evaluation metrics using extracted data from TripAdvisor. Our results show that the hybrid method is more accurate than the other recommender approaches used separately.</dcterms:abstract>
+        <dc:date>10/2017</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://ieeexplore.ieee.org/document/8308293/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-18 18:03:36</dcterms:dateSubmitted>
+        <bib:pages>244-250</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2017 IEEE/ACS 14th International Conference on Computer Systems and Applications (AICCSA)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_330">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Kbaier 等 - 2017 - A Personalized Hybrid Tourism Recommender System.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=8308293&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzgzMDgyOTM=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-18 18:03:32</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:BookSection rdf:about="urn:isbn:978-3-319-90092-6">
+        <z:itemType>bookSection</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Book>
+                <dc:identifier>ISBN 978-3-319-90092-6</dc:identifier>
+                <dc:title>Social Information Access: Systems and Technologies</dc:title>
+            </bib:Book>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Cham</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>Springer International Publishing</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kluver</foaf:surname>
+                        <foaf:givenName>Daniel</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ekstrand</foaf:surname>
+                        <foaf:givenName>Michael D.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Konstan</foaf:surname>
+                        <foaf:givenName>Joseph A.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <bib:editors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Brusilovsky</foaf:surname>
+                        <foaf:givenName>Peter</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>He</foaf:surname>
+                        <foaf:givenName>Daqing</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:editors>
+        <link:link rdf:resource="#item_362"/>
+        <dc:title>Rating-Based Collaborative Filtering: Algorithms and Evaluation</dc:title>
+        <dcterms:abstract>Recommender systems help users find information by recommending content that a user might not know about, but will hopefully like. Rating-based collaborative filtering recommender systems do this by finding patterns that are consistent across the ratings of other users. These patterns can be used on their own, or in conjunction with other forms of social information access to identify and recommend content that a user might like. This chapter reviews the concepts, algorithms, and means of evaluation that are at the core of collaborative filtering research and practice. While there are many recommendation algorithms, the ones we cover serve as the basis for much of past and present algorithm development. After presenting these algorithms we present examples of two more recent directions in recommendation algorithms: learning-to-rank and ensemble recommendation algorithms. We finish by describing how collaborative filtering algorithms can be evaluated, and listing available resources and datasets to support further experimentation. The goal of this chapter is to provide the basis of knowledge needed for readers to explore more advanced topics in recommendation.</dcterms:abstract>
+        <dc:date>2018</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Rating-Based Collaborative Filtering</z:shortTitle>
+        <z:libraryCatalog>Springer Link</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://doi.org/10.1007/978-3-319-90092-6_10</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-19 09:11:15</dcterms:dateSubmitted>
+        <dc:description>DOI: 10.1007/978-3-319-90092-6_10</dc:description>
+        <bib:pages>344-390</bib:pages>
+    </bib:BookSection>
+    <z:Attachment rdf:about="#item_362">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://link.springer.com/content/pdf/10.1007%2F978-3-319-90092-6_10.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-19 09:11:26</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="http://link.springer.com/10.1007/s00355-017-1104-2">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0176-1714,%201432-217X"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kawada</foaf:surname>
+                        <foaf:givenName>Yoko</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_366"/>
+        <dc:title>Cosine similarity and the Borda rule</dc:title>
+        <dc:date>6/2018</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://link.springer.com/10.1007/s00355-017-1104-2</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-19 09:33:32</dcterms:dateSubmitted>
+        <bib:pages>1-11</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0176-1714,%201432-217X">
+        <prism:volume>51</prism:volume>
+        <dc:title>Social Choice and Welfare</dc:title>
+        <dc:identifier>DOI 10.1007/s00355-017-1104-2</dc:identifier>
+        <prism:number>1</prism:number>
+        <dcterms:alternative>Soc Choice Welf</dcterms:alternative>
+        <dc:identifier>ISSN 0176-1714, 1432-217X</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_366">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Kawada - 2018 - Cosine similarity and the Borda rule.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-66541-237-7">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-66541-237-7</dc:identifier>
+                <dc:title>2021 Fifth International Conference on Information Retrieval and Knowledge Management (CAMP)</dc:title>
+                <dc:identifier>DOI 10.1109/CAMP51653.2021.9498119</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Kuala Lumpur, Malaysia</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Alobed</foaf:surname>
+                        <foaf:givenName>Mohammad</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Altrad</foaf:surname>
+                        <foaf:givenName>Abdallah M M</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bakar</foaf:surname>
+                        <foaf:givenName>Zainab Binti Abu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_371"/>
+        <dc:title>A Comparative Analysis of Euclidean, Jaccard and Cosine Similarity Measure and Arabic Wordnet for Automated Arabic Essay Scoring</dc:title>
+        <dcterms:abstract>The Coronavirus crisis has cast a shadow over the education sector; As it pushed schools, universities, and educational institutions to close their doors, to reduce the chances of its spread. This raised great concern among those affiliated with this sector, especially students preparing to take important exams. All this pushed educational institutions to switch to E-learning, as an alternative that has long been talked about over the need to integrate it into the educational process. From this standpoint, the importance of electronic exams as an alternative to the traditional paper exams appears, there are many assessment methods in E-learning, one of these assessments is the essay. The study used a variety of similarity tests and used an Arabic data set of 40 student answers. The results indicate that the Arabic Automated Essay System will improve with Cosine similarity and Arabic WordNet. Automatic Arabic Essay Scoring using WordNet is higher in terms of precision than the Automated Arabic Essay Scoring without using WordNet dependent on the mean absolute error value and Pearson correlation. The results clearly show the Cosine similarity with Arabic WordNet has the lowest error. Cosine similarity with all stemming types has the lowest error compared with the Jaccard and Euclidean similarity. Euclidean similarity has the highest error.</dcterms:abstract>
+        <dc:date>2021-6-15</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/9498119/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-19 09:49:29</dcterms:dateSubmitted>
+        <dc:rights>https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html</dc:rights>
+        <bib:pages>70-74</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2021 Fifth International Conference on Information Retrieval and Knowledge Management (CAMP)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_371">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Alobed 等 - 2021 - A Comparative Analysis of Euclidean, Jaccard and C.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://ieeexplore-ieee-org-s.vpn.cdut.edu.cn:8118/stampPDF/getPDF.jsp?tp=&amp;arnumber=9498119&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50Lzk0OTgxMTk=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-19 09:49:25</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-5090-5045-1">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-5090-5045-1</dc:identifier>
+                <dc:title>2017 14th International Conference The Experience of Designing and Application of CAD Systems in Microelectronics (CADSM)</dc:title>
+                <dc:identifier>DOI 10.1109/CADSM.2017.7916133</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Lviv - Polyana, Ukraine</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Schwarz</foaf:surname>
+                        <foaf:givenName>Mykhaylo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lobur</foaf:surname>
+                        <foaf:givenName>Mykhaylo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Stekh</foaf:surname>
+                        <foaf:givenName>Yuriy</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_373"/>
+        <dc:title>Analysis of the effectiveness of similarity measures for recommender systems</dc:title>
+        <dc:date>2017</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://ieeexplore.ieee.org/document/7916133/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-19 09:51:33</dcterms:dateSubmitted>
+        <bib:pages>275-277</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2017 14th International Conference The Experience of Designing and Application of CAD Systems in Microelectronics (CADSM)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_373">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Schwarz 等 - 2017 - Analysis of the effectiveness of similarity measur.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://ieeexplore-ieee-org-s.vpn.cdut.edu.cn:8118/stampPDF/getPDF.jsp?tp=&amp;arnumber=7916133&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50Lzc5MTYxMzM=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-19 09:51:31</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-4673-6057-9%20978-0-7695-4880-7">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-4673-6057-9 978-0-7695-4880-7</dc:identifier>
+                <dc:title>2012 IEEE/WIC/ACM International Conferences on Web Intelligence and Intelligent Agent Technology</dc:title>
+                <dc:identifier>DOI 10.1109/WI-IAT.2012.166</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Macau, China</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Rezvani</foaf:surname>
+                        <foaf:givenName>Mojtaba</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hashemi</foaf:surname>
+                        <foaf:givenName>S. Mehdi</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_383"/>
+        <dc:subject>Jaccard index</dc:subject>
+        <dc:subject>Cosine Similarity</dc:subject>
+        <dc:title>Enhancing Accuracy of Topic Sensitive PageRank Using Jaccard Index and Cosine Similarity</dc:title>
+        <dcterms:abstract>The importance of online information retrieval systems has dramatically increased through considerable growth in the size of the web, and the challenges beyond this topic have become a center of attention for many researchers. This remarkable growth in the size of the web has led to indepth studies on every element of information retrieval systems such as web page ranking algorithms. The accuracy of these algorithms plays a critical role in the search engines, whereas the ranker is responsible for accuracy. Thus, the ranker is a principal module of each search engine. In this paper, a new framework based on web graph and content similarity is presented in order to improve the accuracy of PageRank. This framework is implemented using Jaccard index and cosine similarity measures, and as a result of our empirical analysis, we shall show that putting page content similarity in action increases the accuracy of web ranking in some candidate ranking algorithms. In addition, time complexity and implementation issues are discussed to achieve a practical result.</dcterms:abstract>
+        <dc:date>12/2012</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://ieeexplore.ieee.org/document/6511950/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-19 10:12:43</dcterms:dateSubmitted>
+        <bib:pages>620-624</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2012 IEEE/WIC/ACM International Joint Conferences on Web Intelligence (WI) and Intelligent Agent Technologies (IAT)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_383">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Rezvani 和 Hashemi - 2012 - Enhancing Accuracy of Topic Sensitive PageRank Usi.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://ieeexplore-ieee-org-s.vpn.cdut.edu.cn:8118/stampPDF/getPDF.jsp?tp=&amp;arnumber=6511950&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzY1MTE5NTA=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-19 10:12:39</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_389">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>37</prism:volume>
+                <dc:title>Bulletin de la Societe Vaudoise des Sciences Naturelles</dc:title>
+                <dc:identifier>DOI 10.5169/seals-266440</dc:identifier>
+                <dcterms:alternative>Bulletin de la Societe Vaudoise des Sciences Naturelles</dcterms:alternative>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jaccard</foaf:surname>
+                        <foaf:givenName>Paul</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_390"/>
+        <link:link rdf:resource="#item_391"/>
+        <dc:subject>Jaccard index</dc:subject>
+        <dc:title>Distribution de la Flore Alpine dans le Bassin des Dranses et dans quelques régions voisines.</dc:title>
+        <dc:date>1901-01-01</dc:date>
+        <z:libraryCatalog>ResearchGate</z:libraryCatalog>
+        <bib:pages>241-72</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_390">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.researchgate.net/profile/Paul-Jaccard/publication/243457811_Distribution_de_la_Flore_Alpine_dans_le_Bassin_des_Dranses_et_dans_quelques_regions_voisines/links/02e7e51d0a6c7c7705000000/Distribution-de-la-Flore-Alpine-dans-le-Bassin-des-Dranses-et-dans-quelques-regions-voisines.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-19 10:14:46</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_391">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>ResearchGate Link</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.researchgate.net/publication/243457811_Distribution_de_la_Flore_Alpine_dans_le_Bassin_des_Dranses_et_dans_quelques_regions_voisines</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-19 10:14:46</dcterms:dateSubmitted>
+        <z:linkMode>3</z:linkMode>
+    </z:Attachment>
+    <bib:Article rdf:about="https://www.sciencedirect.com/science/article/pii/S0957417423026684">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0957-4174"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bondevik</foaf:surname>
+                        <foaf:givenName>Jon Nicolas</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bennin</foaf:surname>
+                        <foaf:givenName>Kwabena Ebo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Babur</foaf:surname>
+                        <foaf:givenName>Önder</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ersch</foaf:surname>
+                        <foaf:givenName>Carsten</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_397"/>
+        <link:link rdf:resource="#item_396"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Recommender system</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Food recommendation</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Food recommender system</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>SLR</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Systematic literature review</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>A systematic review on food recommender systems</dc:title>
+        <dcterms:abstract>The Internet has revolutionised the way information is retrieved, and the increase in the number of users has resulted in a surge in the volume and heterogeneity of available data. Recommender systems have become popular tools to help users retrieve relevant information quickly. Food Recommender Systems (FRS), in particular, have proven useful in overcoming the overload of information present in the food domain. However, the recommendation of food is a complex domain with specific characteristics causing many challenges. Additionally, very few systematic literature reviews have been conducted in the domain on FRS. This paper presents a systematic literature review that summarises the current state-of-the-art in FRS. Our systematic review examines the different methods and algorithms used for recommendation, the data and how it is processed, and evaluation methods. It also presents the advantages and disadvantages of FRS. To achieve this, a total of 67 high-quality studies were selected from a pool of 2,738 studies using strict quality criteria. The review reveals that the domain of food recommendation is very diverse, and most FRS are built using content-based filtering and ML approaches to provide non-personalised recommendations. The review provides valuable information to the research field, helping researchers in the domain to select a strategy to develop FRS. This review can help improve the efficiency of development, thus closing the gap between the development of FRS and other recommender systems.</dcterms:abstract>
+        <dc:date>2024-03-15</dc:date>
+        <z:libraryCatalog>ScienceDirect</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.sciencedirect.com/science/article/pii/S0957417423026684</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-20 06:40:17</dcterms:dateSubmitted>
+        <bib:pages>122166</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0957-4174">
+        <prism:volume>238</prism:volume>
+        <dc:title>Expert Systems with Applications</dc:title>
+        <dc:identifier>DOI 10.1016/j.eswa.2023.122166</dc:identifier>
+        <dcterms:alternative>Expert Systems with Applications</dcterms:alternative>
+        <dc:identifier>ISSN 0957-4174</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_397">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Bondevik 等 - 2024 - A systematic review on food recommender systems.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_396">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>ScienceDirect Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.sciencedirect.com/science/article/pii/S0957417423026684</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-20 06:40:27</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="http://link.springer.com/10.1007/s10844-006-8771-2">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0925-9902,%201573-7675"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kim</foaf:surname>
+                        <foaf:givenName>Byeong Man</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Li</foaf:surname>
+                        <foaf:givenName>Qing</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Park</foaf:surname>
+                        <foaf:givenName>Chang Seok</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kim</foaf:surname>
+                        <foaf:givenName>Si Gwan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kim</foaf:surname>
+                        <foaf:givenName>Ju Yeon</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_404"/>
+        <dc:title>A new approach for combining content-based and collaborative filters</dc:title>
+        <dcterms:abstract>With the development of e-commerce and the proliferation of easily accessible information, recommender systems have become a popular technique to prune large information spaces so that users are directed toward those items that best meet their needs and preferences. A variety of techniques have been proposed for performing recommendations, including content-based and collaborative techniques. Content-based ﬁltering selects information based on semantic content, whereas collaborative ﬁltering combines the opinions of other users to make a prediction for a target user. In this paper, we describe a new ﬁltering approach that combines the content-based ﬁlter and collaborative ﬁlter to capitalize on their respective strengths, and thereby achieves a good performance. We present a series of recommendations on the selection of the appropriate factors and also look into different techniques for calculating user-user similarities based on the integrated information extracted from user proﬁles and user ratings. Finally, we experimentally evaluate our approach and compare it with classic ﬁlters, the result of which demonstrate the effectiveness of our approach.</dcterms:abstract>
+        <dc:date>7/2006</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://link.springer.com/10.1007/s10844-006-8771-2</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-20 14:00:59</dcterms:dateSubmitted>
+        <dc:rights>http://www.springer.com/tdm</dc:rights>
+        <bib:pages>79-91</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0925-9902,%201573-7675">
+        <prism:volume>27</prism:volume>
+        <dc:title>Journal of Intelligent Information Systems</dc:title>
+        <dc:identifier>DOI 10.1007/s10844-006-8771-2</dc:identifier>
+        <prism:number>1</prism:number>
+        <dcterms:alternative>J Intell Inf Syst</dcterms:alternative>
+        <dc:identifier>ISSN 0925-9902, 1573-7675</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_404">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Kim 等 - 2006 - A new approach for combining content-based and col.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://link-springer-com-s.vpn.cdut.edu.cn:8118/content/pdf/10.1007/s10844-006-8771-2.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-20 14:00:52</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://ieeexplore.ieee.org/document/8854070/">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:2169-3536"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Li</foaf:surname>
+                        <foaf:givenName>Miaomiao</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wang</foaf:surname>
+                        <foaf:givenName>Licheng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_408"/>
+        <dc:title>A Survey on Personalized News Recommendation Technology</dc:title>
+        <dcterms:abstract>In the face of massive data on the Internet, users often ‘‘lost themselves’’. Personalized recommendation technology has made breakthroughs in areas such as e-commerce, advertising, audio and video recommendation in recent years. Due to the inherent characteristics of network news, such as the massive data, heterogeneity, update and change fast, timeliness and strong geographical awareness and so on, the progress of personalized recommendation technology in the ﬁeld of news lags behind the above areas. And it cannot meet the requirements in news ﬁeld entirely. Therefore, it is the main task of the current news recommendation system to integrate the existing personalized recommendation technologies into the news recommendation ﬁeld, to study how to handle massive heterogeneous news data, to construct an optimal user preference model, and to improve the overall performance of the personalized news recommendation. This paper presents the state-of-the-art personalized news recommendation technologies in recent years, and analyzes the advantages and disadvantages of the mainstream technology based on seven main directions. Finally, the open issues in the development of personalized news recommendation technology are analyzed and concluded, hoping to guide the related work in the future.</dcterms:abstract>
+        <dc:date>2019</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/8854070/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-20 14:06:45</dcterms:dateSubmitted>
+        <dc:rights>https://creativecommons.org/licenses/by/4.0/legalcode</dc:rights>
+        <bib:pages>145861-145879</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:2169-3536">
+        <prism:volume>7</prism:volume>
+        <dc:title>IEEE Access</dc:title>
+        <dc:identifier>DOI 10.1109/ACCESS.2019.2944927</dc:identifier>
+        <dcterms:alternative>IEEE Access</dcterms:alternative>
+        <dc:identifier>ISSN 2169-3536</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_408">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>08854070.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://ieeexplore-ieee-org-s.vpn.cdut.edu.cn:8118/ielx7/6287639/8600701/08854070.pdf?tp=&amp;arnumber=8854070&amp;isnumber=8600701&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50Lzg4NTQwNzA=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-20 14:06:39</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:9798350316469">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 9798350316469</dc:identifier>
+                <dc:title>2023 International Conference on Ambient Intelligence, Knowledge Informatics and Industrial Electronics (AIKIIE)</dc:title>
+                <dc:identifier>DOI 10.1109/AIKIIE60097.2023.10389982</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Ballari, India</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>IEEE</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Pu</foaf:surname>
+                        <foaf:givenName>Qingna</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hu</foaf:surname>
+                        <foaf:givenName>Bin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_423"/>
+        <dc:title>Intelligent Movie Recommendation System Based on Hybrid Recommendation Algorithms</dc:title>
+        <dcterms:abstract>With the continuous advancement of modern science and technology and the arrival of the artificial intelligence era, the problem of &quot;information overload&quot; has become increasingly prominent. The emerging recommendation systems not only provide users with an excellent user experience and convenience but also help businesses achieve greater profits. To cater to the personalized needs of users, this study has chosen a movie recommendation system based on a hybrid recommendation algorithm. This system reduces the time users spend on information searching and enhances their search efficiency, aiming to recommend movies that align with their preferences. Our hybrid recommendation algorithm has shown an accuracy rate of 81%, surpassing traditional CB, Item-Based CF, and UserBased CF algorithms. This recommendation system not only shortens the time users take to search for information but also improves their search efficiency.</dcterms:abstract>
+        <dc:date>2023-11-2</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/10389982/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-20 17:06:14</dcterms:dateSubmitted>
+        <dc:rights>https://doi.org/10.15223/policy-029</dc:rights>
+        <bib:pages>1-5</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>2023 International Conference on Ambient Intelligence, Knowledge Informatics and Industrial Electronics (AIKIIE)</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_423">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Pu 和 Hu - 2023 - Intelligent Movie Recommendation System Based on H.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=10389982&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzEwMzg5OTgy</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-20 17:06:03</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-4503-7201-5">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-4503-7201-5</dc:identifier>
+                <dc:title>Proceedings of the 2019 3rd International Conference on Big Data Research</dc:title>
+                <dc:identifier>DOI 10.1145/3372454.3372470</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Cergy-Pontoise France</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>ACM</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Shao</foaf:surname>
+                        <foaf:givenName>Yu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Xie</foaf:surname>
+                        <foaf:givenName>Ying-hua</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_433"/>
+        <dc:title>Research on Cold-Start Problem of Collaborative Filtering Algorithm</dc:title>
+        <dc:date>2019-11-20</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://dl.acm.org/doi/10.1145/3372454.3372470</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-21 05:04:18</dcterms:dateSubmitted>
+        <bib:pages>67-71</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>ICBDR 2019: 2019 The 3rd International Conference on Big Data Research</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_433">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Shao 和 Xie - 2019 - Research on Cold-Start Problem of Collaborative Fi.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="http://cea.ceaj.org/EN/">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1002-8331"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yongquan</foaf:surname>
+                        <foaf:givenName>F. a. N.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yajun</foaf:surname>
+                        <foaf:givenName>D. U.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_435"/>
+        <dc:title>Improved user-based collaborative filtering method based on weighted similarity</dc:title>
+        <dcterms:abstract>The similarity measure between users has significant impact on the res...</dcterms:abstract>
+        <dc:date>2016-11-15</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>cea.ceaj.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://cea.ceaj.org/EN/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-21 05:07:04</dcterms:dateSubmitted>
+        <bib:pages>222</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1002-8331">
+        <prism:volume>52</prism:volume>
+        <dc:title>Computer Engineering and Applications</dc:title>
+        <prism:number>22</prism:number>
+        <dc:identifier>ISSN 1002-8331</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_435">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Yongquan 和 Yajun - 2016 - Improved user-based collaborative filtering method.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://dl.acm.org/doi/10.1145/963770.963775">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1046-8188,%201558-2868"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Huang</foaf:surname>
+                        <foaf:givenName>Zan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Chen</foaf:surname>
+                        <foaf:givenName>Hsinchun</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zeng</foaf:surname>
+                        <foaf:givenName>Daniel</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_443"/>
+        <link:link rdf:resource="#item_444"/>
+        <dc:title>Applying associative retrieval techniques to alleviate the sparsity problem in collaborative filtering</dc:title>
+        <dcterms:abstract>Recommender systems are being widely applied in many application settings to suggest products, services, and information items to potential consumers. Collaborative filtering, the most successful recommendation approach, makes recommendations based on past transactions and feedback from consumers sharing similar interests. A major problem limiting the usefulness of collaborative filtering is the sparsity problem, which refers to a situation in which transactional or feedback data is sparse and insufficient to identify similarities in consumer interests. In this article, we propose to deal with this sparsity problem by applying an associative retrieval framework and related spreading activation algorithms to explore transitive associations among consumers through their past transactions and feedback. Such transitive associations are a valuable source of information to help infer consumer interests and can be explored to deal with the sparsity problem. To evaluate the effectiveness of our approach, we have conducted an experimental study using a data set from an online bookstore. We experimented with three spreading activation algorithms including a constrained Leaky Capacitor algorithm, a branch-and-bound serial symbolic search algorithm, and a Hopfield net parallel relaxation search algorithm. These algorithms were compared with several collaborative filtering approaches that do not consider the transitive associations: a simple graph search approach, two variations of the user-based approach, and an item-based approach. Our experimental results indicate that spreading activation-based approaches significantly outperformed the other collaborative filtering methods as measured by recommendation precision, recall, the F-measure, and the rank score. We also observed the over-activation effect of the spreading activation approach, that is, incorporating transitive associations with past transactional data that is not sparse may &quot;dilute&quot; the data used to infer user preferences and lead to degradation in recommendation performance.</dcterms:abstract>
+        <dc:date>01/2004</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://dl.acm.org/doi/10.1145/963770.963775</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-21 10:07:08</dcterms:dateSubmitted>
+        <bib:pages>116-142</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1046-8188,%201558-2868">
+        <prism:volume>22</prism:volume>
+        <dc:title>ACM Transactions on Information Systems</dc:title>
+        <dc:identifier>DOI 10.1145/963770.963775</dc:identifier>
+        <prism:number>1</prism:number>
+        <dcterms:alternative>ACM Trans. Inf. Syst.</dcterms:alternative>
+        <dc:identifier>ISSN 1046-8188, 1558-2868</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_443">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>已接受版本</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://repository.arizona.edu/bitstream/10150/105493/1/huang.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-21 10:07:33</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_444">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Applying Associative Retrieval Techniques.pdf</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="http://ieeexplore.ieee.org/document/1588800/">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1541-1672"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Salter</foaf:surname>
+                        <foaf:givenName>J.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Antonopoulos</foaf:surname>
+                        <foaf:givenName>N.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_446"/>
+        <dc:title>CinemaScreen Recommender Agent: Combining Collaborative and Content-Based Filtering</dc:title>
+        <dc:date>01/2006</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>CinemaScreen Recommender Agent</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://ieeexplore.ieee.org/document/1588800/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-21 11:19:39</dcterms:dateSubmitted>
+        <dc:rights>https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html</dc:rights>
+        <bib:pages>35-41</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1541-1672">
+        <prism:volume>21</prism:volume>
+        <dc:title>IEEE Intelligent Systems</dc:title>
+        <dc:identifier>DOI 10.1109/MIS.2006.4</dc:identifier>
+        <prism:number>1</prism:number>
+        <dcterms:alternative>IEEE Intell. Syst.</dcterms:alternative>
+        <dc:identifier>ISSN 1541-1672</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_446">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>Salter 和 Antonopoulos - 2006 - CinemaScreen Recommender Agent Combining Collabor.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&amp;arnumber=1588800&amp;ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzE1ODg4MDA=</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-04-21 11:19:35</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://docs.djangoproject.com/en/5.0/">
+        <z:itemType>document</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+               <foaf:name>Django Software Foundation</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <dc:title>Django documentation</dc:title>
+        <dc:date>2022</dc:date>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://docs.djangoproject.com/en/5.0/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://www.acm.org/code-of-ethics">
+        <z:itemType>standard</z:itemType>
+        <dc:title>ACM Code of Ethics and Professional Conduct</dc:title>
+        <dcterms:abstract>Ethical and social computing are embodied in the ACM Code of Ethics. The core values expressed in the ACM Code inspire and guide computing professionals. The actions of computing professionals change the world, and the Code is the conscience of the field. Serving as the Hippocratic Oath for the IT Professional, the Software Engineer, the Programmer and all those responsible for shaping and contributing to the future of computing. The Code covers ethics across the computing field, representing the tech code of ethics, computing ethics, software ethics, programming ethics, AI ethics and computing for public good.</dcterms:abstract>
+        <dc:date>2018</dc:date>
+        <z:language>en</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.acm.org/code-of-ethics</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-05-02 07:55:41</dcterms:dateSubmitted>
+        <z:type>Professional standard or ethical guidelines</z:type>
+        <z:authority>Association for Computing Machinery</z:authority>
+    </rdf:Description>
+    <z:Collection rdf:about="#collection_22">
+        <dc:title>Cold start</dc:title>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-5090-4099-5"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-5386-0807-4"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-4503-7201-5"/>
+        <dcterms:hasPart rdf:resource="https://dl.acm.org/doi/10.1145/963770.963775"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_20">
+        <dc:title>Content-based</dc:title>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-66543-587-1"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:9798350320954"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-5090-4099-5"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-5386-0807-4"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_8">
+        <dc:title>Online food/E-commerce</dc:title>
+        <dcterms:hasPart rdf:resource="https://www.statista.com/study/40457/food-delivery/"/>
+        <dcterms:hasPart rdf:resource="#item_21"/>
+        <dcterms:hasPart rdf:resource="https://ieeexplore.ieee.org/document/10266133"/>
+        <dcterms:hasPart rdf:resource="https://ieeexplore.ieee.org/document/9906293"/>
+        <dcterms:hasPart rdf:resource="https://waimai.meituan.com/"/>
+        <dcterms:hasPart rdf:resource="https://www.ele.me"/>
+        <dcterms:hasPart rdf:resource="https://www.ubereats.com"/>
+        <dcterms:hasPart rdf:resource="https://www.statista.com/study/63164/catering-services-in-china/"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-66540-331-3"/>
+        <dcterms:hasPart rdf:resource="http://link.springer.com/10.1007/s10586-018-1814-y"/>
+        <dcterms:hasPart rdf:resource="https://www.just-eat.ie/"/>
+        <dcterms:hasPart rdf:resource="https://www.acm.org/code-of-ethics"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_23">
+        <dc:title>Recommendation</dc:title>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-72819-018-1"/>
+        <dcterms:hasPart rdf:resource="https://ieeexplore.ieee.org/document/10092591"/>
+        <dcterms:hasPart rdf:resource="https://www.mdpi.com/2076-3417/13/4/2299"/>
+        <dcterms:hasPart rdf:resource="http://link.springer.com/10.1007/s10586-018-1814-y"/>
+        <dcterms:hasPart rdf:resource="https://www.mdpi.com/2079-9292/11/1/141"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-3-319-90092-6"/>
+        <dcterms:hasPart rdf:resource="https://www.sciencedirect.com/science/article/pii/S0957417423026684"/>
+        <dcterms:hasPart rdf:resource="https://ieeexplore.ieee.org/document/8854070/"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_6">
+        <dc:title>Recommendation system</dc:title>
+        <dcterms:hasPart rdf:resource="#collection_21"/>
+        <dcterms:hasPart rdf:resource="#collection_24"/>
+        <dcterms:hasPart rdf:resource="#collection_19"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-72819-018-1"/>
+        <dcterms:hasPart rdf:resource="https://ieeexplore.ieee.org/document/5192712"/>
+        <dcterms:hasPart rdf:resource="https://ieeexplore.ieee.org/document/10092591"/>
+        <dcterms:hasPart rdf:resource="https://ieeexplore.ieee.org/document/9853485"/>
+        <dcterms:hasPart rdf:resource="https://www.mdpi.com/2076-3417/13/4/2299"/>
+        <dcterms:hasPart rdf:resource="http://link.springer.com/10.1007/s10586-018-1814-y"/>
+        <dcterms:hasPart rdf:resource="https://www.mdpi.com/2079-9292/11/1/141"/>
+        <dcterms:hasPart rdf:resource="https://docs.djangoproject.com/en/5.0/"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_21">
+        <dc:title>Hybrid recommendation</dc:title>
+        <dcterms:hasPart rdf:resource="https://ieeexplore.ieee.org/document/9853485"/>
+        <dcterms:hasPart rdf:resource="https://doi.org/10.1007/s44196-024-00429-4"/>
+        <dcterms:hasPart rdf:resource="#item_292"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-66543-434-8"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-5386-3581-0"/>
+        <dcterms:hasPart rdf:resource="http://link.springer.com/10.1007/s10844-006-8771-2"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:9798350316469"/>
+        <dcterms:hasPart rdf:resource="http://ieeexplore.ieee.org/document/1588800/"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_24">
+        <dc:title>Similarity</dc:title>
+        <dcterms:hasPart rdf:resource="#item_236"/>
+        <dcterms:hasPart rdf:resource="http://link.springer.com/10.1007/s00355-017-1104-2"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-66541-237-7"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-5090-5045-1"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-4673-6057-9%20978-0-7695-4880-7"/>
+        <dcterms:hasPart rdf:resource="#item_389"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_19">
+        <dc:title>User CF</dc:title>
+        <dcterms:hasPart rdf:resource="urn:isbn:9798350396393"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-72818-624-5"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-5386-8097-1"/>
+        <dcterms:hasPart rdf:resource="#item_289"/>
+        <dcterms:hasPart rdf:resource="http://cea.ceaj.org/EN/"/>
+    </z:Collection>
+</rdf:RDF>
