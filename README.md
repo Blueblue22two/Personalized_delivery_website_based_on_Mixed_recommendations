@@ -40,14 +40,14 @@ In addition, we also create a **popularity-based recommendation function** to re
 
 ## 💻Deploy & Run project:
 
-### 1. connect with database:
-- Use the database sql file `onlinefooddelivery.sql`
+### 1. Connect with database:
+- open the file `Mysql data` in `Code\Mysql data`
+- use all the sql file in `Mysql data`
 - Config the mysql in `setting.py`
 
 - Perform database migrations
 ```
 python manage.py makemigrations
-
 python manage.py migrate
 ``` 
 
@@ -68,7 +68,10 @@ url: `http://127.0.0.1:8000/`
 --- 
 
 ### View of website:
-- Index page (not log in)
+- Index page (not log in)  
 ![main page](md_img/main_1.jpg)
 ![main page](md_img/main_2.jpg)
 ![main page](md_img/main_3.jpg)
+  
+- My orders page:  
+![My orders page](md_img/Completed_customer.png)
