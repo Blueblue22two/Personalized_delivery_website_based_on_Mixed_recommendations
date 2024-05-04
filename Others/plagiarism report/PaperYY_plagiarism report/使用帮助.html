@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PaperYY英文检测报告</title>
+    <script src="js/jquery.1.7.2.js"></script>
+    <link rel="stylesheet" href="css/css.css">
+    <script src="js/js.js"></script>
+    <script type="text/javascript" src="js/en_report.js"></script>
+    <style type="text/css">
+      .ownsentence em{
+        color: red;
+      }
+      .similar em{
+        color: #39ab1a;
+      }
+      .
+    </style>
+    <script type="text/javascript">
+        var reg = new RegExp("(^|&)data=([^&]*)(&|$)", "i");
+
+        function getQueryString() {
+            var search = location.search;
+            var param = search.substr(1).match(reg);
+            if (param == null){
+            $(".hd-nav").show();
+            return;
+            }
+            var encode = param[2];
+            var decode = decodeURIComponent(encode);
+            var data = JSON.parse(decode);
+            var urlMap = data.UrlMap;
+            $(".menu a").each(function () {
+                var key = $(this).attr("href");
+                if(urlMap[key]) {
+                    var url;
+                    if (urlMap[key].indexOf("?") > -1) {
+                        url = urlMap[key] + "&data=" + encode;
+                    } else {
+                        url = urlMap[key] + "?data=" + encode;
+                    }
+                    $(this).attr("href", url);
+                }
+            });
+            $(".hd-nav").show();
+        }
+        $(document).ready(function () {
+            getQueryString();
+        });
+    </script>
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <!-- 20190307 s -->
+        <div class="hd-top px-30">
+            <a class="head-logo" href=""><img src="img/logo.png" alt=""></a>
+            <div class="title">
+                <h1>An intelligence recommendation system for online food orderi</h1>
+                <div class="data">
+                    <span>论文作者：Calvin</span>
+                    <span>论文字数：55,594</span>
+                    <span>提交时间：2024-05-03 13:27:35</span>
+                    <span>报告编号： YY202405031327217083 <a href="https://www.paperyy.com/reportcheck" target="_blank">查询真伪</a></span>
+                </div>
+            </div>
+            <div class="head-like">
+                <div class="inner">
+                    <p>相似度</p><b>25.8%</b>
+                </div>
+            </div>
+        </div>
+        <div class="hd-nav" >
+            <span class="menu" >
+                                        <a class="on"  href="#">使用帮助<i class="icon-sj"></i></a>
+                                        <a href="查看全文.html" >查看全文<i class="icon-sj"></i></a> 
+                                        <a href="综合报告.html" >综合报告<i class="icon-sj"></i></a> 
+                                        <a href="详细报告.html" >详细报告<i class="icon-sj"></i></a> 
+                <a href="https://report.paperyy.com/20240503/2-ba9e06e6-f7ad-4dd4-8369-de36b5655570/report.pdf" style="display: none;">PDF报告 <i class="icon-sj"></i></a>
+                <a href="#" style="display: none;">在线改重 <i class="icon-sj"></i></a>
+            </span>
+            <em class="line"></em>
+            <span class="tool c-fff">
+                <a class="ver" href="https://www.paperyy.com/member_new/thesis/post.aspx?en=true"><i class="icon-search"></i><em>再次检测</em></a>
+                <a href="https://enreport.paperyy.com/20240503/2-ba9e06e6-f7ad-4dd4-8369-de36b5655570/report.zip"><i class="icon-down"></i><em>下载报告</em></a>
+                <a class="head-phone-wrap" href="javascript:void(0)" style="display: none;"><i class="icon-phone"></i><em>手机预览</em>
+                    <div class="phone-pop">
+                        <img width="132" height="132" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAIAAAAP3aGbAAAKP0lEQVR42u3dS44bQQxEQd3/0jZ8h6aZWYy3bmik+kRvCMzvjySV9LMEkoAlScCSBCxJApYkAUsSsCQJWJIELEnAkiRgSRKwJAFLkoAlScCSBCxJApYkAUsSsCQJWJIELEnAkiRgSRKwJAFLkoAlScCSBCxJApYkYEkSsCQJWJKAJUnAkiRgSQKWJAFLkoAlCViSBCxJApYkYEkSsCQJWJKAJUnAkiRgSQKWJAFLkoAlCViSBKx/X66k6d/71fNfrfPWfk2vg/OcuW7AAhawnGdg2WBgAct5BhawgAUsYAELWMBynoFlg4EFLGABC1jAAhawgAUsYDnPwPq/Fzjt+7QAlPY9t4DY+hz3C1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWA1AOHCZ67+1j6+u56sDt8ACFrCABSxgAQtYzjOwbDCwgAUsYAELWMAClg0GFrCcZ2DZYGABC1jAAhawgAWs2xu89X3S/u70ek6fty0QgQUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgffe70tZ5C7KtdQMWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawLoHVDujWBU4bQG35nu1AAAtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGAB6zZYaU1fSM+//XzLeQYWsDzveWABC1ieBxawgOWCeR5YwAKW54EFLGABy/PAAhawXEjPAwtYwPI8sIDVCdartRysr/5uGgTTv1fAAhawgCVgAQtYwAKWgAUsAQtYwAIWsAQsYAELWAIWsAQsYAELWMB68WJPH+i0AdQtmKb39xq4W88DC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAHrLbBaLuQWTC0XPu0F0H4OW/YXWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYnRucNsB5bSCzZcA1bWD42vkEFrCABSxgAQtYwAIWsIAFLGABC1gOBLCABSxgAQtYwAIWsIAFLGABC1jAAhawMsCa3uC0i5EGx6v7mPaC2VpPYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgvQXW9MXY+vyWAciti502mJo22Lk1mAosYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgJR3ELQjSIEu7SC2gtJ83YAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxg3QYrbTA17e+mXYCWAdS08wwsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABay3wErb+LTv/9X32fq7W7+r5XNagAYWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAtYNsKYv8NYgYsvnb71IXn3xpL2YgQUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCA1QlWGogtg6lpB/Q3XPs52YIYWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYb4HVDkQLxFt5EdoXYAELWMACFrCABSxgAQtYwAKWfQEWsFwM6w8sYAELWMACFrCABSxgAQtYLob1B9a7B2v6c9IAbVmf6QuZto9p5wFYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1hvgZU2INpyYdIGC7fW8xqgBkeBBSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsG6D9dVGTn/+NJSvrnPael4DAljAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWDfA+pWUtg7t+9L+Yrh2PoEFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgPXW4GjaBUi7YC1AfPX81r5srfOFgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCA1Q/f9AHdGghMuzBp0LTv+0uDpsACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwNo7uC1AbP2utN+7dZHS/q6BUmABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYDUcoGkg0n7XVtPrn7ZfLS8kg6PAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMDagGn6YE3DdG39r73AgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABazJjWyBoAXW9gvWMsBpcBRYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jq+QeZLUBsvfC29rH984EFLGABC1gCFrCABSxgAQtYwAIWsIAFLGAJWMACFrCABSxgAQtYwAIWsIDVeeHTBu1aLsz0IGUaTC1/d2vAFVjAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWDfAuvZ9XOzdF8/WeXgJGmABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYPWAlTYIujWQ2QJi+zq0DzYDC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWJfA2vq9r8LXsp7T+9IIHLCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIC1Dce1Qcet7zn9e7fOM7CABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsG6A1QJoC4jtMKWdk611a4QJWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYPRvfMmi6BVwLiNOgp52T6XUGFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwALWW2BJErAkAUuSgCVJwJIELEkCliRgSRKwJAlYkoAlScCSJGBJApYkAUuSgCUJWJIELEkCliRgSRKwJAlYkoAlScCSJGBJApYkAUuSgCUJWJIELEkCliRgSRKwJAlYkoAlScCSBCxJApYkAUsSsCQJWJIELEnAkiRgSRKwJAFLkoAlScCSBCxJApYkAUsSsCRppb92nAjQNX3BmAAAAABJRU5ErkJggg=="/>
+                    </div>
+                </a>
+            </span>
+            <em class="line"></em>
+            
+            
+            
+        </div>
+        <!-- 20190307 e -->
+    </div>
+<!-- e header -->
+<!-- main -->
+ <div class="main">
+     <div class="overflow-auto wrap help_page">
+
+	    <div class="container">
+		    <img src="img/help_1.jpg?20190307" alt="">
+		    <img src="img/help_2.jpg?20190307" alt="">
+	    </div>
+     </div>
+ </div>
+<!--e main -->
+
+</body>
+</html>

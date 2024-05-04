@@ -1,0 +1,4598 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PaperYY英文检测报告</title>
+    <script src="js/jquery.1.7.2.js"></script>
+    <link rel="stylesheet" href="css/css.css">
+    <script src="js/js.js"></script>
+    <script type="text/javascript" src="js/en_report.js"></script>
+    <style type="text/css">
+      .ownsentence em{
+        color: red;
+      }
+      .similar em{
+        color: #39ab1a;
+      }
+      .
+    </style>
+    <script type="text/javascript">
+        var reg = new RegExp("(^|&)data=([^&]*)(&|$)", "i");
+
+        function getQueryString() {
+            var search = location.search;
+            var param = search.substr(1).match(reg);
+            if (param == null){
+            $(".hd-nav").show();
+            return;
+            }
+            var encode = param[2];
+            var decode = decodeURIComponent(encode);
+            var data = JSON.parse(decode);
+            var urlMap = data.UrlMap;
+            $(".menu a").each(function () {
+                var key = $(this).attr("href");
+                if(urlMap[key]) {
+                    var url;
+                    if (urlMap[key].indexOf("?") > -1) {
+                        url = urlMap[key] + "&data=" + encode;
+                    } else {
+                        url = urlMap[key] + "?data=" + encode;
+                    }
+                    $(this).attr("href", url);
+                }
+            });
+            $(".hd-nav").show();
+        }
+        $(document).ready(function () {
+            getQueryString();
+        });
+    </script>
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <!-- 20190307 s -->
+        <div class="hd-top px-30">
+            <a class="head-logo" href=""><img src="img/logo.png" alt=""></a>
+            <div class="title">
+                <h1>An intelligence recommendation system for online food orderi</h1>
+                <div class="data">
+                    <span>论文作者：Calvin</span>
+                    <span>论文字数：55,594</span>
+                    <span>提交时间：2024-05-03 13:27:35</span>
+                    <span>报告编号： YY202405031327217083 <a href="https://www.paperyy.com/reportcheck" target="_blank">查询真伪</a></span>
+                </div>
+            </div>
+            <div class="head-like">
+                <div class="inner">
+                    <p>相似度</p><b>25.8%</b>
+                </div>
+            </div>
+        </div>
+        <div class="hd-nav" >
+            <span class="menu" >
+                                        <a href="使用帮助.html" >使用帮助<i class="icon-sj"></i></a> 
+                                        <a class="on"  href="#">查看全文<i class="icon-sj"></i></a>
+                                        <a href="综合报告.html" >综合报告<i class="icon-sj"></i></a> 
+                                        <a href="详细报告.html" >详细报告<i class="icon-sj"></i></a> 
+                <a href="https://report.paperyy.com/20240503/2-ba9e06e6-f7ad-4dd4-8369-de36b5655570/report.pdf" style="display: none;">PDF报告 <i class="icon-sj"></i></a>
+                <a href="#" style="display: none;">在线改重 <i class="icon-sj"></i></a>
+            </span>
+            <em class="line"></em>
+            <span class="tool c-fff">
+                <a class="ver" href="https://www.paperyy.com/member_new/thesis/post.aspx?en=true"><i class="icon-search"></i><em>再次检测</em></a>
+                <a href="https://enreport.paperyy.com/20240503/2-ba9e06e6-f7ad-4dd4-8369-de36b5655570/report.zip"><i class="icon-down"></i><em>下载报告</em></a>
+                <a class="head-phone-wrap" href="javascript:void(0)" style="display: none;"><i class="icon-phone"></i><em>手机预览</em>
+                    <div class="phone-pop">
+                        <img width="132" height="132" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAIAAAAP3aGbAAAKP0lEQVR42u3dS44bQQxEQd3/0jZ8h6aZWYy3bmik+kRvCMzvjySV9LMEkoAlScCSBCxJApYkAUsSsCQJWJIELEnAkiRgSRKwJAFLkoAlScCSBCxJApYkAUsSsCQJWJIELEnAkiRgSRKwJAFLkoAlScCSBCxJApYkYEkSsCQJWJKAJUnAkiRgSQKWJAFLkoAlCViSBCxJApYkYEkSsCQJWJKAJUnAkiRgSQKWJAFLkoAlCViSBKx/X66k6d/71fNfrfPWfk2vg/OcuW7AAhawnGdg2WBgAct5BhawgAUsYAELWMBynoFlg4EFLGABC1jAAhawgAUsYDnPwPq/Fzjt+7QAlPY9t4DY+hz3C1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWA1AOHCZ67+1j6+u56sDt8ACFrCABSxgAQtYzjOwbDCwgAUsYAELWMAClg0GFrCcZ2DZYGABC1jAAhawgAWs2xu89X3S/u70ek6fty0QgQUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgffe70tZ5C7KtdQMWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawLoHVDujWBU4bQG35nu1AAAtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGAB6zZYaU1fSM+//XzLeQYWsDzveWABC1ieBxawgOWCeR5YwAKW54EFLGABy/PAAhawXEjPAwtYwPI8sIDVCdartRysr/5uGgTTv1fAAhawgCVgAQtYwAKWgAUsAQtYwAIWsAQsYAELWAIWsAQsYAELWMB68WJPH+i0AdQtmKb39xq4W88DC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAHrLbBaLuQWTC0XPu0F0H4OW/YXWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYnRucNsB5bSCzZcA1bWD42vkEFrCABSxgAQtYwAIWsIAFLGABC1gOBLCABSxgAQtYwAIWsIAFLGABC1jAAhawMsCa3uC0i5EGx6v7mPaC2VpPYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgvQXW9MXY+vyWAciti502mJo22Lk1mAosYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgJR3ELQjSIEu7SC2gtJ83YAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxg3QYrbTA17e+mXYCWAdS08wwsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABay3wErb+LTv/9X32fq7W7+r5XNagAYWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAtYNsKYv8NYgYsvnb71IXn3xpL2YgQUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCA1QlWGogtg6lpB/Q3XPs52YIYWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYb4HVDkQLxFt5EdoXYAELWMACFrCABSxgAQtYwAKWfQEWsFwM6w8sYAELWMACFrCABSxgAQtYLob1B9a7B2v6c9IAbVmf6QuZto9p5wFYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1hvgZU2INpyYdIGC7fW8xqgBkeBBSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsG6D9dVGTn/+NJSvrnPael4DAljAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWDfA+pWUtg7t+9L+Yrh2PoEFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgPXW4GjaBUi7YC1AfPX81r5srfOFgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCA1Q/f9AHdGghMuzBp0LTv+0uDpsACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwNo7uC1AbP2utN+7dZHS/q6BUmABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYDUcoGkg0n7XVtPrn7ZfLS8kg6PAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMDagGn6YE3DdG39r73AgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABazJjWyBoAXW9gvWMsBpcBRYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jq+QeZLUBsvfC29rH984EFLGABC1gCFrCABSxgAQtYwAIWsIAFLGAJWMACFrCABSxgAQtYwAIWsIDVeeHTBu1aLsz0IGUaTC1/d2vAFVjAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWDfAuvZ9XOzdF8/WeXgJGmABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYPWAlTYIujWQ2QJi+zq0DzYDC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWJfA2vq9r8LXsp7T+9IIHLCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsIC1Dce1Qcet7zn9e7fOM7CABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwAIWsG6A1QJoC4jtMKWdk611a4QJWMACFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYPRvfMmi6BVwLiNOgp52T6XUGFrCABSxgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWMACFrCABSxgAQtYwALWW2BJErAkAUuSgCVJwJIELEkCliRgSRKwJAlYkoAlScCSJGBJApYkAUuSgCUJWJIELEkCliRgSRKwJAlYkoAlScCSJGBJApYkAUuSgCUJWJIELEkCliRgSRKwJAlYkoAlScCSBCxJApYkAUsSsCQJWJIELEnAkiRgSRKwJAFLkoAlScCSBCxJApYkAUsSsCRppb92nAjQNX3BmAAAAABJRU5ErkJggg=="/>
+                    </div>
+                </a>
+            </span>
+            <em class="line"></em>
+            
+            
+            
+        </div>
+        <!-- 20190307 e -->
+    </div>
+<!-- e header -->
+<!-- main -->
+ <div class="main ">
+     <div class=" overflow-auto wrap">
+        <div class="artical2">
+            <p>
+                     <em>Abstract</em>
+            </p>
+            <p>
+                     <em>Food delivery is becoming a new popular food trend in China, and the food delivery market has</em>
+            </p>
+            <p>
+                     <em>great potential for development in China.</em>
+                     <em> Therefore, this project aims to build an Intelligent</em>
+            </p>
+            <p>
+                     <em>online food delivery website with Python, Django, and MySQL.</em>
+                     <em> For customers, it has features like registration, address management, favorites, shopping carts, and the ability to review and</em>
+            </p>
+            <p>
+                     <em>rate purchases.</em>
+                     <em> For shop owners, the website offers features to manage their store and</em>
+            </p>
+            <p>
+                     <em>products, as well as order management features.</em>
+                     <em> In addition to this, the website uses a Hybrid</em>
+            </p>
+            <p>
+                     <em>Recommendation System to provide personalized recommendations to the users by using User-</em>
+            </p>
+            <p>
+                     <em>based Collaborative Filtering (User-CF) technology along with Content-Based Filtering (CB) technology to analyze the user's preferences as well as the similarity of the product.</em>
+            </p>
+            <p>
+                     <em>This approach not only enhances the shopping experience but also boosts sales by intelligently</em>
+            </p>
+            <p>
+                     <em>matching products with customers' preferences. The integration of multiple recommendation</em>
+            </p>
+            <p>
+                     <em>algorithms has established the food delivery website as a leading choice for customers seeking</em>
+            </p>
+            <p>
+                     <em>a personalized shopping experience and for store owners seeking to enhance their exposure through the platform.</em>
+            </p>
+            <p>
+                     <em>Keywords: Recommendation system, Hybrid recommendation, Collaborative filtering,</em>
+            </p>
+            <p>
+                     <em>Content-based filtering, User-CF, Food delivery</em>
+            </p>
+            <p>
+                     <em>Abbreviations</em>
+            </p>
+            <p>
+                     <em>CF: Collaborative Filtering</em>
+            </p>
+            <p>
+                     <em>User-CF: User-based collaborative filtering</em>
+            </p>
+            <p>
+                     <em>Item-CF: Item-based collaborative filtering</em>
+            </p>
+            <p>
+                     <em>RS: Recommendation system</em>
+            </p>
+            <p>
+                     <em>CB: Content-based filtering</em>
+            </p>
+            <p>
+                     <em>Glossary</em>
+            </p>
+            <p>
+                     <em>Recommendation System:</em>
+            </p>
+            <p>
+                     <em>A Recommendation system is an information filtering system that provides personalized item</em>
+            </p>
+            <p>
+                     <em>recommendations to users in specific scenarios based on user or item data.[1]</em>
+            </p>
+            <p>
+                     <em>Hybrid recommendation:</em>
+            </p>
+            <p>
+                     <em>A hybrid recommendation system is a method that combines multiple recommendation</em>
+            </p>
+            <p>
+                     <em>techniques to address the shortcomings of individual models. The integration of multiple</em>
+            </p>
+            <p>
+                     <em>recommendation algorithms enables the generation of more accurate recommendations that overcome the limitations inherent in a single recommendation algorithm.[2].</em>
+            </p>
+            <p>
+                     <em>Content-based filtering:</em>
+            </p>
+            <p>
+                     <em>By analyzing the features of products that target users are interested in, content-based filtering methods recommend similar products to users [3].</em>
+            </p>
+            <p>
+                     <em>Collaborative Filtering:</em>
+            </p>
+            <p>
+                     <em>User-based Collaborative Filtering algorithms will recommend items of interest to the user based on the calculation of user or item similarity [4].</em>
+                     <em> There are two common collaborative filtering methods: User collaborative filtering and Item-based collaborative filtering [5].</em>
+            </p>
+            <p>
+                     <em>User-based Collaborative Filtering:</em>
+            </p>
+            <p>
+                     <em>Is an algorithm in collaborative filtering algorithm, which recommends items or product that similar users like for users by finding similar users for them.</em>
+            </p>
+            <p>
+                     <em>Cosine Similarity:</em>
+            </p>
+            <p>
+                     <em>Cosine similarity is a commonly used measure in computer science to determine the similarity</em>
+            </p>
+            <p>
+                     <em>between two vectors.</em>
+                     <em> It helps determine the relationship between two related items, making it a</em>
+            </p>
+            <p>
+                     <em>common method for assessing the similarity of users or items based on their features or behaviors [6][7].</em>
+            </p>
+            <p>
+                     <em>Jaccard Index:</em>
+            </p>
+            <p>
+                     <em>The Jaccard index is a statistical measure used to compare the similarity and diversity of</em>
+            </p>
+            <p>
+                     <em>sample sets.</em>
+                     <em> In recommendation systems, this index is used to compare users or items based on their ratings, thus helping to identify similar users or items with common appeal [8].</em>
+            </p>
+            <p>
+                     <em>Cold start:</em>
+            </p>
+            <p>
+                     <em>The Cold Start refers to the difficulty of generating accurate recommendations when a</em>
+            </p>
+            <p>
+                     <em>recommendation system is just getting started, due to a lack of sufficient user behavioral data or item data.</em>
+            </p>
+            <p>
+                     <em>Django:</em>
+            </p>
+            <p>
+                     <em>Django is a Python web framework that provides a set of methods to help developers to develop and maintain websites [9].</em>
+            </p>
+            <p>
+                     <em>Chapter 1 Introduction</em>
+            </p>
+            <p>
+                     <em>1.1 Background</em>
+            </p>
+            <p>
+                     <em>In the era of highly developed information technology and logistics industry, online take-out has</em>
+            </p>
+            <p>
+                     <em>become a new trend sweeping the world, especially in China, ordering take-out has become a new popular way of eating in China [10][11].</em>
+            </p>
+            <p>
+                     <em>However, the increasing health consciousness of customers and their growing demand for</em>
+            </p>
+            <p>
+                     <em>healthy food options has become a major trend in the online food delivery market. As a result,</em>
+            </p>
+            <p>
+                     <em>online food delivery platforms need to respond by offering a wider range of healthy and</em>
+            </p>
+            <p>
+                     <em>sustainable food choices. In addition to this, online food delivery platforms have been suffering</em>
+            </p>
+            <p>
+                     <em>from reduced information utilization and "information overload", where too many product categories can make it difficult for users to find their favorite information.</em>
+                     <em> Over time, users become less interested in the platform [10][12].</em>
+            </p>
+            <p>
+                     <em>To solve this problem, the use of recommendation systems has become an effective technical</em>
+            </p>
+            <p>
+                     <em>choice [10].</em>
+                     <em> Therefore, in this project, a hybrid recommendation system is implemented in which</em>
+            </p>
+            <p>
+                     <em>the User-CF algorithm is integrated with the CB algorithm to provide personalized</em>
+            </p>
+            <p>
+                     <em>recommendations of products to the customers through an intelligent recommendation system</em>
+            </p>
+            <p>
+                     <em>to reduce the information overload problem faced by the users. Integrating these two</em>
+            </p>
+            <p>
+                     <em>recommendation methods is expected to provide users with more accurate and personalized recommendation services [2].</em>
+            </p>
+            <p>
+                     <em>1.2 Aim</em>
+            </p>
+            <p>
+                     <em>The main goal of this project is to integrate a User-CF algorithm and CB into a hybrid</em>
+            </p>
+            <p>
+                     <em>recommendation system, so as to improve the user experience of the ordering platform by providing highly personalized and targeted food recommendations.</em>
+            </p>
+            <p>
+                     <em>1.3 Objectives</em>
+            </p>
+            <p>
+                     <em>The object are as follows:</em>
+            </p>
+            <p>
+                     <em>1. Research on the Existing Food Delivery Platform</em>
+            </p>
+            <p>
+                     <em>2. Comparison between food delivery platforms</em>
+            </p>
+            <p>
+                     <em>3. Research on recommendation system</em>
+            </p>
+            <p>
+                     <em>4. Research on CF and CB</em>
+            </p>
+            <p>
+                     <em>5. Function requirements analysis</em>
+            </p>
+            <p>
+                     <em>6. System design (divided into several modules)</em>
+            </p>
+            <p>
+                     <em>7. Web Implementation (Implement the front-end and back-end)</em>
+            </p>
+            <p>
+                     <em>8. Recommend function design 9. Develop recommend function</em>
+            </p>
+            <p>
+                     <em>10. Test and evaluate website function</em>
+            </p>
+            <p>
+                     <em>11. System testing & performance analysis</em>
+            </p>
+            <p>
+                     <em>1.4 Project Overview</em>
+            </p>
+            <p>
+                     <em>1.4.1 Scope</em>
+            </p>
+            <p>
+                     <em>The project aims to develop an intelligent recommendation system for an online food ordering</em>
+            </p>
+            <p>
+                     <em>platform. The objective is to enhance the user experience by providing personalized food</em>
+            </p>
+            <p>
+                     <em>recommendations. The website caters to two main types of users: customers and merchants.</em>
+            </p>
+            <p>
+                     <em>For customers, the website will offer features: registration, address management, My favorites,</em>
+            </p>
+            <p>
+                     <em>shopping cart management, order management and viewing order status, payment features</em>
+            </p>
+            <p>
+                     <em>with the option to cancel payments, as well as the ability to post comments and rate stores and</em>
+            </p>
+            <p>
+                     <em>products after purchase.</em>
+                     <em> Additionally, users will be able to manage orders and search for</em>
+            </p>
+            <p>
+                     <em>products or stores. The recommendation system will employ a hybrid recommendation system</em>
+            </p>
+            <p>
+                     <em>for logged-in customers with substantial order history, providing tailor-made suggestions by analyzing the preferences of similar users.</em>
+            </p>
+            <p>
+                     <em>On the merchant side, the platform will allow for account and store registration, product management, and order management along with access to store performance data.</em>
+            </p>
+            <p>
+                     <em>The integration of this hybrid recommendation system with the online ordering platform will</em>
+            </p>
+            <p>
+                     <em>markedly enhance the user experience. By analyzing and utilizing user data and preferences,</em>
+            </p>
+            <p>
+                     <em>the platform is designed to enhance customer satisfaction, while increasing exposure and sales for merchant stores.</em>
+            </p>
+            <p>
+                     <em>1.4.2 Audience</em>
+            </p>
+            <p>
+                     <em>The primary audience of our platform includes the following:</em>
+            </p>
+            <p>
+                     <em>1. For customers who are looking for a personalized, recommended ordering experience, the</em>
+            </p>
+            <p>
+                     <em>website's recommendation system can efficiently and accurately recommend foods they may be interested in to meet their individual dietary needs.</em>
+            </p>
+            <p>
+                     <em>2. The website provides merchants with the opportunity to showcase their products and personalize product recommendations for each customer by using the power of user data and preferences,</em>
+                     <em> greatly increasing their chances of increasing sales.</em>
+            </p>
+            <p>
+                     <em>3. For those with limited time and energy, our platform is a more convenient and intelligent</em>
+            </p>
+            <p>
+                     <em>solution.</em>
+                     <em> The site is able to provide users with fast, personalized meal recommendations based on their data and historical behavior.</em>
+            </p>
+            <p>
+                     <em>Chapter 2 Background Review</em>
+            </p>
+            <p>
+                     <em>2.1 Existing approach of Recommendation system:</em>
+            </p>
+            <p>
+                     <em>In this section, we will discuss and review the existing approach to recommendation systems.</em>
+            </p>
+            <p>
+                     <em>Faced with the problem of information overload caused by the rapid development of the Internet.</em>
+                     <em> Therefore, recommendation systems are designed to solve this problem [13].</em>
+            </p>
+            <p>
+                     <em>Recommendation systems are information filtering systems providing a personalized item</em>
+            </p>
+            <p>
+                     <em>recommendation to a user in a service environment that can hold or collect various data [1]. In</em>
+            </p>
+            <p>
+                     <em>fact, Recommendation systems are widely used in various fields, such as e-commerce and food</em>
+            </p>
+            <p>
+                     <em>delivery recommendation, which not only brings benefits to the merchant but also bring convenience to the users [10].</em>
+            </p>
+            <p>
+                     <em>The current mainstream approaches to recommendation systems are illustrated in Figure 1.</em>
+            </p>
+            <p>
+                     <em>This figure outlines the hierarchy of mainstream sub-models of current recommendation system models into three main approaches: CB (using item features for recommendation), collaborative</em>
+            </p>
+            <p>
+                     <em>filtering and hybrid systems. Collaborative filtering methods are categorized into model-based</em>
+            </p>
+            <p>
+                     <em>and memory-based approaches based on the way they process the rating data of users and</em>
+            </p>
+            <p>
+                     <em>items [1].</em>
+                     <em> Furthermore, memory-based collaborative filtering can be subdivided into two categories: User-CF and Item-CF [14].</em>
+            </p>
+            <p>
+                     <em>Figure 1: Overview of recommendation models [1].</em>
+            </p>
+            <p>
+                     <em>2.1.1 CB (Content-based filtering)</em>
+            </p>
+            <p>
+                     <em>CB is an algorithm that recommend items to users based on the features of the items and the user's preferences.</em>
+                     <em> For example, recommending products to users based on their information</em>
+            </p>
+            <p>
+                     <em>about the product itself of interest [3].</em>
+                     <em> For the CB recommendation algorithm, it is characterized by its ability to accurately extract the user's interests and does not require data from other users [14].</em>
+            </p>
+            <p>
+                     <em>Figure 2 below outlines the principles of CB models in recommendation systems. As an</em>
+            </p>
+            <p>
+                     <em>example, it shows that for different users, in a collection of food items, these items are</em>
+            </p>
+            <p>
+                     <em>associated with personalized user preference data, indicating that user A likes strawberries and</em>
+            </p>
+            <p>
+                     <em>user B likes pancakes.</em>
+                     <em> By using recommendation techniques to analyze the content of the</em>
+            </p>
+            <p>
+                     <em>items, recommendations can be obtained for specific categories, such as "fruit" for User A and "bread" for User B.</em>
+            </p>
+            <p>
+                     <em>Figure 2: Recommendation principle of Contents-Based Filtering Model [1].</em>
+            </p>
+            <p>
+                     <em>2.1.2 User CF (User-based collaborative filtering)</em>
+            </p>
+            <p>
+                     <em>User-CF is based on calculating the similarity between users and then recommending products</em>
+            </p>
+            <p>
+                     <em>that are liked by other users similar to the target user [3].</em>
+                     <em> For calculating similarity, cosine</em>
+            </p>
+            <p>
+                     <em>similarity is usually used to determine the similarity between users.</em>
+                     <em> In online delivery website can recommend similar item based on similar tastes between similar users [5][10].</em>
+            </p>
+            <p>
+                     <em>User-CF is characterized by high accuracy without extracting the item's features and with a</em>
+            </p>
+            <p>
+                     <em>complete and rich dataset.</em>
+                     <em> In addition, User-CF can extract some potential correlations between recommended items and user preferences [14].</em>
+            </p>
+            <p>
+                     <em>2.1.3 Limitation of Collaborative filter and Content-based filtering:</em>
+            </p>
+            <p>
+                     <em> Limitation of User-CF:</em>
+            </p>
+            <p>
+                     <em>Firstly, Li and Wang [14] discuss that as the number of users in the system increases, User-CF</em>
+            </p>
+            <p>
+                     <em>is confronted with the challenge of maintaining a large user similarity matrix. This not only</em>
+            </p>
+            <p>
+                     <em>increases the time required for recommendation computation but also reduces the system's</em>
+            </p>
+            <p>
+                     <em>overall efficiency.</em>
+                     <em> Furthermore, User-CF does not involve the mining of item content, and therefore cannot address the cold-start problem for new items.</em>
+            </p>
+            <p>
+                     <em>Second, Cacheda et al.</em>
+                     <em>[4] note that although User-CF is relatively simple to implement and provides fairly accurate results, it suffers from serious scalability problems. In order to make</em>
+            </p>
+            <p>
+                     <em>recommendations, the algorithm must process all the stored data, which is not feasible for large-scale online systems that require real-time recommendations.</em>
+            </p>
+            <p>
+                     <em>Furthermore, Huang, Chen, and Zeng [15] highlight that since users typically rate only a few</em>
+            </p>
+            <p>
+                     <em>items and the majority of item data remains unrated, the challenge of recommending product</em>
+            </p>
+            <p>
+                     <em>diversity in this context is significant.</em>
+                     <em> Additionally, there is a paucity of behavioral history for new users to analyze, which further complicates the task of providing recommendations.</em>
+            </p>
+            <p>
+                     <em>Consequently, User-CF also encounters limitations such as the sparsity of the rating matrix and the cold-start problem.</em>
+            </p>
+            <p>
+                     <em> Limitation of CB:</em>
+            </p>
+            <p>
+                     <em>Li and Wang [14] points out that CB may ignore objects that the user has not been exposed to</em>
+            </p>
+            <p>
+                     <em>before due to over-inclusion during the recommendation process.</em>
+                     <em> This situation can lead to monotony in the recommended content, depriving the user of the opportunity to explore new types of information, and thus a lack of novelty.</em>
+            </p>
+            <p>
+                     <em>In addition, Cacheda et al.</em>
+                     <em>[4] explain that CB requires ITEMS that can be parsed by machine,</em>
+            </p>
+            <p>
+                     <em>which poses difficulties for the processing of multimedia information, because machine</em>
+            </p>
+            <p>
+                     <em>perception of content is different from human perception. Although manually labeled multimedia</em>
+            </p>
+            <p>
+                     <em>content solves this problem to some extent, CB still struggles to handle the vast amount of</em>
+            </p>
+            <p>
+                     <em>information available today.</em>
+                     <em> In addition, CB also can’t discover items that appear irrelevant but are actually interesting to the user's profile, it lacks the ability to make unexpected discoveries.</em>
+            </p>
+            <p>
+                     <em>Finally, Salter and Antonopoulos [16] CB model only recommends data that is closely related to items that the user has previously evaluated, thus failing to provide access to diverse content.</em>
+                     <em> This suggests a clear limitation in the system's ability to recommend new items, thus reducing the user's exposure to new content.</em>
+            </p>
+            <p>
+                     <em> Conclusion:</em>
+            </p>
+            <p>
+                     <em>Obviously, both User-CF and CB Recommendation have limitations, especially under conditions</em>
+            </p>
+            <p>
+                     <em>of data sparsity, which can lead to the cold start problem - difficulty in making accurate recommendations for new users or items without sufficient data [4].</em>
+            </p>
+            <p>
+                     <em>2.1.4 Hybrid recommendation system:</em>
+            </p>
+            <p>
+                     <em>To address these challenges, hybrid recommendation systems have emerged. A hybrid</em>
+            </p>
+            <p>
+                     <em>recommendation system is an approach that combines multiple recommendation techniques,</em>
+            </p>
+            <p>
+                     <em>which mitigates the shortcomings of a single model by integrating multiple recommendation models.</em>
+                     <em> This approach enables websites to provide more accurate recommendations, even when faced with the typical cold-start problems associated with new items or users [10].</em>
+            </p>
+            <p>
+                     <em>Bondevik et al.</em>
+                     <em>[17] describe a hybrid system that utilizes different data sources to enhance the precision and personalization of recommendations provided to users. This system represents a</em>
+            </p>
+            <p>
+                     <em>significant advancement in addressing the inherent limitations of traditional recommendation models, thereby markedly increasing user satisfaction and engagement on the platform.</em>
+            </p>
+            <p>
+                     <em>Song et al.[18] states that a hybrid recommendation method that combines a weighted</em>
+            </p>
+            <p>
+                     <em>combination of User-CF and CB methods based on existing models is able to capture user evaluations of food more accurately than a single traditional recommendation technique. A</em>
+            </p>
+            <p>
+                     <em>hybrid approach to recommendation methods was found to be more accurate than traditional</em>
+            </p>
+            <p>
+                     <em>methods in identifying user preferences for different food products and in considering similarities between users and food products.</em>
+                     <em> This resulted in more accurate recommendations.</em>
+            </p>
+            <p>
+                     <em>Pu and Hu [19] selected a hybrid recommendation algorithm for recommending movies in their</em>
+            </p>
+            <p>
+                     <em>study.</em>
+                     <em> The experimental results show that the hybrid recommendation algorithm achieves an accuracy of 81%, which is better than the traditional CB, Item-CF and User-CF algorithms.</em>
+            </p>
+            <p>
+                     <em>Praditya, Permanasari, and Hidayah [20] propose that the limitations of existing models can be</em>
+            </p>
+            <p>
+                     <em>overcome by implementing a hybrid approach.</em>
+                     <em> The system utilizes three distinct models. A</em>
+            </p>
+            <p>
+                     <em>method for recommending travel itineraries to users is developed by combining the User-CF, CB, and K-Nearest Neighbor Algorithms.</em>
+            </p>
+            <p>
+                     <em>Shao and Xie [21] designed a hybrid algorithm utilizing user attributes and BP networks to solve</em>
+            </p>
+            <p>
+                     <em>the new user problem at cold start.</em>
+                     <em> The users are clustered according to their interests, and</em>
+            </p>
+            <p>
+                     <em>then the clustering results and the demographic information of the users are used to construct a</em>
+            </p>
+            <p>
+                     <em>decision tree, which associates the new users with the existing users, so as to realize the</em>
+            </p>
+            <p>
+                     <em>recommendation of new users.</em>
+                     <em> Experimental results show that the algorithm can improve the recommendation performance.</em>
+            </p>
+            <p>
+                     <em>2.1.5 Item-based popularity recommendation:</em>
+            </p>
+            <p>
+                     <em>In addition, based on the discussion of the cold start problem above.</em>
+                     <em> In order to solve the cold</em>
+            </p>
+            <p>
+                     <em>start problem for new users, this project develops a recommendation function based on the</em>
+            </p>
+            <p>
+                     <em>popularity of the item, which is based on the extraction of the metadata of the item itself, and</em>
+            </p>
+            <p>
+                     <em>sorts the items according to their popularity, so as to recommend them to new users. This</em>
+            </p>
+            <p>
+                     <em>avoids the situation where there is no product to recommend if the new user has no user data to extract.</em>
+            </p>
+            <p>
+                     <em>2.2 Analysis of existing food delivery platforms:</em>
+            </p>
+            <p>
+                     <em>Online food ordering platforms have become increasingly popular in recent years,</em>
+            </p>
+            <p>
+                     <em>revolutionizing the way customers order food and receive delivery. Several companies are</em>
+            </p>
+            <p>
+                     <em>commercial giants in the food delivery platform space, with Meituan and Ele.</em>
+                     <em>me being the most used delivery software in China [22].</em>
+            </p>
+            <p>
+                     <em>Therefore, in order to analyze and investigate the characteristics of Online food ordering platforms, Table 1 below shows functional comparisons of the different platforms.</em>
+            </p>
+            <p>
+                     <em>Table 1: Feature comparison between different platforms.</em>
+            </p>
+            <p>
+                     <em>Feature Comparison</em>
+            </p>
+            <p>
+                     <em>MeiTuan</em>
+            </p>
+            <p>
+                     <em>[23]</em>
+            </p>
+            <p>
+                     <em>Ele.ME</em>
+            </p>
+            <p>
+                     <em>[24]</em>
+            </p>
+            <p>
+                     <em>Uber eats</em>
+            </p>
+            <p>
+                     <em>[25]</em>
+            </p>
+            <p>
+                     <em>Just eat [26]</em>
+            </p>
+            <p>
+                     <em>Customer register required</em>
+            </p>
+            <p>
+                     <em>Information</em>
+            </p>
+            <p>
+                     <em>Phone</em>
+            </p>
+            <p>
+                     <em>number</em>
+            </p>
+            <p>
+                     <em>Phone</em>
+            </p>
+            <p>
+                     <em>number</em>
+            </p>
+            <p>
+                     <em>Email &</em>
+            </p>
+            <p>
+                     <em>Phone</em>
+            </p>
+            <p>
+                     <em>number</em>
+            </p>
+            <p>
+                     <em>Email</em>
+            </p>
+            <p>
+                     <em>Become a merchant YES YES YES YES</em>
+            </p>
+            <p>
+                     <em>Product Category function YES YES YES YES</em>
+            </p>
+            <p>
+                     <em>Shopping Cart function YES YES YES YES</em>
+            </p>
+            <p>
+                     <em>Search shop function YES YES YSE YES</em>
+            </p>
+            <p>
+                     <em>Search product function YES YES NO NO</em>
+            </p>
+            <p>
+                     <em>Collection shop function and</em>
+            </p>
+            <p>
+                     <em>management</em>
+            </p>
+            <p>
+                     <em>YES YES YES NO</em>
+            </p>
+            <p>
+                     <em>Collection product function and</em>
+            </p>
+            <p>
+                     <em>management</em>
+            </p>
+            <p>
+                     <em>NO NO NO NO</em>
+            </p>
+            <p>
+                     <em>Comment function YES YES NO NO</em>
+            </p>
+            <p>
+                     <em>Delivery Method Delivery Delivery</em>
+            </p>
+            <p>
+                     <em>Delivery &</em>
+            </p>
+            <p>
+                     <em>Pickup</em>
+            </p>
+            <p>
+                     <em>Delivery &</em>
+            </p>
+            <p>
+                     <em>Collection</em>
+            </p>
+            <p>
+                     <em>Recommended</em>
+            </p>
+            <p>
+                     <em>Restaurants</em>
+            </p>
+            <p>
+                     <em>YES YES YES YES</em>
+            </p>
+            <p>
+                     <em>Individual Recommended</em>
+            </p>
+            <p>
+                     <em>products</em>
+            </p>
+            <p>
+                     <em>NO NO NO NO</em>
+            </p>
+            <p>
+                     <em>Address Management YES YES YES YES</em>
+            </p>
+            <p>
+                     <em>Order status view and</em>
+            </p>
+            <p>
+                     <em>management</em>
+            </p>
+            <p>
+                     <em>YES YES YES YES</em>
+            </p>
+            <p>
+                     <em>Shop rating function YES YES YES YES</em>
+            </p>
+            <p>
+                     <em>Product rating function NO NO NO NO</em>
+            </p>
+            <p>
+                     <em>Chapter 3 Methodology</em>
+            </p>
+            <p>
+                     <em>3.1 Approach</em>
+            </p>
+            <p>
+                     <em>3.1.1 Software development model:</em>
+            </p>
+            <p>
+                     <em>In the choice of software development model, the waterfall model is a common and classic</em>
+            </p>
+            <p>
+                     <em>development model, which shows the software development process in linear order.</em>
+                     <em> The software development process is shown in Figure 1 below.</em>
+            </p>
+            <p>
+                     <em>Figure 3: Waterfall model.</em>
+            </p>
+            <p>
+                     <em>3.1.2 Demand collection:</em>
+            </p>
+            <p>
+                     <em> Market research: Research on data analyze websites to study the relevant market and competitors to understand the needs and preferences of users across the market. Relevant</em>
+            </p>
+            <p>
+                     <em>information can be obtained by investigating industry reports, data from market research agencies, and product analysis from competitors.</em>
+            </p>
+            <p>
+                     <em> User observation: Observe the behaviors and interactions of friends and classmates around</em>
+            </p>
+            <p>
+                     <em>when using the online takeout platform, so as to obtain the needs and problems of users in actual usage scenarios.</em>
+            </p>
+            <p>
+                     <em> Analysis for competitive food delivery website: Observe the popular online ordering software recorded to analyze which requirements are the most needed by users.</em>
+            </p>
+            <p>
+                     <em>3.1.3 Overall system module architecture:</em>
+            </p>
+            <p>
+                     <em>This section describes the overall module of a food delivery website. It introduces and shows</em>
+            </p>
+            <p>
+                     <em>what modules make up the website, and in Figure 4 shows in detail what are the modules that make up the website.</em>
+            </p>
+            <p>
+                     <em>Figure 4: Overall system module architecture.</em>
+            </p>
+            <p>
+                     <em>3.1.4 Use case:</em>
+            </p>
+            <p>
+                     <em>This section presents a User case diagram of the three user types from the different user perspectives supported by the website.</em>
+            </p>
+            <p>
+                     <em>The User case diagram visualizes the functional requirements of the system, understands what the system is supposed to do, and how users can interact with the system.</em>
+            </p>
+            <p>
+                     <em> Customer Use case:</em>
+            </p>
+            <p>
+                     <em>The interaction between a customer and this online food delivery website is shown in Figure5. It</em>
+            </p>
+            <p>
+                     <em>includes basic account registration, login and restaurant search functionality, and various use</em>
+            </p>
+            <p>
+                     <em>cases for shopping cart management, payment functions, product favorites, store favorites, posting comments and ratings.</em>
+            </p>
+            <p>
+                     <em>Figure 5: Customer Use case diagram.</em>
+            </p>
+            <p>
+                     <em> Merchant Use case:</em>
+            </p>
+            <p>
+                     <em>The functions available to restaurant merchants using the platform are illustrated in Figure 6.</em>
+            </p>
+            <p>
+                     <em>These include store registration and management, processing orders and updating order status,</em>
+            </p>
+            <p>
+                     <em>in addition to generic functions such as logging in, registering for an account and searching and viewing stores.</em>
+            </p>
+            <p>
+                     <em>Figure 6: Merchant User case diagram.</em>
+            </p>
+            <p>
+                     <em> Administrator Use case:</em>
+            </p>
+            <p>
+                     <em>Figure 7 shows a detailed User case for the administrator of the food delivery system, which</em>
+            </p>
+            <p>
+                     <em>includes viewing and managing (e.</em>
+                     <em>g., adding, deleting, and modifying data) data (e.g., users, stores, products, etc.) in the website.</em>
+            </p>
+            <p>
+                     <em>Figure 7: Administrator User case diagram.</em>
+            </p>
+            <p>
+                     <em>3.1.5 Database design:</em>
+            </p>
+            <p>
+                     <em>This section shows the design of the online food delivery website database.</em>
+            </p>
+            <p>
+                     <em>For this online food delivery system, I have designed a database for storing the data to be used</em>
+            </p>
+            <p>
+                     <em>in this website (such as user, order, store, product data etc.</em>
+                     <em>) The detailed structure of this</em>
+            </p>
+            <p>
+                     <em>database is shown in Figure 8. After implementing the database through Mysql, I used Mysql workbench to manage each table in the database.</em>
+            </p>
+            <p>
+                     <em>Figure 8: Database structure diagram.</em>
+            </p>
+            <p>
+                     <em>3.1.6 Recommendation system approach:</em>
+            </p>
+            <p>
+                     <em>This section shows in detail the composition of the Hybrid recommendation system</em>
+            </p>
+            <p>
+                     <em>implemented in the project, the operation flow and the principle of the recommendation algorithm.</em>
+            </p>
+            <p>
+                     <em>i. Composition of recommendation system</em>
+            </p>
+            <p>
+                     <em>The recommendation system in this project consists of the following three recommendation</em>
+            </p>
+            <p>
+                     <em>methodologies, namely User-CF, CB and Item-based popularity recommendation.</em>
+                     <em> The composition of these methodologies is illustrated in detail in Figure 9.</em>
+            </p>
+            <p>
+                     <em>Figure 9: Composition of hybrid recommendation system.</em>
+            </p>
+            <p>
+                     <em>ii. Operation flow of recommendation:</em>
+            </p>
+            <p>
+                     <em>Figure 10 depicts the complete operational flow of the recommendation system for making</em>
+            </p>
+            <p>
+                     <em>recommendations for a user. The recommended sequence of steps is as follows:</em>
+            </p>
+            <p>
+                     <em> Step 1: Checks if the user is logged in and what type of user they are:</em>
+            </p>
+            <p>
+                     <em>This step to verifies the user's login status and user type.</em>
+                     <em> Only users who are logged in and whose user type is customer have historical behavioral data that can be utilized to analyze and subsequently personalize the recommendation service for them.</em>
+            </p>
+            <p>
+                     <em> Step 2: Check if the user's historical behavior data is sufficient:</em>
+            </p>
+            <p>
+                     <em>This step checks whether the user's historical behavioral data (such as the number of</em>
+            </p>
+            <p>
+                     <em>purchase orders and the number of favorite products, etc.</em>
+                     <em>) is sufficiently large, and if it is</em>
+            </p>
+            <p>
+                     <em>not sufficiently large, then the use of Item-based popularity recommendation is to avoid the use of Hybrid recommendation to avoid the use of less historical behavioral data to produce</em>
+            </p>
+            <p>
+                     <em>a relatively large bias</em>
+            </p>
+            <p>
+                     <em> Step 3: Hybrid recommendation:</em>
+            </p>
+            <p>
+                     <em>In this step, the system employs two recommendation algorithms (User-CF and CB) to generate recommendations, which are then merged using a weighting method.</em>
+            </p>
+            <p>
+                     <em> Step 4: Filter out low-rated product:</em>
+            </p>
+            <p>
+                     <em>The objective of this step is to filter the items in the generated recommendation results in order to avoid the recommendation results that have items rated as low by users but are still recommended.</em>
+            </p>
+            <p>
+                     <em>Figure 10: The operation flow of recommendation.</em>
+            </p>
+            <p>
+                     <em>iii. Item-based popularity recommendation:</em>
+            </p>
+            <p>
+                     <em>In item-based popularity recommendation, the recommendation score is calculated by extracting</em>
+            </p>
+            <p>
+                     <em>the metadata of the item itself.</em>
+                     <em> This allows the most popular items to be recommended to the</em>
+            </p>
+            <p>
+                     <em>user. In this recommendation function, two operations are used to calculate the score:</em>
+            </p>
+            <p>
+                     <em> Min-Max Scaling Normalize:</em>
+            </p>
+            <p>
+                     <em>The formula (1) is used for normalizing data values within a specified range. This transformation</em>
+            </p>
+            <p>
+                     <em>redirects the features to a fixed range (0,1), which ensures that each feature has an equal</em>
+            </p>
+            <p>
+                     <em>impact on the model, thus avoiding that certain features may have a disproportionate impact on the prediction results due to their large range of values.</em>
+            </p>
+            <p>
+                     <em>𝑥=</em>
+            </p>
+            <p>
+                     <em>𝑥− min(𝑥)</em>
+            </p>
+            <p>
+                     <em>max(𝑥)− min(𝑥)</em>
+            </p>
+            <p>
+                     <em>(1)</em>
+            </p>
+            <p>
+                     <em>where x represents an original value, min(x) is the minimum value in the data set, max(x) is the maximum value, and x' is the normalized value.</em>
+            </p>
+            <p>
+                     <em> Recommend score:</em>
+            </p>
+            <p>
+                     <em>Formula (2) defines how metadata is used in the item-based popularity recommendation</em>
+            </p>
+            <p>
+                     <em>function to calculate the recommendation scores of different items according to their weights.</em>
+            </p>
+            <p>
+                     <em>𝑅𝑒𝑐𝑜𝑚𝑚𝑒𝑛𝑑𝑆𝑐𝑜𝑟𝑒=</em>
+            </p>
+            <p>
+                     <em> normalize(𝑎𝑣𝑔𝑅𝑎𝑡𝑒)×𝑤 + normalize(𝑓𝑎𝑣𝑜𝑟𝑖𝑡𝑒)×𝑤+ normalize(𝑠𝑎𝑙𝑒𝑠)×𝑤 (2)</em>
+            </p>
+            <p>
+                     <em>The variables are as follows:‘w’ represents weight,‘avgRate’ represents the average rating of</em>
+            </p>
+            <p>
+                     <em>the item,‘favorite’ represents the number of favorites, and ‘sales’ represents the total number of sales of the item.</em>
+            </p>
+            <p>
+                     <em>After the calculation of (1) and (2) above, the products are sorted in descending order according</em>
+            </p>
+            <p>
+                     <em>to the value of the recommendation score. Subsequently, the products with high scores are</em>
+            </p>
+            <p>
+                     <em>recommended to the users.</em>
+                     <em> The advantage of such an operation is that it does not require the</em>
+            </p>
+            <p>
+                     <em>user's historical behavioral data, which effectively solves the cold-start problem of the recommendation system.</em>
+            </p>
+            <p>
+                     <em>iv. User-CF:</em>
+            </p>
+            <p>
+                     <em>For the implementation of User-CF function, we first create item-user table to store the item and</em>
+            </p>
+            <p>
+                     <em>the corresponding user who likes the item, then use Adjusted Cosine Similarity to calculate the similarity between the customer users, build the user similarity matrix,</em>
+                     <em> and then recommend the item according to the similar user's favorite item to recommend the item according to the similar user's favorite item.</em>
+            </p>
+            <p>
+                     <em> Item-User table:</em>
+            </p>
+            <p>
+                     <em>As shown in Table 2, the item-user table stores the item id and the corresponding ids of all</em>
+            </p>
+            <p>
+                     <em>users interested in the item.</em>
+                     <em> the item-user table is implemented to facilitate the later calculation of user similarity and recommendation of items of interest to similar users.</em>
+            </p>
+            <p>
+                     <em>Table 2: example of item-user table</em>
+            </p>
+            <p>
+                     <em>Item id Set of user ids</em>
+            </p>
+            <p>
+                     <em>1{5,12,30}</em>
+            </p>
+            <p>
+                     <em>2{2,7}</em>
+            </p>
+            <p>
+                     <em>3{3}</em>
+            </p>
+            <p>
+                     <em> Adjusted Cosine Similarity:</em>
+            </p>
+            <p>
+                     <em>Traditional recommendation algorithms frequently rely on explicit user feedback (e.</em>
+                     <em>g., ratings or reviews) to form "nearest neighbor sets" that predict user preferences. However, these methods</em>
+            </p>
+            <p>
+                     <em>can be influenced by arbitrary ratings or incomplete feedback from users that represent their</em>
+            </p>
+            <p>
+                     <em>implicit behavior [27]. Consequently, explicit feedback alone does not fully capture user</em>
+            </p>
+            <p>
+                     <em>preferences.</em>
+                     <em> To address this issue, we propose replacing the traditional cosine similarity with</em>
+            </p>
+            <p>
+                     <em>adjust cosine similarity, a formula that incorporates implicit user feedback to enhance prediction accuracy.</em>
+            </p>
+            <p>
+                     <em>As show as in formula (3), Adjusted Cosine Similarity is primarily used in collaborative filtering to measure similarity between two users based on their ratings,</em>
+                     <em> adjusting for the average rating of each user to avoid bias from varying user rating scales.</em>
+            </p>
+            <p>
+                     <em>𝑆𝑖𝑚(i, j)= </em>
+            </p>
+            <p>
+                     <em>∑ r , − r r , − r ∈  </em>
+            </p>
+            <p>
+                     <em>∑ r , − r ∈   ∑ r , − r ∈  </em>
+            </p>
+            <p>
+                     <em>  (3)</em>
+            </p>
+            <p>
+                     <em>𝑈 denotes the set of users who rated both items 𝑖 and 𝑗.</em>
+                     <em> where 𝑟, and 𝑟, are the ratings given</em>
+            </p>
+            <p>
+                     <em>by user 𝑢 to items 𝑖 and 𝑗, respectively, and 𝑟¯𝑢 is the average rating of user 𝑢.</em>
+                     <em> This metric compensates for user bias, making it effective for personalized recommendations.</em>
+            </p>
+            <p>
+                     <em> User similarity matrix:</em>
+            </p>
+            <p>
+                     <em>The user similarity matrix represents the most important component of the User-CF system. Its</em>
+            </p>
+            <p>
+                     <em>structure is shown in Table 3, User similarity matrix stores the similarity between different users.</em>
+            </p>
+            <p>
+                     <em>Table 3: Example of User similarity matrix</em>
+            </p>
+            <p>
+                     <em>User id 123</em>
+            </p>
+            <p>
+                     <em>100.3460.157</em>
+            </p>
+            <p>
+                     <em>20.34600.561</em>
+            </p>
+            <p>
+                     <em>30.1570.5610</em>
+            </p>
+            <p>
+                     <em>The recommendation system can identify other users who are most similar to the target user</em>
+            </p>
+            <p>
+                     <em>through the User similarity matrix.</em>
+                     <em> This allows the system to obtain the products that these similar users are interested in through the Item-user table.</em>
+            </p>
+            <p>
+                     <em>v. Content-based filtering algorithm:</em>
+            </p>
+            <p>
+                     <em>In the context of CB, the user's behavior is analyzed in order to identify products that may be of interest to them.</em>
+                     <em> Metadata associated with these products is then used to calculate the similarity</em>
+            </p>
+            <p>
+                     <em>between them, with the aim of identifying products that the user may be interested in. The</em>
+            </p>
+            <p>
+                     <em>feature matrix is employed to record the feature matrix of the products, while the Jaccard index is utilized to calculate the similarity between them.</em>
+            </p>
+            <p>
+                     <em> Feature Matrix:</em>
+            </p>
+            <p>
+                     <em>The feature matrix for CB is constructed by extracting and combining various item attributes into a structured format.</em>
+                     <em> All the features are explained in detail in Table 4.</em>
+            </p>
+            <p>
+                     <em>Table 4: Item features table</em>
+            </p>
+            <p>
+                     <em>Category</em>
+            </p>
+            <p>
+                     <em>This feature is converted to numeric format by hot encoding. The purpose of adding</em>
+            </p>
+            <p>
+                     <em>categories to the feature matrix is to take into account the categories of the items that the user likes.</em>
+            </p>
+            <p>
+                     <em>Average</em>
+            </p>
+            <p>
+                     <em>Rating</em>
+            </p>
+            <p>
+                     <em>This feature reflects the overall approval of users of the item.</em>
+            </p>
+            <p>
+                     <em>Favorites</em>
+            </p>
+            <p>
+                     <em>Count</em>
+            </p>
+            <p>
+                     <em>As a numerical metric of the popularity of an item.</em>
+            </p>
+            <p>
+                     <em>Total Sales This feature is one of the metrics of the popularity of the product.</em>
+            </p>
+            <p>
+                     <em>Number of</em>
+            </p>
+            <p>
+                     <em>Ratings</em>
+            </p>
+            <p>
+                     <em>This feature is used to measure the degree of user engagement and feedback on the product.</em>
+            </p>
+            <p>
+                     <em> User preference vector:</em>
+            </p>
+            <p>
+                     <em>A user preference vector is a mathematical representation of a user’s preferences, constructed</em>
+            </p>
+            <p>
+                     <em>from the aggregation of features of items that the user has interacted with. This vector</em>
+            </p>
+            <p>
+                     <em>essentially summarizes the user's tastes and preferences in a form that can be easily compared and analyzed against item features.</em>
+            </p>
+            <p>
+                     <em> Jaccard Index:</em>
+            </p>
+            <p>
+                     <em>The Jaccard Index is a statistical measure used to assess the similarity and diversity of sample</em>
+            </p>
+            <p>
+                     <em>sets.</em>
+                     <em> As shown in formula (4), the similarity between two sets can be quantified by calculating</em>
+            </p>
+            <p>
+                     <em>the ratio of the size of the intersection set to the size of the merged set.</em>
+                     <em> A larger ratio indicates a greater degree of similarity between the two sets.</em>
+            </p>
+            <p>
+                     <em>𝐽(𝐴,𝐵)=</em>
+            </p>
+            <p>
+                     <em>|𝐴∩𝐵|</em>
+            </p>
+            <p>
+                     <em>|𝐴∪𝐵|</em>
+            </p>
+            <p>
+                     <em> (4)</em>
+            </p>
+            <p>
+                     <em>where 𝐴 and 𝐵 are sets.</em>
+                     <em> ∣𝐴∩𝐵∣ (Intersection) is the number of elements common to both sets, and ∣𝐴∪𝐵∣(Union) is the total number of elements in either set.</em>
+            </p>
+            <p>
+                     <em>3.2 Technology</em>
+            </p>
+            <p>
+                     <em>The hardware used in the project are as follows:</em>
+            </p>
+            <p>
+                     <em>Table 5: Hardware</em>
+            </p>
+            <p>
+                     <em>Computer CPU GPU</em>
+            </p>
+            <p>
+                     <em>Random Access</em>
+            </p>
+            <p>
+                     <em>Memory</em>
+            </p>
+            <p>
+                     <em>ASUS Tianxuan R7-4800H GTX 1650ti 4GB 16GB</em>
+            </p>
+            <p>
+                     <em>The software used in the project are as follows:</em>
+            </p>
+            <p>
+                     <em>Table 6: Software</em>
+            </p>
+            <p>
+                     <em>Language OS Database Framework Front-end</em>
+            </p>
+            <p>
+                     <em>Back-end</em>
+            </p>
+            <p>
+                     <em>Third library</em>
+            </p>
+            <p>
+                     <em>Testing</em>
+            </p>
+            <p>
+                     <em>tools</em>
+            </p>
+            <p>
+                     <em>Python</em>
+            </p>
+            <p>
+                     <em>3.8</em>
+            </p>
+            <p>
+                     <em>Windows</em>
+            </p>
+            <p>
+                     <em>Mysql 8.0,</em>
+            </p>
+            <p>
+                     <em>Mysql</em>
+            </p>
+            <p>
+                     <em>workbench</em>
+            </p>
+            <p>
+                     <em>Django 4.2</em>
+            </p>
+            <p>
+                     <em>Javascript,</em>
+            </p>
+            <p>
+                     <em>jQuery,</em>
+            </p>
+            <p>
+                     <em>Bootstrap,</em>
+            </p>
+            <p>
+                     <em>Feather icon</em>
+            </p>
+            <p>
+                     <em>PyMysql,</em>
+            </p>
+            <p>
+                     <em>Pandas,</em>
+            </p>
+            <p>
+                     <em>Numpy,</em>
+            </p>
+            <p>
+                     <em>scikit-learn,</em>
+            </p>
+            <p>
+                     <em>Django-debug-</em>
+            </p>
+            <p>
+                     <em>toolbar</em>
+            </p>
+            <p>
+                     <em>Pytest,</em>
+            </p>
+            <p>
+                     <em>Locust,</em>
+            </p>
+            <p>
+                     <em>OWASP</em>
+            </p>
+            <p>
+                     <em>ZAP</em>
+            </p>
+            <p>
+                     <em>Image Data set:</em>
+            </p>
+            <p>
+                     <em>The food image dataset from Kaggle was utilized for this project.</em>
+                     <em> The corresponding link is presented below.</em>
+            </p>
+            <p>
+                     <em>Dataset Url: https://www.kaggle.com/datasets/kmader/food41</em>
+            </p>
+            <p>
+                     <em>3.3 Project Version Management.</em>
+            </p>
+            <p>
+                     <em>I used Github desktop as a project version management tool and created a repository on the Github platform.</em>
+            </p>
+            <p>
+                     <em>Repository url: https://github.com/Blueblue22two/202018010410_project_recommendation-</em>
+            </p>
+            <p>
+                     <em>system</em>
+            </p>
+            <p>
+                     <em>Chapter 4 Implementation and Results</em>
+            </p>
+            <p>
+                     <em>4.1 Testing plan:</em>
+            </p>
+            <p>
+                     <em>4.1.1 Unit testing:</em>
+            </p>
+            <p>
+                     <em>Unit testing is a software testing methodology in which individual units or components of a</em>
+            </p>
+            <p>
+                     <em>software application are tested in isolation from the rest of the application.</em>
+                     <em> This approach facilitates the identification of problems at an earlier stage.</em>
+            </p>
+            <p>
+                     <em>In this project, we used Pytest for testing.</em>
+                     <em> The results of the test are presented in detail in Table 7 below.</em>
+            </p>
+            <p>
+                     <em>Table 7: Unit testing table</em>
+            </p>
+            <p>
+                     <em>Test</em>
+            </p>
+            <p>
+                     <em>id</em>
+            </p>
+            <p>
+                     <em>Test unit</em>
+            </p>
+            <p>
+                     <em>Test</em>
+            </p>
+            <p>
+                     <em>Objective</em>
+            </p>
+            <p>
+                     <em>Input case Except Output Actual Output Status</em>
+            </p>
+            <p>
+                     <em>Customer</em>
+            </p>
+            <p>
+                     <em>Register</em>
+            </p>
+            <p>
+                     <em>Test</em>
+            </p>
+            <p>
+                     <em>registering a</em>
+            </p>
+            <p>
+                     <em>customer with</em>
+            </p>
+            <p>
+                     <em>valid data</em>
+            </p>
+            <p>
+                     <em>Username=’newcustomer’,</em>
+            </p>
+            <p>
+                     <em>Password=’securepass123,’</em>
+            </p>
+            <p>
+                     <em>Phone=’12345678901’</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response:</em>
+            </p>
+            <p>
+                     <em>Register</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response: Register</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Customer</em>
+            </p>
+            <p>
+                     <em>Register</em>
+            </p>
+            <p>
+                     <em>Test</em>
+            </p>
+            <p>
+                     <em>registering a</em>
+            </p>
+            <p>
+                     <em>customer with</em>
+            </p>
+            <p>
+                     <em>duplicate</em>
+            </p>
+            <p>
+                     <em>username</em>
+            </p>
+            <p>
+                     <em>Username=’ duplicateuser’, Password=’securepass123,’</em>
+            </p>
+            <p>
+                     <em>Phone=’12345678901’</em>
+            </p>
+            <p>
+                     <em>Status 409,</em>
+            </p>
+            <p>
+                     <em>Response:</em>
+            </p>
+            <p>
+                     <em>Already have a</em>
+            </p>
+            <p>
+                     <em>same username.</em>
+            </p>
+            <p>
+                     <em>Status 409,</em>
+            </p>
+            <p>
+                     <em>Response: Already</em>
+            </p>
+            <p>
+                     <em>have a same</em>
+            </p>
+            <p>
+                     <em>username.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Merchant</em>
+            </p>
+            <p>
+                     <em>Register</em>
+            </p>
+            <p>
+                     <em>Test</em>
+            </p>
+            <p>
+                     <em>registering a</em>
+            </p>
+            <p>
+                     <em>customer with</em>
+            </p>
+            <p>
+                     <em>valid data</em>
+            </p>
+            <p>
+                     <em>Username=’newmerchant’,</em>
+            </p>
+            <p>
+                     <em>Password=’securepass123,’</em>
+            </p>
+            <p>
+                     <em>Phone=’98765432101’</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response:</em>
+            </p>
+            <p>
+                     <em>Register</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response: Register</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Merchant</em>
+            </p>
+            <p>
+                     <em>Register</em>
+            </p>
+            <p>
+                     <em>Test</em>
+            </p>
+            <p>
+                     <em>registering a</em>
+            </p>
+            <p>
+                     <em>merchant with</em>
+            </p>
+            <p>
+                     <em>invalid data</em>
+            </p>
+            <p>
+                     <em>Username = Null,</em>
+            </p>
+            <p>
+                     <em>Password =’securepass123,’</em>
+            </p>
+            <p>
+                     <em>Phone =‘notaphone’</em>
+            </p>
+            <p>
+                     <em>Status 400,</em>
+            </p>
+            <p>
+                     <em>Response:</em>
+            </p>
+            <p>
+                     <em>Register</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Status 400,</em>
+            </p>
+            <p>
+                     <em>Response: Register</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Customer</em>
+            </p>
+            <p>
+                     <em>Login</em>
+            </p>
+            <p>
+                     <em>Test login with</em>
+            </p>
+            <p>
+                     <em>correct data</em>
+            </p>
+            <p>
+                     <em>Username ='testuser', password ='testpass'</em>
+            </p>
+            <p>
+                     <em>userType =‘1’</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response:</em>
+            </p>
+            <p>
+                     <em>testuser login</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response: testuser</em>
+            </p>
+            <p>
+                     <em>login successfully.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Customer</em>
+            </p>
+            <p>
+                     <em>Login</em>
+            </p>
+            <p>
+                     <em>Test login with</em>
+            </p>
+            <p>
+                     <em>wrong</em>
+            </p>
+            <p>
+                     <em>password</em>
+            </p>
+            <p>
+                     <em>Username ='testuser',</em>
+            </p>
+            <p>
+                     <em>password ='wrongpass'</em>
+            </p>
+            <p>
+                     <em>userType =‘1’</em>
+            </p>
+            <p>
+                     <em>Status 401,</em>
+            </p>
+            <p>
+                     <em>Response: Invalid</em>
+            </p>
+            <p>
+                     <em>password.</em>
+            </p>
+            <p>
+                     <em>Status 401,</em>
+            </p>
+            <p>
+                     <em>Response: Invalid</em>
+            </p>
+            <p>
+                     <em>password.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Customer</em>
+            </p>
+            <p>
+                     <em>Log out</em>
+            </p>
+            <p>
+                     <em>Test logged-in</em>
+            </p>
+            <p>
+                     <em>users for</em>
+            </p>
+            <p>
+                     <em>logging out</em>
+            </p>
+            <p>
+                     <em>Username =‘testuser’</em>
+            </p>
+            <p>
+                     <em>Status 302,</em>
+            </p>
+            <p>
+                     <em>Response: Logout</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Status 302,</em>
+            </p>
+            <p>
+                     <em>Response: Logout</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Add</em>
+            </p>
+            <p>
+                     <em>product to</em>
+            </p>
+            <p>
+                     <em>Cart</em>
+            </p>
+            <p>
+                     <em>Test adding a</em>
+            </p>
+            <p>
+                     <em>product to the</em>
+            </p>
+            <p>
+                     <em>shopping cart</em>
+            </p>
+            <p>
+                     <em>Instance of customer</em>
+            </p>
+            <p>
+                     <em>=’testuser’</em>
+            </p>
+            <p>
+                     <em>Instance of product=’Test</em>
+            </p>
+            <p>
+                     <em>Product1’</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response:</em>
+            </p>
+            <p>
+                     <em>Product added to</em>
+            </p>
+            <p>
+                     <em>cart successfully.</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response: Product</em>
+            </p>
+            <p>
+                     <em>added to cart</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Modify cart</em>
+            </p>
+            <p>
+                     <em>item</em>
+            </p>
+            <p>
+                     <em>Test modifying</em>
+            </p>
+            <p>
+                     <em>the quantity of</em>
+            </p>
+            <p>
+                     <em>a cart item</em>
+            </p>
+            <p>
+                     <em>Customer ID,</em>
+            </p>
+            <p>
+                     <em>Product ID,</em>
+            </p>
+            <p>
+                     <em>Quantity of product</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response:</em>
+            </p>
+            <p>
+                     <em>Quantity updated</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response: Quantity</em>
+            </p>
+            <p>
+                     <em>updated</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Add</em>
+            </p>
+            <p>
+                     <em>Address</em>
+            </p>
+            <p>
+                     <em>Test adding a</em>
+            </p>
+            <p>
+                     <em>new address</em>
+            </p>
+            <p>
+                     <em>for customer</em>
+            </p>
+            <p>
+                     <em>Province='TestProvince',</em>
+            </p>
+            <p>
+                     <em>City='TestCity',</em>
+            </p>
+            <p>
+                     <em>District='TestDistrict',</em>
+            </p>
+            <p>
+                     <em>Detail='123 My Street'</em>
+            </p>
+            <p>
+                     <em>Status 302,</em>
+            </p>
+            <p>
+                     <em>Redirect to cart</em>
+            </p>
+            <p>
+                     <em>page.</em>
+            </p>
+            <p>
+                     <em>Status 302, Redirect to cart page.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Add</em>
+            </p>
+            <p>
+                     <em>Favorite</em>
+            </p>
+            <p>
+                     <em>Product</em>
+            </p>
+            <p>
+                     <em>Test adding a</em>
+            </p>
+            <p>
+                     <em>product to</em>
+            </p>
+            <p>
+                     <em>favorites</em>
+            </p>
+            <p>
+                     <em>Product ID of 'Test Product12'</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response:</em>
+            </p>
+            <p>
+                     <em>Product added to</em>
+            </p>
+            <p>
+                     <em>favorites</em>
+            </p>
+            <p>
+                     <em>successfully!</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response: Product</em>
+            </p>
+            <p>
+                     <em>added to favorites</em>
+            </p>
+            <p>
+                     <em>successfully!</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Cancel</em>
+            </p>
+            <p>
+                     <em>Favorite</em>
+            </p>
+            <p>
+                     <em>Product</em>
+            </p>
+            <p>
+                     <em>Test canceling</em>
+            </p>
+            <p>
+                     <em>a favorite</em>
+            </p>
+            <p>
+                     <em>product</em>
+            </p>
+            <p>
+                     <em>Product ID of 'Test Product12'</em>
+            </p>
+            <p>
+                     <em>already favorited</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response:</em>
+            </p>
+            <p>
+                     <em>Product favorite</em>
+            </p>
+            <p>
+                     <em>successfully</em>
+            </p>
+            <p>
+                     <em>cancelled</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response: Product</em>
+            </p>
+            <p>
+                     <em>favorite successfully</em>
+            </p>
+            <p>
+                     <em>cancelled</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Favorite a</em>
+            </p>
+            <p>
+                     <em>product</em>
+            </p>
+            <p>
+                     <em>repeatedly</em>
+            </p>
+            <p>
+                     <em>Test adding a</em>
+            </p>
+            <p>
+                     <em>product to</em>
+            </p>
+            <p>
+                     <em>favorites twice</em>
+            </p>
+            <p>
+                     <em>Product ID of 'Test Product12'</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response:'You</em>
+            </p>
+            <p>
+                     <em>have already</em>
+            </p>
+            <p>
+                     <em>added this product</em>
+            </p>
+            <p>
+                     <em>to favorites.'</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response:'You</em>
+            </p>
+            <p>
+                     <em>have already added</em>
+            </p>
+            <p>
+                     <em>this product to</em>
+            </p>
+            <p>
+                     <em>favorites.'</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Cancel</em>
+            </p>
+            <p>
+                     <em>Non-</em>
+            </p>
+            <p>
+                     <em>existent</em>
+            </p>
+            <p>
+                     <em>Shop</em>
+            </p>
+            <p>
+                     <em>Favorite</em>
+            </p>
+            <p>
+                     <em>Test canceling</em>
+            </p>
+            <p>
+                     <em>a favorite for a</em>
+            </p>
+            <p>
+                     <em>non-existent</em>
+            </p>
+            <p>
+                     <em>shop</em>
+            </p>
+            <p>
+                     <em>Shop name ='Definitely Not a</em>
+            </p>
+            <p>
+                     <em>Real Shop'</em>
+            </p>
+            <p>
+                     <em>Status 404,</em>
+            </p>
+            <p>
+                     <em>Response:'Shop</em>
+            </p>
+            <p>
+                     <em>does not exist.'</em>
+            </p>
+            <p>
+                     <em>Status 404,</em>
+            </p>
+            <p>
+                     <em>Response:'Shop</em>
+            </p>
+            <p>
+                     <em>does not exist.'</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>New</em>
+            </p>
+            <p>
+                     <em>merchant</em>
+            </p>
+            <p>
+                     <em>user</em>
+            </p>
+            <p>
+                     <em>create</em>
+            </p>
+            <p>
+                     <em>shop</em>
+            </p>
+            <p>
+                     <em>Test creating a</em>
+            </p>
+            <p>
+                     <em>new shop</em>
+            </p>
+            <p>
+                     <em>Username='TestMerchant2',</em>
+            </p>
+            <p>
+                     <em>Password='password123456',</em>
+            </p>
+            <p>
+                     <em>Phone='22345678901', Shop</em>
+            </p>
+            <p>
+                     <em>Data including name, address,</em>
+            </p>
+            <p>
+                     <em>and image file</em>
+            </p>
+            <p>
+                     <em>Status 302,</em>
+            </p>
+            <p>
+                     <em>Response: Store</em>
+            </p>
+            <p>
+                     <em>created</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Status 302,</em>
+            </p>
+            <p>
+                     <em>Response: Store</em>
+            </p>
+            <p>
+                     <em>created</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Add a</em>
+            </p>
+            <p>
+                     <em>product</em>
+            </p>
+            <p>
+                     <em>Test adding a</em>
+            </p>
+            <p>
+                     <em>new product</em>
+            </p>
+            <p>
+                     <em>by merchant</em>
+            </p>
+            <p>
+                     <em>user</em>
+            </p>
+            <p>
+                     <em>Username='TestMerchant1', Shop=Shop object, Product</em>
+            </p>
+            <p>
+                     <em>details including name, price,</em>
+            </p>
+            <p>
+                     <em>category, and image file</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response: add</em>
+            </p>
+            <p>
+                     <em>Product</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response: add</em>
+            </p>
+            <p>
+                     <em>Product</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Modify</em>
+            </p>
+            <p>
+                     <em>product</em>
+            </p>
+            <p>
+                     <em>data</em>
+            </p>
+            <p>
+                     <em>Test modifying</em>
+            </p>
+            <p>
+                     <em>a product</em>
+            </p>
+            <p>
+                     <em>name and</em>
+            </p>
+            <p>
+                     <em>price</em>
+            </p>
+            <p>
+                     <em>Username='TestMerchant1',</em>
+            </p>
+            <p>
+                     <em>Product=Product object,</em>
+            </p>
+            <p>
+                     <em>Updated product name and</em>
+            </p>
+            <p>
+                     <em>price</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response:</em>
+            </p>
+            <p>
+                     <em>Product updated</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response: Product</em>
+            </p>
+            <p>
+                     <em>updated</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Delete</em>
+            </p>
+            <p>
+                     <em>product</em>
+            </p>
+            <p>
+                     <em>Test deleting a</em>
+            </p>
+            <p>
+                     <em>product</em>
+            </p>
+            <p>
+                     <em>Username='TestMerchant1',</em>
+            </p>
+            <p>
+                     <em>Product=Product object</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response:</em>
+            </p>
+            <p>
+                     <em>Product removed</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Response: Product</em>
+            </p>
+            <p>
+                     <em>removed</em>
+            </p>
+            <p>
+                     <em>successfully.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Delete a</em>
+            </p>
+            <p>
+                     <em>non-</em>
+            </p>
+            <p>
+                     <em>existing</em>
+            </p>
+            <p>
+                     <em>product</em>
+            </p>
+            <p>
+                     <em>Test deleting a</em>
+            </p>
+            <p>
+                     <em>non-existing</em>
+            </p>
+            <p>
+                     <em>product</em>
+            </p>
+            <p>
+                     <em>Username='TestMerchant1',</em>
+            </p>
+            <p>
+                     <em>Invalid Product ID =9999</em>
+            </p>
+            <p>
+                     <em>Status 404,</em>
+            </p>
+            <p>
+                     <em>Response:</em>
+            </p>
+            <p>
+                     <em>Product not found</em>
+            </p>
+            <p>
+                     <em>Status 404,</em>
+            </p>
+            <p>
+                     <em>Response: Product</em>
+            </p>
+            <p>
+                     <em>not found</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Generate</em>
+            </p>
+            <p>
+                     <em>Payment</em>
+            </p>
+            <p>
+                     <em>and Order</em>
+            </p>
+            <p>
+                     <em>Test</em>
+            </p>
+            <p>
+                     <em>generating a</em>
+            </p>
+            <p>
+                     <em>payment and</em>
+            </p>
+            <p>
+                     <em>creating an</em>
+            </p>
+            <p>
+                     <em>order</em>
+            </p>
+            <p>
+                     <em>Username='TestUser1',</em>
+            </p>
+            <p>
+                     <em>Password='password123',</em>
+            </p>
+            <p>
+                     <em>Phone='12345678901',</em>
+            </p>
+            <p>
+                     <em>ProductId=product.id,</em>
+            </p>
+            <p>
+                     <em>Quantity=2, TotalPrice=42.0,</em>
+            </p>
+            <p>
+                     <em>AddressId=address.id</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Redirect to</em>
+            </p>
+            <p>
+                     <em>payment page.</em>
+            </p>
+            <p>
+                     <em>Status 200, Redirect to payment page.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Post</em>
+            </p>
+            <p>
+                     <em>comment</em>
+            </p>
+            <p>
+                     <em>and rating</em>
+            </p>
+            <p>
+                     <em>Test posting a</em>
+            </p>
+            <p>
+                     <em>comment for</em>
+            </p>
+            <p>
+                     <em>an order</em>
+            </p>
+            <p>
+                     <em>Data ={'order_id': order.id,</em>
+            </p>
+            <p>
+                     <em>'shopRating':'4.5',</em>
+            </p>
+            <p>
+                     <em>'commentText':'Great</em>
+            </p>
+            <p>
+                     <em>product!','productRatings':</em>
+            </p>
+            <p>
+                     <em>[{'name': product.name,'rating':</em>
+            </p>
+            <p>
+                     <em>'4.5'}]}</em>
+            </p>
+            <p>
+                     <em>Status 200,</em>
+            </p>
+            <p>
+                     <em>Redirect to</em>
+            </p>
+            <p>
+                     <em>my_orders page.</em>
+            </p>
+            <p>
+                     <em>Status 200, Redirect to my_orders page.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>4.1.2 Functional testing:</em>
+            </p>
+            <p>
+                     <em>Functional testing is an important aspect of software development, and such testing evaluates</em>
+            </p>
+            <p>
+                     <em>the various functions of a system by inputting and verifying outputs to ensure that the</em>
+            </p>
+            <p>
+                     <em>application performs as expected under various conditions.</em>
+                     <em> Functional testing not only helps verify the operation of the application, but also helps detect unexpected behavior or errors.</em>
+            </p>
+            <p>
+                     <em>During testing, we designed tests that simulate user interactions with the application to validate</em>
+            </p>
+            <p>
+                     <em>the functionality of the Web pages. These tests include scenarios such as form submission,</em>
+            </p>
+            <p>
+                     <em>user authentication, database interaction, etc. to ensure that all components work according to</em>
+            </p>
+            <p>
+                     <em>the defined requirements and behaviors.</em>
+                     <em> The test results are shown and explained in detail in Table 8.</em>
+            </p>
+            <p>
+                     <em>Table 8: Functional testing table</em>
+            </p>
+            <p>
+                     <em>Test</em>
+            </p>
+            <p>
+                     <em>id</em>
+            </p>
+            <p>
+                     <em>Test function Test scenario Except Result</em>
+            </p>
+            <p>
+                     <em>Stat</em>
+            </p>
+            <p>
+                     <em>us</em>
+            </p>
+            <p>
+                     <em>1 User Registration</em>
+            </p>
+            <p>
+                     <em>User fills in valid information and submits registration form.</em>
+            </p>
+            <p>
+                     <em>After the user submits the form and</em>
+            </p>
+            <p>
+                     <em>successfully registers, the corresponding</em>
+            </p>
+            <p>
+                     <em>user session is created and the account is</em>
+            </p>
+            <p>
+                     <em>automatically logged in and redirected to the main page.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>User Login and</em>
+            </p>
+            <p>
+                     <em>Validation</em>
+            </p>
+            <p>
+                     <em>Registered users select the correct</em>
+            </p>
+            <p>
+                     <em>user type to log in, then enter the</em>
+            </p>
+            <p>
+                     <em>correct username and password to log in.</em>
+            </p>
+            <p>
+                     <em>Returns a successful login response and redirects the page to the main page.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>3 User Logout</em>
+            </p>
+            <p>
+                     <em>Logged-in users choose to log out of their accounts.</em>
+            </p>
+            <p>
+                     <em>Log out successfully and redirect to the</em>
+            </p>
+            <p>
+                     <em>main page, then delete the logged-in user information stored in the session.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Add product to</em>
+            </p>
+            <p>
+                     <em>Shopping Cart</em>
+            </p>
+            <p>
+                     <em>Customer adds a product to the shopping cart and checks if it's successfully added.</em>
+            </p>
+            <p>
+                     <em>The product is successfully added to the shopping cart.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Modify the number</em>
+            </p>
+            <p>
+                     <em>of products in cart</em>
+            </p>
+            <p>
+                     <em>User modifies the quantity of a</em>
+            </p>
+            <p>
+                     <em>product in the cart</em>
+            </p>
+            <p>
+                     <em>The cart successfully updates with the new quantity.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>6 Add New Address</em>
+            </p>
+            <p>
+                     <em>Customer selects the address</em>
+            </p>
+            <p>
+                     <em>details and submits the form to add a new address.</em>
+            </p>
+            <p>
+                     <em>The address was saved successfully and redirected to the shopping cart page.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Add Favorite</em>
+            </p>
+            <p>
+                     <em>Product</em>
+            </p>
+            <p>
+                     <em>Customer chooses a product to add</em>
+            </p>
+            <p>
+                     <em>to their favorites</em>
+            </p>
+            <p>
+                     <em>The product is added to favorites, and the customer receives a success message.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Cancel Favorite</em>
+            </p>
+            <p>
+                     <em>Product</em>
+            </p>
+            <p>
+                     <em>Customer removes a product from</em>
+            </p>
+            <p>
+                     <em>their favorites</em>
+            </p>
+            <p>
+                     <em>The favorite product is successfully</em>
+            </p>
+            <p>
+                     <em>removed, and a confirmation message is displayed.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>9 Create new shop</em>
+            </p>
+            <p>
+                     <em>Merchant user submits a new shop registration information form.</em>
+            </p>
+            <p>
+                     <em>After submitting and validating the form, the user is redirected to this new shop page.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>10 Add product</em>
+            </p>
+            <p>
+                     <em>Merchant users add new products</em>
+            </p>
+            <p>
+                     <em>by filling out the new product</em>
+            </p>
+            <p>
+                     <em>information and uploading the form to the product management page.</em>
+            </p>
+            <p>
+                     <em>The product is successfully added to the</em>
+            </p>
+            <p>
+                     <em>database. The successful addition response is returned.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>11 Modify Product</em>
+            </p>
+            <p>
+                     <em>Merchant updates information about existing products on the Product Management page.</em>
+            </p>
+            <p>
+                     <em>The corresponding product details in the</em>
+            </p>
+            <p>
+                     <em>database will be updated and the product update success response will be returned.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>12 Delete product</em>
+            </p>
+            <p>
+                     <em>Merchant deletes an existing product.</em>
+            </p>
+            <p>
+                     <em>Product data is successfully removed from</em>
+            </p>
+            <p>
+                     <em>the database and a response is returned</em>
+            </p>
+            <p>
+                     <em>that the product was successfully deleted.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>Generate Payment</em>
+            </p>
+            <p>
+                     <em>and Order</em>
+            </p>
+            <p>
+                     <em>Customer clicks on the payment</em>
+            </p>
+            <p>
+                     <em>function on the shopping cart page</em>
+            </p>
+            <p>
+                     <em>The corresponding order data is generated</em>
+            </p>
+            <p>
+                     <em>in the database and redirected to the payment page.</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>to generate the appropriate payment.</em>
+            </p>
+            <p>
+                     <em>Post comment and</em>
+            </p>
+            <p>
+                     <em>rating</em>
+            </p>
+            <p>
+                     <em>Customer post a comment and rating for an order.</em>
+            </p>
+            <p>
+                     <em>The database successfully stores</em>
+            </p>
+            <p>
+                     <em>comments posted by users, ratings for</em>
+            </p>
+            <p>
+                     <em>stores and ratings for products. Redirect to</em>
+            </p>
+            <p>
+                     <em>my orders page</em>
+            </p>
+            <p>
+                     <em>Pass</em>
+            </p>
+            <p>
+                     <em>4.1.3 Performance testing:</em>
+            </p>
+            <p>
+                     <em>Performance testing is an approach to evaluating the responsiveness, stability, and resource consumption of a website under varying load conditions.</em>
+            </p>
+            <p>
+                     <em>This performance test was conducted using Locust, an open-source load testing tool designed</em>
+            </p>
+            <p>
+                     <em>to simulate the simultaneous operation of users on a website in order to assess the website's</em>
+            </p>
+            <p>
+                     <em>performance under high traffic conditions. The testing process is as follows:</em>
+            </p>
+            <p>
+                     <em> The number of virtual users was gradually increased to simulate the access and operation of real users.</em>
+            </p>
+            <p>
+                     <em> Performance testing is a process that involves the evaluation of key performance metrics,</em>
+            </p>
+            <p>
+                     <em>such as response time, throughput, and error rate.</em>
+                     <em> The following table 9 provides a detailed explanation of each of the performance metrics included in a performance test.</em>
+            </p>
+            <p>
+                     <em>Table 9: Performance testing metrics table</em>
+            </p>
+            <p>
+                     <em>1. User Load</em>
+            </p>
+            <p>
+                     <em>User load refers to the number of concurrent users accessing the system or</em>
+            </p>
+            <p>
+                     <em>application at any given time.</em>
+                     <em> Performance testing simulates different user loads to assess how the website performs under varying levels of stress.</em>
+            </p>
+            <p>
+                     <em>2. Response</em>
+            </p>
+            <p>
+                     <em>time</em>
+            </p>
+            <p>
+                     <em>Response Time is the time it takes from when a user makes a request to when</em>
+            </p>
+            <p>
+                     <em>they receive a response from the system, typically the time it takes for a webpage to complete loading.</em>
+            </p>
+            <p>
+                     <em>3. Error rates Failure rates refer to the percentage of requests that fail during performance testing.</em>
+                     <em> High failure rates typically indicate system stability issues.</em>
+            </p>
+            <p>
+                     <em>4. Response</em>
+            </p>
+            <p>
+                     <em>percentile time</em>
+            </p>
+            <p>
+                     <em>Response Percentile Time is a method of evaluating the value at which a certain percentage of data points are less than or equal to all observations. This value is</em>
+            </p>
+            <p>
+                     <em>often used to eliminate the effects of extreme values and provides a more</em>
+            </p>
+            <p>
+                     <em>accurate characterization of system performance under normal conditions.</em>
+            </p>
+            <p>
+                     <em>5. Throughput Throughput is the number of requests that a system successfully processes per unit of time.</em>
+            </p>
+            <p>
+                     <em>During the test, we recorded the changes in several key performance metrics in relation to the number of test users.</em>
+                     <em> The detailed data of the test is shown in Table 9 below.</em>
+            </p>
+            <p>
+                     <em>The average response time increases with the number of concurrent users, from 57.4 ms for 70</em>
+            </p>
+            <p>
+                     <em>users to 282.4 ms for 500 users, and reaches 1302.3 ms for 500 users after 2 seconds.</em>
+                     <em> This shows that the response time of the site is more affected by higher loads.</em>
+            </p>
+            <p>
+                     <em>The throughput also generally increases with the number of users, peaking at 175 requests per</em>
+            </p>
+            <p>
+                     <em>second at 0.5 seconds after the number of users increases to 500. When the system is tested</em>
+            </p>
+            <p>
+                     <em>under heavy load after the peak number of users is reached, the throughput is found to gradually decrease, eventually staying around 141 requests per second.</em>
+            </p>
+            <p>
+                     <em>The error rate remained at 0% until the user load reached 500. After that, it increased to 0.93% and then 2.68%.</em>
+            </p>
+            <p>
+                     <em>Table 11 shows the performance test cases that are used to simulate real user behavior.</em>
+            </p>
+            <p>
+                     <em>Table 11: Request test case table</em>
+            </p>
+            <p>
+                     <em>Test case Description</em>
+            </p>
+            <p>
+                     <em>Percentage</em>
+            </p>
+            <p>
+                     <em>of</em>
+            </p>
+            <p>
+                     <em>proportion</em>
+            </p>
+            <p>
+                     <em>Average</em>
+            </p>
+            <p>
+                     <em>response</em>
+            </p>
+            <p>
+                     <em>time (ms)</em>
+            </p>
+            <p>
+                     <em>Login view Test access to the login page 16.7%739.2</em>
+            </p>
+            <p>
+                     <em>Customer login and</em>
+            </p>
+            <p>
+                     <em>logout</em>
+            </p>
+            <p>
+                     <em>Test logging in as a customer account and</em>
+            </p>
+            <p>
+                     <em>then logging out of the account</em>
+            </p>
+            <p>
+                     <em>5.6%</em>
+            </p>
+            <p>
+                     <em>5534.2</em>
+            </p>
+            <p>
+                     <em>Merchant login and</em>
+            </p>
+            <p>
+                     <em>logout</em>
+            </p>
+            <p>
+                     <em>Test logging in as a merchant account and</em>
+            </p>
+            <p>
+                     <em>then logging out of the account</em>
+            </p>
+            <p>
+                     <em>5.6%</em>
+            </p>
+            <p>
+                     <em>5506.4</em>
+            </p>
+            <p>
+                     <em>Recommendation view</em>
+            </p>
+            <p>
+                     <em>Test access to the Recommended dishes</em>
+            </p>
+            <p>
+                     <em>page</em>
+            </p>
+            <p>
+                     <em>11.1%</em>
+            </p>
+            <p>
+                     <em>735.2</em>
+            </p>
+            <p>
+                     <em>Popular shop view Test access to the most popular store pages 5.6%731.7</em>
+            </p>
+            <p>
+                     <em>Register customer</em>
+            </p>
+            <p>
+                     <em>view</em>
+            </p>
+            <p>
+                     <em>Test access to customer registration page 16.7%</em>
+            </p>
+            <p>
+                     <em>747.9</em>
+            </p>
+            <p>
+                     <em>Register merchant</em>
+            </p>
+            <p>
+                     <em>view</em>
+            </p>
+            <p>
+                     <em>Test access to merchant registration page 16.7%</em>
+            </p>
+            <p>
+                     <em>717.6</em>
+            </p>
+            <p>
+                     <em>Category burger view</em>
+            </p>
+            <p>
+                     <em>Test access to a page where the product</em>
+            </p>
+            <p>
+                     <em>category is Hamburger</em>
+            </p>
+            <p>
+                     <em>5.6%</em>
+            </p>
+            <p>
+                     <em>705.28</em>
+            </p>
+            <p>
+                     <em>Table 10: Performance testing result table</em>
+            </p>
+            <p>
+                     <em>User Load</em>
+            </p>
+            <p>
+                     <em>number</em>
+            </p>
+            <p>
+                     <em>Throughput</em>
+            </p>
+            <p>
+                     <em>(Requests per</em>
+            </p>
+            <p>
+                     <em>Second)</em>
+            </p>
+            <p>
+                     <em>Average</em>
+            </p>
+            <p>
+                     <em>response time</em>
+            </p>
+            <p>
+                     <em>(ms)</em>
+            </p>
+            <p>
+                     <em>95th percentile</em>
+            </p>
+            <p>
+                     <em>response time (ms)</em>
+            </p>
+            <p>
+                     <em>Error</em>
+            </p>
+            <p>
+                     <em>rate</em>
+            </p>
+            <p>
+                     <em>(%)</em>
+            </p>
+            <p>
+                     <em>7017.557.44100</em>
+            </p>
+            <p>
+                     <em>17049.8625500</em>
+            </p>
+            <p>
+                     <em>26091.781.48800</em>
+            </p>
+            <p>
+                     <em>310127.7110.312000</em>
+            </p>
+            <p>
+                     <em>410142.4196.719000</em>
+            </p>
+            <p>
+                     <em>460157.9230.421000</em>
+            </p>
+            <p>
+                     <em>500171282.426000.93</em>
+            </p>
+            <p>
+                     <em>500(after 0.5s)175.3335.435002.68</em>
+            </p>
+            <p>
+                     <em>500(after 5s)123.91302.367002.91</em>
+            </p>
+            <p>
+                     <em>500(after 1min)116.91328.876000</em>
+            </p>
+            <p>
+                     <em>500(after 5min)141.81461.159000</em>
+            </p>
+            <p>
+                     <em>Category fries view</em>
+            </p>
+            <p>
+                     <em>Test access to a page where the product</em>
+            </p>
+            <p>
+                     <em>category is fries</em>
+            </p>
+            <p>
+                     <em>5.6%</em>
+            </p>
+            <p>
+                     <em>685.5</em>
+            </p>
+            <p>
+                     <em>View Shop page Test access to the shop page 5.6%757.1</em>
+            </p>
+            <p>
+                     <em>View Product page Test access to the product page 5.6%774.1</em>
+            </p>
+            <p>
+                     <em>In this test, it was observed that significant performance bottlenecks occurred when the number</em>
+            </p>
+            <p>
+                     <em>of users increased to 500, particularly at the 95th percentile, where the response time</em>
+            </p>
+            <p>
+                     <em>approached 7 seconds, which greatly exceeded the ideal response time standard. Additionally,</em>
+            </p>
+            <p>
+                     <em>the server exhibited signs of under-resourcing under high concurrent requests, indicating the need to optimize the server configuration or increase resources to support higher loads.</em>
+            </p>
+            <p>
+                     <em>Furthermore, the tests identified multiple ConnectionRefusedError errors, indicating a need for further investigation into the network configuration or the server's ability to accept connections.</em>
+            </p>
+            <p>
+                     <em>It is important to note that while the tests attempt to simulate real user behavior, actual user actions may be more complex and therefore the results may be biased.</em>
+            </p>
+            <p>
+                     <em>4.1.4 Security testing:</em>
+            </p>
+            <p>
+                     <em>The primary purpose of website security testing is to identify potential threats that could threaten</em>
+            </p>
+            <p>
+                     <em>the security, stability, and data integrity of a website.</em>
+                     <em> Through these tests, we can prevent unauthorized access and data leakage, and ensure the privacy and information security of website users.</em>
+            </p>
+            <p>
+                     <em>This security test uses the OWASP ZAP tool, which is used to automatically detect security vulnerabilities in applications.</em>
+            </p>
+            <p>
+                     <em>The alerts in the report are categorized by risk level, including high, medium, low and</em>
+            </p>
+            <p>
+                     <em>informational alerts.</em>
+                     <em> Table 12 and Table 13 below clearly show the types and number of</em>
+            </p>
+            <p>
+                     <em>warnings for different risk levels:</em>
+            </p>
+            <p>
+                     <em> Medium risk Warnings:3 warnings were identified, primarily related to not configuring CSP and using third-party inventory with vulnerabilities.</em>
+            </p>
+            <p>
+                     <em> Low risk warnings:5 warnings have been identified, including improper cookie settings that</em>
+            </p>
+            <p>
+                     <em>do not use the HttpOnly attribute and error messages that could expose sensitive information.</em>
+            </p>
+            <p>
+                     <em> Informational Alerts:6 items, such as URLs that contain sensitive information.</em>
+            </p>
+            <p>
+                     <em>Table 12: Alert risk level count table</em>
+            </p>
+            <p>
+                     <em>Alert risk level High Medium Low Alert Number of alerts 0356</em>
+            </p>
+            <p>
+                     <em>Table 13: Alert risk type and count table</em>
+            </p>
+            <p>
+                     <em>Alert type</em>
+            </p>
+            <p>
+                     <em>Risk</em>
+            </p>
+            <p>
+                     <em>Level</em>
+            </p>
+            <p>
+                     <em>Count</em>
+            </p>
+            <p>
+                     <em>Content Security Policy Header Not Set Medium 35</em>
+            </p>
+            <p>
+                     <em>Vulnerable JS library Medium 1</em>
+            </p>
+            <p>
+                     <em>Absence of Anti-CSRF Tokens Medium 4</em>
+            </p>
+            <p>
+                     <em>Application Error Disclosure Low 2</em>
+            </p>
+            <p>
+                     <em>Cookie No HttpOnly Flag Low 27</em>
+            </p>
+            <p>
+                     <em>Cross-Domain JavaScript Source File Inclusion Low 27</em>
+            </p>
+            <p>
+                     <em>Server Leaks Version Information via "Server" HTTP Response Header Field Low 82</em>
+            </p>
+            <p>
+                     <em>X-Content-Type-Options Header Missing Low 41</em>
+            </p>
+            <p>
+                     <em>Information Disclosure - Sensitive Information in URL Alert 18</em>
+            </p>
+            <p>
+                     <em>Information Disclosure - Suspicious Comments Alert 31</em>
+            </p>
+            <p>
+                     <em>Session Management Response Identified Alert 36</em>
+            </p>
+            <p>
+                     <em>Modern Web Application Alert 35</em>
+            </p>
+            <p>
+                     <em>User Agent Fuzzer Alert 840</em>
+            </p>
+            <p>
+                     <em>Authentication Request Identified Alert 6</em>
+            </p>
+            <p>
+                     <em>While most of the medium risks have been successfully identified, the report also notes the</em>
+            </p>
+            <p>
+                     <em>existence of unresolved issues, particularly vulnerabilities in some third-party libraries, which</em>
+            </p>
+            <p>
+                     <em>may require more sophisticated update strategies and compatibility testing. In addition, while the</em>
+            </p>
+            <p>
+                     <em>low risks in the report do not currently pose an immediate threat, the security posture may</em>
+            </p>
+            <p>
+                     <em>gradually weaken if they are ignored over time.</em>
+                     <em> Meanwhile, testing limitations to be aware of include the limitations of automated tools, which may generate false positives or miss reports when dealing with customized content and complex user interactions.</em>
+            </p>
+            <p>
+                     <em>4.2 Graphical user interfaces of the website:</em>
+            </p>
+            <p>
+                     <em>4.2.1 Main page:</em>
+            </p>
+            <p>
+                     <em>The following figures (11,12, and 13) depict the different functions of the top menu of the main</em>
+            </p>
+            <p>
+                     <em>page when the user is not logged in, when the user is logged in as a customer, and when the user is logged in as a merchant.</em>
+            </p>
+            <p>
+                     <em>Figures 14 and 15 show the center and bottom of the main page of the website, where Figure 14 also shows the most popular and most sales stores recommended by the website.</em>
+            </p>
+            <p>
+                     <em>Figure 11: Top section of main page (not login)</em>
+            </p>
+            <p>
+                     <em>Figure 12: Top section of main page (customer) Figure 13:Top section of main page (merchant)</em>
+            </p>
+            <p>
+                     <em>Figure 14: Middle section of the main page</em>
+            </p>
+            <p>
+                     <em>Figure 15: Bottom of the main page</em>
+            </p>
+            <p>
+                     <em>4.2.2 Login page:</em>
+            </p>
+            <p>
+                     <em>The website login page is shown in Figure 16 below, with two login options for the user to</em>
+            </p>
+            <p>
+                     <em>choose from.</em>
+                     <em> When the user selects the option to log in as a customer, they are redirected to</em>
+            </p>
+            <p>
+                     <em>the customer login screen, as shown in Figure 17. Similarly, if the user selects the option to log in as a merchant, they will be redirected to the merchant login screen, as shown in Figure 18.</em>
+            </p>
+            <p>
+                     <em>Figure 16: Login page</em>
+            </p>
+            <p>
+                     <em>Figure 17: Login page of customer</em>
+            </p>
+            <p>
+                     <em>Figure 18: Login page of merchant</em>
+            </p>
+            <p>
+                     <em>4.2.3 Registration page:</em>
+            </p>
+            <p>
+                     <em>Figures 19 and 20 clearly show the registration screen for the two user types of the website.</em>
+                     <em> The user is required to enter a username, password, phone number, and gender.</em>
+            </p>
+            <p>
+                     <em>Figure 19: Register page of customer</em>
+            </p>
+            <p>
+                     <em>Figure 20: Register page of merchant</em>
+            </p>
+            <p>
+                     <em>4.2.4 Shopping cart page:</em>
+            </p>
+            <p>
+                     <em>Figure 21 shows the shopping cart page of the website, which is only available to customers.</em>
+            </p>
+            <p>
+                     <em>This page consists of two sections, the user address section and the shopping cart section. The</em>
+            </p>
+            <p>
+                     <em>user address section displays all the addresses created by the user, and the user can click on</em>
+            </p>
+            <p>
+                     <em>the add new address button to add a new address.</em>
+                     <em> The shopping cart section lists all the items that have been added to the shopping cart along with their quantity and price, and the user can modify the quantity of the items and choose to pay for them.</em>
+            </p>
+            <p>
+                     <em>Figure 21: Shopping cart page</em>
+            </p>
+            <p>
+                     <em>4.2.5 Search and category page:</em>
+            </p>
+            <p>
+                     <em> Search page</em>
+            </p>
+            <p>
+                     <em>This part of the website shows the search page, which contains a search box, switch buttons,</em>
+            </p>
+            <p>
+                     <em>and displays the search results.</em>
+                     <em> Figure 22 shows the search for restaurants page, which shows</em>
+            </p>
+            <p>
+                     <em>all the restaurants searched for information.</em>
+                     <em> Click on the switch button to switch to the search</em>
+            </p>
+            <p>
+                     <em>for dishes page, as shown as in Figure 23</em>
+            </p>
+            <p>
+                     <em>Figure 22: Search restaurant page</em>
+            </p>
+            <p>
+                     <em>Figure 23: Search dish page</em>
+            </p>
+            <p>
+                     <em> Category page</em>
+            </p>
+            <p>
+                     <em>Figure 24 shows the website's category menu, where users can click on one of the categories to jump to the corresponding category page.</em>
+                     <em> Take the products with category fries as an example, figure 25 shows the page with category fries, which lists all the products with category fries.</em>
+            </p>
+            <p>
+                     <em>Figure 24: Category menu in main page</em>
+            </p>
+            <p>
+                     <em>Figure 25: Category of Fries page</em>
+            </p>
+            <p>
+                     <em>4.2.6 Add address page:</em>
+            </p>
+            <p>
+                     <em>Figure 26 shows the Add Address page available to the customer user, which requires the user to select, complete, and submit the address information.</em>
+            </p>
+            <p>
+                     <em>Figure 26: Add address page</em>
+            </p>
+            <p>
+                     <em>4.2.7 Shop and Product page:</em>
+            </p>
+            <p>
+                     <em> Shop page</em>
+            </p>
+            <p>
+                     <em>This section shows the store page through Figure 27 and Figure 28 shows the top section of the store page, which shows the name and address of the store and the average rating of the store,</em>
+            </p>
+            <p>
+                     <em>and also provides a button to favorite the store.</em>
+                     <em> Figure 28 shows the menu of the shop, which lists all the types of dishes available in the shop.</em>
+                     <em> There is also a shopping cart section where you can add items to the cart and modify the items in the cart.</em>
+            </p>
+            <p>
+                     <em>Figure 27: Top section of shop page Figure 28: Main section of shop page</em>
+            </p>
+            <p>
+                     <em> Product page:</em>
+            </p>
+            <p>
+                     <em>Figure 29 shows the product page with information about the product (e.g., name, type, price,</em>
+            </p>
+            <p>
+                     <em>etc.</em>
+                     <em>), a button to favorite the product and a button to add the product to the shopping cart, and a link to the store where the product is owned.</em>
+            </p>
+            <p>
+                     <em>Figure 30 shows the product's reviews section, which lists all user reviews for the product, including username, rating, and review content.</em>
+            </p>
+            <p>
+                     <em>Figure 29: Top section of product page</em>
+            </p>
+            <p>
+                     <em>Figure 30: Comment section of product page</em>
+            </p>
+            <p>
+                     <em>4.2.8 Recommendation page:</em>
+            </p>
+            <p>
+                     <em>Figure 31 shows the different dishes that the website recommends to the user based on the recommendation system.</em>
+            </p>
+            <p>
+                     <em>Figure 32 shows the most popular and most visited shops on the website.</em>
+                     <em> Figure 33 shows the top-selling shops on the website.</em>
+            </p>
+            <p>
+                     <em>Figure 31: Recommended dishes page</em>
+            </p>
+            <p>
+                     <em>Figure 32: Most popular shop page</em>
+            </p>
+            <p>
+                     <em>Figure 33: Most sales shop page</em>
+            </p>
+            <p>
+                     <em>4.2.9 My Favorites page:</em>
+            </p>
+            <p>
+                     <em>The My Favorites feature available to the customer is shown in Figure 34. It lists all the favorite</em>
+            </p>
+            <p>
+                     <em>shops, and below each favorite shop is an Unfavorite button that can be clicked to unfavorite the</em>
+            </p>
+            <p>
+                     <em>shop.</em>
+                     <em> Clicking on the top button takes you to the Favorites menu page. Figure 35 lists all the favorite menu items.</em>
+            </p>
+            <p>
+                     <em>Figure 34: Favorite restaurant page</em>
+            </p>
+            <p>
+                     <em>Figure 35: Favorite dish page</em>
+            </p>
+            <p>
+                     <em>4.2.10 My orders page:</em>
+            </p>
+            <p>
+                     <em>This section displays the My Orders page, which shows orders in three different statuses:</em>
+            </p>
+            <p>
+                     <em>Completed, In Progress, and Canceled orders, which are toggled on the right side of the page.</em>
+            </p>
+            <p>
+                     <em> Completed orders:</em>
+            </p>
+            <p>
+                     <em>Figure 36 and Figure 37 both show the Completed status of the Order page, where Figure 36 is</em>
+            </p>
+            <p>
+                     <em>the page for the Customer user type, who can rate and comment on the completed order, and Figure 37 is the page for the Merchant user type.</em>
+            </p>
+            <p>
+                     <em>Figure 36: Completed order page of customer Figure 37: Completed order page of merchant</em>
+            </p>
+            <p>
+                     <em> On Progress orders:</em>
+            </p>
+            <p>
+                     <em>Figure 38 and Figure 39 show the order page with an order status of In Progress, where Figure 39 is the page for the Merchant user who has the option to deliver the product,</em>
+                     <em> and Figure 38 is the page for the Customer user.</em>
+            </p>
+            <p>
+                     <em>Figure 38: On progress order page of customer Figure 39: On progress order page of merchant</em>
+            </p>
+            <p>
+                     <em> Canceled orders:</em>
+            </p>
+            <p>
+                     <em>Figure 40 shows the order page with a canceled order status.</em>
+            </p>
+            <p>
+                     <em>Figure 40: Canceled order page</em>
+            </p>
+            <p>
+                     <em>4.2.11 Payment page:</em>
+            </p>
+            <p>
+                     <em>Figure 41 shows the payment page, which displays the total price paid and the ids of the included orders, with buttons at the bottom to choose to pay or cancel.</em>
+            </p>
+            <p>
+                     <em>Figure 41:Payment page</em>
+            </p>
+            <p>
+                     <em>4.2.12 Rating and Post Comment page:</em>
+            </p>
+            <p>
+                     <em>Figure 42 is the Reviews and Ratings page of the website, which enables users to evaluate the</em>
+            </p>
+            <p>
+                     <em>stores in which they have made purchases, as well as the products they have purchased, and to leave comments.</em>
+            </p>
+            <p>
+                     <em>Figure 42:Rating and post comment</em>
+            </p>
+            <p>
+                     <em>4.2.13 My store page:</em>
+            </p>
+            <p>
+                     <em>This section shows all the pages of the Shop Management for Merchant type users.</em>
+            </p>
+            <p>
+                     <em>In this case, the main page of the Shop Management is shown in Figure 43, which displays the Shop's data.</em>
+            </p>
+            <p>
+                     <em>Figure 44 shows the Add New Product page, where the merchant can add product information to allow new products to be uploaded.</em>
+            </p>
+            <p>
+                     <em>Figure 45 shows the Product Management page, where the merchant can choose to modify the product information or delete the product.</em>
+            </p>
+            <p>
+                     <em>Figure 43: My store page</em>
+            </p>
+            <p>
+                     <em>Figure 44: Add product page</em>
+            </p>
+            <p>
+                     <em>Figure 45: Product management</em>
+            </p>
+            <p>
+                     <em>Chapter 5 Professional Issues</em>
+            </p>
+            <p>
+                     <em>5.1 Project Management</em>
+            </p>
+            <p>
+                     <em>5.1.1 Activities</em>
+            </p>
+            <p>
+                     <em>This section is used to divide the implementation process of the project into several activities to be accomplished.</em>
+                     <em> The type and duration of the activity is shown in the following Table 14.</em>
+            </p>
+            <p>
+                     <em>Table 14: Activity table</em>
+            </p>
+            <p>
+                     <em>Objective Detail</em>
+            </p>
+            <p>
+                     <em>Start</em>
+            </p>
+            <p>
+                     <em>data</em>
+            </p>
+            <p>
+                     <em>End</em>
+            </p>
+            <p>
+                     <em>date</em>
+            </p>
+            <p>
+                     <em>1. Investigation on the</em>
+            </p>
+            <p>
+                     <em>Existing Food Delivery</em>
+            </p>
+            <p>
+                     <em>Platform</em>
+            </p>
+            <p>
+                     <em>Researched prominent food delivery platforms (Meituan, Ele.me, Uber Eats).</em>
+            </p>
+            <p>
+                     <em>2023/10</em>
+            </p>
+            <p>
+                     <em>/16</em>
+            </p>
+            <p>
+                     <em>2023/1</em>
+            </p>
+            <p>
+                     <em>0/24</em>
+            </p>
+            <p>
+                     <em>2. Comparison between</em>
+            </p>
+            <p>
+                     <em>food delivery platforms</em>
+            </p>
+            <p>
+                     <em>Compared features, market positions, and user feedback of selected platforms.</em>
+            </p>
+            <p>
+                     <em>2023/10</em>
+            </p>
+            <p>
+                     <em>/20</em>
+            </p>
+            <p>
+                     <em>2023/1</em>
+            </p>
+            <p>
+                     <em>0/28</em>
+            </p>
+            <p>
+                     <em>3. Research on</em>
+            </p>
+            <p>
+                     <em>recommendation</em>
+            </p>
+            <p>
+                     <em>system</em>
+            </p>
+            <p>
+                     <em>Study and analyzes different types of recommendation</em>
+            </p>
+            <p>
+                     <em>systems and explores the application of these methods in takeout platforms.</em>
+            </p>
+            <p>
+                     <em>2023/10</em>
+            </p>
+            <p>
+                     <em>/24</em>
+            </p>
+            <p>
+                     <em>2023/1</em>
+            </p>
+            <p>
+                     <em>0/29</em>
+            </p>
+            <p>
+                     <em>4. Write Project proposal Developed and submitted a comprehensive project proposal.</em>
+            </p>
+            <p>
+                     <em>2023/10</em>
+            </p>
+            <p>
+                     <em>/25</em>
+            </p>
+            <p>
+                     <em>2023/1</em>
+            </p>
+            <p>
+                     <em>1/3</em>
+            </p>
+            <p>
+                     <em>5. Research on CF and</em>
+            </p>
+            <p>
+                     <em>Content-based filtering</em>
+            </p>
+            <p>
+                     <em>Investigated the workings of Collaborative Filtering (CF) and</em>
+            </p>
+            <p>
+                     <em>Content-based filtering algorithms</em>
+            </p>
+            <p>
+                     <em>2023/10</em>
+            </p>
+            <p>
+                     <em>/29</em>
+            </p>
+            <p>
+                     <em>2023/1</em>
+            </p>
+            <p>
+                     <em>1/10</em>
+            </p>
+            <p>
+                     <em>6. Function requirements</em>
+            </p>
+            <p>
+                     <em>analysis</em>
+            </p>
+            <p>
+                     <em>Analyze the website and different types of users and record their software requirements.</em>
+            </p>
+            <p>
+                     <em>2023/11</em>
+            </p>
+            <p>
+                     <em>/1</em>
+            </p>
+            <p>
+                     <em>2023/1</em>
+            </p>
+            <p>
+                     <em>1/18</em>
+            </p>
+            <p>
+                     <em>7. System design</em>
+            </p>
+            <p>
+                     <em>Design the website architecture by breaking it down into the</em>
+            </p>
+            <p>
+                     <em>following modules:</em>
+            </p>
+            <p>
+                     <em>1. Customer module</em>
+            </p>
+            <p>
+                     <em>2. Merchant module</em>
+            </p>
+            <p>
+                     <em>3. Store module</em>
+            </p>
+            <p>
+                     <em>4. Product module</em>
+            </p>
+            <p>
+                     <em>5. Order module</em>
+            </p>
+            <p>
+                     <em>2023/11</em>
+            </p>
+            <p>
+                     <em>/14</em>
+            </p>
+            <p>
+                     <em>2023/1</em>
+            </p>
+            <p>
+                     <em>1/30</em>
+            </p>
+            <p>
+                     <em>6. Recommendation module</em>
+            </p>
+            <p>
+                     <em>8. Database design</em>
+            </p>
+            <p>
+                     <em>1. Based on Function requirements analysis design the framework of database mode.</em>
+            </p>
+            <p>
+                     <em>2. Implement the database by Mysql.3. Connect database with Django.</em>
+            </p>
+            <p>
+                     <em>2023/11</em>
+            </p>
+            <p>
+                     <em>/20</em>
+            </p>
+            <p>
+                     <em>2023/1</em>
+            </p>
+            <p>
+                     <em>1/26</em>
+            </p>
+            <p>
+                     <em>9. Web Implementation</em>
+            </p>
+            <p>
+                     <em>(Implement the front-</em>
+            </p>
+            <p>
+                     <em>end and back-end)</em>
+            </p>
+            <p>
+                     <em>1. Web UI design</em>
+            </p>
+            <p>
+                     <em>2. Completed the front-end user interface for customers, merchants, and administrators.</em>
+            </p>
+            <p>
+                     <em>3. Implemented back-end function.</em>
+            </p>
+            <p>
+                     <em>2023/12</em>
+            </p>
+            <p>
+                     <em>/1</em>
+            </p>
+            <p>
+                     <em>2023/2/</em>
+            </p>
+            <p>
+                     <em>10. Progress report Implement the progress report.</em>
+            </p>
+            <p>
+                     <em>2023/12</em>
+            </p>
+            <p>
+                     <em>/10</em>
+            </p>
+            <p>
+                     <em>2023/1</em>
+            </p>
+            <p>
+                     <em>2/27</em>
+            </p>
+            <p>
+                     <em>11. Recommend function</em>
+            </p>
+            <p>
+                     <em>design</em>
+            </p>
+            <p>
+                     <em>Design the architecture of the recommendation system,</em>
+            </p>
+            <p>
+                     <em>including the use of User CF recommendation and CB</em>
+            </p>
+            <p>
+                     <em>2024/1/</em>
+            </p>
+            <p>
+                     <em>2024/1/</em>
+            </p>
+            <p>
+                     <em>12. Develop recommend</em>
+            </p>
+            <p>
+                     <em>function</em>
+            </p>
+            <p>
+                     <em>1. Developed and implemented the two main components of</em>
+            </p>
+            <p>
+                     <em>the recommendation system: the User CF and the CB algorithm.</em>
+            </p>
+            <p>
+                     <em>2. Integrated these algorithms into the website's backend, ensuring proper data circulation and updates.</em>
+            </p>
+            <p>
+                     <em>2024/1/</em>
+            </p>
+            <p>
+                     <em>2024/3/</em>
+            </p>
+            <p>
+                     <em>13. Test and evaluate</em>
+            </p>
+            <p>
+                     <em>website function</em>
+            </p>
+            <p>
+                     <em>Planned testing and evaluation for the website.</em>
+            </p>
+            <p>
+                     <em>2024/3/</em>
+            </p>
+            <p>
+                     <em>2024/3</em>
+            </p>
+            <p>
+                     <em>/10</em>
+            </p>
+            <p>
+                     <em>14. System testing &</em>
+            </p>
+            <p>
+                     <em>performance</em>
+            </p>
+            <p>
+                     <em>analysis</em>
+            </p>
+            <p>
+                     <em>Conduct comprehensive system testing of the website,</em>
+            </p>
+            <p>
+                     <em>including functional testing, user interface testing and performance testing.</em>
+            </p>
+            <p>
+                     <em>2024/3/</em>
+            </p>
+            <p>
+                     <em>2024/3</em>
+            </p>
+            <p>
+                     <em>/15</em>
+            </p>
+            <p>
+                     <em>15. Write Final report Implement the final report</em>
+            </p>
+            <p>
+                     <em>2024/3/</em>
+            </p>
+            <p>
+                     <em>2024/4</em>
+            </p>
+            <p>
+                     <em>/6</em>
+            </p>
+            <p>
+                     <em>16. Create Poster Will design and create a poster for project presentation.</em>
+            </p>
+            <p>
+                     <em>2024/4/</em>
+            </p>
+            <p>
+                     <em>2024/4</em>
+            </p>
+            <p>
+                     <em>/15</em>
+            </p>
+            <p>
+                     <em>5.1.2 Schedule</em>
+            </p>
+            <p>
+                     <em>The phase schedule for the entire project is shown in detail in figure 46 below.</em>
+            </p>
+            <p>
+                     <em>Figure 46: Gantt chart of activity</em>
+            </p>
+            <p>
+                     <em>5.1.3 Project Data Management</em>
+            </p>
+            <p>
+                     <em> For Weekly reports, I upload them to the Weekly report folder every week.</em>
+                     <em> Upload all the reports to the Reports folder.</em>
+            </p>
+            <p>
+                     <em> Upload all the Reference files to the References folder.</em>
+                     <em> Upload all the code to a code file.</em>
+            </p>
+            <p>
+                     <em> Upload other relevant files to the others folder.</em>
+            </p>
+            <p>
+                     <em> Upload the files related to Presentation to the Presentation folder.</em>
+                     <em> The figure 47 below shows the file format in the repository in detail.</em>
+            </p>
+            <p>
+                     <em>2023/10/182023/11/72023/11/272023/12/172024/1/62024/1/262024/2/152024/3/62024/3/26</em>
+            </p>
+            <p>
+                     <em>Investigation on the Existing Food Delivery Platform</em>
+            </p>
+            <p>
+                     <em>Comparison between food delivery platform 
+Research on recommendation system</em>
+            </p>
+            <p>
+                     <em>Write Project proposalResearch on CF and Content-based recommendation 
+Project proposal</em>
+            </p>
+            <p>
+                     <em>Function requirements analysisSystem design (divided into several modules)</em>
+            </p>
+            <p>
+                     <em>Database design</em>
+            </p>
+            <p>
+                     <em>Web Implementation</em>
+            </p>
+            <p>
+                     <em>Progress report</em>
+            </p>
+            <p>
+                     <em>Recommend function designDevelop recommend functionTest and evaluate website functionSystem testing & performance analysis 
+Final report</em>
+            </p>
+            <p>
+                     <em>Create Poster</em>
+            </p>
+            <p>
+                     <em>Figure 47: Github project repository</em>
+            </p>
+            <p>
+                     <em>The project also used Zotero for literature management, as shown as in figure 48.</em>
+            </p>
+            <p>
+                     <em>Figure 48: Literature Management</em>
+            </p>
+            <p>
+                     <em>5.1.4 Project Deliverables</em>
+            </p>
+            <p>
+                     <em>All deliverables are listed in Table 15 below.</em>
+            </p>
+            <p>
+                     <em>Table 15: Project deliverable</em>
+            </p>
+            <p>
+                     <em>Type Content</em>
+            </p>
+            <p>
+                     <em>Document</em>
+            </p>
+            <p>
+                     <em>Project proposal</em>
+            </p>
+            <p>
+                     <em>Progress report</em>
+            </p>
+            <p>
+                     <em>Final report</em>
+            </p>
+            <p>
+                     <em>Weekly report</em>
+            </p>
+            <p>
+                     <em>Ethical from</em>
+            </p>
+            <p>
+                     <em>Presentation & poster</em>
+            </p>
+            <p>
+                     <em>Reference files </em>
+            </p>
+            <p>
+                     <em>Code</em>
+            </p>
+            <p>
+                     <em>Database SQL file</em>
+            </p>
+            <p>
+                     <em>Front-end file and code</em>
+            </p>
+            <p>
+                     <em>Back-end code</em>
+            </p>
+            <p>
+                     <em>5.2 Risk Analysis</em>
+            </p>
+            <p>
+                     <em>This section describes the risk analysis and mitigation strategies for the project.</em>
+            </p>
+            <p>
+                     <em>Table 16 shows the extent of the risk analysis in terms of risk, severity, and likelihood.</em>
+            </p>
+            <p>
+                     <em>Table 16: Risk, Severity, Likelihood level table</em>
+            </p>
+            <p>
+                     <em>Low Medium High</em>
+            </p>
+            <p>
+                     <em>1,2,3,45,6,7,89,10,11,12</em>
+            </p>
+            <p>
+                     <em>Table 16 details the risks in the project, their causes, severity, likelihood, and response mitigation strategy.</em>
+            </p>
+            <p>
+                     <em>Table 16: The risk analysis table</em>
+            </p>
+            <p>
+                     <em>Risk</em>
+            </p>
+            <p>
+                     <em>ID</em>
+            </p>
+            <p>
+                     <em>Potential</em>
+            </p>
+            <p>
+                     <em>Risk</em>
+            </p>
+            <p>
+                     <em>Cause ID</em>
+            </p>
+            <p>
+                     <em>Potential</em>
+            </p>
+            <p>
+                     <em>Causes</em>
+            </p>
+            <p>
+                     <em>Severit</em>
+            </p>
+            <p>
+                     <em>y</em>
+            </p>
+            <p>
+                     <em>Likeli</em>
+            </p>
+            <p>
+                     <em>hood</em>
+            </p>
+            <p>
+                     <em>Risk</em>
+            </p>
+            <p>
+                     <em>Mitigatio</em>
+            </p>
+            <p>
+                     <em>n ID</em>
+            </p>
+            <p>
+                     <em>Mitigation</em>
+            </p>
+            <p>
+                     <em>R1.1</em>
+            </p>
+            <p>
+                     <em>User</em>
+            </p>
+            <p>
+                     <em>dissatisfac</em>
+            </p>
+            <p>
+                     <em>tion with</em>
+            </p>
+            <p>
+                     <em>recomme</em>
+            </p>
+            <p>
+                     <em>ndation</em>
+            </p>
+            <p>
+                     <em>system</em>
+            </p>
+            <p>
+                     <em>C1.1.1</em>
+            </p>
+            <p>
+                     <em>Poor algorithm</em>
+            </p>
+            <p>
+                     <em>performance</em>
+            </p>
+            <p>
+                     <em>456 M1.1.1</em>
+            </p>
+            <p>
+                     <em>Regularly evaluate and</em>
+            </p>
+            <p>
+                     <em>update the</em>
+            </p>
+            <p>
+                     <em>recommendation algorithm</em>
+            </p>
+            <p>
+                     <em>based on user feedback and usage patterns.</em>
+            </p>
+            <p>
+                     <em>C1.1.2</em>
+            </p>
+            <p>
+                     <em>Inadequate user</em>
+            </p>
+            <p>
+                     <em>data collection</em>
+            </p>
+            <p>
+                     <em>424 M2.1.2</em>
+            </p>
+            <p>
+                     <em>Implement robust data collection mechanisms</em>
+            </p>
+            <p>
+                     <em>and ensure transparency in data usage policies to gain user trust.</em>
+            </p>
+            <p>
+                     <em>R1.2</em>
+            </p>
+            <p>
+                     <em>Software</em>
+            </p>
+            <p>
+                     <em>bugs</em>
+            </p>
+            <p>
+                     <em>C1.2.1 Code errors 353 M1.2.1</em>
+            </p>
+            <p>
+                     <em>Increase code review</em>
+            </p>
+            <p>
+                     <em>processes, employ</em>
+            </p>
+            <p>
+                     <em>automated testing and</em>
+            </p>
+            <p>
+                     <em>continuous integration to</em>
+            </p>
+            <p>
+                     <em>identify and resolve issues early.</em>
+            </p>
+            <p>
+                     <em>C1.2.2</em>
+            </p>
+            <p>
+                     <em>Incorrect logic</em>
+            </p>
+            <p>
+                     <em>design in code</em>
+            </p>
+            <p>
+                     <em>modules</em>
+            </p>
+            <p>
+                     <em>547 M1.2.2</em>
+            </p>
+            <p>
+                     <em>Conduct thorough logic</em>
+            </p>
+            <p>
+                     <em>and functional testing during development</em>
+            </p>
+            <p>
+                     <em>phases to ensure modules</em>
+            </p>
+            <p>
+                     <em>meet their design</em>
+            </p>
+            <p>
+                     <em>specifications.</em>
+            </p>
+            <p>
+                     <em>R1.3</em>
+            </p>
+            <p>
+                     <em>Inadequat</em>
+            </p>
+            <p>
+                     <em>e</em>
+            </p>
+            <p>
+                     <em>Database</em>
+            </p>
+            <p>
+                     <em>Design</em>
+            </p>
+            <p>
+                     <em>C1.3.1</em>
+            </p>
+            <p>
+                     <em>Insufficient</em>
+            </p>
+            <p>
+                     <em>scalability of the</em>
+            </p>
+            <p>
+                     <em>database</em>
+            </p>
+            <p>
+                     <em>525 M1.3.1</em>
+            </p>
+            <p>
+                     <em>Design scalable database</em>
+            </p>
+            <p>
+                     <em>architectures, regularly evaluate performance, and adjust configurations as needed.</em>
+            </p>
+            <p>
+                     <em>R1.4</em>
+            </p>
+            <p>
+                     <em>Security</em>
+            </p>
+            <p>
+                     <em>vulnerabili</em>
+            </p>
+            <p>
+                     <em>ties</em>
+            </p>
+            <p>
+                     <em>C1.4.1</em>
+            </p>
+            <p>
+                     <em>User</em>
+            </p>
+            <p>
+                     <em>authentication</em>
+            </p>
+            <p>
+                     <em>issues</em>
+            </p>
+            <p>
+                     <em>9310 M1.4.1</em>
+            </p>
+            <p>
+                     <em>Implement more effective and robust authentication</em>
+            </p>
+            <p>
+                     <em>policies with multi-factor</em>
+            </p>
+            <p>
+                     <em>authentication options</em>
+            </p>
+            <p>
+                     <em>C1.4.2</em>
+            </p>
+            <p>
+                     <em>Unencrypted</em>
+            </p>
+            <p>
+                     <em>data transfers</em>
+            </p>
+            <p>
+                     <em>7410 M1.4.2</em>
+            </p>
+            <p>
+                     <em>Ensure that important data</em>
+            </p>
+            <p>
+                     <em>is encrypted when it is encrypted, such as by using SSL/TLS.</em>
+            </p>
+            <p>
+                     <em>C1.4.3</em>
+            </p>
+            <p>
+                     <em>Storing User</em>
+            </p>
+            <p>
+                     <em>Passwords in</em>
+            </p>
+            <p>
+                     <em>Plaintext</em>
+            </p>
+            <p>
+                     <em>949 M1.4.3</em>
+            </p>
+            <p>
+                     <em>Implement robust</em>
+            </p>
+            <p>
+                     <em>encryption protocols for storing passwords, such</em>
+            </p>
+            <p>
+                     <em>as hashing with salt, to</em>
+            </p>
+            <p>
+                     <em>ensure that passwords are not stored as plain text.</em>
+            </p>
+            <p>
+                     <em>R1.5</em>
+            </p>
+            <p>
+                     <em>Missing</em>
+            </p>
+            <p>
+                     <em>deadline</em>
+            </p>
+            <p>
+                     <em>C1.5.1</em>
+            </p>
+            <p>
+                     <em>Poor resource</em>
+            </p>
+            <p>
+                     <em>allocation and</em>
+            </p>
+            <p>
+                     <em>time</em>
+            </p>
+            <p>
+                     <em>management</em>
+            </p>
+            <p>
+                     <em>12512 M1.5.1</em>
+            </p>
+            <p>
+                     <em>Optimize resource</em>
+            </p>
+            <p>
+                     <em>allocation and time</em>
+            </p>
+            <p>
+                     <em>management practices.</em>
+            </p>
+            <p>
+                     <em>R1.6</em>
+            </p>
+            <p>
+                     <em>Loss of</em>
+            </p>
+            <p>
+                     <em>data</em>
+            </p>
+            <p>
+                     <em>C1.6.1</em>
+            </p>
+            <p>
+                     <em>The project was</em>
+            </p>
+            <p>
+                     <em>not managed</em>
+            </p>
+            <p>
+                     <em>using version</em>
+            </p>
+            <p>
+                     <em>control software.</em>
+            </p>
+            <p>
+                     <em>1028 M1.6.1</em>
+            </p>
+            <p>
+                     <em>Back up projects regularly and use other cloud drives</em>
+            </p>
+            <p>
+                     <em>in addition to version</em>
+            </p>
+            <p>
+                     <em>management software to back up software.</em>
+            </p>
+            <p>
+                     <em>5.3 Professional Issues</em>
+            </p>
+            <p>
+                     <em>5.3.1 Legal Issues</em>
+            </p>
+            <p>
+                     <em> Identification:</em>
+            </p>
+            <p>
+                     <em>Comply with privacy laws regarding the collection and security of user information.</em>
+                     <em> Verifying merchants and products to prevent fraudulent activity.</em>
+            </p>
+            <p>
+                     <em> Discussion:</em>
+            </p>
+            <p>
+                     <em>In order to comply with the ethical principles of the Association for Computing Machinery (ACM), it is essential to implement secure data management practices,</em>
+                     <em> such as encrypted storage and secure transmission protocols [28].</em>
+                     <em> These practices serve to protect data integrity and ensure that user data privacy is respected.</em>
+                     <em> Moreover, websites are required to inform users of the purpose for which their data is being collected.</em>
+                     <em> Consequently, websites are required to conduct regular audits and compliance checks in order to ensure compliance with legal standards and ethical principles.</em>
+            </p>
+            <p>
+                     <em>5.3.2 Social Issues</em>
+            </p>
+            <p>
+                     <em> Identification:</em>
+            </p>
+            <p>
+                     <em>Content Management of Images and Comments: Ensure content is appropriate and free of</em>
+            </p>
+            <p>
+                     <em>offensive or discriminatory remarks</em>
+            </p>
+            <p>
+                     <em>Food Diversity: Provide food choices from a variety of cultures and diets.</em>
+            </p>
+            <p>
+                     <em> Discussion:</em>
+            </p>
+            <p>
+                     <em>The ACM Code encourages professionals to be inclusive and respectful of all users,</em>
+                     <em> as demonstrated by the management of diverse food products and the vigilant management of user interactions and published content on websites.</em>
+                     <em> This includes implementing algorithms and human oversight to ensure that user-generated content (e.</em>
+                     <em>g., comments or images) does not violate norms of respect and civility.</em>
+            </p>
+            <p>
+                     <em>5.3.3 Ethical Issues</em>
+            </p>
+            <p>
+                     <em> Identification:</em>
+            </p>
+            <p>
+                     <em>Clearly display all costs associated with orders on the website</em>
+            </p>
+            <p>
+                     <em> Discussion:</em>
+            </p>
+            <p>
+                     <em>Fee clarity is essential to ensure trust and fairness.</em>
+                     <em> This can be achieved by clearly indicating and communicating any fees, taxes or additional charges that may apply to transactions on the platform.</em>
+            </p>
+            <p>
+                     <em>5.3.4 Environmental Issues</em>
+            </p>
+            <p>
+                     <em> Identification:</em>
+            </p>
+            <p>
+                     <em>Promote consumer education on environmental conservation.</em>
+            </p>
+            <p>
+                     <em>Implement sustainable, environmentally friendly packaging and delivery materials.</em>
+                     <em> Offer customers the option to use their own reusable utensils.</em>
+            </p>
+            <p>
+                     <em> Discussion:</em>
+            </p>
+            <p>
+                     <em>It is recommended that websites serve as a platform to educate consumers on how to reduce their environmental impact.</em>
+                     <em> This can be achieved by providing information on sustainable practices and the benefits of reducing single-use plastics.</em>
+                     <em> Furthermore, websites should actively promote and utilize environmentally friendly packaging and utensils for food delivery.</em>
+                     <em> A shift towards more sustainable consumption habits can be encouraged through the facilitation of customers' choice of reusable tableware or the option of bringing their own.</em>
+            </p>
+            <p>
+                     <em>This strategic approach not only aligns with ethical guidelines to promote environmental sustainability, but also engages consumers in active participation, fostering a community committed to environmental responsibility.</em>
+            </p>
+            <p>
+                     <em>Chapter 6 Conclusion</em>
+            </p>
+            <p>
+                     <em>This project implemented a hybrid recommendation system for an online food delivery website.</em>
+            </p>
+            <p>
+                     <em>The system utilizes a hybrid of User-CF and CB techniques to provide personalized product recommendations to the website's users.</em>
+            </p>
+            <p>
+                     <em> Achievements:</em>
+            </p>
+            <p>
+                     <em>The integration of User-CF and CB into a hybrid recommendation system allowed for more accurate and personalized recommendations, significantly improving the user experience.</em>
+            </p>
+            <p>
+                     <em>The website is implemented by using the Django framework and MySQL database, and also</em>
+            </p>
+            <p>
+                     <em>uses third-party libraries such as Pandas, NumPy, and scikit-learn to process and analyze user data.</em>
+            </p>
+            <p>
+                     <em>A multitude of testing methodologies were employed to assess the security, reliability,</em>
+            </p>
+            <p>
+                     <em>scalability, and performance of the website. These methodologies included performance testing,</em>
+            </p>
+            <p>
+                     <em>security testing, unit testing, and functional testing, which were conducted in a diverse array of scenarios using a range of testing tools.</em>
+            </p>
+            <p>
+                     <em> Potential Future Work:</em>
+            </p>
+            <p>
+                     <em>Future work to further develop the website project can be classified in the following directions:</em>
+            </p>
+            <p>
+                     <em>Recommendation algorithm improvements: Future work will focus on improving the</em>
+            </p>
+            <p>
+                     <em>recommendation function by integrating more advanced machine learning models to overcome cold start problems.</em>
+            </p>
+            <p>
+                     <em>Extending website functionality: For the order functionality, real-time order tracking can be</em>
+            </p>
+            <p>
+                     <em>added to the website.</em>
+                     <em> More advanced search filters can also be added to allow users to more accurately target stores, further increasing user engagement and satisfaction.</em>
+            </p>
+            <p>
+                     <em>References </em>
+            </p>
+        </div>
+
+     </div>
+ </div>
+<!--e main -->
+
+</body>
+</html>
